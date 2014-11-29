@@ -6,7 +6,6 @@
         <template id="assets_frontend" inherit_id="website.assets_frontend" name="Accept Terms on Checkout">
           <xpath expr="." position="inside">
                 <link rel='stylesheet' href='/l10n_de_website_sale_accept_terms/static/src/css/style.css'/>
-                <script type="text/javascript" src="/l10n_de_website_sale_accept_terms/static/src/js/script.js"></script>
           </xpath>
         </template>
 
@@ -71,10 +70,9 @@
                       </div>
                       
                       <div class="wsga-mb30">
-                          <h4 id="rev">Please accept our terms and revocation!</h4>
+                          <h4 id="rev">Terms and revocation!</h4>
                           <div id="revlabel" class="form-group">
-                              <input id="revbox" value="rev" type="checkbox" name="rev" />
-                              <label class="control-label" for="rev">I have read the <span id="open-terms" class="wsga-cursor">terms</span> and the <span id="open-revo" class="wsga-cursor">revocation</span> and accept them.</label>
+                              <p>With click on the button "Pay now" I accept the <span id="open-terms" class="wsga-cursor">terms</span> and the <span id="open-revo" class="wsga-cursor">revocation</span>.</p>
                           </div>
                       </div>
                       

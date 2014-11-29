@@ -1,6 +1,11 @@
 #revlabel {
-    border: 1px solid #fff;
-	padding: 5px 5px 0;	
+    border: 1px solid #428bca;
+    background-color: #d7edff;
+	padding: 5px;	
+}
+
+#revlabel p {
+    margin: 0;
 }
 
 #revlabel.has-error {

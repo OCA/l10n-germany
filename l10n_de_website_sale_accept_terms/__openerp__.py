@@ -38,7 +38,7 @@ Overview
  - adds delivery page
  - adds privacy page
  - adds imprint page
- - adds a checkbox on payment site, which must be checked to complete the order
+ - adds a note on payment site, that terms and revocation are accepted with click on "Pay now"
  - adds terms and revocation popup on payment site; both are taken from terms and revocation page on the frontend
 
 

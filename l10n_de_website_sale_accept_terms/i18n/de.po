@@ -1,197 +1,179 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* website_sale_german_additions
+#	* l10n_de_website_sale_accept_terms
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0rc1\n"
+"Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-19 10:26+0000\n"
-"PO-Revision-Date: 2014-08-20 14:30+0100\n"
-"Last-Translator: Mathias Neef <mn@copado.de>\n"
+"POT-Creation-Date: 2014-11-29 17:33+0000\n"
+"PO-Revision-Date: 2014-11-29 17:33+0000\n"
+"Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.7\n"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_imprint
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.imprint
 msgid "Add your imprint here!"
 msgstr "Fügen Sie das Impressum hier ein!"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_privacy
-msgid "Add your privacy information here!"
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.privacy
+msgid "Add your privacy here!"
 msgstr "Fügen Sie Ihre Datenschutzbestimmungen hier ein!"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_revocation
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.revocation
 msgid "Add your revocation conditions here!"
 msgstr "Fügen Sie die Widerrufsbelehrung hier ein!"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_terms
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.terms
 msgid "Add your terms here!"
 msgstr "Fügen Sie die AGB hier ein!"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_delivery
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.delivery
 msgid "Add your terms of sale here!"
-msgstr "Fügen Sie die AGB hier ein!"
+msgstr "Fügen Sie die Lieferbedingungen hier ein!"
 
-#. module: website_sale_german_additions
-#: view:website:website.snippets
-msgid "Address Block"
-msgstr "Adress-Block"
-
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Bill To:"
-msgstr "Rechnungsanschrift:"
+msgstr "Rechnungsadresse:"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Change Address"
 msgstr "Adresse ändern"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Choose your Delivery Method"
 msgstr "Wählen Sie die gewünschte Versandart"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Choose your Payment Method"
 msgstr "Wählen Sie die gewünschte Zahlungsweise"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Confirmation"
 msgstr "Bestätigung"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.delivery
 #: view:website:website.layout
-#: view:website:website_sale_german_additions.wsga_delivery
 msgid "Delivery"
 msgstr "Lieferung"
 
-#. module: website_sale_german_additions
-#: view:website:website.snippets
-msgid "Email:"
-msgstr "Email:"
-
-#. module: website_sale_german_additions
-#: view:website:website.snippets
-msgid "Fax:"
-msgstr "Fax:"
-
-#. module: website_sale_german_additions
-#: view:website:website_sale.payment
-msgid "I have read the"
-msgstr "Ich habe die"
-
-#. module: website_sale_german_additions
-#: view:website:website_sale_german_additions.wsga_imprint
-#: model:website.menu,name:website_sale_german_additions.menu_contactus
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.imprint
+#: view:website:website.layout
 msgid "Imprint"
 msgstr "Impressum"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Payment"
-msgstr "Versand & Zahlung"
+msgstr "Zahlung"
 
-#. module: website_sale_german_additions
-#: view:website:website_sale.payment
-msgid "Please accept our terms and revocation!"
-msgstr "Bitte akzeptieren Sie unsere AGB und Widerrufsbelehrung!"
-
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Price"
 msgstr "Verkaufspreis"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.privacy
 #: view:website:website.layout
-#: view:website:website_sale_german_additions.wsga_privacy
 msgid "Privacy"
 msgstr "Datenschutz"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Product"
 msgstr "Produkt"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Quantity"
 msgstr "Menge"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Review Order"
-msgstr "Bestellung prüfen"
+msgstr "Auftrag überprüfen"
 
-#. module: website_sale_german_additions
-#: view:website:website.layout view:website:website_sale.payment
-#: view:website:website_sale_german_additions.wsga_revocation
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.revocation
+#: view:website:website.layout
+#: view:website:website_sale.payment
 msgid "Revocation"
 msgstr "Widerrufsbelehrung"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Ship To:"
-msgstr "Lieferanschrift"
+msgstr "Lieferanschrift:"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Ship to the same address"
-msgstr "An die gleiche Adresse liefern"
+msgstr "An dieselbe Adresse"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Shipping & Billing"
-msgstr "Rechnungs- & Versandadresse"
+msgstr "Liefern & Abrechnen"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Subtotal"
 msgstr "Zwischensumme"
 
-#. module: website_sale_german_additions
-#: view:website:website.layout view:website:website_sale.payment
-#: view:website:website_sale_german_additions.wsga_terms
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.terms
+#: view:website:website.layout
+#: view:website:website_sale.payment
 msgid "Terms"
 msgstr "AGB"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Terms and revocation!"
+msgstr "AGB und Widerrufsbelehrung!"
+
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "Validate Order"
-msgstr "Bestellung prüfen"
+msgstr "Bestätige Bestellung"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
-msgid "and accept them."
-msgstr "gelesen und akzeptiere diese."
+msgid "With click on the button \"Pay now\" I accept the"
+msgstr "Durch klicken auf den Button \"Jetzt bezahlen\" akzeptiere ich die"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "and the"
 msgstr "und die"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "close"
 msgstr "schließen"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "revocation"
 msgstr "Widerrufsbelehrung"
 
-#. module: website_sale_german_additions
+#. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "terms"
 msgstr "AGB"
+
