@@ -29,7 +29,8 @@
 German additions for eCommerce (B2C)
 ==========================
 
-This addon installes necessary additions in accordance with statutory requirements in Germany.
+This addon installes necessary additions in accordance with statutory
+requirements in Germany.
 
 Overview
 --------
@@ -38,21 +39,23 @@ Overview
  - adds delivery page
  - adds privacy page
  - adds imprint page
- - adds a note on payment site, that terms and revocation are accepted with click on "Pay now"
- - adds terms and revocation popup on payment site; both are taken from terms and revocation page on the frontend
+ - adds a note on payment site, that terms and revocation are accepted with
+   click on "Pay now"
+ - adds terms and revocation popup on payment site; both are taken from terms
+   and revocation page on the frontend
 
 
 Contact for questions
 ---------------------
-copado MEDIA UG - Unterdorfstr. 29 - 77948 Friesenheim - Germany - Phone: +49 7821 32725 20 - info@copado.de - http:www.copado.de
---> Thanks to Markus Schneider from initos who helped me a lot with this first addon <--
+copado MEDIA UG - Unterdorfstr. 29 - 77948 Friesenheim - Germany
+Phone: +49 7821 32725 20 - info@copado.de - http:www.copado.de
+--> Thanks to Markus Schneider from initos who helped me a lot 
+with this first addon <--
         """,
     'author': 'copado MEDIA UG, Mathias Neef',
     'website': 'http://www.copado.de',
     'depends': ['website_sale'],
-    'data': [
-        'views/views.xml',
-    ],
+    'data': [ 'views/views.xml'],
     'demo': [],
     'installable': True,
     'application': False,
