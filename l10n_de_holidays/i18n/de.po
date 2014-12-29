@@ -1,0 +1,136 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* l10n_de_holidays
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-01 10:45+0000\n"
+"PO-Revision-Date: 2014-12-01 10:45+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_monday_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_monday_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_monday_2017
+msgid "Whit Monday"
+msgstr "Pfingstmontag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_day_of_german_unity_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_day_of_german_unity_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_day_of_german_unity_2017
+msgid "Day of German Unity"
+msgstr "Tag der Deutschen Einheit"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_may_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_may_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_may_day_2017
+msgid "May Day"
+msgstr "1. Mai"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_boxing_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_boxing_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_boxing_day_2017
+msgid "Boxing Day"
+msgstr "Weihnachtstag 26"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2017
+msgid "Christmas Day"
+msgstr "Weihnachtstag 25"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_reformation_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_reformation_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_reformation_day_2017
+msgid "Reformation Day"
+msgstr "Reformationstag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_sunday_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_sunday_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_whit_sunday_2017
+msgid "Whit Sunday"
+msgstr "Pfingstsonntag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_good_friday_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_good_friday_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_good_friday_2017
+msgid "Good Friday"
+msgstr "Karfreitag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_epiphany_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_epiphany_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_epiphany_2017
+msgid "Epiphany"
+msgstr "Hl. Drei Könige"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_new_years_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_new_years_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_new_years_day_2017
+msgid "New Year's Day"
+msgstr "Neujahrstag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_day_2017
+msgid "Easter Day"
+msgstr "Ostersonntag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_monday_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_monday_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_easter_monday_2017
+msgid "Easter Monday"
+msgstr "Ostermontag"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_ascension_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_ascension_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_ascension_day_2017
+msgid "Ascension Day"
+msgstr "Christi Himmelfahrt"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_assumption_of_mary_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_assumption_of_mary_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_assumption_of_mary_2017
+msgid "Assumption of Mary"
+msgstr "Mariä Himmelfahrt"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_all_saints_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_all_saints_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_all_saints_day_2017
+msgid "All Saints' Day"
+msgstr "Allerheiligen"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_corpus_christi_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_corpus_christi_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_corpus_christi_2017
+msgid "Corpus Christi"
+msgstr "Fronleichnam"
+
+#. module: l10n_de_holidays
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_repentance_day_2015
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_repentance_day_2016
+#: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_repentance_day_2017
+msgid "Repentance Day"
+msgstr "Buß- u. Bettag"
+

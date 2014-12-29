@@ -1,0 +1,346 @@
+<openerp>
+  <data>
+    <record id="public_holiday_2015" model="hr.holidays.public">
+      <field name="year">2015</field>
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+    </record>
+    <record id="hr_holidays_public_line_new_years_day_2015" model="hr.holidays.public.line">
+      <field name="name">New Year's Day</field>
+      <field name="date">2015-01-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_epiphany_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_ST')])]" name="state_ids" />
+      <field name="name">Epiphany</field>
+      <field name="date">2015-01-06 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_good_friday_2015" model="hr.holidays.public.line">
+      <field name="name">Good Friday</field>
+      <field name="date">2015-04-03 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_day_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Easter Day</field>
+      <field name="date">2015-04-05 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_monday_2015" model="hr.holidays.public.line">
+      <field name="name">Easter Monday</field>
+      <field name="date">2015-04-06 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_may_day_2015" model="hr.holidays.public.line">
+      <field name="name">May Day</field>
+      <field name="date">2015-05-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_ascension_day_2015" model="hr.holidays.public.line">
+      <field name="name">Ascension Day</field>
+      <field name="date">2015-05-14 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_sunday_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Whit Sunday</field>
+      <field name="date">2015-05-24 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_monday_2015" model="hr.holidays.public.line">
+      <field name="name">Whit Monday</field>
+      <field name="date">2015-05-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_corpus_christi_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_HE'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Corpus Christi</field>
+      <field name="date">2015-06-04 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_assumption_of_mary_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Assumption of Mary</field>
+      <field name="date">2015-08-15 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_day_of_german_unity_2015" model="hr.holidays.public.line">
+      <field name="name">Day of German Unity</field>
+      <field name="date">2015-10-03 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_reformation_day_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB'),ref('l10n_de_country_states.res_country_state_MV'),ref('l10n_de_country_states.res_country_state_SN'),ref('l10n_de_country_states.res_country_state_ST'),ref('l10n_de_country_states.res_country_state_TH')])]" name="state_ids" />
+      <field name="name">Reformation Day</field>
+      <field name="date">2015-10-31 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_all_saints_day_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">All Saints' Day</field>
+      <field name="date">2015-11-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_repentance_day_2015" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SN')])]" name="state_ids" />
+      <field name="name">Repentance Day</field>
+      <field name="date">2015-11-18 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_christmas_day_2015" model="hr.holidays.public.line">
+      <field name="name">Christmas Day</field>
+      <field name="date">2015-12-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_boxing_day_2015" model="hr.holidays.public.line">
+      <field name="name">Boxing Day</field>
+      <field name="date">2015-12-26 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2015" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="public_holiday_2016" model="hr.holidays.public">
+      <field name="year">2016</field>
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+    </record>
+    <record id="hr_holidays_public_line_new_years_day_2016" model="hr.holidays.public.line">
+      <field name="name">New Year's Day</field>
+      <field name="date">2016-01-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_epiphany_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_ST')])]" name="state_ids" />
+      <field name="name">Epiphany</field>
+      <field name="date">2016-01-06 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_good_friday_2016" model="hr.holidays.public.line">
+      <field name="name">Good Friday</field>
+      <field name="date">2016-03-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_day_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Easter Day</field>
+      <field name="date">2016-03-27 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_monday_2016" model="hr.holidays.public.line">
+      <field name="name">Easter Monday</field>
+      <field name="date">2016-03-28 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_may_day_2016" model="hr.holidays.public.line">
+      <field name="name">May Day</field>
+      <field name="date">2016-05-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_ascension_day_2016" model="hr.holidays.public.line">
+      <field name="name">Ascension Day</field>
+      <field name="date">2016-05-05 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_sunday_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Whit Sunday</field>
+      <field name="date">2016-05-15 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_monday_2016" model="hr.holidays.public.line">
+      <field name="name">Whit Monday</field>
+      <field name="date">2016-05-16 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_corpus_christi_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_HE'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Corpus Christi</field>
+      <field name="date">2016-05-26 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_assumption_of_mary_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Assumption of Mary</field>
+      <field name="date">2016-08-15 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_day_of_german_unity_2016" model="hr.holidays.public.line">
+      <field name="name">Day of German Unity</field>
+      <field name="date">2016-10-03 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_reformation_day_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB'),ref('l10n_de_country_states.res_country_state_MV'),ref('l10n_de_country_states.res_country_state_SN'),ref('l10n_de_country_states.res_country_state_ST'),ref('l10n_de_country_states.res_country_state_TH')])]" name="state_ids" />
+      <field name="name">Reformation Day</field>
+      <field name="date">2016-10-31 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_all_saints_day_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">All Saints' Day</field>
+      <field name="date">2016-11-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_repentance_day_2016" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SN')])]" name="state_ids" />
+      <field name="name">Repentance Day</field>
+      <field name="date">2016-11-16 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_christmas_day_2016" model="hr.holidays.public.line">
+      <field name="name">Christmas Day</field>
+      <field name="date">2016-12-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_boxing_day_2016" model="hr.holidays.public.line">
+      <field name="name">Boxing Day</field>
+      <field name="date">2016-12-26 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2016" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="public_holiday_2017" model="hr.holidays.public">
+      <field name="year">2017</field>
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+    </record>
+    <record id="hr_holidays_public_line_new_years_day_2017" model="hr.holidays.public.line">
+      <field name="name">New Year's Day</field>
+      <field name="date">2017-01-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_epiphany_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_ST')])]" name="state_ids" />
+      <field name="name">Epiphany</field>
+      <field name="date">2017-01-06 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_good_friday_2017" model="hr.holidays.public.line">
+      <field name="name">Good Friday</field>
+      <field name="date">2017-04-14 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_day_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Easter Day</field>
+      <field name="date">2017-04-16 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_easter_monday_2017" model="hr.holidays.public.line">
+      <field name="name">Easter Monday</field>
+      <field name="date">2017-04-17 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_may_day_2017" model="hr.holidays.public.line">
+      <field name="name">May Day</field>
+      <field name="date">2017-05-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_ascension_day_2017" model="hr.holidays.public.line">
+      <field name="name">Ascension Day</field>
+      <field name="date">2017-05-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_sunday_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB')])]" name="state_ids" />
+      <field name="name">Whit Sunday</field>
+      <field name="date">2017-06-04 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_whit_monday_2017" model="hr.holidays.public.line">
+      <field name="name">Whit Monday</field>
+      <field name="date">2017-06-05 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_corpus_christi_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_HE'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Corpus Christi</field>
+      <field name="date">2017-06-15 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_assumption_of_mary_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">Assumption of Mary</field>
+      <field name="date">2017-08-15 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_day_of_german_unity_2017" model="hr.holidays.public.line">
+      <field name="name">Day of German Unity</field>
+      <field name="date">2017-10-03 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_reformation_day_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BB'),ref('l10n_de_country_states.res_country_state_MV'),ref('l10n_de_country_states.res_country_state_SN'),ref('l10n_de_country_states.res_country_state_ST'),ref('l10n_de_country_states.res_country_state_TH')])]" name="state_ids" />
+      <field name="name">Reformation Day</field>
+      <field name="date">2017-10-31 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_all_saints_day_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_BW'),ref('l10n_de_country_states.res_country_state_BY'),ref('l10n_de_country_states.res_country_state_NW'),ref('l10n_de_country_states.res_country_state_RP'),ref('l10n_de_country_states.res_country_state_SL')])]" name="state_ids" />
+      <field name="name">All Saints' Day</field>
+      <field name="date">2017-11-01 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_repentance_day_2017" model="hr.holidays.public.line">
+      <field eval="[(6, 0,[ref('l10n_de_country_states.res_country_state_SN')])]" name="state_ids" />
+      <field name="name">Repentance Day</field>
+      <field name="date">2017-11-22 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="1" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_christmas_day_2017" model="hr.holidays.public.line">
+      <field name="name">Christmas Day</field>
+      <field name="date">2017-12-25 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+    <record id="hr_holidays_public_line_boxing_day_2017" model="hr.holidays.public.line">
+      <field name="name">Boxing Day</field>
+      <field name="date">2017-12-26 00:00:00</field>
+      <field name="holidays_id" ref="public_holiday_2017" />
+      <field eval="0" name="variable" />
+    </record>
+  </data>
+</openerp>
