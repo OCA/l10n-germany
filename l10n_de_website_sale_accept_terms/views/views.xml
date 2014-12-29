@@ -6,6 +6,7 @@
         <template id="assets_frontend" inherit_id="website.assets_frontend" name="Accept Terms on Checkout">
           <xpath expr="." position="inside">
                 <link rel='stylesheet' href='/l10n_de_website_sale_accept_terms/static/src/css/style.css'/>
+                <script type="text/javascript" src="/l10n_de_website_sale_accept_terms/static/src/js/script.js"></script>
           </xpath>
         </template>
 
@@ -168,7 +169,7 @@
                         Terms
                         <button id="close-terms" title="close" type="button" class="close">×</button>
                     </h3>
-                    <iframe src="../../popover/terms/"/>
+                    <iframe src="../../page/website.popover_terms"/>
                 </div>
                 
 
@@ -177,51 +178,59 @@
                         Revocation
                         <button id="close-revo" title="close" type="button" class="close">×</button>
                     </h3>
-                    <iframe src="../../popover/revocation/"/>       
+                    <iframe src="../../page/website.popover_revocation/"/>       
               </div>
             
             </xpath>     
         </template>
 
         <!-- Add needed websites for necsessary informations -->
-        <!-- Template for terms-page -->  
-        <template id="terms" name="Terms" page="True">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h1 class="text-center">Terms</h1>
-                                    <h3 class="text-muted text-center">Add your terms here!</h3>
-                                </div>
+        <!-- Template for terms-page --> 
+        <template id="wsga_terms" name="Terms View">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center">Terms</h1>
+                                <h3 class="text-muted text-center">Add your terms here!</h3>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </template>
+        
+        <template id="website.terms" name="Terms" page="True">
+            <t t-call="website.layout">
+                <t t-call="l10n_de_website_sale_accept_terms.wsga_terms"/>
             </t>
         </template>
 
         <!-- Template for revocation-page -->  
-        <template id="revocation" name="Revocation" page="True">
-            <t t-call="website.layout">
-                <div id="wrap">
-                    <div class="oe_structure">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h1 class="text-center">Revocation</h1>
-                                    <h3 class="text-muted text-center">Add your revocation conditions here!</h3>
-                                </div>
+        <template id="wsga_revocation" name="Revocation">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="text-center">Revocation</h1>
+                                <h3 class="text-muted text-center">Add your revocation conditions here!</h3>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </template>
+        
+        <template id="website.terms" name="Terms" page="True">
+            <t t-call="website.layout">
+                <t t-call="l10n_de_website_sale_accept_terms.wsga_revocation"/>
             </t>
         </template>
-
+        
         <!-- Template for delivery-page (terms of sale) -->   
-        <template id="delivery" name="Delivery" page="True">
+        <template id="website.delivery" name="Delivery" page="True">
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
@@ -239,7 +248,7 @@
         </template>
 
         <!-- Template for privacy-page -->   
-        <template id="privacy" name="Privacy" page="True">
+        <template id="website.privacy" name="Privacy" page="True">
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
@@ -257,7 +266,7 @@
         </template>
 
         <!-- Template for imprint-page -->  
-        <template id="imprint" name="Imprint" page="True">
+        <template id="website.imprint" name="Imprint" page="True">
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="oe_structure">
@@ -286,19 +295,17 @@
         </template>
 
         <!-- Terms popover bind as iframe --> 
-        <template id="popover_terms" name="German terms popover">
+        <template id="website.popover_terms" name="German terms popover">
             <link id="bootstrap_css" rel='stylesheet' href='/web/static/lib/bootstrap/css/bootstrap.css' t-ignore="true"/>
             <link rel="stylesheet" href='/website/static/src/css/website.css' t-ignore="true"/>
-            <t t-set="view" t-value="html_view"/>
-            <div t-raw="view"/>
+            <t t-call="l10n_de_website_sale_accept_terms.wsga_terms"/>
         </template>
 
         <!-- Revocation popover bind as iframe --> 
-        <template id="popover_revocation" name="German revocation popover">
+        <template id="website.popover_revocation" name="German revocation popover">
             <link id="bootstrap_css" rel='stylesheet' href='/web/static/lib/bootstrap/css/bootstrap.css' t-ignore="true"/>
             <link rel="stylesheet" href='/website/static/src/css/website.css' t-ignore="true"/>
-            <t t-set="view" t-value="html_view"/>
-            <div t-raw="view"/>
+            <t t-call="l10n_de_website_sale_accept_terms.wsga_revocation"/>
         </template>        
         
     </data>
