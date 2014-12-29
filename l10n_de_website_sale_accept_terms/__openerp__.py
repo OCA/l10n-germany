@@ -49,13 +49,13 @@ Contact for questions
 ---------------------
 copado MEDIA UG - Unterdorfstr. 29 - 77948 Friesenheim - Germany
 Phone: +49 7821 32725 20 - info@copado.de - http:www.copado.de
---> Thanks to Markus Schneider from initos who helped me a lot 
+--> Thanks to Markus Schneider from initos who helped me a lot
 with this first addon <--
         """,
     'author': 'copado MEDIA UG, Mathias Neef',
     'website': 'http://www.copado.de',
     'depends': ['website_sale'],
-    'data': [ 'views/views.xml'],
+    'data': ['views/views.xml'],
     'demo': [],
     'installable': True,
     'application': False,
