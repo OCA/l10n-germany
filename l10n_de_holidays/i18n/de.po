@@ -41,14 +41,14 @@ msgstr "1. Mai"
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_boxing_day_2016
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_boxing_day_2017
 msgid "Boxing Day"
-msgstr "Weihnachtstag 26"
+msgstr "2. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2015
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2016
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_christmas_day_2017
 msgid "Christmas Day"
-msgstr "Weihnachtstag 25"
+msgstr "1. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
 #: model:hr.holidays.public.line,name:l10n_de_holidays.hr_holidays_public_line_reformation_day_2015
