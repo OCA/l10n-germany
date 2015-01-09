@@ -16,7 +16,7 @@ install:
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 # example: dependency
-# - git clone https://github.com/OCA/webkit-tools -b ${VERSION} $HOME/webkit-tools
+  - git clone https://github.com/OCA/hr -b ${VERSION} $HOME/hr
 
 script:
   - travis_run_tests
