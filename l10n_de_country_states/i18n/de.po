@@ -48,17 +48,17 @@ msgstr "Baden-Württemberg"
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_SL
 msgid "Saarland"
-msgstr ""
+msgstr "Saarland"
 
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_BB
 msgid "Brandenburg"
-msgstr ""
+msgstr "Brandenburg"
 
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_SH
 msgid "Schleswig-Holstein"
-msgstr ""
+msgstr "Schleswig-Holstein"
 
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_HB
@@ -68,7 +68,7 @@ msgstr "Freie Hansestadt Bremen"
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_BE
 msgid "Berlin"
-msgstr ""
+msgstr "Berlin"
 
 #. module: l10n_de_country_states
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_RP
