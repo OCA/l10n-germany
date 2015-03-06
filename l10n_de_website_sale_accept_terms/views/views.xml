@@ -30,29 +30,6 @@
                   <div class="row">
                   
                     <div class="col-lg-8 col-sm-9 oe_cart">
-                    
-                    <div t-if="deliveries" id="delivery_carrier">
-                        <div class="wsga-mb30" >
-                        <h4>Choose your Delivery Method</h4>
-                            <ul class="list-unstyled">
-                                <li t-foreach="deliveries" t-as="delivery">
-                                    <label>
-                                        <input t-att-value="delivery.id" type="radio" name="delivery_type"
-                                            t-att-checked="order.carrier_id and order.carrier_id.id == delivery.id and 'checked' or False" 
-                                            t-att-disabled="delivery.available and '0' or '1'"/>
-                                        <span t-field="delivery.name"/>
-                                        <t t-if="delivery.available">
-                                            <span class="badge" t-field="delivery.price"
-                                                t-field-options='{
-                                                    "widget": "monetary",
-                                                    "display_currency": "website.pricelist_id.currency_id"
-                                                }'/>
-                                        </t>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
          
                     <div class="js_payment" t-if="acquirers and website_sale_order.amount_total" id="payment_method">
                       <div class="wsga-mb30" >
