@@ -223,7 +223,7 @@
             </div>
         </template>
         
-        <template id="website.terms" name="Terms" page="True">
+        <template id="website.revocation" name="Terms" page="True">
             <t t-call="website.layout">
                 <t t-call="l10n_de_website_sale_accept_terms.wsga_revocation"/>
             </t>
