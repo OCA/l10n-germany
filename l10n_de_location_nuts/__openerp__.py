@@ -31,12 +31,14 @@
         'base_location_nuts',
         'l10n_de_country_states',
     ],
-    'data': [
-        "data/res.country.csv",
-    ],
     'author': 'Antiun Ingeniería S.L.',
     'maintainer': 'Antiun Ingeniería S.L.',
     'website': 'http://www.antiun.com',
     'license': 'AGPL-3',
+    # Technical options
+    'demo': [],
+    'test': [],
     'installable': True,
+    # 'auto_install':False,
+    # 'active':True,
 }
