@@ -24,7 +24,7 @@
 ##############################################################################
 
 {
-    'name': 'Country States',
+    'name': 'German Country States',
     'category': 'Localisation/Europe',
     'version': '1.0',
     'author': 'initOS GmbH & Co. KG, '
@@ -33,15 +33,8 @@
     'depends': [
         'base',
     ],
-    'init_xml': [
-    ],
-    'update_xml': [
+    'data': [
         'data/res_country_states.xml'
     ],
-    'test': [
-    ],
-    'demo_xml': [
-    ],
     'installable': True,
-    'active': False,
 }
