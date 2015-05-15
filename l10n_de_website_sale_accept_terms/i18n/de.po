@@ -155,7 +155,7 @@ msgstr "Bestätige Bestellung"
 #. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
 msgid "With click on the button \"Pay now\" I accept the"
-msgstr "Durch klicken auf den Button \"Jetzt bezahlen\" akzeptiere ich die"
+msgstr "Durch klicken auf den Button \"Jetzt kaufen\" akzeptiere ich die"
 
 #. module: l10n_de_website_sale_accept_terms
 #: view:website:website_sale.payment
