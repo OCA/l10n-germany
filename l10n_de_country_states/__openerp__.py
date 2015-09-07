@@ -25,10 +25,7 @@
     'name': 'Country States',
     'version': '1.0',
     'category': '',
-    'author': [
-            'Odoo Community Association (OCA)',
-            'initOS GmbH & Co. KG',
-    ],
+    'author': 'initOS GmbH & Co. KG, Odoo Community Association (OCA)',
     'description': """
 States in Germany
 ======================
