@@ -4,3 +4,12 @@
 # l10n-germany
 
 OCA Localisation for Germany
+
+[//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_de_country_states](l10n_de_country_states/) | 1.0 | German Country States
+
+[//]: # (end addons)
