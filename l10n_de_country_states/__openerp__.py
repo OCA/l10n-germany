@@ -26,7 +26,7 @@
 {
     'name': 'German Country States',
     'category': 'Localisation/Europe',
-    'version': '1.0',
+    'version': '8.0.1.0.0',
     'author': 'initOS GmbH & Co. KG, '
               'Antiun Ingeniería S.L.',
     'website': '',
