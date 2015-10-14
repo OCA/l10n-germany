@@ -36,5 +36,5 @@
     'data': [
         'data/res_country_states.xml'
     ],
-    'installable': True,
+    'installable': False,
 }
