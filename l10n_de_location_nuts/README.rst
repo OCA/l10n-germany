@@ -25,3 +25,5 @@ Credits
 Contributors
 ------------
 * Antonio Espinosa <antonioea@antiun.com>
+* Rafael Blasco <rafabn@antiun.com>
+* Jairo Llopis <yajo.sk8@gmail.com>
