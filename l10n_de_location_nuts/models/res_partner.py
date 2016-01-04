@@ -38,15 +38,17 @@ class ResPartner(models.Model):
         if state.country_id.code == 'DE':
             # Substate must belong to state
             result.setdefault("domain", dict())
+            self.country_id = state.country_id
             result["domain"]["substate_id"] = self._l10n_de_substate_domain()
             result["domain"]["region_id"] = self._l10n_de_region_domain()
 
             # Substate and region must be German
             result.setdefault("value", dict())
-            if self.substate_id.country_id.code != 'DE':
-                result['value']['substate_id'] = False
-            if self.region_id.country_id.code != 'DE':
-                result['value']['region_id'] = False
+            if not self.env.context.get("skip_empty_substate_region"):
+                if self.substate_id.country_id.code != 'DE':
+                    result['value']['substate_id'] = False
+                if self.region_id.country_id.code != 'DE':
+                    result['value']['region_id'] = False
 
         return result
 
@@ -59,8 +61,17 @@ class ResPartner(models.Model):
         # Ignore non-German substates
         if self.substate_id.country_id.code == "DE":
             self.state_id = self.substate_id.parent_id.state_id
+            if self.region_id.parent_id != self.substate_id:
+                self.region_id = False
             result.setdefault("domain", dict())
             result["domain"]["region_id"] = self._l10n_de_region_domain()
+
+            # Ugly hack to avoid false positives in :meth:`onchange_state`.
+            # Without this, it would always empty substate and region.
+            # That method definitely needs to be ported to new api.
+            # See https://github.com/odoo/odoo/pull/10285.
+            self.env.context = self.with_context(
+                skip_empty_substate_region=True).env.context
 
         return result
 
@@ -101,7 +112,7 @@ class ResPartner(models.Model):
             ("level", "=", self.country_id.substate_level),
         ]
 
-        if nuts_state:
+        if self.state_id and nuts_state:
             domain.append(("parent_id", "in", nuts_state.ids))
 
         return domain
