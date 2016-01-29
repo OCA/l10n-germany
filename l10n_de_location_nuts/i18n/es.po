@@ -37,3 +37,18 @@ msgstr "Importar regiones NUTS desde el servicio europeo RAMON"
 msgid "Partner"
 msgstr "Empresa"
 
+#. module: l10n_de_location_nuts
+#: model:res.country,substate_label:base.de
+msgid "District"
+msgstr "Distrito"
+
+#. module: l10n_de_location_nuts
+#: model:res.country,state_label:base.de
+msgid "State"
+msgstr "Estado"
+
+#. module: l10n_de_location_nuts
+#: model:res.country,region:base.de
+msgid "Government region"
+msgstr "Región de gobierno"
+
