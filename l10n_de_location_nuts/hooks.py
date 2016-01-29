@@ -15,7 +15,7 @@ def post_init_hook(cr, registry):
         env = api.Environment(cr, SUPERUSER_ID, {})
         germany = env.ref('base.de')
         _logger.info('Setting Germany NUTS configuration')
-        spain.write({
+        germany.write({
             'state_label': 'State',
             'substate_label': 'District',
             'region_label': 'Government region',
