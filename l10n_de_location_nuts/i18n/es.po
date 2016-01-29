@@ -48,7 +48,7 @@ msgid "State"
 msgstr "Estado"
 
 #. module: l10n_de_location_nuts
-#: model:res.country,region:base.de
+#: model:res.country,region_label:base.de
 msgid "Government region"
 msgstr "Región de gobierno"
 
