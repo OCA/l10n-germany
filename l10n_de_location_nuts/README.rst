@@ -6,11 +6,10 @@
 NUTS Regions for Germany
 ========================
 
-This module allows to import NUTS locations for Germany.
+This module allows to relate German state NUTS level 2 locations with
+German states defined by localization.
 
-* German states (NUTS level 2) as Partner State
-* German districts (NUTS level 3) as Partner Substate
-* German regions (NUTS level 4) as Partner Region
+* German states (NUTS level 2) related with Partner State
 
 
 Installation
@@ -33,14 +32,6 @@ build NUTS in Odoo. Each localization addon (l10n_es_location_nuts,
 l10n_de_location_nuts, ...) will inherit this wizard and
 relate each NUTS item with states. So if you install a new localization addon
 you must re-build NUTS clicking this wizard again.
-
-To configure labels and levels per country, you should install a l10n module,
-but if you want to do it manually, you need to:
-
-* Have *Sales / Responsible permissions*.
-* Go to *Sales > Configuration > Address Book > Localization > Countries*.
-* Choose one.
-* Use the fields under the *NUTS* section.
 
 
 Usage
