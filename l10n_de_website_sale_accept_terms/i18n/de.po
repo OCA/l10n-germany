@@ -1,0 +1,179 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_de_website_sale_accept_terms
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-11-29 17:33+0000\n"
+"PO-Revision-Date: 2014-11-29 17:33+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.imprint
+msgid "Add your imprint here!"
+msgstr "Fügen Sie das Impressum hier ein!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.privacy
+msgid "Add your privacy here!"
+msgstr "Fügen Sie Ihre Datenschutzbestimmungen hier ein!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.revocation
+msgid "Add your revocation conditions here!"
+msgstr "Fügen Sie die Widerrufsbelehrung hier ein!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.terms
+msgid "Add your terms here!"
+msgstr "Fügen Sie die AGB hier ein!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.delivery
+msgid "Add your terms of sale here!"
+msgstr "Fügen Sie die Lieferbedingungen hier ein!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Bill To:"
+msgstr "Rechnungsadresse:"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Change Address"
+msgstr "Adresse ändern"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Choose your Delivery Method"
+msgstr "Wählen Sie die gewünschte Versandart"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Choose your Payment Method"
+msgstr "Wählen Sie die gewünschte Zahlungsweise"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Confirmation"
+msgstr "Bestätigung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.delivery
+#: view:website:website.layout
+msgid "Delivery"
+msgstr "Lieferung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.imprint
+#: view:website:website.layout
+msgid "Imprint"
+msgstr "Impressum"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Payment"
+msgstr "Zahlung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Price"
+msgstr "Verkaufspreis"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.privacy
+#: view:website:website.layout
+msgid "Privacy"
+msgstr "Datenschutz"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Product"
+msgstr "Produkt"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Quantity"
+msgstr "Menge"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Review Order"
+msgstr "Auftrag überprüfen"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.revocation
+#: view:website:website.layout
+#: view:website:website_sale.payment
+msgid "Revocation"
+msgstr "Widerrufsbelehrung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Ship To:"
+msgstr "Lieferanschrift:"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Ship to the same address"
+msgstr "An dieselbe Adresse"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Shipping & Billing"
+msgstr "Liefern & Abrechnen"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:l10n_de_website_sale_accept_terms.terms
+#: view:website:website.layout
+#: view:website:website_sale.payment
+msgid "Terms"
+msgstr "AGB"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Terms and revocation!"
+msgstr "AGB und Widerrufsbelehrung!"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "Validate Order"
+msgstr "Bestätige Bestellung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "With click on the button \"Pay now\" I accept the"
+msgstr "Durch klicken auf den Button \"Jetzt kaufen\" akzeptiere ich die"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "and the"
+msgstr "und die"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "close"
+msgstr "schließen"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "revocation"
+msgstr "Widerrufsbelehrung"
+
+#. module: l10n_de_website_sale_accept_terms
+#: view:website:website_sale.payment
+msgid "terms"
+msgstr "AGB"
+

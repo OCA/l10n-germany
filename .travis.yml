@@ -22,7 +22,10 @@ virtualenv:
   system_site_packages: true
 
 install:
+  - git clone https://github.com/OCA/reporting-engine.git ${HOME}/reporting-engine -b ${VERSION}
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
+  - sudo wget http://sourceforge.net/projects/wkhtmltopdf/files/archive/0.12.1/wkhtmltox-0.12.1_linux-wheezy-amd64.deb -P /tmp/
+  - sudo dpkg -i /tmp/wkhtmltox-0.12.1_linux-wheezy-amd64.deb
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
 # example: dependency
