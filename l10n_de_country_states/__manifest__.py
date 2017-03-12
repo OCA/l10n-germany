@@ -29,7 +29,7 @@
     'version': '8.0.1.0.0',
     'author': 'initOS GmbH & Co. KG, '
               'Antiun Ingeniería S.L.',
-    'website': '',
+    'website': 'https://odoo-community.org/',
     'depends': [
         'base',
     ],
