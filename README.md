@@ -6,6 +6,7 @@
 OCA Localisation for Germany
 
 [//]: # (addons)
+
 Unported addons
 ---------------
 addon | version | summary
