@@ -3,7 +3,7 @@
 # © 2015 Antiun Ingenieria S.L. - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, api
+from odoo import api, models
 
 
 class NutsImport(models.TransientModel):
