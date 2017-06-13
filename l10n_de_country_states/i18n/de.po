@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-28 08:14+0000\n"
 "PO-Revision-Date: 2014-11-28 08:14+0000\n"
@@ -99,4 +99,3 @@ msgstr "Land Bundesland"
 #: model:res.country.state,name:l10n_de_country_states.res_country_state_HE
 msgid "Hesse"
 msgstr "Hessen"
-
