@@ -7,6 +7,13 @@ OCA Localisation for Germany
 
 [//]: # (addons)
 
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[l10n_de_steuernummer](l10n_de_steuernummer/) | 10.0.1.0.0 | German SteuerNummer validation
+
+
 Unported addons
 ---------------
 addon | version | summary
