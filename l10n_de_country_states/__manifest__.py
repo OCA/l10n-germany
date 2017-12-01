@@ -7,7 +7,7 @@
 {
     'name': 'German Country States',
     'category': 'Localisation/Europe',
-    'version': '10.0.1.0.0',
+    'version': '11.0.0.0.0',
     'license': 'AGPL-3',
     'author': 'initOS GmbH & Co. KG, '
               'Tecnativa, '
