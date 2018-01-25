@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 # Copyright 2017 Pedro M. Baeza <pedro.baeza@tecnativa.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.exceptions import UserError
+from odoo import exceptions
 from odoo.tests import common
 
 
@@ -13,6 +12,7 @@ class TestL10nDeSteuerNummer(common.SavepointCase):
         cls.env.user.company_id.vat_check_vies = False
         cls.partner = cls.env['res.partner'].create({
             'name': 'Test',
+            'country_id': 57
         })
 
     def test_correct_steuernummer(self):
@@ -21,5 +21,5 @@ class TestL10nDeSteuerNummer(common.SavepointCase):
 
     def test_incorrect_steuernummer(self):
         """VAT with 9 chars that throws an error."""
-        with self.assertRaises(UserError):
+        with self.assertRaises(exceptions.UserError):
             self.partner.vat = 'DE123456789'
