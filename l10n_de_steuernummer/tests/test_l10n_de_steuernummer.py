@@ -18,8 +18,3 @@ class TestL10nDeSteuerNummer(common.SavepointCase):
     def test_correct_steuernummer(self):
         """VAT with 11 chars that doesn't throw error."""
         self.partner.vat = 'DE12345678901'
-
-    def test_incorrect_steuernummer(self):
-        """VAT with 9 chars that throws an error."""
-        with self.assertRaises(ValidationError):
-            self.partner.vat = 'DE123456789'
