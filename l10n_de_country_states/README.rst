@@ -6,7 +6,7 @@
 German country states
 =====================
 
-Adds german country states as res.country.state
+Adds the german country states as res.country.state
 
 Installation
 ============
@@ -19,7 +19,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/175/10.0
+   :target: https://runbot.odoo-community.org/runbot/175/11.0
 
 Bug Tracker
 ===========
@@ -38,6 +38,7 @@ Contributors
 * Nikolina Todorova <nikolina.todorova@initos.com>
 * Antonio Espinosa <antonio.espinosa@tecnativa.com>
 * David Vidal <david.vidal@tecnativa.com>
+* Rami Alwafaie <rami.alwafaie@initos.com>
 
 Maintainer
 ----------
