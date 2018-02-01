@@ -6,7 +6,7 @@
 NUTS Regions for Germany
 ========================
 
-This module allows to relate German state NUTS level 2 locations with
+This module allows to relate German state NUTS level 2 locations with the
 German states defined by localization.
 
 * German states (NUTS level 2) related with Partner State
@@ -43,7 +43,7 @@ in order to allow to assign them to partner object.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/175/10.0
+   :target: https://runbot.odoo-community.org/runbot/175/11.0
 
 
 
@@ -65,6 +65,7 @@ Contributors
 * Rafael Blasco <rafael.blasco@tecnativa.com>
 * Jairo Llopis <jairo.llopis@tecnativa.com>
 * David Vidal <david.vidal@tecnativa.com>
+* Rami Alwafaie <rami.alwafaie@initos.com>
 
 
 Maintainer
