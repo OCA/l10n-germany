@@ -14,6 +14,8 @@ https://de.wikipedia.org/wiki/Steuernummer
 Usage
 =====
 
+To use this module, you need to:
+
 #. Go to Contacts.
 #. Create a new record.
 #. Put a SteuerNummer in the VAT field preceded by 'DE'.
@@ -21,7 +23,7 @@ Usage
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/175/10.0
+   :target: https://runbot.odoo-community.org/runbot/175/11.0
 
 Known issues / Roadmap
 ======================
@@ -47,6 +49,7 @@ Contributors
 * Rafael Blasco <rafael.blasco@tecnativa.com>
 * Antonio Espinosa
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Rami Alwafaie <rami.alwafaie@initos.com>
 
 Maintainer
 ----------
