@@ -6,7 +6,7 @@
 German country states
 =====================
 
-Adds german country states as res.country.state
+Adds the german country states as res.country.state
 
 Installation
 ============
