@@ -28,7 +28,8 @@
     'category': 'Localisation/Europe',
     'version': '8.0.1.0.0',
     'author': 'initOS GmbH & Co. KG, '
-              'Antiun Ingeniería S.L.',
+              'Tecnativa, '
+              'Odoo Community Association (OCA)',
     'website': 'https://odoo-community.org/',
     'depends': [
         'base',
