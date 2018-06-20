@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo11-addon-l10n_de_country_states',
+        'odoo11-addon-l10n_de_steuernummer',
     ],
     classifiers=[
         'Programming Language :: Python',
