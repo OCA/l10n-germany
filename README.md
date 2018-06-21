@@ -7,10 +7,10 @@ OCA Localisation for Germany
 
 [//]: # (addons)
 
-Unported addons
----------------
+Available addons
+----------------
 addon | version | summary
 --- | --- | ---
-[l10n_de_country_states](l10n_de_country_states/) | 8.0.1.0.0 (unported) | German Country States
+[l10n_de_country_states](l10n_de_country_states/) | 9.0.1.0.0 | German Country States
 
 [//]: # (end addons)
