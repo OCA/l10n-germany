@@ -5,8 +5,8 @@
     "name": "German Toponyms",
     "version": "11.0.1.0.0",
     "author": '''IT IS AG Germany,
-                 initOS GmbH Odoo,
-                 Community Association (OCA)''',
+                 initOS GmbH,
+                 Odoo Community Association (OCA)''',
 
     "website": "https://github.com/OCA/l10n-germany",
     "category": "Localization",
