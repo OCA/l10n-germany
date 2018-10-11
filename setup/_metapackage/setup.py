@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo11-addon-l10n_de_country_states',
         'odoo11-addon-l10n_de_location_nuts',
         'odoo11-addon-l10n_de_steuernummer',
+        'odoo11-addon-l10n_de_toponyms',
     ],
     classifiers=[
         'Programming Language :: Python',
