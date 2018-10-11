@@ -4,10 +4,9 @@
 {
     "name": "German Toponyms",
     "version": "11.0.1.0.0",
-    "author": '''IT IS AG Germany,
-                 initOS GmbH,
-                 Odoo Community Association (OCA)''',
-
+    "author": "IT IS AG Germany, "
+              "initOS GmbH, "
+              "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
     "category": "Localization",
     "depends": [
@@ -17,8 +16,6 @@
     "license": "AGPL-3",
     "data": [
         "wizard/l10n_de_toponyms_wizard.xml",
-    ],
-    'images': [
     ],
     'installable': True,
 }
