@@ -7,23 +7,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-05 23:03+0000\n"
-"PO-Revision-Date: 2018-09-05 23:03+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2018-12-08 15:09+0000\n"
+"Last-Translator: Frederik Kramer <frederik.kramer@initos.com>\n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.3\n"
 
 #. module: l10n_de_toponyms
 #: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "Configure from GeoNames"
-msgstr "Konfigure mit GeoNames"
+msgstr "Konfiguriere mit Geo Namen"
 
 #. module: l10n_de_toponyms
 #: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "Configure from local"
-msgstr "Konfigure mit lokaler Datei"
+msgstr "Konfiguriere mit lokaler Datei"
 
 #. module: l10n_de_toponyms
 #: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_create_uid
@@ -78,7 +80,8 @@ msgstr "Name"
 #. module: l10n_de_toponyms
 #: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "This wizard will add city and state information to zip codes"
-msgstr "Dieser Assistent wird Informationen über Städte und Postleitzahlen hinzufügen."
+msgstr ""
+"Dieser Assistent wird Informationen über Städte und Postleitzahlen hinzufügen"
 
 #. module: l10n_de_toponyms
 #: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
@@ -89,4 +92,3 @@ msgstr "Achtung! Das Hinzufügen der Daten kann einige Zeit dauern. Falls sie hi
 #: model:ir.model,name:l10n_de_toponyms.model_config_de_toponyms
 msgid "config.de.toponyms"
 msgstr "config.de.toponyms"
-
