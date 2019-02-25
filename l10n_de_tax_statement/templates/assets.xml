@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 BIG-Consulting GmbH (<http://www.openbig.org>)
+	 Copyright 2019 Onestein (<http://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <template id="assets_common" name="l10n_de_tax_statement pdf assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="/l10n_de_tax_statement/static/src/css/report.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+</odoo>
