@@ -7,7 +7,7 @@
     'version': '11.0.1.0.0',
     'category': 'Localization',
     'license': 'AGPL-3',
-    'author': 'Onestein, OpenBIG.org, Odoo Community Association (OCA)',
+    'author': 'OpenBIG.org, Onestein, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-germany',
     'depends': [
         'l10n_de_tax_statement',
