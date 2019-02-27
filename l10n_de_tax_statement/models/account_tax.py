@@ -34,37 +34,13 @@ class AccountTax(models.Model):
     @api.model
     def _get_move_line_tax_date_range_domain(self, from_date):
         unreported_date = self.env.context.get('unreported_move_from_date')
-        if self.env.context.get('is_invoice_basis'):
-            if unreported_date:
-                res = [
-                    '|',
-                    '&', '&',
-                    ('l10n_de_date_invoice', '=', False),
-                    ('date', '<', from_date),
-                    ('date', '>=', unreported_date),
-                    '&', '&',
-                    ('l10n_de_date_invoice', '!=', False),
-                    ('l10n_de_date_invoice', '<', from_date),
-                    ('l10n_de_date_invoice', '>=', unreported_date),
-                ]
-            else:
-                res = [
-                    '|',
-                    '&',
-                    ('l10n_de_date_invoice', '=', False),
-                    ('date', '<', from_date),
-                    '&',
-                    ('l10n_de_date_invoice', '!=', False),
-                    ('l10n_de_date_invoice', '<', from_date),
-                ]
-        else:
-            res = [
-                ('date', '<', from_date),
+        res = [
+            ('date', '<', from_date),
+        ]
+        if unreported_date:
+            res += [
+                ('date', '>=', unreported_date),
             ]
-            if unreported_date:
-                res += [
-                    ('date', '>=', unreported_date),
-                ]
         return res
 
     def get_balance_domain(self, state_list, type_list):
