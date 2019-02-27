@@ -348,20 +348,9 @@ class VatStatement(models.Model):
 
     @api.model
     def _finalize_lines(self, lines):
-
-#        _26b = lines['26']['tax']
-#        _27b = lines['27']['tax']
+        _26b = lines['26']['tax']
+        _27b = lines['27']['tax']
         _28b = lines['28']['tax']
-#        _30b = lines['30']['tax']
-#        _33b = lines['33']['tax']
-#        _34b = lines['34']['tax']
-#        _35b = lines['35']['tax']
-#        _36b = lines['36']['tax']
-#        _48b = lines['48']['tax']
-#        _49b = lines['49']['tax']
-#        _50b = lines['50']['tax']
-#        _51b = lines['51']['tax']
-#        _52b = lines['52']['tax']
         _64b = lines['64']['tax']
         _65b = lines['65']['tax']
 
@@ -542,7 +531,6 @@ class VatStatement(models.Model):
             'target_move': self.target_move,
             'company_id': self.company_id.id,
             'skip_invoice_basis_domain': True,
-#            'is_invoice_basis': self.is_invoice_basis,
             'unreported_move_from_date': self.unreported_move_from_date
         }
         taxes = self.env['account.tax'].with_context(ctx)
