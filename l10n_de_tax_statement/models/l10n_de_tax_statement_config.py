@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
 # Copyright 2019 Onestein (<http://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -62,4 +61,3 @@ class VatStatementConfig(models.Model):
     tag_64_tax = fields.Many2one('account.account.tag')
     tag_59_tax = fields.Many2one('account.account.tag')
     tag_69_tax = fields.Many2one('account.account.tag')
-    tag_83_tax = fields.Many2one('account.account.tag')
