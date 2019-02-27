@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
 # Copyright 2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
@@ -234,7 +233,7 @@ class TestVatStatement(TransactionCase):
         self.assertTrue(_25.is_readonly)
 
         self.assertEqual(_26.format_base, '100.00')
-        self.assertEqual(_1a.format_btw, '9.50')
+        self.assertEqual(_26.format_tax, '9.50')
         self.assertFalse(_26.is_group)
         self.assertTrue(_26.is_readonly)
 
@@ -252,7 +251,7 @@ class TestVatStatement(TransactionCase):
             self.statement_1.line_ids.unlink()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 22)
-        self.assertEqual(self.statement_1.btw_total, 9.5)
+        self.assertEqual(self.statement_1.tax_total, 9.5)
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -352,30 +351,6 @@ class TestVatStatement(TransactionCase):
 
     @at_install(False)
     @post_install(True)
-    def test_14_is_invoice_basis(self):
-        company = self.statement_1.company_id
-        has_invoice_basis = self.env['ir.model.fields'].sudo().search_count([
-            ('model', '=', 'res.company'),
-            ('name', '=', 'l10n_de_tax_invoice_basis')
-        ])
-        if has_invoice_basis:
-            company.l10n_de_tax_invoice_basis = True
-            self.statement_1._compute_is_invoice_basis()
-            self.assertTrue(self.statement_1.is_invoice_basis)
-            company.l10n_de_tax_invoice_basis = False
-            self.statement_1._compute_is_invoice_basis()
-            self.assertFalse(self.statement_1.is_invoice_basis)
-
-        self.assertEqual(self.statement_1.tax_total, 0.)
-        self.assertEqual(self.statement_1.format_tax_total, '0.00')
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-            self.assertTrue(line.is_readonly)
-
-    @at_install(False)
-    @post_install(True)
     def test_15_invoice_basis_undeclared_invoice(self):
         self.invoice_1._onchange_invoice_line_ids()
         self.invoice_1.action_invoice_open()
@@ -393,23 +368,7 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_base_lines())
             self.assertTrue(line.view_tax_lines())
 
-        has_invoice_basis = self.env['ir.model.fields'].sudo().search_count([
-            ('model', '=', 'res.company'),
-            ('name', '=', 'l10n_de_tax_invoice_basis')
-        ])
-        if has_invoice_basis:
-
-            self.statement_1.company_id.l10n_de_tax_invoice_basis = True
-            self.statement_1.company_id.country_id = self.env.ref('base.de')
-
-            invoice2 = self.invoice_1.copy()
-            d_date = fields.Date.from_string('2016-07-07')
-            d_date = d_date + relativedelta(months=-4, day=1)
-            old_date = fields.Date.to_string(d_date)
-            invoice2.date_invoice = old_date
-            invoice2.action_invoice_open()
-
-            statement2 = self.env['l10n.de.vat.statement'].create({
+            statement2 = self.env['l10n.de.tax.statement'].create({
                 'name': 'Statement 2',
             })
             statement2.unreported_move_from_date = '2015-07-07'
@@ -469,8 +428,8 @@ class TestVatStatement(TransactionCase):
         self.assertTrue(statement2.unreported_move_ids)
         self.assertEqual(len(statement2.unreported_move_ids), 1)
 
-        self.assertEqual(self.statement_1.btw_total, 9.5)
-        self.assertEqual(self.statement_1.format_btw_total, '9.50')
+        self.assertEqual(self.statement_1.tax_total, 9.5)
+        self.assertEqual(self.statement_1.format_tax_total, '9.50')
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -512,8 +471,8 @@ class TestVatStatement(TransactionCase):
         self.assertTrue(statement2.unreported_move_ids)
         self.assertEqual(len(statement2.unreported_move_ids), 1)
 
-        self.assertEqual(self.statement_1.btw_total, 9.5)
-        self.assertEqual(self.statement_1.format_btw_total, '9.50')
+        self.assertEqual(self.statement_1.tax_total, 9.5)
+        self.assertEqual(self.statement_1.format_tax_total, '9.50')
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -522,7 +481,7 @@ class TestVatStatement(TransactionCase):
 
     def test_18_default_config_l10n_de_tags(self):
         self._load('l10n_de', 'data', 'account_account_tag.xml')
-        config = self.env['l10n.de.vat.statement.config'].search([])
+        config = self.env['l10n.de.tax.statement.config'].search([])
         config.unlink()
 
         path_addon = 'odoo.addons.l10n_de_tax_statement.'
