@@ -12,7 +12,7 @@ class VatStatementZmLine(models.Model):
     _order = 'partner_id, country_code'
 
     statement_id = fields.Many2one(
-        'l10n.de.vat.statement',
+        'l10n.de.tax.statement',
         'Statement',
         ondelete='cascade'
     )
