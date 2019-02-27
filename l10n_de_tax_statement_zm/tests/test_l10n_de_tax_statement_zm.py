@@ -12,23 +12,23 @@ class TestTaxStatementZM(TestVatStatement):
     def _prepare_zm_invoice(self):
         for invoice_line in self.invoice_1.invoice_line_ids:
             for tax_line in invoice_line.invoice_line_tax_ids:
-                tax_line.tag_ids = self.tag_41
+                tax_line.tag_ids = self.tag_41_base
         self.invoice_1._onchange_invoice_line_ids()
         self.invoice_1.action_invoice_open()
-        self.statement_with_icp.statement_update()
+        self.statement_with_zm.statement_update()
 
     def test_01_compute_tag_41(self):
         self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
         })
 
-        self.assertEqual(self.statement_with_zm.tag_41, self.tag_3)
-        self.assertEqual(self.statement_with_zm.tag_21, self.tag_4)
+        self.assertEqual(self.statement_with_zm.tag_41_base, self.tag_3)
+        self.assertEqual(self.statement_with_zm.tag_21_base, self.tag_4)
 
     def test_02_no_tag_41(self):
         self.config.write({
-            'tag_41': False,
-            'tag_21': False,
+            'tag_41_base': False,
+            'tag_21_base': False,
         })
         self.statement_not_valid = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
@@ -69,7 +69,7 @@ class TestTaxStatementZM(TestVatStatement):
 
     def test_04_zm_invoice(self):
         self.statement_1.post()
-        self.statement_with_zm = self.env['l10n.nde.tax.statement'].create({
+        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
         })
 
@@ -114,7 +114,7 @@ class TestTaxStatementZM(TestVatStatement):
             amount_services = zm_line.format_amount_services
             self.assertEqual(float(amount_services), zm_line.amount_services)
 
-    def test_06_zm_invoice_nl(self):
+    def test_06_zm_invoice_de(self):
         self.statement_1.post()
         self.statement_with_icp = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
