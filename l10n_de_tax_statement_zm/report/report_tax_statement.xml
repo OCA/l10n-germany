@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Onestein (<http://www.onestein.eu>)
+     Copyright 2019 BIG-Consulting (<http://www.openbig.org>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <template id="l10n_de_tax_statement_zm.report_tax_statement_zm">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <!-- Defines global variables used by internal layout -->
+                    <t t-set="title">ZM</t>
+                    <t t-set="company_name" t-value="o.company_id.name"/>
+
+                    <div class="page de_tax">
+                        <!-- Display filters -->
+                        <t t-call="l10n_de_tax_statement.report_tax_statement_filters"/>
+
+                        <div>
+                            <br/><br/><br/><br/>
+                        </div>
+
+                        <!-- Top header -->
+                        <div class="de_tax_act_as_table de_tax_table" style="width: 1140px;">
+                            <div class="de_tax_act_as_row labels">
+                                <div class="de_tax_act_as_cell left">Partner</div>
+                                <div class="de_tax_act_as_cell left">VAT</div>
+                                <div class="de_tax_act_as_cell left">Country Code</div>
+                                <div class="de_tax_act_as_cell right">Currency</div>
+                                <div class="de_tax_act_as_cell right">Amount Product</div>
+                                <div class="de_tax_act_as_cell right">Amount Service</div>
+                            </div>
+                            <!-- Display lines -->
+                            <t t-foreach="o.zm_line_ids" t-as="line">
+                                <div class="de_tax_act_as_row lines">
+                                    <div class="de_tax_act_as_cell left"><span t-field="line.partner_id"/></div>
+                                    <div class="de_tax_act_as_cell left"><span t-field="line.vat"/></div>
+                                    <div class="de_tax_act_as_cell left"><span t-field="line.country_code"/></div>
+                                    <div class="de_tax_act_as_cell right"><span t-field="line.currency_id"/></div>
+                                    <div class="de_tax_act_as_cell right"><span t-field="line.format_amount_products"/></div>
+                                    <div class="de_tax_act_as_cell right"><span t-field="line.format_amount_services"/></div>
+                                </div>
+                            </t>
+                            <div class="de_tax_act_as_row labels">
+                                <!--## total amount-->
+                                <div class="de_tax_act_as_cell left"> </div>
+                                <div class="de_tax_act_as_cell left"> </div>
+                                <div class="de_tax_act_as_cell left"> </div>
+                                <div class="de_tax_act_as_cell right">Total amount</div>
+                                <div class="de_tax_act_as_cell right">(product + service)</div>
+                                <div class="de_tax_act_as_cell right"><span t-field="o.zm_total"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
