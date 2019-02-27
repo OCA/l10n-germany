@@ -29,9 +29,8 @@ class VatStatement(models.Model):
     )
 
     @api.depends('company_id')
-
     def _compute_tag_41(self):
-        ''' Computes Tag 41'''
+        '''Computes Tag 41'''
         for statement in self:
             config = self.env['l10n.de.tax.statement.config'].search([
                 ('company_id', '=', statement.company_id.id)
@@ -41,8 +40,8 @@ class VatStatement(models.Model):
 
     @api.multi
     def _compute_zm_lines(self):
-        ''' Computes ZM lines for the report'''
-        ZMLine = self.env['l10n.de.tax.statement.zm.line']
+        '''Computes ZM lines for the report'''
+        zmline = self.env['l10n.de.tax.statement.zm.line']
         for statement in self:
             statement.zm_line_ids.unlink()
             statement.zm_total = 0.0
@@ -51,7 +50,7 @@ class VatStatement(models.Model):
                 zm_values = self._prepare_zm_line(amounts_map[partner_id])
                 zm_values['partner_id'] = partner_id
                 zm_values['statement_id'] = statement.id
-                newline = ZMLine.create(zm_values)
+                newline = zmline.create(zm_values)
                 statement.zm_line_ids += newline
                 zm_total = newline.amount_products + newline.amount_services
                 statement.zm_total += zm_total
