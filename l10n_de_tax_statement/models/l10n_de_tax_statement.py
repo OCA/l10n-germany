@@ -90,37 +90,12 @@ class VatStatement(models.Model):
             ('company_id', '=', self.company_id.id),
             ('invoice_id', '!=', False),
             ('l10n_de_tax_statement_id', '=', False),
+            ('date', '<', self.from_date),
         ]
-        if self.is_invoice_basis and not self.unreported_move_from_date:
+        if self.unreported_move_from_date:
             domain += [
-                '|',
-                '&',
-                ('l10n_de_date_invoice', '=', False),
-                ('date', '<', self.from_date),
-                '&',
-                ('l10n_de_date_invoice', '!=', False),
-                ('l10n_de_date_invoice', '<', self.from_date),
-            ]
-        elif self.is_invoice_basis and self.unreported_move_from_date:
-            domain += [
-                '|',
-                '&', '&',
-                ('l10n_de_date_invoice', '=', False),
-                ('date', '<', self.from_date),
                 ('date', '>=', self.unreported_move_from_date),
-                '&', '&',
-                ('l10n_de_date_invoice', '!=', False),
-                ('l10n_de_date_invoice', '<', self.from_date),
-                ('l10n_de_date_invoice', '>=', self.unreported_move_from_date),
             ]
-        else:
-            domain += [
-                ('date', '<', self.from_date),
-            ]
-            if self.unreported_move_from_date:
-                domain += [
-                    ('date', '>=', self.unreported_move_from_date),
-                ]
         return domain
 
     unreported_move_ids = fields.One2many(
@@ -129,21 +104,6 @@ class VatStatement(models.Model):
         compute='_compute_unreported_move_ids'
     )
     unreported_move_from_date = fields.Date()
-
-    @api.multi
-    def _compute_is_invoice_basis(self):
-        self.is_invoice_basis = False
-        has_invoice_basis = self.env['ir.model.fields'].sudo().search_count([
-            ('model', '=', 'res.company'),
-            ('name', '=', 'l10n_de_tax_invoice_basis')
-        ])
-        if has_invoice_basis:
-            self.is_invoice_basis = self.company_id.l10n_de_tax_invoice_basis
-
-    is_invoice_basis = fields.Boolean(
-        string='DE Tax Invoice Basis',
-        compute='_compute_is_invoice_basis',
-    )
 
     @api.multi
     @api.depends('tax_total')
@@ -583,7 +543,7 @@ class VatStatement(models.Model):
             'target_move': self.target_move,
             'company_id': self.company_id.id,
             'skip_invoice_basis_domain': True,
-            'is_invoice_basis': self.is_invoice_basis,
+#            'is_invoice_basis': self.is_invoice_basis,
             'unreported_move_from_date': self.unreported_move_from_date
         }
         taxes = self.env['account.tax'].with_context(ctx)
@@ -652,24 +612,9 @@ class VatStatement(models.Model):
         domain = [
             ('company_id', '=', self.company_id.id),
             ('l10n_de_tax_statement_id', '=', False),
+            ('date', '<=', self.to_date),
+            ('date', '>=', self.from_date),
         ]
-        if self.is_invoice_basis:
-            domain += [
-                '|',
-                '&', '&',
-                ('l10n_de_date_invoice', '=', False),
-                ('date', '<=', self.to_date),
-                ('date', '>=', self.from_date),
-                '&', '&',
-                ('l10n_de_date_invoice', '!=', False),
-                ('l10n_de_date_invoice', '<=', self.to_date),
-                ('l10n_de_date_invoice', '>=', self.from_date),
-            ]
-        else:
-            domain += [
-                ('date', '<=', self.to_date),
-                ('date', '>=', self.from_date),
-            ]
         move_line_ids = self.env['account.move.line'].search(domain)
         updated_move_ids = move_line_ids.mapped('move_id')
         updated_move_ids.write({
