@@ -85,7 +85,7 @@ class TestTaxStatementZM(TestVatStatement):
             self.assertFalse(zm_line.amount_services)
             amount_products = zm_line.format_amount_products
             self.assertEqual(float(amount_products), zm_line.amount_products)
-            amount_services = icp_line.format_amount_services
+            amount_services = zm_line.format_amount_services
             self.assertEqual(float(amount_services), zm_line.amount_services)
 
     def test_05_zm_invoice_service(self):
@@ -116,7 +116,7 @@ class TestTaxStatementZM(TestVatStatement):
 
     def test_06_zm_invoice_de(self):
         self.statement_1.post()
-        self.statement_with_icp = self.env['l10n.de.tax.statement'].create({
+        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
         })
 
@@ -128,7 +128,7 @@ class TestTaxStatementZM(TestVatStatement):
 
     def test_07_zm_invoice_outside_europe(self):
         self.statement_1.post()
-        self.statement_with_tm = self.env['l10n.de.tax.statement'].create({
+        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
         })
 
