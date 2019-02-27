@@ -16,6 +16,7 @@
     "license": "AGPL-3",
     "data": [
         "wizard/l10n_de_toponyms_wizard.xml",
+        "wizard/l10n_de_toponyms_zipcodes.xml",
     ],
     'installable': True,
 }
