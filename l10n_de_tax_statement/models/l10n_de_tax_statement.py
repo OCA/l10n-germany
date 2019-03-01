@@ -20,7 +20,8 @@ class VatStatement(models.Model):
     )
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('posted', 'Posted')],
+        ('posted', 'Posted'),
+        ('final', 'Final')],
         readonly=True,
         default='draft',
         copy=False,

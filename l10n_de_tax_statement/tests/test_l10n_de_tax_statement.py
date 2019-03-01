@@ -24,7 +24,7 @@ class TestVatStatement(TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.Wizard = self.env['l10n.de.vat.statement.config.wizard']
+        self.Wizard = self.env['l10n.de.tax.statement.config.wizard']
 
         self.tag_1 = self.env['account.account.tag'].create({
             'name': 'Tag 1',
@@ -55,11 +55,11 @@ class TestVatStatement(TransactionCase):
             'tag_ids': [(6, 0, [self.tag_2.id])],
         })
 
-        self.config = self.env['l10n.de.vat.statement.config'].create({
+        self.config = self.env['l10n.de.tax.statement.config'].create({
             'company_id': self.env.user.company_id.id,
             'tag_81_base': self.tag_1.id,
             'tag_86_base': self.tag_2.id,
-            'tag_66_tax': self.tag_3.id,
+            'tag_41_base': self.tag_3.id,
             'tag_21_base': self.tag_4.id,
         })
 
@@ -74,7 +74,7 @@ class TestVatStatement(TransactionCase):
             'date_end': '2016-12-31',
         })
 
-        self.statement_1 = self.env['l10n.de.vat.statement'].create({
+        self.statement_1 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
         })
 
@@ -223,9 +223,11 @@ class TestVatStatement(TransactionCase):
 
         _25 = self.statement_1.line_ids.filtered(lambda r: r.code == '25')
         _26 = self.statement_1.line_ids.filtered(lambda r: r.code == '26')
+        _27 = self.statement_1.line_ids.filtered(lambda r: r.code == '27')
 
         self.assertEqual(len(_25), 1)
         self.assertEqual(len(_26), 1)
+        self.assertEqual(len(_27), 1)
 
         self.assertFalse(_25.format_base)
         self.assertFalse(_25.format_tax)
@@ -233,16 +235,19 @@ class TestVatStatement(TransactionCase):
         self.assertTrue(_25.is_readonly)
 
         self.assertEqual(_26.format_base, '100.00')
-        self.assertEqual(_26.format_tax, '9.50')
         self.assertFalse(_26.is_group)
         self.assertTrue(_26.is_readonly)
 
-        self.assertEqual(self.statement_1.tax_total, 9.5)
-        self.assertEqual(self.statement_1.format_tax_total, '9.50')
+        self.assertEqual(_27.format_base, '50.00')
+        self.assertFalse(_27.is_group)
+        self.assertTrue(_27.is_readonly)
+
+        self.assertEqual(self.statement_1.tax_total, 22.5)
+        self.assertEqual(self.statement_1.format_tax_total, '22.50')
 
     def test_10_line_unlink_exception(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
-        self.assertEqual(self.statement_1.btw_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.)
 
         self.invoice_1.action_invoice_open()
         self.statement_1.statement_update()
@@ -251,7 +256,7 @@ class TestVatStatement(TransactionCase):
             self.statement_1.line_ids.unlink()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 22)
-        self.assertEqual(self.statement_1.tax_total, 9.5)
+        self.assertEqual(self.statement_1.tax_total, 22.5)
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -277,14 +282,14 @@ class TestVatStatement(TransactionCase):
         self.assertNotEqual(wizard_2.tag_81_base, self.tag_1)
         self.assertNotEqual(wizard_2.tag_86_base, self.tag_2)
 
-        config = self.env['l10n.de.vat.statement.config'].search(
+        config = self.env['l10n.de.tax.statement.config'].search(
             [('company_id', '=', self.env.user.company_id.id)],
             limit=1)
         self.assertFalse(config)
 
         wizard.execute()
 
-        config = self.env['l10n.de.vat.statement.config'].search(
+        config = self.env['l10n.de.tax.statement.config'].search(
             [('company_id', '=', self.env.user.company_id.id)],
             limit=1)
         self.assertTrue(config)
@@ -298,10 +303,10 @@ class TestVatStatement(TransactionCase):
         self.invoice_1.action_invoice_open()
         self.invoice_1.move_id.add_move_in_statement()
         for line in self.invoice_1.move_id.line_ids:
-            self.assertTrue(line.l10n_de_vat_statement_include)
+            self.assertTrue(line.l10n_de_tax_statement_include)
         self.invoice_1.move_id.unlink_move_from_statement()
         for line in self.invoice_1.move_id.line_ids:
-            self.assertFalse(line.l10n_de_vat_statement_include)
+            self.assertFalse(line.l10n_de_tax_statement_include)
 
         self.statement_1.statement_update()
         self.assertEqual(len(self.statement_1.line_ids.ids), 22)
@@ -317,7 +322,7 @@ class TestVatStatement(TransactionCase):
         invoice2 = self.invoice_1.copy()
         invoice2._onchange_invoice_line_ids()
         invoice2.action_invoice_open()
-        statement2 = self.env['l10n.de.vat.statement'].create({
+        statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
         })
         statement2.statement_update()
@@ -325,8 +330,8 @@ class TestVatStatement(TransactionCase):
         statement2.onchange_unreported_move_from_date()
         self.assertFalse(statement2.unreported_move_ids)
 
-        self.assertEqual(self.statement_1.tax_total, 9.5)
-        self.assertEqual(self.statement_1.format_tax_total, '9.50')
+        self.assertEqual(self.statement_1.tax_total, 22.5)
+        self.assertEqual(self.statement_1.format_tax_total, '22.50')
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -334,7 +339,7 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.is_readonly)
 
     def test_13_no_previous_statement_posted(self):
-        statement2 = self.env['l10n.de.vat.statement'].create({
+        statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
         })
         statement2.statement_update()
@@ -349,155 +354,3 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_tax_lines())
             self.assertFalse(line.is_readonly)
 
-    @at_install(False)
-    @post_install(True)
-    def test_15_invoice_basis_undeclared_invoice(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-
-        self.statement_1.with_context(
-            skip_check_config_tag_66_base=True
-        ).post()
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-
-            statement2 = self.env['l10n.de.tax.statement'].create({
-                'name': 'Statement 2',
-            })
-            statement2.unreported_move_from_date = '2015-07-07'
-            statement2.onchange_unreported_move_from_date()
-            statement2.statement_update()
-            statement2.with_context(
-                skip_check_config_tag_66_base=True
-            ).post()
-
-            self.assertTrue(statement2.unreported_move_ids)
-            self.assertEqual(len(statement2.unreported_move_ids), 1)
-
-        self.assertEqual(self.statement_1.btw_total, 9.5)
-        self.assertEqual(self.statement_1.format_btw_total, '9.50')
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-            self.assertTrue(line.is_readonly)
-
-    @at_install(False)
-    @post_install(True)
-    def test_16_is_not_invoice_unreported_move_from_date(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
-        self.statement_1.is_invoice_basis = False
-        self.statement_1.with_context(
-            skip_check_config_tag_66_base=True
-        ).post()
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-
-        self.statement_1.company_id.l10n_de_tax_invoice_basis = False
-        self.statement_1.company_id.country_id = self.env.ref('base.de')
-
-        invoice2 = self.invoice_1.copy()
-        d_date = fields.Date.from_string('2016-07-07')
-        d_date = d_date + relativedelta(months=-4, day=1)
-        old_date = fields.Date.to_string(d_date)
-        invoice2.date_invoice = old_date
-        invoice2.action_invoice_open()
-
-        statement2 = self.env['l10n.de.statement'].create({
-            'name': 'Statement 2',
-        })
-        statement2.unreported_move_from_date = '2015-07-07'
-        statement2.onchange_unreported_move_from_date()
-        statement2.statement_update()
-        statement2.with_context(
-            skip_check_config_tag_66_base=True
-        ).post()
-
-        self.assertTrue(statement2.unreported_move_ids)
-        self.assertEqual(len(statement2.unreported_move_ids), 1)
-
-        self.assertEqual(self.statement_1.tax_total, 9.5)
-        self.assertEqual(self.statement_1.format_tax_total, '9.50')
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-            self.assertTrue(line.is_readonly)
-
-    @at_install(False)
-    @post_install(True)
-    def test_17_is_not_invoice_basis_undeclared_invoice(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
-        self.statement_1.is_invoice_basis = False
-        self.statement_1.with_context(
-            skip_check_config_tag_66_base=True
-        ).post()
-
-        self.statement_1.company_id.l10n_de_tax_invoice_basis = False
-        self.statement_1.company_id.country_id = self.env.ref('base.de')
-
-        invoice2 = self.invoice_1.copy()
-        d_date = fields.Date.from_string('2016-07-07')
-        d_date = d_date + relativedelta(months=-4, day=1)
-        old_date = fields.Date.to_string(d_date)
-        invoice2.date_invoice = old_date
-        invoice2.action_invoice_open()
-
-        statement2 = self.env['l10n.de.vat.statement'].create({
-            'name': 'Statement 2',
-        })
-        statement2.unreported_move_from_date = False
-        statement2.onchange_unreported_move_from_date()
-        statement2.statement_update()
-        statement2.with_context(
-            skip_check_config_tag_66_base=True
-        ).post()
-
-        self.assertTrue(statement2.unreported_move_ids)
-        self.assertEqual(len(statement2.unreported_move_ids), 1)
-
-        self.assertEqual(self.statement_1.tax_total, 9.5)
-        self.assertEqual(self.statement_1.format_tax_total, '9.50')
-
-        for line in self.statement_1.line_ids:
-            self.assertTrue(line.view_base_lines())
-            self.assertTrue(line.view_tax_lines())
-            self.assertTrue(line.is_readonly)
-
-    def test_18_default_config_l10n_de_tags(self):
-        self._load('l10n_de', 'data', 'account_account_tag.xml')
-        config = self.env['l10n.de.tax.statement.config'].search([])
-        config.unlink()
-
-        path_addon = 'odoo.addons.l10n_de_tax_statement.'
-        path_file = 'wizard.l10n_de_vat_statement_config_wizard.'
-        path_class = 'VatStatementConfigWizard.'
-        method = path_addon + path_file + path_class + '_is_l10n_de_coa'
-        with patch(method) as my_mock:
-            my_mock.return_value = True
-
-            wizard = self.Wizard.create({})
-            self.assertTrue(wizard)
-
-    def test_19_skip_invoice_basis_domain(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.with_context(
-            skip_invoice_basis_domain=True
-        ).action_invoice_open()
-        self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
