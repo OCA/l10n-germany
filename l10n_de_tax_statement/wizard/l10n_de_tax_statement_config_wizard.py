@@ -108,7 +108,8 @@ class VatStatementConfigWizard(models.TransientModel):
             defv.setdefault('tag_69_tax', config.tag_69_tax.id)
             return defv
 
-            if (not self._is_l10n_de_coa_skr03() or not self._is_l10n_de_coa_skr04()):
+            if (not self._is_l10n_de_coa_skr03() or
+                    not self._is_l10n_de_coa_skr04()):
                 return defv
 
         defv.setdefault('tag_41_base', self.env.ref('l10n_de.tag_de_41').id)
@@ -156,13 +157,13 @@ class VatStatementConfigWizard(models.TransientModel):
         defv.setdefault('tag_69_tax', self.env.ref('l10n_de.tag_de_69').id)
         return defv
 
-    def is_l10n_de_coa_skr03 (self):
+    def is_l10n_de_coa_skr03(self):
         is_l10n_de_coa_skr03 = self.env.ref(
             'l10n_de_skr03.l10n_de_chart_template', False)
         company_coa = self.env.user.company_id.chart_template_id
         return company_coa == is_l10n_de_coa_skr03
 
-    def is_l10n_de_coa_skr04 (self):
+    def is_l10n_de_coa_skr04(self):
         is_l10n_de_coa_skr04 = self.env.ref(
             'l10n_de_skr04.l10n_chart_de_skr04', False)
         company_coa = self.env.user.company_id.chart_template_id
