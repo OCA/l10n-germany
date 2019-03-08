@@ -11,6 +11,7 @@
     'website': 'https://github.com/openbig/l10n-germany',
     'depends': [
         'account_tax_balance',
+        'l10n_de',
     ],
     'data': [
         'security/ir.model.access.csv',
