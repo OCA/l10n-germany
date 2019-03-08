@@ -10,6 +10,7 @@
     'author': 'OpenBIG.org, Onestein, Odoo Community Association (OCA)',
     'website': 'https://github.com/openbig/l10n-germany',
     'depends': [
+        'account_invoicing',
         'account_tax_balance',
         'l10n_de',
     ],
