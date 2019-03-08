@@ -3,13 +3,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
-from mock import patch
 
 from odoo import fields
 from odoo.tools import convert_file
 from odoo.modules.module import get_module_resource
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase, at_install, post_install
+from odoo.tests.common import TransactionCase
 
 
 class TestVatStatement(TransactionCase):
@@ -219,7 +218,7 @@ class TestVatStatement(TransactionCase):
         self.invoice_1._onchange_invoice_line_ids()
         self.invoice_1.action_invoice_open()
         self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
+        self.assertEqual(len(self.statement_1.line_ids.ids), 47)
 
         _25 = self.statement_1.line_ids.filtered(lambda r: r.code == '25')
         _26 = self.statement_1.line_ids.filtered(lambda r: r.code == '26')
@@ -255,7 +254,7 @@ class TestVatStatement(TransactionCase):
         with self.assertRaises(UserError):
             self.statement_1.line_ids.unlink()
 
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
+        self.assertEqual(len(self.statement_1.line_ids.ids), 47)
         self.assertEqual(self.statement_1.tax_total, 22.5)
 
         for line in self.statement_1.line_ids:
@@ -309,7 +308,7 @@ class TestVatStatement(TransactionCase):
             self.assertFalse(line.l10n_de_tax_statement_include)
 
         self.statement_1.statement_update()
-        self.assertEqual(len(self.statement_1.line_ids.ids), 22)
+        self.assertEqual(len(self.statement_1.line_ids.ids), 47)
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -353,4 +352,3 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_base_lines())
             self.assertTrue(line.view_tax_lines())
             self.assertFalse(line.is_readonly)
-
