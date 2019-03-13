@@ -235,11 +235,11 @@ class TestVatStatement(TransactionCase):
 
         self.assertEqual(_26.format_base, '100.00')
         self.assertFalse(_26.is_group)
-        self.assertTrue(_26.is_readonly)
+        self.assertFalse(_26.is_readonly)
 
         self.assertEqual(_27.format_base, '50.00')
         self.assertFalse(_27.is_group)
-        self.assertTrue(_27.is_readonly)
+        self.assertFalse(_27.is_readonly)
 
         self.assertEqual(self.statement_1.tax_total, 22.5)
         self.assertEqual(self.statement_1.format_tax_total, '22.50')
@@ -292,8 +292,8 @@ class TestVatStatement(TransactionCase):
             [('company_id', '=', self.env.user.company_id.id)],
             limit=1)
         self.assertTrue(config)
-        self.assertEqual(config.tag_86_base, self.tag_1)
-        self.assertEqual(config.tag_81_base, self.tag_2)
+        self.assertEqual(config.tag_81_base, self.tag_1)
+        self.assertEqual(config.tag_86_base, self.tag_2)
 
         self.assertEqual(self.statement_1.tax_total, 0.)
 
