@@ -4,15 +4,14 @@
 
 {
     'name': 'German VAT Statement',
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.0.0',
     'category': 'Localization',
     'license': 'AGPL-3',
     'author': 'OpenBIG.org, Onestein, Odoo Community Association (OCA)',
-    'website': 'https://github.com/openbig/l10n-germany',
+    'website': 'https://github.com/OCA/l10n-germany',
     'depends': [
         'account_invoicing',
         'account_tax_balance',
-        'l10n_de',
     ],
     'data': [
         'security/ir.model.access.csv',
