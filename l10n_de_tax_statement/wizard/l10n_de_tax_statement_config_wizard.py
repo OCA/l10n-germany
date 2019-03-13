@@ -108,7 +108,7 @@ class VatStatementConfigWizard(models.TransientModel):
             defv.setdefault('tag_69_tax', config.tag_69_tax.id)
             return defv
 
-        if not self.is_l10n_de_coa_skr03() or not self.is_l10n_de_coa_skr04():
+        if not (self.is_l10n_de_coa_skr03() or self.is_l10n_de_coa_skr04()):
             return defv
 
         defv.setdefault('tag_41_base', self.env.ref('l10n_de.tag_de_41').id)
