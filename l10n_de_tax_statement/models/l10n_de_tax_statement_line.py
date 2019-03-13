@@ -107,6 +107,9 @@ class VatStatementLine(models.Model):
                 raise UserError(
                     _('You cannot delete lines of a posted statement! '
                       'Reset the statement to draft first.'))
+            if line.statement_id.state == 'final':
+                raise UserError(
+                    _('You cannot delete lines of a statement set as final!'))
         super(VatStatementLine, self).unlink()
 
     @api.multi
@@ -160,15 +163,15 @@ class VatStatementLine(models.Model):
         ctx.update({
             'l10n_de_statement_tax_ids': taxes.ids
         })
-        AccountTax = self.env['account.tax'].with_context(ctx)
-        return AccountTax.get_move_lines_domain(tax_or_base=tax_or_base)
+        accounttax = self.env['account.tax'].with_context(ctx)
+        return accounttax.get_move_lines_domain(tax_or_base=tax_or_base)
 
     def _get_domain_posted(self, taxes, tax_or_base):
         self.ensure_one()
         statement = self.statement_id
         domain = [('move_id.l10n_de_tax_statement_id', '=', statement.id)]
         if tax_or_base == 'tax':
-            tax_domain = [('tax_line_id', '=', taxes.ids)]
+            tax_domain = [('tax_line_id', 'in', taxes.ids)]
         else:
-            tax_domain = [('tax_ids', '=', taxes.ids)]
+            tax_domain = [('tax_ids', 'in', taxes.ids)]
         return expression.AND([domain, tax_domain])
