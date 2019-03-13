@@ -25,9 +25,9 @@
                     <group>
                         <group name="tax_report">
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
-                            <field name="date_range_id" attrs="{'readonly': [('state','=','posted')]}"/>
-                            <field name="from_date" attrs="{'readonly': [('state','=','posted')]}"/>
-                            <field name="to_date" attrs="{'readonly': [('state','=','posted')]}"/>
+                            <field name="date_range_id" attrs="{'readonly': [('state','in',['posted','final'])]}"/>
+                            <field name="from_date" attrs="{'readonly': [('state','in',['posted','final'])]}"/>
+                            <field name="to_date" attrs="{'readonly': [('state','in',['posted','final'])]}"/>
                         </group>
                         <group name="extra_parameters">
                             <field name="date_posted"/>
