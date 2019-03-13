@@ -12,7 +12,7 @@ class TestTaxStatementZM(TestVatStatement):
     def _prepare_zm_invoice(self):
         for invoice_line in self.invoice_1.invoice_line_ids:
             for tax_line in invoice_line.invoice_line_tax_ids:
-                tax_line.tag_ids = self.tag_41_base
+                tax_line.tag_ids = self.tag_3
         self.invoice_1._onchange_invoice_line_ids()
         self.invoice_1.action_invoice_open()
         self.statement_with_zm.statement_update()
