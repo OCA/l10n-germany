@@ -532,6 +532,7 @@ class VatStatement(models.Model):
             'target_move': self.target_move,
             'company_id': self.company_id.id,
             'skip_invoice_basis_domain': True,
+            'unreported_move': True,
             'unreported_move_from_date': self.unreported_move_from_date
         }
         taxes = self.env['account.tax'].with_context(ctx)
