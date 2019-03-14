@@ -80,8 +80,9 @@ class VatStatement(models.Model):
     def _compute_unreported_move_ids(self):
         for statement in self:
             domain = statement._get_unreported_move_domain()
-            move_line_ids = self.env['account.move.line'].search(domain)
-            statement.unreported_move_ids = move_line_ids.mapped('move_id')
+            move_lines = self.env['account.move.line'].search(domain)
+            moves = move_lines.mapped('move_id').sorted('date')
+            statement.unreported_move_ids = moves
 
     @api.multi
     def _get_unreported_move_domain(self):
