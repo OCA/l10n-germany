@@ -80,8 +80,9 @@ class VatStatement(models.Model):
     def _compute_unreported_move_ids(self):
         for statement in self:
             domain = statement._get_unreported_move_domain()
-            move_line_ids = self.env['account.move.line'].search(domain)
-            statement.unreported_move_ids = move_line_ids.mapped('move_id')
+            move_lines = self.env['account.move.line'].search(domain)
+            moves = move_lines.mapped('move_id').sorted('date')
+            statement.unreported_move_ids = moves
 
     @api.multi
     def _get_unreported_move_domain(self):
@@ -532,6 +533,7 @@ class VatStatement(models.Model):
             'target_move': self.target_move,
             'company_id': self.company_id.id,
             'skip_invoice_basis_domain': True,
+            'unreported_move': True,
             'unreported_move_from_date': self.unreported_move_from_date
         }
         taxes = self.env['account.tax'].with_context(ctx)
