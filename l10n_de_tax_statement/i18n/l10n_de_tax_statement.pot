@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-11 18:56+0000\n"
-"PO-Revision-Date: 2019-02-11 18:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,70 +24,74 @@ msgid "&amp;nbsp; &amp;nbsp; 68 - Verbleibende Umsatzsteuer-Vorauszahlung (83)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:214
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:175
 #, python-format
 msgid "... an Abnehmer mit USt-ID (41)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:217
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:178
 #, python-format
 msgid "... neue Fahrzeuge an Abnehmer ohne UST-ID (44)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:220
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:181
 #, python-format
-msgid "... neuer Fahrzeuge außerh. eines Unternehmens § 2a UStG (49)"
+msgid "... neuer Fahrzeuge auÃerh. eines Unternehmens Â§ 2a UStG (49)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:270
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:231
 #, python-format
-msgid "... neuer Fahrzeuge gem. § 1b Abs. 2 u. 3 UStG von Lieferern o. Ust-ID z. allg. Steuersatz (94 / 96)"
+msgid "... neuer Fahrzeuge gem. Â§ 1b Abs. 2 u. 3 UStG von Lieferern o. Ust-ID z. allg. Steuersatz (94 / 96)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:242
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:203
 #, python-format
-msgid "... zu anderen Steuersätzen (35 / 36)"
+msgid "... zu anderen SteuersÃ¤tzen (35 / 36)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:267
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:228
 #, python-format
-msgid "... zu anderen Steuersätzen (95 / 98)"
+msgid "... zu anderen SteuersÃ¤tzen (95 / 98)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:264
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:225
 #, python-format
 msgid "... zum Steuersatz v. 7% (93)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:236
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:197
 #, python-format
 msgid "... zum Steuersatz von 19 % (81)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:239
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:200
 #, python-format
 msgid "... zum Steuersatz von 7% (86)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:331
-#: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:292
 #, python-format
+msgid "Abziehbare VorsteuerbetrÃ¤ge"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
 msgid "Abziehbare Vorsteuerbeträge"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:384
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:345
 #, python-format
-msgid "Abzug der festges. Sondervorauszahl. f. Dauerfristverlängerung, nur auszuf. i. d. letzten Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
+msgid "Abzug der festges. Sondervorauszahl. f. DauerfristverlÃ¤ngerung, nur auszuf. i. d. letzten Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -118,26 +120,30 @@ msgid "All Posted Entries"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:306
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:267
 #, python-format
-msgid "Andere Leistung eines im Ausland ansässigen Untern. gem. § 13b Abs. 2 Nr. 1 u. 5 Buchst. a UStG (52 / 53)"
+msgid "Andere Leistung eines im Ausland ansÃ¤ssigen Untern. gem. Â§ 13b Abs. 2 Nr. 1 u. 5 Buchst. a UStG (52 / 53)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:320
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:281
 #, python-format
-msgid "Andere Leistungen gem. § 13b Abs. 2 Nr. 4, 5 Bst. b, Nr. 6 b. 9 u. 11 UStG (84 / 85)"
+msgid "Andere Leistungen gem. Â§ 13b Abs. 2 Nr. 4, 5 Bst. b, Nr. 6 b. 9 u. 11 UStG (84 / 85)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:367
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:328
+#, python-format
+msgid "Andere SteuerbetrÃ¤ge"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
-#, python-format
 msgid "Andere Steuerbeträge"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:204
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:165
 #, python-format
 msgid "Anmeldung der Umsatzsteuer Vorauszahlung"
 msgstr ""
@@ -159,9 +165,9 @@ msgid "Bemessungsgrundlage (ohne USt.)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:356
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:317
 #, python-format
-msgid "Berichtigung des Vorsteuerabzugs g. § 15 a UStG (64)"
+msgid "Berichtigung des Vorsteuerabzugs g. Â§ 15 a UStG (64)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -196,11 +202,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line_currency_id
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement_filters
 msgid "Currency"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_is_invoice_basis
-msgid "DE Tax Invoice Basis"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -248,22 +249,31 @@ msgid "Entry Lines"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:344
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:305
 #, python-format
-msgid "Entst. Einfuhrumsatzst. g. § 15 Abs. 1 S. 1 Nr. 2 UStG (62)"
+msgid "Entst. Einfuhrumsatzst. g. Â§ 15 Abs. 1 S. 1 Nr. 2 UStG (62)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:274
-#: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:235
 #, python-format
+msgid "ErgÃ¤nzende Angaben zu UmsÃ¤tzen"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
 msgid "Ergänzende Angaben zu Umsätzen"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:257
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:218
 #, python-format
-msgid "Erwerbe nach §§ 4b u. 25c UStG (91)"
+msgid "Erwerbe nach Â§Â§ 4b u. 25c UStG (91)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: selection:l10n.de.tax.statement,state:0
+msgid "Final"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -316,9 +326,9 @@ msgid "If you confirm, it will be not possible to modify this Statement or reset
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:374
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:335
 #, python-format
-msgid "In Rechnungen unrichtig oder unberechtigt ausgewiesene Steuerbeträge gem. § 14c UstG) sowie Steuerbetr. d. n. § 6a Abs. 4 S. 2, § 17 Abs. 1 S. 6, § 25 b Abs. 2 UStG o. v. e. Auslagerer o. Lagerh. n. § 13a Abs. 1 Nr. 6 UStG geschuldet werden (69)"
+msgid "In Rechnungen unrichtig oder unberechtigt ausgewiesene SteuerbetrÃ¤ge gem. Â§ 14c UstG) sowie Steuerbetr. d. n. Â§ 6a Abs. 4 S. 2, Â§ 17 Abs. 1 S. 6, Â§ 25 b Abs. 2 UStG o. v. e. Auslagerer o. Lagerh. n. Â§ 13a Abs. 1 Nr. 6 UStG geschuldet werden (69)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -333,7 +343,7 @@ msgid "Include in VAT Statement"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:253
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:214
 #, python-format
 msgid "Innergemeinschaftliche Erwerbe Steuerfreie innergemeinschaftliche Erwerbe"
 msgstr ""
@@ -383,9 +393,9 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:298
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:259
 #, python-format
-msgid "Leistungsempfänger als Steuerschuldner (§ 13b UStG)"
+msgid "LeistungsempfÃ¤nger als Steuerschuldner (Â§ 13b UStG)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -394,33 +404,33 @@ msgid "Leistungsempfänger als Steuerschuldner (§13b UStG)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:207
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:168
 #, python-format
 msgid "Lief. u. sonst. Leistg. einschl. unentg. Wertabg."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:277
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:238
 #, python-format
-msgid "Lieferungen des ersten Abnehmers bei innergem. Dreiecksgeschäften gem. § 25b Abs. 2 UStG (42)"
+msgid "Lieferungen des ersten Abnehmers bei innergem. DreiecksgeschÃ¤ften gem. Â§ 25b Abs. 2 UStG (42)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:245
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:206
 #, python-format
-msgid "Lieferungen land- u. forstw. Betriebe nach § 24 UStG an Abnehmer mit Ust-ID (77)"
+msgid "Lieferungen land- u. forstw. Betriebe nach Â§ 24 UStG an Abnehmer mit Ust-ID (77)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:310
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:271
 #, python-format
-msgid "Lieferungen sicherungsübereign. Gegenst. u. Umsätze d. u. d.  GrEStG fallen g. § 13b Abs. 2 Nr. 2 u. 3 (73 / 74)"
+msgid "Lieferungen sicherungsÃ¼bereign. Gegenst. u. UmsÃ¤tze d. u. d.  GrEStG fallen g. Â§ 13b Abs. 2 Nr. 2 u. 3 (73 / 74)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:315
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:276
 #, python-format
-msgid "Lieferungen v. Mobilfunkger., Tablet-Comp., Spielekons. u. int. Schaltkr. g. §13b A. 2 Nr. 10 UStG (78 / 79)"
+msgid "Lieferungen v. Mobilfunkger., Tablet-Comp., Spielekons. u. int. Schaltkr. g. Â§13b A. 2 Nr. 10 UStG (78 / 79)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -434,9 +444,9 @@ msgid "Name"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:290
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:251
 #, python-format
-msgid "Nicht steuerb. sonst. Leist. gem. § 18b S. 1 Nr. 2 (21)"
+msgid "Nicht steuerb. sonst. Leist. gem. Â§ 18b S. 1 Nr. 2 (21)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -493,15 +503,21 @@ msgid "Steuer"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:370
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:331
 #, python-format
-msgid "Steuer inf. Wechsels d. Besteuerungsf. sow. Nachst. a. verst. Anzahlungen u.a. wg. Steuersatzänd. (65)"
+msgid "Steuer inf. Wechsels d. Besteuerungsf. sow. Nachst. a. verst. Anzahlungen u.a. wg. SteuersatzÃ¤nd. (65)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:210
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:171
 #, python-format
-msgid "Steuerfr. Umsätze mit Vorsteuerabz. innerg. Lieferungen (§4 Nr. 1b) ..."
+msgid "Steuerfr. UmsÃ¤tze mit Vorsteuerabz. innerg. Lieferungen (Â§4 Nr. 1b) ..."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:189
+#, python-format
+msgid "Steuerfreie UmsÃ¤tze ohne Vorsteuerabzug UmsÃ¤tze n. Â§ 4 Nr. 8 bis 28 UStG (48)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -510,26 +526,26 @@ msgid "Steuerfreie Umsätze mit Vorsteuerabzug"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:228
-#, python-format
-msgid "Steuerfreie Umsätze ohne Vorsteuerabzug Umsätze n. § 4 Nr. 8 bis 28 UStG (48)"
-msgstr ""
-
-#. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
 msgid "Steuerfreie innergemeinschaftliche Erwerbe"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:281
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:242
 #, python-format
-msgid "Steuerpfl. Ums. f.d.d. Leistungsempf. die Steuer schuldet g. § 13b A. 5 S. 1 i.V.m. Abs. 2 Nr. 10 UStG (68)"
+msgid "Steuerpfl. Ums. f.d.d. Leistungsempf. die Steuer schuldet g. Â§ 13b A. 5 S. 1 i.V.m. Abs. 2 Nr. 10 UStG (68)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:302
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:263
 #, python-format
-msgid "Steuerpfl. sonst. Leist. e. i. übr. Gemeinschaftsgeb. ans. Untern. gem. § 13b Abs. 1 UStG (46 / 47)"
+msgid "Steuerpfl. sonst. Leist. e. i. Ã¼br. Gemeinschaftsgeb. ans. Untern. gem. Â§ 13b Abs. 1 UStG (46 / 47)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:193
+#, python-format
+msgid "Steuerpflichtige UmsÃ¤tze (Lief. u. sonst. Leistg. einschl. unentg. Wertabg.)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -538,18 +554,12 @@ msgid "Steuerpflichtige Umsätze (Lief. u. Leistg. ein. unentg. Wertabg.)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:232
-#, python-format
-msgid "Steuerpflichtige Umsätze (Lief. u. sonst. Leistg. einschl. unentg. Wertabg.)"
-msgstr ""
-
-#. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
 msgid "Steuerpflichtige innergemeinschaftliche Erwerbe"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:260
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:221
 #, python-format
 msgid "Steuerpflichtige innergemeinschaftliche Erwerbe ... zum Steuersatz v. 19 % (89)"
 msgstr ""
@@ -758,7 +768,6 @@ msgid "Tag 81 Tax"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config_tag_83_tax
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config_wizard_tag_83_tax
 msgid "Tag 83 Tax"
 msgstr ""
@@ -839,7 +848,7 @@ msgid "Tag 98 Tax"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:489
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:451
 #, python-format
 msgid "Tags mapping not configured for this Company! Check the DE Tags Configuration."
 msgstr ""
@@ -877,7 +886,7 @@ msgid "To Date"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:328
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:289
 #, python-format
 msgid "Umsatzsteuer"
 msgstr ""
@@ -888,15 +897,15 @@ msgid "Umsatzsteuer Voranmeldung - Steuerkennzahl Zuordnung"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:381
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:342
 #, python-format
 msgid "Umsatzsteuer-Vorauszahlung"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:249
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:210
 #, python-format
-msgid "Umsätze nach § 24 UStG, z.B. Sägewerke, Getränke u. alk. Flüssigk. (76 / 80)"
+msgid "UmsÃ¤tze nach Â§ 24 UStG, z.B. SÃ¤gewerke, GetrÃ¤nke u. alk. FlÃ¼ssigk. (76 / 80)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -935,11 +944,11 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_format_tax_total
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_tax_total
-msgid "Verbl. Ust.-Vorauszahlung (66-67)"
+msgid "Verbl. Ust.-Vorauszahlung (66 - 67)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:364
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:325
 #, python-format
 msgid "Verbleibender Betrag"
 msgstr ""
@@ -955,81 +964,85 @@ msgid "View tax lines"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:359
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:320
 #, python-format
-msgid "Vorsteuerabzug f. innergem. Lief. neuer Fahrzeuge außerh. e. Untern. g. §2a UStG sow. v. Kleinunt. i.S. d. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)"
+msgid "Vorsteuerabzug f. innergem. Lief. neuer Fahrzeuge auÃerh. e. Untern. g. Â§2a UStG sow. v. Kleinunt. i.S. d. Â§ 19 Abs. 1 i.V.m. Â§ 15a Abs. 4a UStG (59)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:340
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:301
 #, python-format
-msgid "Vorsteuerbeträge a. d. innerg. Erwerb v. Gegenständen gem. § 15 Abs. 1 Satz 1 Nr. 3 UStG (61)"
+msgid "VorsteuerbetrÃ¤ge a. d. innerg. Erwerb v. GegenstÃ¤nden gem. Â§ 15 Abs. 1 Satz 1 Nr. 3 UStG (61)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:348
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:309
 #, python-format
-msgid "Vorsteuerbeträge aus Leistungen i. S. des § 13b UStGi.V.m § 15 Abs. 1 Satz 1 Nr. 4 UStG (67)"
+msgid "VorsteuerbetrÃ¤ge aus Leistungen i. S. des Â§ 13b UStGi.V.m Â§ 15 Abs. 1 Satz 1 Nr. 4 UStG (67)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:334
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:295
 #, python-format
-msgid "Vorsteuerbeträge aus Rechn. v.a. Unternehmen g. § 15 Abs. S. 1 Nr. 1 UStG a. Leistungen i.S.d. § 13a Abs. 1 Nr. 6 UStG u. § 15 Abs. 1 S. 1 Nr. 5 UStG u. a. innerg. Dreiecksgesch. g. § 25b A. 5 UStG (66)"
+msgid "VorsteuerbetrÃ¤ge aus Rechn. v.a. Unternehmen g. Â§ 15 Abs. S. 1 Nr. 1 UStG a. Leistungen i.S.d. Â§ 13a Abs. 1 Nr. 6 UStG u. Â§ 15 Abs. 1 S. 1 Nr. 5 UStG u. a. innerg. Dreiecksgesch. g. Â§ 25b A. 5 UStG (66)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:352
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:313
 #, python-format
-msgid "Vorsteuerbeträge d. n. allg. Durchschnittssätzen berechnet sind gem. §§ 23 und 23a UStG (63)"
+msgid "VorsteuerbetrÃ¤ge d. n. allg. DurchschnittssÃ¤tzen berechnet sind gem. Â§Â§ 23 und 23a UStG (63)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:224
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:185
 #, python-format
-msgid "Weitere steuerfr. Umsätze mit Vorsteuerabzug, z.B. Ausfuhrlief., Umsätze n. § 4 Nr. 2-7 UStG (43)"
+msgid "Weitere steuerfr. UmsÃ¤tze mit Vorsteuerabzug, z.B. Ausfuhrlief., UmsÃ¤tze n. Â§ 4 Nr. 2-7 UStG (43)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:706
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:765
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:653
 #, python-format
 msgid "You cannot delete a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:710
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:657
 #, python-format
 msgid "You cannot delete a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:104
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:108
 #, python-format
 msgid "You cannot delete lines of a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:545
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:112
+#, python-format
+msgid "You cannot delete lines of a statement set as final!"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:507
 #, python-format
 msgid "You cannot modify a posted statement!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:697
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:756
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:644
 #, python-format
 msgid "You cannot modify a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:691
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:638
 #, python-format
 msgid "You cannot modify a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:629
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:591
 #, python-format
 msgid "You cannot post a statement if all the previous statements are not yet posted! Please Post all the other statements first."
 msgstr ""
@@ -1215,14 +1228,14 @@ msgid "l10n.de.tax.statement.config"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:294
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:255
 #, python-format
-msgid "Übrige n. steuerb. Umsätze, Leistungsort ist nicht im Inland (45)"
+msgid "Ãbrige n. steuerb. UmsÃ¤tze, Leistungsort ist nicht im Inland (45)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:286
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:247
 #, python-format
-msgid "Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer n. § 13b Abs. 5 UStG schuldet (60)"
+msgid "Ãbrige steuerpfl. UmsÃ¤tze f.d.d. Lstg.empf. d. Steuer n. Â§ 13b Abs. 5 UStG schuldet (60)"
 msgstr ""
 
