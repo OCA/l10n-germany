@@ -1,18 +1,18 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<http://www.onestein.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2019 Onestein (<https://www.onestein.eu>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import DEFAULT_SERVER_DATE_FORMAT as DF
 from odoo.tools.misc import formatLang
 
 
 class VatStatement(models.Model):
     _name = 'l10n.de.tax.statement'
+    _description = 'German Vat Statement'
 
     name = fields.Char(
         string='Tax Statement',
@@ -67,7 +67,7 @@ class VatStatement(models.Model):
     )
     format_tax_total = fields.Char(
         compute='_compute_amount_format_tax_total',
-        string='Verbl. Ust.-Vorauszahlung (66 - 67)'
+        string='Verbl. Ust.-Vorauszahlung'
     )
     move_line_ids = fields.One2many(
         'account.move.line',
@@ -115,13 +115,11 @@ class VatStatement(models.Model):
 
     @api.model
     def default_get(self, fields_list):
-        defaults = super(VatStatement, self).default_get(fields_list)
+        defaults = super().default_get(fields_list)
         company = self.env.user.company_id
         fy_dates = company.compute_fiscalyear_dates(datetime.now())
-        from_date = fields.Date.to_string(fy_dates['date_from'])
-        to_date = fields.Date.to_string(fy_dates['date_to'])
-        defaults.setdefault('from_date', from_date)
-        defaults.setdefault('to_date', to_date)
+        defaults.setdefault('from_date', fy_dates['date_from'])
+        defaults.setdefault('to_date', fy_dates['date_to'])
         defaults.setdefault('name', company.name)
         return defaults
 
@@ -137,16 +135,16 @@ class VatStatement(models.Model):
     def onchange_date(self):
         display_name = self.company_id.name
         if self.from_date and self.to_date:
-            display_name += ': ' + ' '.join([self.from_date, self.to_date])
+            from_date = fields.Date.to_string(self.from_date)
+            to_date = fields.Date.to_string(self.to_date)
+            display_name += ': ' + ' '.join([from_date, to_date])
         self.name = display_name
 
     @api.onchange('from_date')
     def onchange_date_from_date(self):
-        d_from = datetime.strptime(self.from_date, DF)
         # by default the unreported_move_from_date is set to
         # a quarter (three months) before the from_date of the statement
-        d_from_2months = d_from + relativedelta(months=-3, day=1)
-        date_from = fields.Date.to_string(d_from_2months)
+        date_from = self.from_date + relativedelta(months=-3, day=1)
         self.unreported_move_from_date = date_from
 
     @api.onchange('unreported_move_from_date')
@@ -503,8 +501,7 @@ class VatStatement(models.Model):
         self.ensure_one()
 
         if self.state in ['posted', 'final']:
-            raise UserError(
-                _('You cannot modify a posted statement!'))
+            raise UserError(_('You cannot modify a posted statement!'))
 
         # clean old lines
         self.line_ids.unlink()
@@ -518,12 +515,10 @@ class VatStatement(models.Model):
         self._finalize_lines(lines)
 
         # create lines
-        for line in lines:
-            lines[line].update({'statement_id': self.id})
-            self.env['l10n.de.tax.statement.line'].create(
-                lines[line]
-            )
-        self.date_update = fields.Datetime.now()
+        self.write({
+            'line_ids': [(0, 0, line) for line in lines.values()],
+            'date_update': fields.Datetime.now(),
+        })
 
     def _compute_past_invoices_taxes(self):
         self.ensure_one()
@@ -542,6 +537,8 @@ class VatStatement(models.Model):
                 if move_line.tax_exigible:
                     if move_line.tax_line_id:
                         taxes |= move_line.tax_line_id
+                if move_line.tax_ids:
+                    taxes |= move_line.tax_ids
         return taxes
 
     def _compute_taxes(self):
@@ -563,8 +560,7 @@ class VatStatement(models.Model):
             for tag in tax.tag_ids:
                 tag_map = tags_map.get(tag.id)
                 if tag_map:
-                    column = tag_map[1]
-                    code = tag_map[0]
+                    code, column = tag_map
                     if column == 'base':
                         lines[code][column] += tax.base_balance
                     else:
@@ -596,7 +592,9 @@ class VatStatement(models.Model):
             'state': 'posted',
             'date_posted': fields.Datetime.now()
         })
-        self.unreported_move_ids.write({
+        self.unreported_move_ids.filtered(
+            lambda m: m.l10n_de_tax_statement_include
+        ).write({
             'l10n_de_tax_statement_id': self.id,
         })
         domain = [
@@ -643,7 +641,7 @@ class VatStatement(models.Model):
                             raise UserError(
                                 _('You cannot modify a posted statement! '
                                   'Reset the statement to draft first.'))
-        return super(VatStatement, self).write(values)
+        return super().write(values)
 
     @api.multi
     def unlink(self):
@@ -655,13 +653,11 @@ class VatStatement(models.Model):
             if statement.state == 'final':
                 raise UserError(
                     _('You cannot delete a statement set as final!'))
-        super(VatStatement, self).unlink()
+        super().unlink()
 
     @api.depends('line_ids.tax')
     def _compute_tax_total(self):
         for statement in self:
-            total = 0.0
-            for line in statement.line_ids:
-                if line.code in ['66', '67']:
-                    total += line.tax
-            statement.tax_total = total
+            lines = statement.line_ids
+            total_lines = lines.filtered(lambda l: l.code in ['66', '67'])
+            statement.tax_total = sum(line.tax for line in total_lines)
