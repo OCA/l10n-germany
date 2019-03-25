@@ -1,5 +1,5 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<http://www.onestein.eu>)
+# Copyright 2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -10,7 +10,7 @@ class AccountTax(models.Model):
     _inherit = 'account.tax'
 
     def get_move_line_partial_domain(self, from_date, to_date, company_id):
-        res = super(AccountTax, self).get_move_line_partial_domain(
+        res = super().get_move_line_partial_domain(
             from_date,
             to_date,
             company_id
