@@ -1,16 +1,15 @@
 # Copyright 2019 Onestein (<https://www.onestein.eu>)
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
     'name': 'German VAT Statement',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Localization',
     'license': 'AGPL-3',
     'author': 'OpenBIG.org, Onestein, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/l10n-germany',
     'depends': [
-        'account_invoicing',
         'account_tax_balance',
     ],
     'data': [

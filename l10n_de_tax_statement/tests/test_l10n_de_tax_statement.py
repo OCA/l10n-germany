@@ -2,6 +2,7 @@
 # Copyright 2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import datetime
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
@@ -119,21 +120,23 @@ class TestVatStatement(TransactionCase):
     def test_01_onchange(self):
         self.statement_1.write({'date_range_id': self.daterange_1.id})
         self.statement_1.onchange_date_range_id()
-        self.assertEqual(self.statement_1.from_date, '2016-01-01')
-        self.assertEqual(self.statement_1.to_date, '2016-12-31')
+        from_date = datetime.date(2016, 1, 1)
+        to_date = datetime.date(2016, 12, 31)
+        self.assertEqual(self.statement_1.from_date, from_date)
+        self.assertEqual(self.statement_1.to_date, to_date)
 
         self.statement_1.onchange_date()
         check_name = self.statement_1.company_id.name
-        check_name += ': ' + ' '.join(
-            [self.statement_1.from_date, self.statement_1.to_date])
+        str_from_date = fields.Date.to_string(self.statement_1.from_date)
+        str_to_date = fields.Date.to_string(self.statement_1.to_date)
+        check_name += ': ' + ' '.join([str_from_date, str_to_date])
         self.assertEqual(self.statement_1.name, check_name)
 
         self.statement_1.onchange_date_from_date()
-        d_from = fields.Date.from_string(self.statement_1.from_date)
+        d_from = self.statement_1.from_date
         # by default the unreported_move_from_date is set to
         # a quarter (three months) before the from_date of the statement
-        d_from_2months = d_from + relativedelta(months=-3, day=1)
-        new_date = fields.Date.to_string(d_from_2months)
+        new_date = d_from + relativedelta(months=-3, day=1)
         self.assertEqual(self.statement_1.unreported_move_from_date, new_date)
 
         self.assertEqual(self.statement_1.tax_total, 0.)
@@ -300,10 +303,10 @@ class TestVatStatement(TransactionCase):
     def test_12_undeclared_invoice(self):
         self.invoice_1._onchange_invoice_line_ids()
         self.invoice_1.action_invoice_open()
-        self.invoice_1.move_id.add_move_in_statement()
+        self.invoice_1.move_id.l10n_de_add_move_in_statement()
         for line in self.invoice_1.move_id.line_ids:
             self.assertTrue(line.l10n_de_tax_statement_include)
-        self.invoice_1.move_id.unlink_move_from_statement()
+        self.invoice_1.move_id.l10n_de_unlink_move_from_statement()
         for line in self.invoice_1.move_id.line_ids:
             self.assertFalse(line.l10n_de_tax_statement_include)
 

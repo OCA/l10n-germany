@@ -1,6 +1,6 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<http://www.onestein.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2019 Onestein (<https://www.onestein.eu>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.osv import expression
@@ -71,8 +71,6 @@ class VatStatementLine(models.Model):
     is_total = fields.Boolean(compute='_compute_is_group')
     is_readonly = fields.Boolean(compute='_compute_is_readonly')
 
-    state = fields.Selection(related='statement_id.state')
-
     @api.multi
     @api.depends('base', 'tax', 'code')
     def _compute_amount_format(self):
@@ -95,7 +93,7 @@ class VatStatementLine(models.Model):
     @api.depends('code')
     def _compute_is_readonly(self):
         for line in self:
-            if line.state == 'draft':
+            if line.statement_id.state == 'draft':
                 line.is_readonly = line.code not in EDITABLE_DISPLAY
             else:
                 line.is_readonly = True
@@ -110,7 +108,7 @@ class VatStatementLine(models.Model):
             if line.statement_id.state == 'final':
                 raise UserError(
                     _('You cannot delete lines of a statement set as final!'))
-        super(VatStatementLine, self).unlink()
+        super().unlink()
 
     @api.multi
     def view_tax_lines(self):
@@ -163,8 +161,8 @@ class VatStatementLine(models.Model):
         ctx.update({
             'l10n_de_statement_tax_ids': taxes.ids
         })
-        accounttax = self.env['account.tax'].with_context(ctx)
-        return accounttax.get_move_lines_domain(tax_or_base=tax_or_base)
+        AccountTax = self.env['account.tax'].with_context(ctx)
+        return AccountTax.get_move_lines_domain(tax_or_base=tax_or_base)
 
     def _get_domain_posted(self, taxes, tax_or_base):
         self.ensure_one()

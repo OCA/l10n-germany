@@ -1,6 +1,6 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<http://www.onestein.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2019 Onestein (<https://www.onestein.eu>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
 
