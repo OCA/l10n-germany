@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2019 OpenBIG (<http://www.openbig.org>)
-     Copyright 2019 Onestein (<https://www.onestein.eu>)     
+     Copyright 2019 Onestein (<https://www.onestein.eu>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 
 <odoo>
@@ -87,10 +87,6 @@
                                 </group>
                                 <group>
                                 </group>
-                                <div>Add/Remove the Undeclared Invoices listed below. Afterwards press the Update button in order to recompute the statement lines!</div>
-                                <div class="oe_button_box" name="button_box">
-                                    <button name="statement_update" string="Update" states="draft" type="object" class="oe_stat_button" icon="fa-repeat"/>
-                                </div>
                             </group>
                             <field name="unreported_move_ids">
                                 <tree editable="bottom" create="false" delete="false" decoration-muted="l10n_de_tax_statement_include != True">
@@ -100,8 +96,8 @@
                                     <field name="partner_id" readonly="1"/>
                                     <field name="amount" readonly="1"/>
                                     <field name="l10n_de_tax_statement_include" invisible="1"/>
-                                    <button name="add_move_in_statement" icon="fa fa-play" string="Add Invoice" type="object" attrs="{'invisible': [('l10n_de_tax_statement_include', '=', True)]}"/>
-                                    <button name="unlink_move_from_statement" icon="fa fa-remove" string="Remove Invoice" type="object" attrs="{'invisible': [('l10n_de_tax_statement_include', '!=', True)]}"/>
+                                    <button name="l10n_de_add_move_in_statement" icon="fa-play" string="Add Invoice" type="object" attrs="{'invisible': [('l10n_de_tax_statement_include', '=', True)]}"/>
+                                    <button name="l10n_de_unlink_move_from_statement" icon="fa-remove" string="Remove Invoice" type="object" attrs="{'invisible': [('l10n_de_tax_statement_include', '!=', True)]}"/>
                                 </tree>
                             </field>
                         </page>
@@ -134,7 +130,7 @@
     <menuitem
         id="menu_account_tax_statement_de"
         parent="account_tax_balance.menu_tax_balances"
-        groups="account.group_account_user,account.group_account_manager"
+        groups="account.group_account_user"
         action="action_account_tax_statement_de"/>
 
 </odoo>

@@ -248,7 +248,7 @@
     </record>
 
     <record id="action_account_tax_statement_de_config" model="ir.actions.act_window">
-        <field name="name">Ust-Voranmeldung</field>
+        <field name="name">German Tax Tags</field>
         <field name="res_model">l10n.de.tax.statement.config.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
