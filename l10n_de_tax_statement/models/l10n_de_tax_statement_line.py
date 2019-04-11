@@ -163,8 +163,8 @@ class VatStatementLine(models.Model):
         ctx.update({
             'l10n_de_statement_tax_ids': taxes.ids
         })
-        accounttax = self.env['account.tax'].with_context(ctx)
-        return accounttax.get_move_lines_domain(tax_or_base=tax_or_base)
+        AccountTax = self.env['account.tax'].with_context(ctx)
+        return AccountTax.get_move_lines_domain(tax_or_base=tax_or_base)
 
     def _get_domain_posted(self, taxes, tax_or_base):
         self.ensure_one()
