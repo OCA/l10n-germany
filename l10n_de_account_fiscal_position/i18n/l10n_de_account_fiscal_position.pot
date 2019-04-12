@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* l10n_de_account_fiscal_position
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-12 13:14+0000\n"
+"PO-Revision-Date: 2019-04-12 13:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model,name:l10n_de_account_fiscal_position.model_account_fiscal_position_account
+msgid "Accounts Fiscal Position"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model,name:l10n_de_account_fiscal_position.model_account_fiscal_position
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model.fields,help:l10n_de_account_fiscal_position.field_account_fiscal_position_tax_product_type
+msgid "If the account is related to specific type of product, please add it here.If you leave the field empty, it will be used for both product types."
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model,name:l10n_de_account_fiscal_position.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model.fields,field_description:l10n_de_account_fiscal_position.field_account_fiscal_position_tax_product_type
+msgid "Product Type"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: selection:account.fiscal.position.tax,product_type:0
+msgid "Products"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: selection:account.fiscal.position.tax,product_type:0
+msgid "Services"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: model:ir.model,name:l10n_de_account_fiscal_position.model_account_fiscal_position_tax
+msgid "Taxes Fiscal Position"
+msgstr ""
+
+#. module: l10n_de_account_fiscal_position
+#: code:addons/l10n_de_account_fiscal_position/models/partner.py:21
+#, python-format
+msgid "There is more than one mapping in the fiscal position for the same account."
+msgstr ""
+
