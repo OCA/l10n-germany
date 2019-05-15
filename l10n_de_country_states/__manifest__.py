@@ -7,12 +7,12 @@
 {
     'name': 'German Country States',
     'category': 'Localisation/Europe',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'initOS GmbH'
               'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/l10n-germany',
     'depends': [
         'base_country_state_translatable',
     ],
