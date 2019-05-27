@@ -76,6 +76,11 @@ msgid "Format Amount Services"
 msgstr ""
 
 #. module: l10n_de_tax_statement_zm
+#: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement
+msgid "German Vat Statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_zm
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_id
 msgid "ID"
 msgstr ""
@@ -201,10 +206,5 @@ msgstr ""
 #. module: l10n_de_tax_statement_zm
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
 msgid "Zusammenfassende Meldung Positionen"
-msgstr ""
-
-#. module: l10n_de_tax_statement_zm
-#: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement
-msgid "l10n.de.tax.statement"
 msgstr ""
 
