@@ -13,6 +13,7 @@ from odoo.tools.misc import formatLang
 
 class VatStatement(models.Model):
     _name = 'l10n.de.tax.statement'
+    _description = 'German Vat Statement'
 
     name = fields.Char(
         string='Tax Statement',
@@ -67,7 +68,7 @@ class VatStatement(models.Model):
     )
     format_tax_total = fields.Char(
         compute='_compute_amount_format_tax_total',
-        string='Verbl. Ust.-Vorauszahlung (66 - 67)'
+        string='Verbl. Ust.-Vorauszahlung'
     )
     move_line_ids = fields.One2many(
         'account.move.line',
