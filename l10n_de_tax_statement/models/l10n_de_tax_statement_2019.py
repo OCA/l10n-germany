@@ -282,11 +282,11 @@ def _finalize_lines_2019(lines):
     # calculate line 51
     lines['51']['tax'] = lines['51']['tax'] * 1
     _51b = lines['51']['tax'] + _26b + _27b + _28b + _30b + _33b + _34b \
-           + _35b + _36b + _48b + _49b + _50b
+        + _35b + _36b + _48b + _49b + _50b
     # calculate line 60
     lines['60']['tax'] = lines['60']['tax'] * 1
     _60b = lines['60']['tax'] + _51b - _53b - _54b - _55b \
-           - _56b - _57b - _58b - _59b
+        - _56b - _57b - _58b - _59b
     # calculate line 64
     lines['64']['tax'] = lines['64']['tax'] * 1
     _64b = lines['64']['tax'] + _60b + _62b + _63b
@@ -294,3 +294,53 @@ def _finalize_lines_2019(lines):
     lines['64'].update({'tax': _64b})
     lines['51'].update({'tax': _51b})
     lines['60'].update({'tax': _60b})
+
+
+def _get_tags_map_2019(config):
+    return {
+        config.tag_41_base.id: ('20', 'base'),
+        config.tag_44_base.id: ('21', 'base'),
+        config.tag_49_base.id: ('22', 'base'),
+        config.tag_43_base.id: ('23', 'base'),
+        config.tag_48_base.id: ('24', 'base'),
+        config.tag_81_base.id: ('26', 'base'),
+        config.tag_81_tax.id: ('26', 'tax'),
+        config.tag_86_base.id: ('27', 'base'),
+        config.tag_86_tax.id: ('27', 'tax'),
+        config.tag_35_base.id: ('28', 'base'),
+        config.tag_36_tax.id: ('28', 'tax'),
+        config.tag_77_base.id: ('29', 'base'),
+        config.tag_76_base.id: ('30', 'base'),
+        config.tag_80_tax.id: ('30', 'tax'),
+        config.tag_91_base.id: ('32', 'base'),
+        config.tag_89_base.id: ('33', 'base'),
+        config.tag_93_base.id: ('34', 'base'),
+        config.tag_95_base.id: ('35', 'base'),
+        config.tag_98_tax.id: ('35', 'tax'),
+        config.tag_94_base.id: ('36', 'base'),
+        config.tag_96_tax.id: ('36', 'tax'),
+        config.tag_42_base.id: ('38', 'base'),
+        config.tag_68_base.id: ('39', 'base'),
+        config.tag_60_base.id: ('39', 'base'),
+        config.tag_21_base.id: ('40', 'base'),
+        config.tag_45_base.id: ('41', 'base'),
+        config.tag_46_base.id: ('48', 'base'),
+        config.tag_47_tax.id: ('48', 'tax'),
+        config.tag_52_base.id: ('50', 'base'),
+        config.tag_53_tax.id: ('50', 'tax'),
+        config.tag_73_base.id: ('49', 'base'),
+        config.tag_74_tax.id: ('49', 'tax'),
+        config.tag_78_base.id: ('50', 'base'),
+        config.tag_79_tax.id: ('50', 'tax'),
+        config.tag_84_base.id: ('50', 'base'),
+        config.tag_85_tax.id: ('50', 'tax'),
+        config.tag_66_tax.id: ('53', 'tax'),
+        config.tag_61_tax.id: ('54', 'tax'),
+        config.tag_62_tax.id: ('55', 'tax'),
+        config.tag_67_tax.id: ('56', 'tax'),
+        config.tag_63_tax.id: ('57', 'tax'),
+        config.tag_64_tax.id: ('58', 'tax'),
+        config.tag_59_tax.id: ('59', 'tax'),
+        config.tag_65_tax.id: ('62', 'tax'),
+        config.tag_69_tax.id: ('63', 'tax'),
+    }
