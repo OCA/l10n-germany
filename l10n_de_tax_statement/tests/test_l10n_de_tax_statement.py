@@ -76,6 +76,7 @@ class TestVatStatement(TransactionCase):
 
         self.statement_1 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
+            'version': '2018',
         })
 
         self.journal_1 = self.env['account.journal'].create({
@@ -326,6 +327,7 @@ class TestVatStatement(TransactionCase):
         invoice2.action_invoice_open()
         statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
+            'version': '2018',
         })
         statement2.statement_update()
         statement2.unreported_move_from_date = fields.Date.today()
@@ -343,6 +345,7 @@ class TestVatStatement(TransactionCase):
     def test_13_no_previous_statement_posted(self):
         statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
+            'version': '2018',
         })
         statement2.statement_update()
         with self.assertRaises(UserError):
