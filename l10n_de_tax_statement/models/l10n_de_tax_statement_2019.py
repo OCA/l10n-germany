@@ -225,8 +225,8 @@ def _finalize_lines_2019(lines):
     _26b = lines['26']['tax']
     _27b = lines['27']['tax']
     _28b = lines['28']['tax']
-    _64b = lines['64']['tax']
-    _65b = lines['65']['tax']
+    _62b = lines['62']['tax']
+    _63b = lines['63']['tax']
     # calculate lines 48 - 50
     lines['48']['tax'] = lines['48']['tax'] * 1
     _48b = lines['48']['tax']
@@ -274,9 +274,9 @@ def _finalize_lines_2019(lines):
     lines['56']['tax'] = lines['56']['tax'] * -1
     _56b = lines['56']['tax']
     lines['57']['tax'] = lines['57']['tax'] * -1
-    _57b = lines['59']['tax']
+    _57b = lines['57']['tax']
     lines['58']['tax'] = lines['58']['tax'] * -1
-    _58b = lines['60']['tax']
+    _58b = lines['58']['tax']
     lines['59']['tax'] = lines['59']['tax'] * -1
     _59b = lines['59']['tax']
     # calculate line 51
@@ -320,18 +320,13 @@ def _get_tags_map_2019(config):
         config.tag_94_base.id: ('36', 'base'),
         config.tag_96_tax.id: ('36', 'tax'),
         config.tag_42_base.id: ('38', 'base'),
-        config.tag_68_base.id: ('39', 'base'),
         config.tag_60_base.id: ('39', 'base'),
         config.tag_21_base.id: ('40', 'base'),
         config.tag_45_base.id: ('41', 'base'),
         config.tag_46_base.id: ('48', 'base'),
         config.tag_47_tax.id: ('48', 'tax'),
-        config.tag_52_base.id: ('50', 'base'),
-        config.tag_53_tax.id: ('50', 'tax'),
         config.tag_73_base.id: ('49', 'base'),
         config.tag_74_tax.id: ('49', 'tax'),
-        config.tag_78_base.id: ('50', 'base'),
-        config.tag_79_tax.id: ('50', 'tax'),
         config.tag_84_base.id: ('50', 'base'),
         config.tag_85_tax.id: ('50', 'tax'),
         config.tag_66_tax.id: ('53', 'tax'),
