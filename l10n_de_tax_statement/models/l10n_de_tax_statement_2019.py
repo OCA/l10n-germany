@@ -25,7 +25,7 @@ tax_statement_dict_2019 = {
     },
     '21': {
         'code': '21', 'base': 0.0,
-        'name': _('... neue Fahrzeuge an Abnehmer ohne UST-ID (44)'),
+        'name': _('... neuer Fahrzeuge an Abnehmer ohne UST-ID (44)'),
     },
     '22': {
         'code': '22', 'base': 0.0,
@@ -97,7 +97,7 @@ tax_statement_dict_2019 = {
                   'von Lieferern o. Ust-ID z. allg. Steuersatz (94 / 96)'),
     },
     '37': {
-        'code': '37', 'base': 0.0, 'tax': 0.0,
+        'code': '37',
         'name': _('Ergänzende Angaben zu Umsätzen'),
     },
     '38': {
@@ -107,22 +107,16 @@ tax_statement_dict_2019 = {
     },
     '39': {
         'code': '39', 'base': 0.0,
-        'name': _('Steuerpfl. Ums. f.d.d. Leistungsempf. die Steuer '
-                  'schuldet g. § 13b A. 5 S. 1 i.V.m. Abs. 2 '
-                  'Nr. 10 UStG (68)'),
-    },
-    '40': {
-        'code': '40', 'base': 0.0,
         'name': _('Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer '
                   'n. § 13b Abs. 5 UStG schuldet (60)'),
     },
-    '41': {
-        'code': '41', 'base': 0.0,
+    '40': {
+        'code': '40', 'base': 0.0,
         'name': _('Nicht steuerb. sonst. Leist. gem. '
                   '§ 18b S. 1 Nr. 2 (21)'),
     },
-    '42': {
-        'code': '42', 'base': 0.0,
+    '41': {
+        'code': '41', 'base': 0.0,
         'name': _('Übrige n. steuerb. Umsätze, Leistungsort '
                   'ist nicht im Inland (45)'),
     },
@@ -138,99 +132,87 @@ tax_statement_dict_2019 = {
     },
     '49': {
         'code': '49', 'base': 0.0, 'tax': 0.0,
-        'name': _('Andere Leistung eines im Ausland ansässigen Untern. '
-                  'gem. § 13b Abs. 2 Nr. 1 u. 5 Buchst. a UStG (52 / 53)'),
+        'name': _('Lieferungen sicherungsübereign. Gegenst. u. Umsätze '
+                  'd. u. d.  GrEStG fallen g. § 13b Abs. 2 '
+                  'Nr. 3 (73 / 74)'),
     },
     '50': {
         'code': '50', 'base': 0.0, 'tax': 0.0,
-        'name': _('Lieferungen sicherungsübereign. Gegenst. u. Umsätze '
-                  'd. u. d.  GrEStG fallen g. § 13b Abs. 2 '
-                  'Nr. 2 u. 3 (73 / 74)'),
+        'name': _('Andere Leistungen gem. § 13b Abs. 2 Nr. 1, 2,'
+                  '4 b. 11 UStG (84 / 85)'),
     },
     '51': {
-        'code': '51', 'base': 0.0, 'tax': 0.0,
-        'name': _('Lieferungen v. Mobilfunkger., Tablet-Comp., '
-                  'Spielekons. u. int. Schaltkr. g. §13b A. 2 '
-                  'Nr. 10 UStG (78 / 79)'),
-    },
-    '52': {
-        'code': '52', 'base': 0.0, 'tax': 0.0,
-        'name': _('Andere Leistungen gem. § 13b Abs. 2 Nr. 4, 5 '
-                  'Bst. b, Nr. 6 b. 9 u. 11 UStG (84 / 85)'),
-    },
-
-    '53': {
-        'code': '53', 'tax': 0.0,
+        'code': '51', 'tax': 0.0,
         'name': _('Umsatzsteuer'),
     },
-    '54': {
-        'code': '54',
+    '52': {
+        'code': '52',
         'name': _('Abziehbare Vorsteuerbeträge'),
     },
-    '55': {
-        'code': '55', 'tax': 0.0,
+    '53': {
+        'code': '53', 'tax': 0.0,
         'name': _('Vorsteuerbeträge aus Rechn. v.a. Unternehmen g. § 15 '
                   'Abs. S. 1 Nr. 1 UStG a. Leistungen i.S.d. § 13a '
                   'Abs. 1 Nr. 6 UStG u. § 15 Abs. 1 S. 1 Nr. 5 UStG '
                   'u. a. innerg. Dreiecksgesch. g. § 25b A. 5 UStG (66)'),
     },
-    '56': {
-        'code': '56', 'tax': 0.0,
+    '54': {
+        'code': '54', 'tax': 0.0,
         'name': _('Vorsteuerbeträge a. d. innerg. Erwerb v. Gegenständen '
                   'gem. § 15 Abs. 1 Satz 1 Nr. 3 UStG (61)'),
     },
-    '57': {
-        'code': '57', 'tax': 0.0,
+    '55': {
+        'code': '55', 'tax': 0.0,
         'name': _('Entst. Einfuhrumsatzst. g. § 15 Abs. 1 S. 1 Nr. 2 '
                   'UStG (62)'),
     },
-    '58': {
-        'code': '58', 'tax': 0.0,
+    '56': {
+        'code': '56', 'tax': 0.0,
         'name': _('Vorsteuerbeträge aus Leistungen i. S. des § 13b UStG'
                   'i.V.m § 15 Abs. 1 Satz 1 Nr. 4 UStG (67)'),
     },
-    '59': {
-        'code': '59', 'tax': 0.0,
+    '57': {
+        'code': '57', 'tax': 0.0,
         'name': _('Vorsteuerbeträge d. n. allg. Durchschnittssätzen '
                   'berechnet sind gem. §§ 23 und 23a UStG (63)'),
     },
-    '60': {
-        'code': '60', 'tax': 0.0,
+    '58': {
+        'code': '58', 'tax': 0.0,
         'name': _('Berichtigung des Vorsteuerabzugs g. § 15 a UStG (64)'),
     },
-    '61': {
-        'code': '61', 'tax': 0.0,
+    '59': {
+        'code': '59', 'tax': 0.0,
         'name': _('Vorsteuerabzug f. innergem. Lief. neuer Fahrzeuge '
                   'außerh. e. Untern. g. §2a UStG sow. v. Kleinunt. i.S. '
                   'd. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)'),
     },
-    '62': {
-        'code': '62', 'tax': 0.0,
+    '60': {
+        'code': '60', 'tax': 0.0,
         'name': _('Verbleibender Betrag'),
     },
-    '63': {
-        'code': '63',
+    '61': {
+        'code': '61',
         'name': _('Andere Steuerbeträge'),
     },
-    '64': {
-        'code': '64', 'tax': 0.0,
+    '62': {
+        'code': '62', 'tax': 0.0,
         'name': _('Steuer inf. Wechsels d. Besteuerungsf. sow. Nachst. '
                   'a. verst. Anzahlungen u.a. wg. Steuersatzänd. (65)'),
     },
-    '65': {
-        'code': '65', 'tax': 0.0,
+    '63': {
+        'code': '63', 'tax': 0.0,
         'name': _('In Rechnungen unrichtig oder unberechtigt ausgewiesene '
                   'Steuerbeträge gem. § 14c UstG) sowie Steuerbetr. d. n. '
                   '§ 6a Abs. 4 S. 2, § 17 Abs. 1 S. 6, § 25 b Abs. 2 UStG '
                   'o. v. e. Auslagerer o. Lagerh. n. § 13a Abs. 1 Nr. 6 '
                   'UStG geschuldet werden (69)'),
     },
-    '66': {
-        'code': '66', 'tax': 0.0,
+    '64': {
+        'code': '64', 'tax': 0.0,
         'name': _('Umsatzsteuer-Vorauszahlung'),
     },
-    '67': {
-        'code': '67', 'tax': 0.0,
+    '65': {
+        'code': '65', 'tax': 0.0,
         'name': _('Abzug der festges. Sondervorauszahl. f. '
                   'Dauerfristverlängerung, nur auszuf. i. d. letzten '
                   'Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)'),
@@ -245,17 +227,13 @@ def _finalize_lines_2019(lines):
     _28b = lines['28']['tax']
     _64b = lines['64']['tax']
     _65b = lines['65']['tax']
-    # calculate lines 48 - 52
+    # calculate lines 48 - 50
     lines['48']['tax'] = lines['48']['tax'] * 1
     _48b = lines['48']['tax']
     lines['49']['tax'] = lines['49']['tax'] * 1
     _49b = lines['49']['tax']
     lines['50']['tax'] = lines['50']['tax'] * 1
     _50b = lines['50']['tax']
-    lines['51']['tax'] = lines['51']['tax'] * 1
-    _51b = lines['51']['tax']
-    lines['52']['tax'] = lines['52']['tax'] * 1
-    _52b = lines['52']['tax']
     # calculate lines 26, 27, 28, 33, 34
     lines['26']['tax'] = lines['26']['base'] * 0.19
     _26b = lines['26']['tax']
@@ -282,39 +260,37 @@ def _finalize_lines_2019(lines):
     _35b = lines['35']['tax']
     lines['36']['tax'] = lines['36']['tax'] * -1
     _36b = lines['36']['tax']
-    # calculate reverse of lines 48 - line 52 base
+    # calculate reverse of lines 48 - line 50 base
     lines['48']['base'] = lines['48']['base'] * -1
     lines['49']['base'] = lines['49']['base'] * -1
     lines['50']['base'] = lines['50']['base'] * -1
-    lines['51']['base'] = lines['51']['base'] * -1
-    lines['52']['base'] = lines['52']['base'] * -1
-    # calculate reverse of line 55 - line 61
+    # calculate reverse of line 53 - line 59
+    lines['53']['tax'] = lines['53']['tax'] * -1
+    _53b = lines['53']['tax']
+    lines['54']['tax'] = lines['54']['tax'] * -1
+    _54b = lines['54']['tax']
     lines['55']['tax'] = lines['55']['tax'] * -1
     _55b = lines['55']['tax']
     lines['56']['tax'] = lines['56']['tax'] * -1
     _56b = lines['56']['tax']
     lines['57']['tax'] = lines['57']['tax'] * -1
-    _57b = lines['57']['tax']
+    _57b = lines['59']['tax']
     lines['58']['tax'] = lines['58']['tax'] * -1
-    _58b = lines['58']['tax']
+    _58b = lines['60']['tax']
     lines['59']['tax'] = lines['59']['tax'] * -1
     _59b = lines['59']['tax']
-    lines['60']['tax'] = lines['60']['tax'] * -1
-    _60b = lines['60']['tax']
-    lines['61']['tax'] = lines['61']['tax'] * -1
-    _61b = lines['61']['tax']
-    # calculate line 53
-    lines['53']['tax'] = lines['53']['tax'] * 1
-    _53b = lines['53']['tax'] + _26b + _27b + _28b + _30b + _33b + _34b \
-           + _35b + _36b + _48b + _49b + _50b + _51b + _52b
-    # calculate line 62
-    lines['62']['tax'] = lines['62']['tax'] * 1
-    _62b = lines['62']['tax'] + _53b - _55b - _56b - _57b \
-           - _58b - _59b - _60b - _61b
-    # calculate line 66
-    lines['66']['tax'] = lines['66']['tax'] * 1
-    _66b = lines['66']['tax'] + _62b + _64b + _65b
-    # update lines 53, 62, 66
-    lines['66'].update({'tax': _66b})
-    lines['53'].update({'tax': _53b})
-    lines['62'].update({'tax': _62b})
+    # calculate line 51
+    lines['51']['tax'] = lines['51']['tax'] * 1
+    _51b = lines['51']['tax'] + _26b + _27b + _28b + _30b + _33b + _34b \
+           + _35b + _36b + _48b + _49b + _50b
+    # calculate line 60
+    lines['60']['tax'] = lines['60']['tax'] * 1
+    _60b = lines['60']['tax'] + _51b - _53b - _54b - _55b \
+           - _56b - _57b - _58b - _59b
+    # calculate line 64
+    lines['64']['tax'] = lines['64']['tax'] * 1
+    _64b = lines['64']['tax'] + _60b + _62b + _63b
+    # update lines 51, 60, 64
+    lines['64'].update({'tax': _64b})
+    lines['51'].update({'tax': _51b})
+    lines['60'].update({'tax': _60b})
