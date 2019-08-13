@@ -58,7 +58,7 @@
                                         </group>
                                     </group>
                                 </form>
-                                <tree decoration-muted="is_group" editable="bottom" create="false" delete="false">
+                                <tree decoration-muted="is_group" editable="bottom" create="false" delete="false" limit="80">
                                     <field name="is_group" invisible="1"/>
                                     <field name="is_total" invisible="1"/>
                                     <field name="is_readonly" invisible="1"/>
