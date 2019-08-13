@@ -407,4 +407,4 @@ class VatStatement(models.Model):
         for statement in self:
             lines = statement.line_ids
             total_lines = lines.filtered(lambda l: l.code in ['66', '67'])
-            statement.btw_total = sum(line.btw for line in total_lines)
+            statement.tax_total = sum(line.tax for line in total_lines)
