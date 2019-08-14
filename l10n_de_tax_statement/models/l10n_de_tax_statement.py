@@ -10,9 +10,9 @@ from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
 from .l10n_de_tax_statement_2018 import \
-    tax_statement_dict_2018, _finalize_lines_2018, _get_tags_map_2018
+    _tax_statement_dict_2018, _finalize_lines_2018, _get_tags_map_2018
 from .l10n_de_tax_statement_2019 import \
-    tax_statement_dict_2019, _finalize_lines_2019, _get_tags_map_2019
+    _tax_statement_dict_2019, _finalize_lines_2019, _get_tags_map_2019
 
 
 class VatStatement(models.Model):
@@ -169,9 +169,9 @@ class VatStatement(models.Model):
         self.ensure_one()
 
         if self.version == '2019':
-            lines = tax_statement_dict_2019
+            lines = _tax_statement_dict_2019()
         else:
-            lines = tax_statement_dict_2018
+            lines = _tax_statement_dict_2018()
 
         return lines
 
