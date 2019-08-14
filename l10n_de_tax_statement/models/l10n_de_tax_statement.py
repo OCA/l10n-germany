@@ -10,9 +10,11 @@ from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
 from .l10n_de_tax_statement_2018 import \
-    _tax_statement_dict_2018, _finalize_lines_2018, _get_tags_map_2018
+    _tax_statement_dict_2018, _finalize_lines_2018, \
+    _get_tags_map_2018, _totals_2018
 from .l10n_de_tax_statement_2019 import \
-    _tax_statement_dict_2019, _finalize_lines_2019, _get_tags_map_2019
+    _tax_statement_dict_2019, _finalize_lines_2019, \
+    _get_tags_map_2019, _totals_2019
 
 
 class VatStatement(models.Model):
@@ -365,5 +367,11 @@ class VatStatement(models.Model):
     def _compute_tax_total(self):
         for statement in self:
             lines = statement.line_ids
-            total_lines = lines.filtered(lambda l: l.code in ['66', '67'])
+
+            if self.version == '2019':
+                list_totals = _totals_2019()
+            else:
+                list_totals = _totals_2018()
+
+            total_lines = lines.filtered(lambda l: l.code in list_totals)
             statement.tax_total = sum(line.tax for line in total_lines)

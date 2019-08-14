@@ -358,3 +358,15 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_base_lines())
             self.assertTrue(line.view_tax_lines())
             self.assertFalse(line.is_readonly)
+
+    def test_14_new_version(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.)
+
+        self.invoice_1.action_invoice_open()
+        self.statement_1.version = '2019'
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 44)
+        self.assertEqual(self.statement_1.tax_total, 22.5)
