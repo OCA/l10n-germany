@@ -344,3 +344,7 @@ def _get_tags_map_2019(config):
         config.tag_65_tax.id: ('62', 'tax'),
         config.tag_69_tax.id: ('63', 'tax'),
     }
+
+
+def _totals_2019():
+    return ['64', '65']
