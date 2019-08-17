@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_tax_statement_de_config" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement.config.wizard</field>
+        <field name="arch" type="xml">
+            <form class="oe_form_configuration">
+                <header>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                </header>
+                <separator string="Umsatzsteuer Voranmeldung - Steuerkennzahl Zuordnung"/>
+                <group string="Steuerfreie Umsätze mit Vorsteuerabzug">
+                    <field name="tag_41_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_44_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_49_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_43_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_48_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                </group>
+                <group string="Steuerpflichtige Umsätze (Lief. u. Leistg. ein. unentg. Wertabg.)">
+                    <field name="tag_81_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_86_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_35_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_36_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_77_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_76_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_80_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                </group>
+                <group string="Steuerfreie innergemeinschaftliche Erwerbe">
+                    <field name="tag_91_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                </group>
+                <group string="Steuerpflichtige innergemeinschaftliche Erwerbe">
+                    <field name="tag_89_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_93_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_95_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_98_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_94_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_96_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                </group>
+                <group string="Ergänzende Angaben zu Umsätzen">
+                    <field name="tag_42_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_68_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_60_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_21_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_45_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                </group>
+                <group string="Leistungsempfänger als Steuerschuldner (§13b UStG)">
+                    <field name="tag_46_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_47_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_52_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_53_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_73_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_74_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_78_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_79_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_84_base" class="oe_inline"
+                        placeholder="Bemessungsgrundlage (ohne USt.)"/>
+                    <field name="tag_85_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                </group>
+                <group string="Abziehbare Vorsteuerbeträge">
+                    <field name="tag_66_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_61_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_62_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_67_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_63_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_64_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_59_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                </group>
+                <group string="Andere Steuerbeträge">
+                    <field name="tag_65_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                    <field name="tag_69_tax" class="oe_inline"
+                        placeholder="Steuer"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_tax_statement_de_config" model="ir.actions.act_window">
+        <field name="name">German Tax Tags</field>
+        <field name="res_model">l10n.de.tax.statement.config.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem
+        id="menu_account_tax_statement_de_config"
+        parent="account.account_account_menu"
+        groups="account.group_account_user"
+        sequence="15"
+        action="action_account_tax_statement_de_config"/>
+
+</odoo>
