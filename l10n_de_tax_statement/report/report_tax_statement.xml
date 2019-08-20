@@ -75,7 +75,7 @@
                             </t>
                             <div class="de_tax_act_as_row lines">
                                 <!--## total tax-->
-                                <div class="de_tax_act_as_cell left" style="width: 900px;"> &amp;nbsp; &amp;nbsp; 68 - Verbleibende Umsatzsteuer-Vorauszahlung (83)</div>
+                                <div class="de_tax_act_as_cell left" style="width: 900px;"> &amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung</div>
                                 <div class="de_tax_act_as_cell right"> </div>
                                 <div class="de_tax_act_as_cell right"><span t-field="o.format_tax_total"/></div>
                             </div>
