@@ -74,11 +74,10 @@ class VatStatement(models.Model):
 
     tax_total = fields.Monetary(
         compute='_compute_tax_total',
-        string='Verbl. Ust.-Vorauszahlung (66 - 67)'
+        string='Verbl. Ust.-Vorauszahlung'
     )
     format_tax_total = fields.Char(
         compute='_compute_amount_format_tax_total',
-        string='Verbl. Ust.-Vorauszahlung'
     )
     move_line_ids = fields.One2many(
         'account.move.line',

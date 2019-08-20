@@ -7,7 +7,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.tools import convert_file
-from odoo.modules.module import get_module_resource
+from odoo.modules.module import get_resource_path
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -18,7 +18,7 @@ class TestVatStatement(TransactionCase):
         convert_file(
             self.cr,
             'l10n_de',
-            get_module_resource(module, *args),
+            get_resource_path(module, *args),
             {}, 'init', False, 'test', self.registry._assertion_report)
 
     def setUp(self):
