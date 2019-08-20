@@ -7,41 +7,12 @@ from odoo.osv import expression
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
-
-BASE_DISPLAY = (
-    '20', '21', '22', '23', '24',
-    '26', '27', '28', '29', '30',
-    '32', '33', '34', '35', '36',
-    '38', '39', '40', '41', '42',
-    '48', '49', '50', '51', '52',
-)
-
-TAX_DISPLAY = (
-    '26', '27', '28', '30',
-    '33', '34', '35', '36',
-    '48', '49', '50', '51', '52', '53', '55',
-    '56', '57', '58', '59',
-    '60', '61', '62', '64', '65', '66', '67',
-)
-
-GROUP_DISPLAY = (
-    '17', '18', '19',
-    '25', '31', '37',
-    '47', '54', '63',
-)
-
-EDITABLE_DISPLAY = (
-    '20', '21', '22', '23', '24',
-    '26', '27', '28', '29', '30',
-    '32', '33', '34', '35', '36',
-    '38', '39', '40', '41', '42',
-    '48', '49', '50', '51', '52',
-    '64', '65', '67',
-)
-
-TOTAL_DISPLAY = (
-    '53', '62',
-)
+from .l10n_de_tax_statement_2018 import \
+    _base_display_2018, _tax_display_2018, \
+    _group_display_2018, _total_display_2018, _editable_display_2018
+from .l10n_de_tax_statement_2019 import \
+    _base_display_2019, _tax_display_2019, \
+    _group_display_2019, _total_display_2019, _editable_display_2019
 
 
 class VatStatementLine(models.Model):
@@ -75,26 +46,45 @@ class VatStatementLine(models.Model):
     @api.depends('base', 'tax', 'code')
     def _compute_amount_format(self):
         for line in self:
+            if line.statement_id.version == '2019':
+                base_display = _base_display_2019()
+                tax_display = _tax_display_2019()
+            else:
+                base_display = _base_display_2018()
+                tax_display = _tax_display_2018()
+
             base = formatLang(self.env, line.base, monetary=True)
             tax = formatLang(self.env, line.tax, monetary=True)
-            if line.code in BASE_DISPLAY:
+            if line.code in base_display:
                 line.format_base = base
-            if line.code in TAX_DISPLAY:
+            if line.code in tax_display:
                 line.format_tax = tax
 
     @api.multi
     @api.depends('code')
     def _compute_is_group(self):
         for line in self:
-            line.is_group = line.code in GROUP_DISPLAY
-            line.is_total = line.code in TOTAL_DISPLAY
+            if line.statement_id.version == '2019':
+                group_display = _group_display_2019()
+                total_display = _total_display_2019()
+            else:
+                group_display = _group_display_2018()
+                total_display = _total_display_2018()
+
+            line.is_group = line.code in group_display
+            line.is_total = line.code in total_display
 
     @api.multi
     @api.depends('code')
     def _compute_is_readonly(self):
         for line in self:
+            if line.statement_id.version == '2019':
+                editable_display = _editable_display_2019()
+            else:
+                editable_display = _editable_display_2018()
+
             if line.statement_id.state == 'draft':
-                line.is_readonly = line.code not in EDITABLE_DISPLAY
+                line.is_readonly = line.code not in editable_display
             else:
                 line.is_readonly = True
 
