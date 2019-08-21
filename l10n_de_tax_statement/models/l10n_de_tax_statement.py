@@ -29,7 +29,7 @@ class VatStatement(models.Model):
     version = fields.Selection([
         ('2018', '2018'),
         ('2019', '2019'),
-    ], required=True)
+    ], required=True, default='2018')
     state = fields.Selection([
         ('draft', 'Draft'),
         ('posted', 'Posted'),
