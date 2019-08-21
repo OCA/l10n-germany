@@ -20,7 +20,7 @@ msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
-msgid "&amp;nbsp; &amp;nbsp; 68 - Verbleibende Umsatzsteuer-Vorauszahlung (83)"
+msgid "&amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -305,6 +305,11 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__format_tax
 msgid "Format Tax"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__format_tax_total
+msgid "Format Tax Total"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -903,7 +908,7 @@ msgid "Tag 98 Tax"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:197
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:196
 #, python-format
 msgid "Tags mapping not configured for this Company! Check the DE Tags Configuration."
 msgstr ""
@@ -998,13 +1003,8 @@ msgid "Utility field to express amount currency"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__format_tax_total
-msgid "Verbl. Ust.-Vorauszahlung"
-msgstr ""
-
-#. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__tax_total
-msgid "Verbl. Ust.-Vorauszahlung (66 - 67)"
+msgid "Verbl. Ust.-Vorauszahlung"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -1072,49 +1072,49 @@ msgid "Weitere steuerfr. Umsätze mit Vorsteuerabzug, z.B. Ausfuhrlief., Umsätz
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:359
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:358
 #, python-format
 msgid "You cannot delete a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:363
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:362
 #, python-format
 msgid "You cannot delete a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:106
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:96
 #, python-format
 msgid "You cannot delete lines of a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:110
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:100
 #, python-format
 msgid "You cannot delete lines of a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:212
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:211
 #, python-format
 msgid "You cannot modify a posted statement!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:350
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:349
 #, python-format
 msgid "You cannot modify a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:344
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:343
 #, python-format
 msgid "You cannot modify a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:295
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:294
 #, python-format
 msgid "You cannot post a statement if all the previous statements are not yet posted! Please Post all the other statements first."
 msgstr ""
