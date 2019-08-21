@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.tools import convert_file
-from odoo.modules.module import get_module_resource
+from odoo.modules.module import get_resource_path
 from odoo.exceptions import UserError
 from odoo.tests.common import TransactionCase
 
@@ -17,7 +17,7 @@ class TestVatStatement(TransactionCase):
         convert_file(
             self.cr,
             'l10n_de',
-            get_module_resource(module, *args),
+            get_resource_path(module, *args),
             {}, 'init', False, 'test', self.registry._assertion_report)
 
     def setUp(self):
@@ -75,6 +75,7 @@ class TestVatStatement(TransactionCase):
 
         self.statement_1 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 1',
+            'version': '2018',
         })
 
         self.journal_1 = self.env['account.journal'].create({
@@ -323,6 +324,7 @@ class TestVatStatement(TransactionCase):
         invoice2.action_invoice_open()
         statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
+            'version': '2018',
         })
         statement2.statement_update()
         statement2.unreported_move_from_date = fields.Date.today()
@@ -340,6 +342,7 @@ class TestVatStatement(TransactionCase):
     def test_13_no_previous_statement_posted(self):
         statement2 = self.env['l10n.de.tax.statement'].create({
             'name': 'Statement 2',
+            'version': '2018',
         })
         statement2.statement_update()
         with self.assertRaises(UserError):
@@ -352,3 +355,15 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_base_lines())
             self.assertTrue(line.view_tax_lines())
             self.assertFalse(line.is_readonly)
+
+    def test_14_new_version(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.)
+
+        self.invoice_1.action_invoice_open()
+        self.statement_1.version = '2019'
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 44)
+        self.assertEqual(self.statement_1.tax_total, 22.5)
