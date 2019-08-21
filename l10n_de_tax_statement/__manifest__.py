@@ -4,7 +4,7 @@
 
 {
     'name': 'German VAT Statement',
-    'version': '11.0.1.0.1',
+    'version': '11.0.1.1.0',
     'category': 'Localization',
     'license': 'AGPL-3',
     'author': 'OpenBIG.org, Onestein, Odoo Community Association (OCA)',
