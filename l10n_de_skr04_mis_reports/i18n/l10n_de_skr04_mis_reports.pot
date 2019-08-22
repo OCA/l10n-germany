@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-04 11:17+0000\n"
-"PO-Revision-Date: 2019-03-04 11:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -389,6 +387,16 @@ msgid "Einstellung in Gewinnrücklagen"
 msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
+#: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_entnahme_gewinnruecklage
+msgid "Entnahme aus der Gewinnrücklage"
+msgstr ""
+
+#. module: l10n_de_skr04_mis_reports
+#: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_entnahme_kapitalruecklage
+msgid "Entnahme aus der Kapitalrücklage"
+msgstr ""
+
+#. module: l10n_de_skr04_mis_reports
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_ergebnis_geschaeftstaetigkeit
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_ergebnis_gewoehnliche
 msgid "Ergebnis der gewöhnlichen Geschäftstätigkeit"
@@ -406,12 +414,12 @@ msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_bs
-msgid "German Balance Sheet for SKR03 (§ 266 HGB)"
+msgid "German Balance Sheet for SKR04 (§ 266 HGB)"
 msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_pl
-msgid "German P&L Sheet for SKR03 (§ 275 HGB)"
+msgid "German P&L Sheet for SKR04 (§ 275 HGB)"
 msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
