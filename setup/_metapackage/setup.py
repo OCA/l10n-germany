@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo11-addon-l10n_de_country_states',
         'odoo11-addon-l10n_de_location_nuts',
         'odoo11-addon-l10n_de_skr03_mis_reports',
+        'odoo11-addon-l10n_de_skr04_mis_reports',
         'odoo11-addon-l10n_de_steuernummer',
         'odoo11-addon-l10n_de_tax_statement',
         'odoo11-addon-l10n_de_tax_statement_zm',
