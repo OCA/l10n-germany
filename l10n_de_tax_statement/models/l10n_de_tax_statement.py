@@ -176,9 +176,8 @@ class VatStatement(models.Model):
 
         return lines
 
-    @api.model
     def _finalize_lines(self, lines):
-
+        self.ensure_one()
         if self.version == '2019':
             lines = _finalize_lines_2019(lines)
         else:
@@ -367,7 +366,7 @@ class VatStatement(models.Model):
         for statement in self:
             lines = statement.line_ids
 
-            if self.version == '2019':
+            if statement.version == '2019':
                 list_totals = _totals_2019()
             else:
                 list_totals = _totals_2018()
