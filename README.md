@@ -4,5 +4,3 @@
 # l10n-germany
 
 OCA Localisation for Germany
-
-
