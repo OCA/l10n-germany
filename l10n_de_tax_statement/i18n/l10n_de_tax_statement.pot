@@ -914,7 +914,7 @@ msgid "Tag 98 Tax"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:199
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:198
 #, python-format
 msgid "Tags mapping not configured for this Company! Check the DE Tags Configuration."
 msgstr ""
@@ -1078,13 +1078,13 @@ msgid "Weitere steuerfr. Umsätze mit Vorsteuerabzug, z.B. Ausfuhrlief., Umsätz
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:362
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:361
 #, python-format
 msgid "You cannot delete a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:366
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:365
 #, python-format
 msgid "You cannot delete a statement set as final!"
 msgstr ""
@@ -1102,25 +1102,25 @@ msgid "You cannot delete lines of a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:215
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:214
 #, python-format
 msgid "You cannot modify a posted statement!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:353
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:352
 #, python-format
 msgid "You cannot modify a posted statement! Reset the statement to draft first."
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:347
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:346
 #, python-format
 msgid "You cannot modify a statement set as final!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:298
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:297
 #, python-format
 msgid "You cannot post a statement if all the previous statements are not yet posted! Please Post all the other statements first."
 msgstr ""
