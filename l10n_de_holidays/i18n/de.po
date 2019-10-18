@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_de_holidays
+# 	* l10n_de_holidays
 #
 msgid ""
 msgstr ""
@@ -10,115 +10,110 @@ msgstr ""
 "PO-Revision-Date: 2018-09-07 09:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:171
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:206
 #, python-format
 msgid "All Saints' Day"
 msgstr "Allerheiligen"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:68
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:68
 #, python-format
 msgid "Ascension Day"
 msgstr "Christi Himmelfahrt"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:142
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:167
 #, python-format
 msgid "Assumption Day"
 msgstr "Mariä Himmelfahrt"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:117
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:136
 #, python-format
 msgid "Boxing Day"
 msgstr "2. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:113
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:130
 #, python-format
 msgid "Christmas Day"
 msgstr "1. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:92
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:100
 #, python-format
 msgid "Corpus Christi"
 msgstr "Fronleichnam"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:109
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:124
 #, python-format
 msgid "Day of German Unity"
 msgstr "Tag der Deutschen Einheit"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:159
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:189
 #, python-format
 msgid "Day of Reformation"
 msgstr "Reformationstag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:64
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:62
 #, python-format
 msgid "Easter Monday"
 msgstr "Ostermontag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:59
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:57
 #, python-format
 msgid "Easter Sunday"
 msgstr "Ostersonntag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:55
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:51
 #, python-format
 msgid "Good Friday"
 msgstr "Karfreitag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:105
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:118
 #, python-format
 msgid "International Workers' Day"
 msgstr "Tag der Arbeit"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:101
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:112
 #, python-format
 msgid "New Years's Day"
 msgstr "Neujahr"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:179
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:217
 #, python-format
 msgid "Repentance Day"
 msgstr "Buß- und Bettag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:132
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:153
 #, python-format
 msgid "Three Kings Day"
 msgstr "Heilige Drei Könige"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:218
-#, python-format
-msgid "Warning"
-msgstr "Warnung"
-
-#. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:73
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:75
 #, python-format
 msgid "Whit Monday"
 msgstr "Pfingstmontag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizard/hr_holidays_public_generator_de.py:218
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:269
 #, python-format
 msgid "You cannot copy the holidays to the same year."
 msgstr "Sie können die Feiertage nicht für dasselbe Jahr kopieren."
@@ -128,3 +123,5 @@ msgstr "Sie können die Feiertage nicht für dasselbe Jahr kopieren."
 msgid "hr.holidays.public.generator"
 msgstr "hr.holidays.public.generator"
 
+#~ msgid "Warning"
+#~ msgstr "Warnung"
