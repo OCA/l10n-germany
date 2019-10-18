@@ -165,7 +165,7 @@ msgstr "USt-IdNr. (EU-Erwerber)"
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:61
 #, python-format
 msgid "Wrong country code (%s) for ZM report. Please check your configuration."
-msgstr "Falscher Länderschlüssel (%s) für die Zusammenfassende Meldung. Bitte prüfen Sie Ihre Konfiguration.
+msgstr "Falscher Länderschlüssel (%s) für die Zusammenfassende Meldung. Bitte prüfen Sie Ihre Konfiguration."
 
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:56
