@@ -9,11 +9,8 @@ class TestL10nDeSteuerNummer(common.SavepointCase):
     def setUpClass(cls):
         super(TestL10nDeSteuerNummer, cls).setUpClass()
         cls.env.user.company_id.vat_check_vies = False
-        cls.partner = cls.env['res.partner'].create({
-            'name': 'Test',
-            'country_id': 57
-        })
+        cls.partner = cls.env["res.partner"].create({"name": "Test", "country_id": 57})
 
     def test_correct_steuernummer(self):
         """VAT with 11 chars that doesn't throw error."""
-        self.partner.vat = 'DE12345678901'
+        self.partner.vat = "DE12345678901"

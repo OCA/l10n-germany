@@ -3,15 +3,12 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    'name': "German SteuerNummer validation",
-    'category': 'Localisation/Europe',
-    'version': '12.0.1.0.0',
-    'depends': [
-        'base_vat',
-    ],
-    'author': 'Tecnativa, '
-              'Odoo Community Association (OCA)',
-    'website': 'https://github.com/OCA/l10n-germany',
-    'license': 'AGPL-3',
-    'installable': True,
+    "name": "German SteuerNummer validation",
+    "category": "Localisation/Europe",
+    "version": "13.0.1.0.0",
+    "depends": ["base_vat"],
+    "author": "Tecnativa, " "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-germany",
+    "license": "AGPL-3",
+    "installable": True,
 }
