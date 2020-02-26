@@ -14,13 +14,13 @@ German SteuerNummer validation
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-germany/tree/12.0/l10n_de_steuernummer
+    :target: https://github.com/OCA/l10n-germany/tree/13.0/l10n_de_steuernummer
     :alt: OCA/l10n-germany
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-germany-12-0/l10n-germany-12-0-l10n_de_steuernummer
+    :target: https://translation.odoo-community.org/projects/l10n-germany-13-0/l10n-germany-13-0-l10n_de_steuernummer
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/175/12.0
+    :target: https://runbot.odoo-community.org/runbot/175/13.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -80,6 +80,7 @@ Contributors
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
 * Rami Alwafaie <rami.alwafaie@initos.com>
 * Thore Baden
+* Achraf Mhadhbi <machraf@bloopark.de>
 
 Maintainers
 ~~~~~~~~~~~
@@ -94,6 +95,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/l10n-germany <https://github.com/OCA/l10n-germany/tree/12.0/l10n_de_steuernummer>`_ project on GitHub.
+This module is part of the `OCA/l10n-germany <https://github.com/OCA/l10n-germany/tree/13.0/l10n_de_steuernummer>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
