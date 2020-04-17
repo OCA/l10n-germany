@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 OpenBIG (<http://www.openbig.org>)
-     Copyright 2019 Onestein (<https://www.onestein.eu>)
+     Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_l10n_de_tax_report_form" model="ir.ui.view">
@@ -16,6 +16,14 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
+                        <button
+                            name="statement_update"
+                            string="Update"
+                            states="draft"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-repeat"
+                        />
                         <button
                             name="post"
                             string="Post"
@@ -58,14 +66,30 @@
                                 name="date_range_id"
                                 attrs="{'readonly': [('state','in',['posted','final'])]}"
                             />
-                            <field
-                                name="from_date"
-                                attrs="{'readonly': [('state','in',['posted','final'])]}"
-                            />
-                            <field
-                                name="to_date"
-                                attrs="{'readonly': [('state','in',['posted','final'])]}"
-                            />
+                            <label for="from_date" string="Date" />
+                            <div class="o_row">
+                                <field
+                                    name="from_date"
+                                    widget="daterange"
+                                    nolabel="1"
+                                    class="oe_inline"
+                                    options="{'related_end_date': 'to_date'}"
+                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                />
+                                <i
+                                    class="fa fa-long-arrow-right mx-2"
+                                    aria-label="Arrow icon"
+                                    title="Arrow"
+                                />
+                                <field
+                                    name="to_date"
+                                    widget="daterange"
+                                    nolabel="1"
+                                    class="oe_inline"
+                                    options="{'related_start_date': 'from_date'}"
+                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                />
+                            </div>
                         </group>
                         <group name="extra_parameters">
                             <field name="date_posted" />
@@ -80,16 +104,14 @@
                                 <div
                                     states="draft"
                                 >Press the Update button in order to recompute the statement lines!</div>
-                                <div class="oe_button_box" name="button_box">
-                                    <button
-                                        name="statement_update"
-                                        string="Update"
-                                        states="draft"
-                                        type="object"
-                                        class="oe_stat_button"
-                                        icon="fa-repeat"
-                                    />
-                                </div>
+                                <button
+                                    name="statement_update"
+                                    string="Update"
+                                    states="draft"
+                                    type="object"
+                                    class="oe_stat_button"
+                                    icon="fa-repeat"
+                                />
                             </group>
                             <field name="line_ids">
                                 <form>
@@ -181,7 +203,8 @@
                                     <field name="name" readonly="1" />
                                     <field name="journal_id" readonly="1" />
                                     <field name="partner_id" readonly="1" />
-                                    <field name="amount" readonly="1" />
+                                    <field name="amount_untaxed" readonly="1" />
+                                    <field name="amount_tax" readonly="1" />
                                     <field
                                         name="l10n_de_tax_statement_include"
                                         invisible="1"
@@ -211,24 +234,27 @@
     <record id="view_l10n_de_tax_report_tree" model="ir.ui.view">
         <field name="model">l10n.de.tax.statement</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree
+                decoration-info="state=='draft'"
+                decoration-muted="state in ('final')"
+            >
                 <field name="name" />
                 <field name="from_date" />
                 <field name="to_date" />
                 <field name="tax_total" />
                 <field name="company_id" groups="base.group_multi_company" />
+                <field name="state" />
             </tree>
         </field>
     </record>
     <record id="action_account_tax_statement_de" model="ir.actions.act_window">
         <field name="name">Ust-Voranmeldung</field>
         <field name="res_model">l10n.de.tax.statement</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
         id="menu_account_tax_statement_de"
-        parent="account_tax_balance.menu_tax_balances"
+        parent="account.menu_finance_reports"
         groups="account.group_account_user"
         action="action_account_tax_statement_de"
     />
