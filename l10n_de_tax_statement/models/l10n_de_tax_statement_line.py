@@ -1,10 +1,9 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<https://www.onestein.eu>)
+# Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
 from odoo.tools.misc import formatLang
 
 from .l10n_de_tax_statement_2018 import (
@@ -31,11 +30,10 @@ class VatStatementLine(models.Model):
     name = fields.Char()
     code = fields.Char()
 
-    statement_id = fields.Many2one("l10n.de.tax.statement", "Statement")
+    statement_id = fields.Many2one("l10n.de.tax.statement")
     currency_id = fields.Many2one(
         "res.currency",
         related="statement_id.company_id.currency_id",
-        readonly=True,
         help="Utility field to express amount currency",
     )
     base = fields.Monetary()
@@ -47,7 +45,6 @@ class VatStatementLine(models.Model):
     is_total = fields.Boolean(compute="_compute_is_group")
     is_readonly = fields.Boolean(compute="_compute_is_readonly")
 
-    @api.multi
     @api.depends("base", "tax", "code")
     def _compute_amount_format(self):
         for line in self:
@@ -60,12 +57,13 @@ class VatStatementLine(models.Model):
 
             base = formatLang(self.env, line.base, monetary=True)
             tax = formatLang(self.env, line.tax, monetary=True)
+            line.format_base = False
+            line.format_tax = False
             if line.code in base_display:
                 line.format_base = base
             if line.code in tax_display:
                 line.format_tax = tax
 
-    @api.multi
     @api.depends("code")
     def _compute_is_group(self):
         for line in self:
@@ -79,7 +77,6 @@ class VatStatementLine(models.Model):
             line.is_group = line.code in group_display
             line.is_total = line.code in total_display
 
-    @api.multi
     @api.depends("code")
     def _compute_is_readonly(self):
         for line in self:
@@ -93,7 +90,6 @@ class VatStatementLine(models.Model):
             else:
                 line.is_readonly = True
 
-    @api.multi
     def unlink(self):
         for line in self:
             if line.statement_id.state == "posted":
@@ -109,12 +105,10 @@ class VatStatementLine(models.Model):
                 )
         super().unlink()
 
-    @api.multi
     def view_tax_lines(self):
         self.ensure_one()
         return self.get_lines_action(tax_or_base="tax")
 
-    @api.multi
     def view_base_lines(self):
         self.ensure_one()
         return self.get_lines_action(tax_or_base="base")
@@ -128,45 +122,18 @@ class VatStatementLine(models.Model):
         return vals
 
     def _get_move_lines_domain(self, tax_or_base):
-        statement = self.statement_id
-        taxes = self._filter_taxes_by_code(statement._compute_taxes())
-        past_taxes = statement._compute_past_invoices_taxes()
-        past_taxes = self._filter_taxes_by_code(past_taxes)
-        if statement.state == "draft":
-            domain = self._get_domain_draft(taxes, tax_or_base)
-            past_domain = self._get_domain_draft(past_taxes, tax_or_base)
-        else:
-            domain = self._get_domain_posted(taxes, tax_or_base)
-            past_domain = self._get_domain_posted(past_taxes, tax_or_base)
-        curr_amls = self.env["account.move.line"].search(domain)
-        past_amls = self.env["account.move.line"].search(past_domain)
-        res = [("id", "in", past_amls.ids + curr_amls.ids)]
-        return res
-
-    def _filter_taxes_by_code(self, taxes):
-        self.ensure_one()
+        all_amls = self.statement_id._get_all_statement_move_lines()
+        domain_lines_ids = []
         tags_map = self.statement_id._get_tags_map()
-        filtered_taxes = self.env["account.tax"]
-        for tax in taxes:
-            for tag in tax.tag_ids:
-                tag_map = tags_map.get(tag.id)
-                if tag_map and tag_map[0] == self.code:
-                    filtered_taxes |= tax
-        return filtered_taxes.with_context(taxes.env.context)
-
-    def _get_domain_draft(self, taxes, tax_or_base):
-        self.ensure_one()
-        ctx = taxes.env.context.copy()
-        ctx.update({"l10n_de_statement_tax_ids": taxes.ids})
-        AccountTax = self.env["account.tax"].with_context(ctx)
-        return AccountTax.get_move_lines_domain(tax_or_base=tax_or_base)
-
-    def _get_domain_posted(self, taxes, tax_or_base):
-        self.ensure_one()
-        statement = self.statement_id
-        domain = [("move_id.l10n_de_tax_statement_id", "=", statement.id)]
-        if tax_or_base == "tax":
-            tax_domain = [("tax_line_id", "in", taxes.ids)]
-        else:
-            tax_domain = [("tax_ids", "in", taxes.ids)]
-        return expression.AND([domain, tax_domain])
+        for line in all_amls:
+            for tag in line.tag_ids:
+                tag_map = tags_map.get(tag.id, ("", ""))
+                code, column = tag_map
+                code = self.statement_id._strip_sign_in_tag_code(code)
+                line_code = self.statement_id.map_tax_code_line_code(code)
+                if line_code and line_code == self.code:
+                    if (tax_or_base == "tax" and column == "tax") or (
+                        tax_or_base == "base" and column == "base"
+                    ):
+                        domain_lines_ids += [line.id]
+        return [("id", "in", domain_lines_ids)]

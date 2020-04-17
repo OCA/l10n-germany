@@ -7,7 +7,7 @@ from odoo import _
 
 def _tax_statement_dict_2019():
     return {
-        "17": {"code": "17", "name": _("Anmeldung der Umsatzsteuer Vorauszahlung"),},
+        "17": {"code": "17", "name": _("Anmeldung der Umsatzsteuer Vorauszahlung")},
         "18": {
             "code": "18",
             "name": _("Lief. u. sonst. Leistg. einschl. unentg. Wertabg."),
@@ -136,7 +136,7 @@ def _tax_statement_dict_2019():
                 "von Lieferern o. Ust-ID z. allg. Steuersatz (94 / 96)"
             ),
         },
-        "37": {"code": "37", "name": _("Ergänzende Angaben zu Umsätzen"),},
+        "37": {"code": "37", "name": _("Ergänzende Angaben zu Umsätzen")},
         "38": {
             "code": "38",
             "base": 0.0,
@@ -196,8 +196,8 @@ def _tax_statement_dict_2019():
                 "Andere Leistungen gem. § 13b Abs. 2 Nr. 1, 2," "4 b. 11 UStG (84 / 85)"
             ),
         },
-        "51": {"code": "51", "tax": 0.0, "name": _("Umsatzsteuer"),},
-        "52": {"code": "52", "name": _("Abziehbare Vorsteuerbeträge"),},
+        "51": {"code": "51", "tax": 0.0, "name": _("Umsatzsteuer")},
+        "52": {"code": "52", "name": _("Abziehbare Vorsteuerbeträge")},
         "53": {
             "code": "53",
             "tax": 0.0,
@@ -251,8 +251,8 @@ def _tax_statement_dict_2019():
                 "d. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)"
             ),
         },
-        "60": {"code": "60", "tax": 0.0, "name": _("Verbleibender Betrag"),},
-        "61": {"code": "61", "name": _("Andere Steuerbeträge"),},
+        "60": {"code": "60", "tax": 0.0, "name": _("Verbleibender Betrag")},
+        "61": {"code": "61", "name": _("Andere Steuerbeträge")},
         "62": {
             "code": "62",
             "tax": 0.0,
@@ -272,7 +272,7 @@ def _tax_statement_dict_2019():
                 "UStG geschuldet werden (69)"
             ),
         },
-        "64": {"code": "64", "tax": 0.0, "name": _("Umsatzsteuer-Vorauszahlung"),},
+        "64": {"code": "64", "tax": 0.0, "name": _("Umsatzsteuer-Vorauszahlung")},
         "65": {
             "code": "65",
             "tax": 0.0,
@@ -282,6 +282,50 @@ def _tax_statement_dict_2019():
                 "Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
             ),
         },
+    }
+
+
+def _map_tax_code_line_code_2019():
+    return {
+        "41": "20",
+        "44": "21",
+        "49": "22",
+        "43": "23",
+        "48": "24",
+        "81": "26",
+        "86": "27",
+        "35": "28",
+        "36": "28",
+        "77": "29",
+        "76": "30",
+        "80": "30",
+        "91": "32",
+        "89": "33",
+        "93": "34",
+        "95": "35",
+        "98": "35",
+        "94": "36",
+        "96": "36",
+        "42": "38",
+        "60": "39",
+        "21": "40",
+        "45": "41",
+        "46": "48",
+        "47": "48",
+        "73": "49",
+        "74": "49",
+        "84": "50",
+        "85": "50",
+        "66": "53",
+        "61": "54",
+        "62": "55",
+        "67": "56",
+        "63": "57",
+        "64": "58",
+        "59": "59",
+        "65": "62",
+        "69": "63",
+        "39": "65",
     }
 
 
@@ -369,56 +413,6 @@ def _finalize_lines_2019(lines):
     lines["64"].update({"tax": _64b})
     lines["51"].update({"tax": _51b})
     lines["60"].update({"tax": _60b})
-
-
-def _get_tags_map_2019(config):
-    return {
-        config.tag_41_base.id: ("20", "base"),
-        config.tag_44_base.id: ("21", "base"),
-        config.tag_49_base.id: ("22", "base"),
-        config.tag_43_base.id: ("23", "base"),
-        config.tag_48_base.id: ("24", "base"),
-        config.tag_81_base.id: ("26", "base"),
-        config.tag_81_tax.id: ("26", "tax"),
-        config.tag_86_base.id: ("27", "base"),
-        config.tag_86_tax.id: ("27", "tax"),
-        config.tag_35_base.id: ("28", "base"),
-        config.tag_36_tax.id: ("28", "tax"),
-        config.tag_77_base.id: ("29", "base"),
-        config.tag_76_base.id: ("30", "base"),
-        config.tag_80_tax.id: ("30", "tax"),
-        config.tag_91_base.id: ("32", "base"),
-        config.tag_89_base.id: ("33", "base"),
-        config.tag_93_base.id: ("34", "base"),
-        config.tag_95_base.id: ("35", "base"),
-        config.tag_98_tax.id: ("35", "tax"),
-        config.tag_94_base.id: ("36", "base"),
-        config.tag_96_tax.id: ("36", "tax"),
-        config.tag_42_base.id: ("38", "base"),
-        config.tag_68_base.id: ("39", "base"),
-        config.tag_60_base.id: ("39", "base"),
-        config.tag_21_base.id: ("40", "base"),
-        config.tag_45_base.id: ("41", "base"),
-        config.tag_46_base.id: ("48", "base"),
-        config.tag_47_tax.id: ("48", "tax"),
-        config.tag_73_base.id: ("49", "base"),
-        config.tag_74_tax.id: ("49", "tax"),
-        config.tag_52_base.id: ("50", "base"),
-        config.tag_53_tax.id: ("50", "tax"),
-        config.tag_78_base.id: ("50", "base"),
-        config.tag_79_tax.id: ("50", "tax"),
-        config.tag_84_base.id: ("50", "base"),
-        config.tag_85_tax.id: ("50", "tax"),
-        config.tag_66_tax.id: ("53", "tax"),
-        config.tag_61_tax.id: ("54", "tax"),
-        config.tag_62_tax.id: ("55", "tax"),
-        config.tag_67_tax.id: ("56", "tax"),
-        config.tag_63_tax.id: ("57", "tax"),
-        config.tag_64_tax.id: ("58", "tax"),
-        config.tag_59_tax.id: ("59", "tax"),
-        config.tag_65_tax.id: ("62", "tax"),
-        config.tag_69_tax.id: ("63", "tax"),
-    }
 
 
 def _totals_2019():
