@@ -7,7 +7,7 @@ from odoo import _
 
 def _tax_statement_dict_2018():
     return {
-        "17": {"code": "17", "name": _("Anmeldung der Umsatzsteuer Vorauszahlung"),},
+        "17": {"code": "17", "name": _("Anmeldung der Umsatzsteuer Vorauszahlung")},
         "18": {
             "code": "18",
             "name": _("Lief. u. sonst. Leistg. einschl. unentg. Wertabg."),
@@ -230,8 +230,8 @@ def _tax_statement_dict_2018():
                 "Bst. b, Nr. 6 b. 9 u. 11 UStG (84 / 85)"
             ),
         },
-        "53": {"code": "53", "tax": 0.0, "name": _("Umsatzsteuer"),},
-        "54": {"code": "54", "name": _("Abziehbare Vorsteuerbeträge"),},
+        "53": {"code": "53", "tax": 0.0, "name": _("Umsatzsteuer")},
+        "54": {"code": "54", "name": _("Abziehbare Vorsteuerbeträge")},
         "55": {
             "code": "55",
             "tax": 0.0,
@@ -285,8 +285,8 @@ def _tax_statement_dict_2018():
                 "d. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)"
             ),
         },
-        "62": {"code": "62", "tax": 0.0, "name": _("Verbleibender Betrag"),},
-        "63": {"code": "63", "name": _("Andere Steuerbeträge"),},
+        "62": {"code": "62", "tax": 0.0, "name": _("Verbleibender Betrag")},
+        "63": {"code": "63", "name": _("Andere Steuerbeträge")},
         "64": {
             "code": "64",
             "tax": 0.0,
@@ -306,7 +306,7 @@ def _tax_statement_dict_2018():
                 "UStG geschuldet werden (69)"
             ),
         },
-        "66": {"code": "66", "tax": 0.0, "name": _("Umsatzsteuer-Vorauszahlung"),},
+        "66": {"code": "66", "tax": 0.0, "name": _("Umsatzsteuer-Vorauszahlung")},
         "67": {
             "code": "67",
             "tax": 0.0,
@@ -316,6 +316,57 @@ def _tax_statement_dict_2018():
                 "Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
             ),
         },
+    }
+
+
+def _map_tax_code_line_code_2018():
+    return {
+        "41": "20",
+        "44": "21",
+        "49": "22",
+        "43": "23",
+        "48": "24",
+        "81": "26",
+        "86": "27",
+        "33": "28",
+        "34": "28",
+        "35": "28",
+        "36": "28",
+        "77": "29",
+        "76": "30",
+        "80": "30",
+        "91": "32",
+        "89": "33",
+        "93": "34",
+        "95": "35",
+        "98": "35",
+        "94": "36",
+        "96": "36",
+        "42": "38",
+        "68": "39",
+        "60": "40",
+        "21": "41",
+        "45": "42",
+        "46": "48",
+        "47": "48",
+        "52": "49",
+        "53": "49",
+        "73": "50",
+        "74": "50",
+        "78": "51",
+        "79": "51",
+        "84": "52",
+        "85": "52",
+        "66": "55",
+        "61": "56",
+        "62": "57",
+        "67": "58",
+        "63": "59",
+        "64": "60",
+        "59": "61",
+        "65": "64",
+        "69": "65",
+        "39": "67",
     }
 
 
@@ -411,56 +462,6 @@ def _finalize_lines_2018(lines):
     lines["66"].update({"tax": _66b})
     lines["53"].update({"tax": _53b})
     lines["62"].update({"tax": _62b})
-
-
-def _get_tags_map_2018(config):
-    return {
-        config.tag_41_base.id: ("20", "base"),
-        config.tag_44_base.id: ("21", "base"),
-        config.tag_49_base.id: ("22", "base"),
-        config.tag_43_base.id: ("23", "base"),
-        config.tag_48_base.id: ("24", "base"),
-        config.tag_81_base.id: ("26", "base"),
-        config.tag_81_tax.id: ("26", "tax"),
-        config.tag_86_base.id: ("27", "base"),
-        config.tag_86_tax.id: ("27", "tax"),
-        config.tag_35_base.id: ("28", "base"),
-        config.tag_36_tax.id: ("28", "tax"),
-        config.tag_77_base.id: ("29", "base"),
-        config.tag_76_base.id: ("30", "base"),
-        config.tag_80_tax.id: ("30", "tax"),
-        config.tag_91_base.id: ("32", "base"),
-        config.tag_89_base.id: ("33", "base"),
-        config.tag_93_base.id: ("34", "base"),
-        config.tag_95_base.id: ("35", "base"),
-        config.tag_98_tax.id: ("35", "tax"),
-        config.tag_94_base.id: ("36", "base"),
-        config.tag_96_tax.id: ("36", "tax"),
-        config.tag_42_base.id: ("38", "base"),
-        config.tag_68_base.id: ("39", "base"),
-        config.tag_60_base.id: ("40", "base"),
-        config.tag_21_base.id: ("41", "base"),
-        config.tag_45_base.id: ("42", "base"),
-        config.tag_46_base.id: ("48", "base"),
-        config.tag_47_tax.id: ("48", "tax"),
-        config.tag_52_base.id: ("49", "base"),
-        config.tag_53_tax.id: ("49", "tax"),
-        config.tag_73_base.id: ("50", "base"),
-        config.tag_74_tax.id: ("50", "tax"),
-        config.tag_78_base.id: ("51", "base"),
-        config.tag_79_tax.id: ("51", "tax"),
-        config.tag_84_base.id: ("52", "base"),
-        config.tag_85_tax.id: ("52", "tax"),
-        config.tag_66_tax.id: ("55", "tax"),
-        config.tag_61_tax.id: ("56", "tax"),
-        config.tag_62_tax.id: ("57", "tax"),
-        config.tag_67_tax.id: ("58", "tax"),
-        config.tag_63_tax.id: ("59", "tax"),
-        config.tag_64_tax.id: ("60", "tax"),
-        config.tag_59_tax.id: ("61", "tax"),
-        config.tag_65_tax.id: ("64", "tax"),
-        config.tag_69_tax.id: ("65", "tax"),
-    }
 
 
 def _totals_2018():
