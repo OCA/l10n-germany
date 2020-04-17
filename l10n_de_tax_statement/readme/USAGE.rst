@@ -1,7 +1,7 @@
 To create a statement you need to:
 
 #. Verify that you have enough permits. You need to belong to the *Show Full Accounting Features* group.
-#. Go to the menu: `Invoicing -> Reports > Taxes Balance > German Tax Statement`
+#. Go to the menu: `Invoicing -> Reporting > German Tax Statement`
 #. Create a statement, providing a name and specifying start date and end date
 #. Press the Update button to calculate the report: the report lines will be displayed in the tab `Statement`
 #. Eventually you have to manually enter the tax base amounts of lines '20', '21', '22', '23', '24','26', '27', '28', '29', '30','32', '33', '34', '35', '36','38', '39', '40', '41', '42','48', '49', '50', '51', '52','64', '65', '67') if you want to change the values from float format to integer (in Edit mode, click on the amount of the line to be able to change the value).

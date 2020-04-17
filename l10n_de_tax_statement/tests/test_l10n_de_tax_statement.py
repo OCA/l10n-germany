@@ -1,5 +1,5 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
-# Copyright 2019 Onestein (<https://www.onestein.eu>)
+# Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -9,6 +9,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import fields
 from odoo.exceptions import UserError
 from odoo.modules.module import get_resource_path
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 from odoo.tools import convert_file
 
@@ -29,42 +30,116 @@ class TestVatStatement(TransactionCase):
     def setUp(self):
         super().setUp()
 
-        self.Wizard = self.env["l10n.de.tax.statement.config.wizard"]
+        self.eur = self.env["res.currency"].search([("name", "=", "EUR")])
+        self.coa = self.env.ref("l10n_de.l10nde_chart_template", False)
+        self.coa = self.coa or self.env.ref(
+            "l10n_generic_coa.configurable_chart_template"
+        )
+        self.company_parent = self.env["res.company"].create(
+            {
+                "name": "Parent Company",
+                "country_id": self.env.ref("base.de").id,
+                "currency_id": self.eur.id,
+            }
+        )
+        self.env.user.company_id = self.company_parent
+        self.coa.try_loading_for_current_company()
+
+        self.env["l10n.de.tax.statement"].search([]).unlink()
 
         self.tag_1 = self.env["account.account.tag"].create(
-            {"name": "Tag 1", "applicability": "taxes",}
+            {
+                "name": "+81 base",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
+            }
         )
         self.tag_2 = self.env["account.account.tag"].create(
-            {"name": "Tag 2", "applicability": "taxes",}
+            {
+                "name": "+81 tax",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
+            }
         )
         self.tag_3 = self.env["account.account.tag"].create(
-            {"name": "Tag 3", "applicability": "taxes",}
+            {
+                "name": "+86 base",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
+            }
         )
         self.tag_4 = self.env["account.account.tag"].create(
-            {"name": "Tag 4", "applicability": "taxes",}
-        )
-
-        self.tax_1 = self.env["account.tax"].create(
-            {"name": "Tax 1", "amount": 19, "tag_ids": [(6, 0, [self.tag_1.id])],}
-        )
-
-        self.tax_2 = self.env["account.tax"].create(
-            {"name": "Tax 2", "amount": 7, "tag_ids": [(6, 0, [self.tag_2.id])],}
-        )
-
-        self.config = self.env["l10n.de.tax.statement.config"].create(
             {
-                "company_id": self.env.user.company_id.id,
-                "tag_81_base": self.tag_1.id,
-                "tag_86_base": self.tag_2.id,
-                "tag_41_base": self.tag_3.id,
-                "tag_21_base": self.tag_4.id,
+                "name": "+86 tax",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
+            }
+        )
+        self.tag_5 = self.env["account.account.tag"].create(
+            {
+                "name": "+41",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
+            }
+        )
+        self.tag_6 = self.env["account.account.tag"].create(
+            {
+                "name": "+21",
+                "applicability": "taxes",
+                "country_id": self.env.ref("base.de").id,
             }
         )
 
-        daterange_type = self.env["date.range.type"].create({"name": "Type 1"})
+        self.tax_1 = self.env["account.tax"].create({"name": "Tax 1", "amount": 22.5})
+        self.tax_1.invoice_repartition_line_ids[0].tag_ids = self.tag_1
+        self.tax_1.invoice_repartition_line_ids[1].tag_ids = self.tag_2
 
-        self.daterange_1 = self.env["date.range"].create(
+        self.tax_2 = self.env["account.tax"].create({"name": "Tax 2", "amount": 22.5})
+        self.tax_2.invoice_repartition_line_ids[0].tag_ids = self.tag_3
+        self.tax_2.invoice_repartition_line_ids[1].tag_ids = self.tag_4
+
+        self.statement_1 = self.env["l10n.de.tax.statement"].create(
+            {"name": "Statement 1", "version": "2018"}
+        )
+
+    def _create_test_invoice(self):
+        journal = self.env["account.journal"].create(
+            {"name": "Journal 1", "code": "Jou1", "type": "sale"}
+        )
+        partner = self.env["res.partner"].create({"name": "Test partner"})
+        account_receivable = self.env["account.account"].create(
+            {
+                "user_type_id": self.env.ref("account.data_account_type_expenses").id,
+                "code": "EXPTEST",
+                "name": "Test expense account",
+            }
+        )
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_type="out_invoice")
+        )
+        invoice_form.partner_id = partner
+        invoice_form.journal_id = journal
+        invoice_form.invoice_date = fields.Date.today()
+        with invoice_form.invoice_line_ids.new() as line:
+            line.name = "Test line"
+            line.quantity = 1.0
+            line.account_id = account_receivable
+            line.price_unit = 100.0
+            line.tax_ids.clear()
+            line.tax_ids.add(self.tax_1)
+        with invoice_form.invoice_line_ids.new() as line:
+            line.name = "Test line"
+            line.quantity = 1.0
+            line.account_id = account_receivable
+            line.price_unit = 50.0
+            line.tax_ids.clear()
+            line.tax_ids.add(self.tax_2)
+        self.invoice_1 = invoice_form.save()
+        self.assertEqual(len(self.invoice_1.line_ids), 5)
+
+    def test_01_onchange(self):
+        daterange_type = self.env["date.range.type"].create({"name": "Type 1"})
+        daterange = self.env["date.range"].create(
             {
                 "name": "Daterange 1",
                 "type_id": daterange_type.id,
@@ -72,75 +147,25 @@ class TestVatStatement(TransactionCase):
                 "date_end": "2016-12-31",
             }
         )
+        form = Form(self.statement_1)
+        form.date_range_id = daterange
+        statement = form.save()
+        self.assertEqual(statement.from_date, datetime.date(2016, 1, 1))
+        self.assertEqual(statement.to_date, datetime.date(2016, 12, 31))
 
-        self.statement_1 = self.env["l10n.de.tax.statement"].create(
-            {"name": "Statement 1", "version": "2018",}
-        )
-
-        self.journal_1 = self.env["account.journal"].create(
-            {"name": "Journal 1", "code": "Jou1", "type": "sale",}
-        )
-
-        self.partner = self.env["res.partner"].create({"name": "Test partner"})
-
-        type_account = self.env.ref("account.data_account_type_receivable")
-
-        account_receivable = self.env["account.account"].search(
-            [("user_type_id", "=", type_account.id)], limit=1
-        )
-
-        invoice1_vals = [
-            {
-                "name": "Test line",
-                "quantity": 1.0,
-                "account_id": account_receivable.id,
-                "price_unit": 100.0,
-                "invoice_line_tax_ids": [(6, 0, [self.tax_1.id])],
-            },
-            {
-                "name": "Test line 2",
-                "quantity": 1.0,
-                "account_id": account_receivable.id,
-                "price_unit": 50.0,
-                "invoice_line_tax_ids": [(6, 0, [self.tax_2.id])],
-            },
-        ]
-
-        self.invoice_1 = self.env["account.invoice"].create(
-            {
-                "partner_id": self.partner.id,
-                "name": "ref1",
-                "account_id": account_receivable.id,
-                "journal_id": self.journal_1.id,
-                "date_invoice": fields.Date.today(),
-                "type": "out_invoice",
-                "invoice_line_ids": [(0, 0, value) for value in invoice1_vals],
-            }
-        )
-
-    def test_01_onchange(self):
-        self.statement_1.write({"date_range_id": self.daterange_1.id})
-        self.statement_1.onchange_date_range_id()
-        from_date = datetime.date(2016, 1, 1)
-        to_date = datetime.date(2016, 12, 31)
-        self.assertEqual(self.statement_1.from_date, from_date)
-        self.assertEqual(self.statement_1.to_date, to_date)
-
-        self.statement_1.onchange_date()
-        check_name = self.statement_1.company_id.name
-        str_from_date = fields.Date.to_string(self.statement_1.from_date)
-        str_to_date = fields.Date.to_string(self.statement_1.to_date)
+        check_name = statement.company_id.name
+        str_from_date = fields.Date.to_string(statement.from_date)
+        str_to_date = fields.Date.to_string(statement.to_date)
         check_name += ": " + " ".join([str_from_date, str_to_date])
-        self.assertEqual(self.statement_1.name, check_name)
+        self.assertEqual(statement.name, check_name)
 
-        self.statement_1.onchange_date_from_date()
-        d_from = self.statement_1.from_date
+        d_from = statement.from_date
         # by default the unreported_move_from_date is set to
         # a quarter (three months) before the from_date of the statement
         new_date = d_from + relativedelta(months=-3, day=1)
-        self.assertEqual(self.statement_1.unreported_move_from_date, new_date)
+        self.assertEqual(statement.unreported_move_from_date, new_date)
 
-        self.assertEqual(self.statement_1.tax_total, 0.0)
+        self.assertEqual(statement.tax_total, 0.0)
 
     def test_02_post_final(self):
         # in draft
@@ -213,14 +238,9 @@ class TestVatStatement(TransactionCase):
         with self.assertRaises(UserError):
             self.statement_1.statement_update()
 
-    def test_08_update_exception2(self):
-        self.config.unlink()
-        with self.assertRaises(UserError):
-            self.statement_1.statement_update()
-
     def test_09_update_working(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
+        self._create_test_invoice()
+        self.invoice_1.action_post()
         self.statement_1.statement_update()
         self.assertEqual(len(self.statement_1.line_ids.ids), 47)
 
@@ -252,7 +272,8 @@ class TestVatStatement(TransactionCase):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
         self.assertEqual(self.statement_1.tax_total, 0.0)
 
-        self.invoice_1.action_invoice_open()
+        self._create_test_invoice()
+        self.invoice_1.action_post()
         self.statement_1.statement_update()
         self.statement_1.post()
         with self.assertRaises(UserError):
@@ -268,46 +289,17 @@ class TestVatStatement(TransactionCase):
             with self.assertRaises(UserError):
                 line.unlink()
 
-    def test_11_wizard_execute(self):
-        wizard = self.Wizard.create({})
-
-        self.assertEqual(wizard.tag_81_base, self.tag_1)
-        self.assertEqual(wizard.tag_86_base, self.tag_2)
-
-        wizard.write(
-            {"tag_81_base": self.tag_1.id, "tag_86_base": self.tag_2.id,}
-        )
-
-        self.config.unlink()
-
-        wizard_2 = self.Wizard.create({})
-        self.assertNotEqual(wizard_2.tag_81_base, self.tag_1)
-        self.assertNotEqual(wizard_2.tag_86_base, self.tag_2)
-
-        config = self.env["l10n.de.tax.statement.config"].search(
-            [("company_id", "=", self.env.user.company_id.id)], limit=1
-        )
-        self.assertFalse(config)
-
-        wizard.execute()
-
-        config = self.env["l10n.de.tax.statement.config"].search(
-            [("company_id", "=", self.env.user.company_id.id)], limit=1
-        )
-        self.assertTrue(config)
-        self.assertEqual(config.tag_81_base, self.tag_1)
-        self.assertEqual(config.tag_86_base, self.tag_2)
-
-        self.assertEqual(self.statement_1.tax_total, 0.0)
-
     def test_12_undeclared_invoice(self):
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.invoice_1.move_id.l10n_de_add_move_in_statement()
-        for line in self.invoice_1.move_id.line_ids:
+        self._create_test_invoice()
+        self.invoice_1.action_post()
+
+        self.invoice_1.l10n_de_add_move_in_statement()
+        self.assertTrue(self.invoice_1.line_ids)
+        for line in self.invoice_1.line_ids:
             self.assertTrue(line.l10n_de_tax_statement_include)
-        self.invoice_1.move_id.l10n_de_unlink_move_from_statement()
-        for line in self.invoice_1.move_id.line_ids:
+        self.invoice_1.l10n_de_unlink_move_from_statement()
+        self.assertTrue(self.invoice_1.line_ids)
+        for line in self.invoice_1.line_ids:
             self.assertFalse(line.l10n_de_tax_statement_include)
 
         self.statement_1.statement_update()
@@ -322,14 +314,15 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.view_tax_lines())
 
         invoice2 = self.invoice_1.copy()
-        invoice2._onchange_invoice_line_ids()
-        invoice2.action_invoice_open()
+        invoice2.date = fields.Date.today() - relativedelta(months=1)
+        invoice2.invoice_date = invoice2.date
+        invoice2.action_post()
         statement2 = self.env["l10n.de.tax.statement"].create(
-            {"name": "Statement 2", "version": "2018",}
+            {"name": "Statement 2", "version": "2018"}
         )
+        self.assertTrue(statement2.unreported_move_from_date)
         statement2.statement_update()
         statement2.unreported_move_from_date = fields.Date.today()
-        statement2.onchange_unreported_move_from_date()
         self.assertFalse(statement2.unreported_move_ids)
 
         self.assertEqual(self.statement_1.tax_total, 22.5)
@@ -342,7 +335,7 @@ class TestVatStatement(TransactionCase):
 
     def test_13_no_previous_statement_posted(self):
         statement2 = self.env["l10n.de.tax.statement"].create(
-            {"name": "Statement 2", "version": "2018",}
+            {"name": "Statement 2", "version": "2018"}
         )
         statement2.statement_update()
         with self.assertRaises(UserError):
@@ -360,7 +353,8 @@ class TestVatStatement(TransactionCase):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
         self.assertEqual(self.statement_1.tax_total, 0.0)
 
-        self.invoice_1.action_invoice_open()
+        self._create_test_invoice()
+        self.invoice_1.action_post()
         self.statement_1.version = "2019"
         self.statement_1.statement_update()
         self.statement_1.post()
