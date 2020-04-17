@@ -6,16 +6,14 @@ from odoo import fields, models
 
 
 class AccountMoveLine(models.Model):
-    _inherit = 'account.move.line'
+    _inherit = "account.move.line"
 
     l10n_de_tax_statement_id = fields.Many2one(
-        related='move_id.l10n_de_tax_statement_id',
+        related="move_id.l10n_de_tax_statement_id",
         store=True,
         readonly=True,
-        string='Related Move Statement'
+        string="Related Move Statement",
     )
     l10n_de_tax_statement_include = fields.Boolean(
-        related='move_id.l10n_de_tax_statement_include',
-        store=True,
-        readonly=True
+        related="move_id.l10n_de_tax_statement_include", store=True, readonly=True
     )
