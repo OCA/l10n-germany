@@ -3,123 +3,123 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import fields
-from odoo.tools import convert_file
-from odoo.modules.module import get_resource_path
 from odoo.exceptions import UserError
+from odoo.modules.module import get_resource_path
 from odoo.tests.common import TransactionCase
+from odoo.tools import convert_file
 
 
 class TestVatStatement(TransactionCase):
-
     def _load(self, module, *args):
         convert_file(
             self.cr,
-            'l10n_de',
+            "l10n_de",
             get_resource_path(module, *args),
-            {}, 'init', False, 'test', self.registry._assertion_report)
+            {},
+            "init",
+            False,
+            "test",
+            self.registry._assertion_report,
+        )
 
     def setUp(self):
         super().setUp()
 
-        self.Wizard = self.env['l10n.de.tax.statement.config.wizard']
+        self.Wizard = self.env["l10n.de.tax.statement.config.wizard"]
 
-        self.tag_1 = self.env['account.account.tag'].create({
-            'name': 'Tag 1',
-            'applicability': 'taxes',
-        })
-        self.tag_2 = self.env['account.account.tag'].create({
-            'name': 'Tag 2',
-            'applicability': 'taxes',
-        })
-        self.tag_3 = self.env['account.account.tag'].create({
-            'name': 'Tag 3',
-            'applicability': 'taxes',
-        })
-        self.tag_4 = self.env['account.account.tag'].create({
-            'name': 'Tag 4',
-            'applicability': 'taxes',
-        })
+        self.tag_1 = self.env["account.account.tag"].create(
+            {"name": "Tag 1", "applicability": "taxes",}
+        )
+        self.tag_2 = self.env["account.account.tag"].create(
+            {"name": "Tag 2", "applicability": "taxes",}
+        )
+        self.tag_3 = self.env["account.account.tag"].create(
+            {"name": "Tag 3", "applicability": "taxes",}
+        )
+        self.tag_4 = self.env["account.account.tag"].create(
+            {"name": "Tag 4", "applicability": "taxes",}
+        )
 
-        self.tax_1 = self.env['account.tax'].create({
-            'name': 'Tax 1',
-            'amount': 19,
-            'tag_ids': [(6, 0, [self.tag_1.id])],
-        })
+        self.tax_1 = self.env["account.tax"].create(
+            {"name": "Tax 1", "amount": 19, "tag_ids": [(6, 0, [self.tag_1.id])],}
+        )
 
-        self.tax_2 = self.env['account.tax'].create({
-            'name': 'Tax 2',
-            'amount': 7,
-            'tag_ids': [(6, 0, [self.tag_2.id])],
-        })
+        self.tax_2 = self.env["account.tax"].create(
+            {"name": "Tax 2", "amount": 7, "tag_ids": [(6, 0, [self.tag_2.id])],}
+        )
 
-        self.config = self.env['l10n.de.tax.statement.config'].create({
-            'company_id': self.env.user.company_id.id,
-            'tag_81_base': self.tag_1.id,
-            'tag_86_base': self.tag_2.id,
-            'tag_41_base': self.tag_3.id,
-            'tag_21_base': self.tag_4.id,
-        })
+        self.config = self.env["l10n.de.tax.statement.config"].create(
+            {
+                "company_id": self.env.user.company_id.id,
+                "tag_81_base": self.tag_1.id,
+                "tag_86_base": self.tag_2.id,
+                "tag_41_base": self.tag_3.id,
+                "tag_21_base": self.tag_4.id,
+            }
+        )
 
-        daterange_type = self.env['date.range.type'].create({
-            'name': 'Type 1'
-        })
+        daterange_type = self.env["date.range.type"].create({"name": "Type 1"})
 
-        self.daterange_1 = self.env['date.range'].create({
-            'name': 'Daterange 1',
-            'type_id': daterange_type.id,
-            'date_start': '2016-01-01',
-            'date_end': '2016-12-31',
-        })
+        self.daterange_1 = self.env["date.range"].create(
+            {
+                "name": "Daterange 1",
+                "type_id": daterange_type.id,
+                "date_start": "2016-01-01",
+                "date_end": "2016-12-31",
+            }
+        )
 
-        self.statement_1 = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-            'version': '2018',
-        })
+        self.statement_1 = self.env["l10n.de.tax.statement"].create(
+            {"name": "Statement 1", "version": "2018",}
+        )
 
-        self.journal_1 = self.env['account.journal'].create({
-            'name': 'Journal 1',
-            'code': 'Jou1',
-            'type': 'sale',
-        })
+        self.journal_1 = self.env["account.journal"].create(
+            {"name": "Journal 1", "code": "Jou1", "type": "sale",}
+        )
 
-        self.partner = self.env['res.partner'].create({
-            'name': 'Test partner'})
+        self.partner = self.env["res.partner"].create({"name": "Test partner"})
 
-        type_account = self.env.ref('account.data_account_type_receivable')
+        type_account = self.env.ref("account.data_account_type_receivable")
 
-        account_receivable = self.env['account.account'].search([
-            ('user_type_id', '=', type_account.id)
-        ], limit=1)
+        account_receivable = self.env["account.account"].search(
+            [("user_type_id", "=", type_account.id)], limit=1
+        )
 
-        invoice1_vals = [{
-            'name': 'Test line',
-            'quantity': 1.0,
-            'account_id': account_receivable.id,
-            'price_unit': 100.0,
-            'invoice_line_tax_ids': [(6, 0, [self.tax_1.id])],
-        }, {
-            'name': 'Test line 2',
-            'quantity': 1.0,
-            'account_id': account_receivable.id,
-            'price_unit': 50.0,
-            'invoice_line_tax_ids': [(6, 0, [self.tax_2.id])],
-        }]
+        invoice1_vals = [
+            {
+                "name": "Test line",
+                "quantity": 1.0,
+                "account_id": account_receivable.id,
+                "price_unit": 100.0,
+                "invoice_line_tax_ids": [(6, 0, [self.tax_1.id])],
+            },
+            {
+                "name": "Test line 2",
+                "quantity": 1.0,
+                "account_id": account_receivable.id,
+                "price_unit": 50.0,
+                "invoice_line_tax_ids": [(6, 0, [self.tax_2.id])],
+            },
+        ]
 
-        self.invoice_1 = self.env['account.invoice'].create({
-            'partner_id': self.partner.id,
-            'name': 'ref1',
-            'account_id': account_receivable.id,
-            'journal_id': self.journal_1.id,
-            'date_invoice': fields.Date.today(),
-            'type': 'out_invoice',
-            'invoice_line_ids': [(0, 0, value) for value in invoice1_vals]
-        })
+        self.invoice_1 = self.env["account.invoice"].create(
+            {
+                "partner_id": self.partner.id,
+                "name": "ref1",
+                "account_id": account_receivable.id,
+                "journal_id": self.journal_1.id,
+                "date_invoice": fields.Date.today(),
+                "type": "out_invoice",
+                "invoice_line_ids": [(0, 0, value) for value in invoice1_vals],
+            }
+        )
 
     def test_01_onchange(self):
-        self.statement_1.write({'date_range_id': self.daterange_1.id})
+        self.statement_1.write({"date_range_id": self.daterange_1.id})
         self.statement_1.onchange_date_range_id()
         from_date = datetime.date(2016, 1, 1)
         to_date = datetime.date(2016, 12, 31)
@@ -130,7 +130,7 @@ class TestVatStatement(TransactionCase):
         check_name = self.statement_1.company_id.name
         str_from_date = fields.Date.to_string(self.statement_1.from_date)
         str_to_date = fields.Date.to_string(self.statement_1.to_date)
-        check_name += ': ' + ' '.join([str_from_date, str_to_date])
+        check_name += ": " + " ".join([str_from_date, str_to_date])
         self.assertEqual(self.statement_1.name, check_name)
 
         self.statement_1.onchange_date_from_date()
@@ -140,11 +140,11 @@ class TestVatStatement(TransactionCase):
         new_date = d_from + relativedelta(months=-3, day=1)
         self.assertEqual(self.statement_1.unreported_move_from_date, new_date)
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
     def test_02_post_final(self):
         # in draft
-        self.assertEqual(self.statement_1.state, 'draft')
+        self.assertEqual(self.statement_1.state, "draft")
         self.statement_1.statement_update()
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -153,7 +153,7 @@ class TestVatStatement(TransactionCase):
         # first post
         self.statement_1.statement_update()
         self.statement_1.post()
-        self.assertEqual(self.statement_1.state, 'posted')
+        self.assertEqual(self.statement_1.state, "posted")
         self.assertTrue(self.statement_1.date_posted)
 
         for line in self.statement_1.line_ids:
@@ -162,15 +162,15 @@ class TestVatStatement(TransactionCase):
 
         # then finalize
         self.statement_1.finalize()
-        self.assertEqual(self.statement_1.state, 'final')
+        self.assertEqual(self.statement_1.state, "final")
         self.assertTrue(self.statement_1.date_posted)
 
         with self.assertRaises(UserError):
-            self.statement_1.write({'name': 'Test Name Modified'})
+            self.statement_1.write({"name": "Test Name Modified"})
         with self.assertRaises(UserError):
-            self.statement_1.write({'state': 'posted'})
+            self.statement_1.write({"state": "posted"})
         with self.assertRaises(UserError):
-            self.statement_1.write({'date_posted': fields.Datetime.now()})
+            self.statement_1.write({"date_posted": fields.Datetime.now()})
         with self.assertRaises(UserError):
             self.statement_1.unlink()
         for line in self.statement_1.line_ids:
@@ -179,14 +179,14 @@ class TestVatStatement(TransactionCase):
             with self.assertRaises(UserError):
                 line.unlink()
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
     def test_03_reset(self):
         self.statement_1.reset()
-        self.assertEqual(self.statement_1.state, 'draft')
+        self.assertEqual(self.statement_1.state, "draft")
         self.assertFalse(self.statement_1.date_posted)
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
         self.statement_1.statement_update()
         for line in self.statement_1.line_ids:
@@ -196,9 +196,9 @@ class TestVatStatement(TransactionCase):
     def test_04_write(self):
         self.statement_1.post()
         with self.assertRaises(UserError):
-            self.statement_1.write({'name': 'Test Name'})
+            self.statement_1.write({"name": "Test Name"})
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
     def test_05_unlink_exception(self):
         self.statement_1.post()
@@ -224,9 +224,9 @@ class TestVatStatement(TransactionCase):
         self.statement_1.statement_update()
         self.assertEqual(len(self.statement_1.line_ids.ids), 47)
 
-        _25 = self.statement_1.line_ids.filtered(lambda r: r.code == '25')
-        _26 = self.statement_1.line_ids.filtered(lambda r: r.code == '26')
-        _27 = self.statement_1.line_ids.filtered(lambda r: r.code == '27')
+        _25 = self.statement_1.line_ids.filtered(lambda r: r.code == "25")
+        _26 = self.statement_1.line_ids.filtered(lambda r: r.code == "26")
+        _27 = self.statement_1.line_ids.filtered(lambda r: r.code == "27")
 
         self.assertEqual(len(_25), 1)
         self.assertEqual(len(_26), 1)
@@ -237,20 +237,20 @@ class TestVatStatement(TransactionCase):
         self.assertTrue(_25.is_group)
         self.assertTrue(_25.is_readonly)
 
-        self.assertEqual(_26.format_base, '100.00')
+        self.assertEqual(_26.format_base, "100.00")
         self.assertFalse(_26.is_group)
         self.assertFalse(_26.is_readonly)
 
-        self.assertEqual(_27.format_base, '50.00')
+        self.assertEqual(_27.format_base, "50.00")
         self.assertFalse(_27.is_group)
         self.assertFalse(_27.is_readonly)
 
         self.assertEqual(self.statement_1.tax_total, 22.5)
-        self.assertEqual(self.statement_1.format_tax_total, '22.50')
+        self.assertEqual(self.statement_1.format_tax_total, "22.50")
 
     def test_10_line_unlink_exception(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
         self.invoice_1.action_invoice_open()
         self.statement_1.statement_update()
@@ -274,10 +274,9 @@ class TestVatStatement(TransactionCase):
         self.assertEqual(wizard.tag_81_base, self.tag_1)
         self.assertEqual(wizard.tag_86_base, self.tag_2)
 
-        wizard.write({
-            'tag_81_base': self.tag_1.id,
-            'tag_86_base': self.tag_2.id,
-        })
+        wizard.write(
+            {"tag_81_base": self.tag_1.id, "tag_86_base": self.tag_2.id,}
+        )
 
         self.config.unlink()
 
@@ -285,21 +284,21 @@ class TestVatStatement(TransactionCase):
         self.assertNotEqual(wizard_2.tag_81_base, self.tag_1)
         self.assertNotEqual(wizard_2.tag_86_base, self.tag_2)
 
-        config = self.env['l10n.de.tax.statement.config'].search(
-            [('company_id', '=', self.env.user.company_id.id)],
-            limit=1)
+        config = self.env["l10n.de.tax.statement.config"].search(
+            [("company_id", "=", self.env.user.company_id.id)], limit=1
+        )
         self.assertFalse(config)
 
         wizard.execute()
 
-        config = self.env['l10n.de.tax.statement.config'].search(
-            [('company_id', '=', self.env.user.company_id.id)],
-            limit=1)
+        config = self.env["l10n.de.tax.statement.config"].search(
+            [("company_id", "=", self.env.user.company_id.id)], limit=1
+        )
         self.assertTrue(config)
         self.assertEqual(config.tag_81_base, self.tag_1)
         self.assertEqual(config.tag_86_base, self.tag_2)
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
     def test_12_undeclared_invoice(self):
         self.invoice_1._onchange_invoice_line_ids()
@@ -325,17 +324,16 @@ class TestVatStatement(TransactionCase):
         invoice2 = self.invoice_1.copy()
         invoice2._onchange_invoice_line_ids()
         invoice2.action_invoice_open()
-        statement2 = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 2',
-            'version': '2018',
-        })
+        statement2 = self.env["l10n.de.tax.statement"].create(
+            {"name": "Statement 2", "version": "2018",}
+        )
         statement2.statement_update()
         statement2.unreported_move_from_date = fields.Date.today()
         statement2.onchange_unreported_move_from_date()
         self.assertFalse(statement2.unreported_move_ids)
 
         self.assertEqual(self.statement_1.tax_total, 22.5)
-        self.assertEqual(self.statement_1.format_tax_total, '22.50')
+        self.assertEqual(self.statement_1.format_tax_total, "22.50")
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -343,16 +341,15 @@ class TestVatStatement(TransactionCase):
             self.assertTrue(line.is_readonly)
 
     def test_13_no_previous_statement_posted(self):
-        statement2 = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 2',
-            'version': '2018',
-        })
+        statement2 = self.env["l10n.de.tax.statement"].create(
+            {"name": "Statement 2", "version": "2018",}
+        )
         statement2.statement_update()
         with self.assertRaises(UserError):
             statement2.post()
 
-        self.assertEqual(self.statement_1.tax_total, 0.)
-        self.assertEqual(self.statement_1.format_tax_total, '0.00')
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+        self.assertEqual(self.statement_1.format_tax_total, "0.00")
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -361,10 +358,10 @@ class TestVatStatement(TransactionCase):
 
     def test_14_new_version(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
-        self.assertEqual(self.statement_1.tax_total, 0.)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
 
         self.invoice_1.action_invoice_open()
-        self.statement_1.version = '2019'
+        self.statement_1.version = "2019"
         self.statement_1.statement_update()
         self.statement_1.post()
 
