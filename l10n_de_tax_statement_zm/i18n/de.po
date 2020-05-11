@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-27 10:59+0000\n"
-"PO-Revision-Date: 2019-02-27 10:59+0000\n"
+"POT-Creation-Date: 2020-05-11 09:54+0000\n"
+"PO-Revision-Date: 2020-05-11 09:54+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -81,7 +81,6 @@ msgstr "Format Bemessungsgrundlage Sonstige Leistungen"
 #. module: l10n_de_tax_statement_zm
 #: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement
 #, fuzzy
-#| msgid "Statement"
 msgid "German Vat Statement"
 msgstr "Zusammenfassende Meldung"
 
@@ -183,18 +182,25 @@ msgid "VAT"
 msgstr "USt-IdNr. (EU-Erwerber)"
 
 #. module: l10n_de_tax_statement_zm
-#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:61
-#, python-format
-msgid "Wrong country code (%s) for ZM report. Please check your configuration."
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:60
+#, fuzzy, python-format
+msgid ""
+"Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) with "
+"vat \"{vat}\"."
 msgstr ""
-"Falscher Länderschlüssel (%s) für die Zusammenfassende Meldung. Bitte prüfen "
-"Sie Ihre Konfiguration."
+"Falscher Länderschlüssel (DE) für die Zusammenfassende Meldung von Partner "
+"\"{partner}\" ({ref}) mit USt-IDt \"{vat}\"."
 
 #. module: l10n_de_tax_statement_zm
-#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:56
-#, python-format
-msgid "Wrong country code (DE) for ZM report."
-msgstr "Falscher Länderschlüssel für Zusammenfassende Meldung"
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:69
+#, fuzzy, python-format
+msgid ""
+"Wrong country code ({code}) for ZM report at partner \"{partner}\" ({ref}) "
+"with vat \"{vat}\". Please check your configuration."
+msgstr ""
+"Falscher Länderschlüssel Code ({code}) für Zusammenfassende Meldung von "
+"Partner \"{partner}\" ({ref}) mit USt-IDt \"{vat}\". Bitte prüfen Sie die "
+"Konfiguration!"
 
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:204

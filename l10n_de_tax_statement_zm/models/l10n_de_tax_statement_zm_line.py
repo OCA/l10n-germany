@@ -1,3 +1,4 @@
+# Copyright 2020 sewisoft (<https://sewisoft.de>)
 # Copyright 2018 Onestein (<http://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -51,13 +52,26 @@ class VatStatementZmLine(models.Model):
 
     @api.constrains('country_code')
     def _check_country_code(self):
-        country_codes = self.mapped('country_code')
-        if self.env.ref('base.de').code in country_codes:
-            raise ValidationError(_(
-                'Wrong country code (DE) for ZM report.'))
         europe_codes = self.env.ref('base.europe').country_ids.mapped('code')
-        for code in country_codes:
-            if code not in europe_codes:
+        de_code = self.env.ref('base.de').code
+        for line in self:
+            country_codes = line.mapped('country_code')
+            if de_code in country_codes:
                 raise ValidationError(_(
-                    'Wrong country code (%s) for ZM report. '
-                    'Please check your configuration.') % code)
+                    'Wrong country code (DE) for ZM report'
+                    ' at partner "{partner}" ({ref}) with vat "{vat}".').format(
+                    partner=line.partner_id.name,
+                    ref=line.partner_id.ref,
+                    vat=line.partner_id.vat
+                ))
+            for code in country_codes:
+                if code not in europe_codes:
+                    raise ValidationError(_(
+                        'Wrong country code ({code}) for ZM report'
+                        ' at partner "{partner}" ({ref}) with vat "{vat}". '
+                        'Please check your configuration.').format(
+                        code=code,
+                        partner=line.partner_id.name,
+                        ref=line.partner_id.ref,
+                        vat=line.partner_id.vat
+                    ))
