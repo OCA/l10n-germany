@@ -23,7 +23,7 @@ German VAT Statement Extension
     :target: https://runbot.odoo-community.org/runbot/175/11.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the *German VAT Statement* module (Umsatzsteuervoranmeldung), by adding the statement for the *Intra-Community transactions declaration* (Zusammenfassende Meldung).
 
@@ -96,12 +96,14 @@ Authors
 
 * OpenBIG.org
 * Onestein
+* sewisoft
 
 Contributors
 ~~~~~~~~~~~~
 
 * Andrea Stirpe <a.stirpe@onestein.nl>
 * Thorsten Vocks <thorsten.vocks@openbig.org>
+* Guenter Selbert <guenter.selbert@sewisoft.de>
 
 Maintainers
 ~~~~~~~~~~~

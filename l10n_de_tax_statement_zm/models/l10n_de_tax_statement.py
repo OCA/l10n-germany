@@ -1,6 +1,8 @@
 # Copyright 2018 Onestein (<http://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
@@ -212,3 +214,55 @@ class VatStatement(models.Model):
 
         # create lines
         self._compute_zm_lines()
+
+    def _round_zm_amount(self, x, n=0):
+        try:
+            return int(x / abs(x) * int(abs(x) * 10 ** n + .5) / 10 ** n)
+        except ZeroDivisionError:
+            return 0
+
+    def _generate_zm_download_lines(self):
+        self.ensure_one()
+        res = {}
+        for zml in self.zm_line_ids:
+            if not zml.vat:
+                raise _("Partner {} has no vat id!").format(zml.partner_id.name)
+            vat = zml.vat.replace(" ", "").replace("-", "")
+            if vat not in res:
+                res[vat] = {
+                    '1_country': vat[:2],
+                    '2_vat': vat[2:],
+                    '3_amount_products': zml.amount_products,
+                    '4_amount_services': zml.amount_services,
+                }
+            else:
+                res[vat]['3_amount_products'] += zml.amount_products
+                res[vat]['4_amount_services'] += zml.amount_services
+        lines = [
+            ["Laenderkennzeichen", "USt-IdNr.", "Betrag(Euro)", "Art der Leistung"]
+        ]
+        for vat in res:
+            v = res[vat]
+            amount_products = self._round_zm_amount(v['3_amount_products'])
+            if amount_products:
+                lines.append([v['1_country'], v['2_vat'], amount_products, 'L'])
+            amount_services = self._round_zm_amount(v['4_amount_services'])
+            if amount_services:
+                lines.append([v['1_country'], v['2_vat'], amount_services, 'S'])
+        return lines
+
+    @api.multi
+    def zm_download(self):
+        ''' Download button '''
+        self.ensure_one()
+        zm_download_lines = self._generate_zm_download_lines()
+        zm_download = "\n".join(
+            ",".join(str(l) for l in line)
+            for line in self._generate_zm_download_lines()
+        )
+        zm_download_base64 = base64.b64encode(zm_download.encode('iso-8859-15'))
+        return {
+            'type': 'ir.actions.act_url',
+            'url': b'data:file/csv;base64,' + zm_download_base64,
+            'target': 'current',
+        }
