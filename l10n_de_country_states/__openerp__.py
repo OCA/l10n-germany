@@ -38,5 +38,5 @@
         'data/res_country_states.xml'
     ],
     'installable': True,
-    'license': 'GPL-3 or any other later version',
+    'license': 'GPL-3 or any later version',
 }
