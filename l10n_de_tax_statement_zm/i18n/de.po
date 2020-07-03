@@ -183,27 +183,31 @@ msgid "VAT"
 msgstr "USt-IdNr. (EU-Erwerber)"
 
 #. module: l10n_de_tax_statement_zm
-#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:61
-#, fuzzy, python-format
-#| msgid ""
-#| "Wrong country code ({code}) for ZM report at partner "
-#| "\"{partner}\" ({ref}) with vat \"{vat}\". Please check your configuration."
-msgid "Wrong country code (%s) for ZM report. Please check your configuration."
-msgstr ""
-"Falscher Länderschlüssel Code ({code}) für Zusammenfassende Meldung von "
-"Partner \"{partner}\" ({ref}) mit USt-IDt \"{vat}\". Bitte prüfen Sie die "
-"Konfiguration!"
-
-#. module: l10n_de_tax_statement_zm
-#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:56
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:60
 #, fuzzy, python-format
 #| msgid ""
 #| "Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) "
 #| "with vat \"{vat}\"."
-msgid "Wrong country code (DE) for ZM report."
+msgid ""
+"Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) with "
+"vat \"{vat}\"."
 msgstr ""
 "Falscher Länderschlüssel (DE) für die Zusammenfassende Meldung von Partner "
 "\"{partner}\" ({ref}) mit USt-IDt \"{vat}\"."
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:69
+#, fuzzy, python-format
+#| msgid ""
+#| "Wrong country code ({code}) for ZM report at partner "
+#| "\"{partner}\" ({ref}) with vat \"{vat}\". Please check your configuration."
+msgid ""
+"Wrong country code ({code}) for ZM report at partner \"{partner}\" ({ref}) "
+"with vat \"{vat}\". Please check your configuration."
+msgstr ""
+"Falscher Länderschlüssel Code ({code}) für Zusammenfassende Meldung von "
+"Partner \"{partner}\" ({ref}) mit USt-IDt \"{vat}\". Bitte prüfen Sie die "
+"Konfiguration!"
 
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:204
