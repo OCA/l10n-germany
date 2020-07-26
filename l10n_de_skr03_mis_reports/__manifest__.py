@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-2018 ACSONE SA/NV
 # Copyright 2019 BIG-Cosnulting GmbH
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
