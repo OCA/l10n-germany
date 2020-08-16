@@ -24,8 +24,6 @@ msgstr "&amp;nbsp; &amp;nbsp;"
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
 #, fuzzy
-#| msgid ""
-#| "&amp;nbsp; &amp;nbsp; 68 - Verbleibende Umsatzsteuer-Vorauszahlung (83)"
 msgid "&amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung"
 msgstr ""
 "&amp;nbsp; &amp;nbsp; 68 - Verbleibende Umsatzsteuer-Vorauszahlung (83)"
@@ -46,7 +44,6 @@ msgstr "... neue Fahrzeuge an Abnehmer ohne UST-ID (44)"
 #. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:29
 #, fuzzy, python-format
-#| msgid "... neue Fahrzeuge an Abnehmer ohne UST-ID (44)"
 msgid "... neuer Fahrzeuge an Abnehmer ohne UST-ID (44)"
 msgstr "... neue Fahrzeuge an Abnehmer ohne UST-ID (44)"
 
@@ -145,7 +142,6 @@ msgstr "Rechnung hinzufügen"
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 #, fuzzy
-#| msgid "Press the Update button in order to recompute the statement lines!"
 msgid ""
 "Add/Remove the Undeclared Invoices listed below. Afterwards press the Update "
 "button in order to recompute the statement lines!"
@@ -175,9 +171,6 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:142
 #, fuzzy, python-format
-#| msgid ""
-#| "Andere Leistungen gem. § 13b Abs. 2 Nr. 4, 5 Bst. b, Nr. 6 b. 9 u. 11 "
-#| "UStG (84 / 85)"
 msgid "Andere Leistungen gem. § 13b Abs. 2 Nr. 1, 2,4 b. 11 UStG (84 / 85)"
 msgstr ""
 "Andere Leistungen gem. § 13b Abs. 2 Nr. 4, 5 Bst. b, Nr. 6 b. 9 u. 11 UStG "
@@ -334,7 +327,6 @@ msgstr "Erwerbe nach §§ 4b u. 25c UStG (91)"
 #. module: l10n_de_tax_statement
 #: selection:l10n.de.tax.statement,state:0
 #, fuzzy
-#| msgid "Finalize"
 msgid "Final"
 msgstr "Abschließen"
 
@@ -356,7 +348,6 @@ msgstr "Steuer"
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_format_tax_total
 #, fuzzy
-#| msgid "Format Tax"
 msgid "Format Tax Total"
 msgstr "Steuer"
 
@@ -380,14 +371,12 @@ msgstr "Deutsche Umsatzsteuer-Voranmeldung"
 #. module: l10n_de_tax_statement
 #: model:ir.model,name:l10n_de_tax_statement.model_l10n_de_tax_statement
 #, fuzzy
-#| msgid "German Vat Statement Line"
 msgid "German Vat Statement"
 msgstr "Deutsche UstVA Einzelpositionsaufstellung"
 
 #. module: l10n_de_tax_statement
 #: model:ir.model,name:l10n_de_tax_statement.model_l10n_de_tax_statement_config
 #, fuzzy
-#| msgid "German Vat Statement Configuration Wizard"
 msgid "German Vat Statement Configuration"
 msgstr "Deutsche Umsatzsteuer-Voranmeldung Konfigurationsassistent"
 
@@ -553,9 +542,6 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:136
 #, fuzzy, python-format
-#| msgid ""
-#| "Lieferungen sicherungsübereign. Gegenst. u. Umsätze d. u. d.  GrEStG "
-#| "fallen g. § 13b Abs. 2 Nr. 2 u. 3 (73 / 74)"
 msgid ""
 "Lieferungen sicherungsübereign. Gegenst. u. Umsätze d. u. d.  GrEStG fallen "
 "g. § 13b Abs. 2 Nr. 3 (73 / 74)"
@@ -1121,7 +1107,6 @@ msgstr "Hilfsfeld, welches die Betragswährung ausweist"
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_tax_total
 #, fuzzy
-#| msgid "Verbl. Ust.-Vorauszahlung (66-67)"
 msgid "Verbl. Ust.-Vorauszahlung"
 msgstr "Verbl. Ust.-Vorauszahlung (66-67)"
 
@@ -1245,7 +1230,6 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:102
 #, fuzzy, python-format
-#| msgid "You cannot delete a statement set as final!"
 msgid "You cannot delete lines of a statement set as final!"
 msgstr ""
 "Eine endgültig bestätige Ust.-Voranmeldung Auswertung kann nicht mehr "
