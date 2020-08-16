@@ -418,14 +418,12 @@ msgstr ""
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_bs
 #, fuzzy
-#| msgid "German Balance Sheet for SKR03 (§ 266 HGB)"
 msgid "German Balance Sheet for SKR04 (§ 266 HGB)"
 msgstr "Bilanz für SKR03 Kontenplan Deutschland (§ 266 HGB)"
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_pl
 #, fuzzy
-#| msgid "German P&L Sheet for SKR03 (§ 275 HGB)"
 msgid "German P&L Sheet for SKR04 (§ 275 HGB)"
 msgstr "Gewinn- und Verlustrechnung Deutschland (§ 275 HGB)"
 
