@@ -81,7 +81,6 @@ msgstr "Format Bemessungsgrundlage Sonstige Leistungen"
 #. module: l10n_de_tax_statement_zm
 #: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement
 #, fuzzy
-#| msgid "Statement"
 msgid "German Vat Statement"
 msgstr "Zusammenfassende Meldung"
 
@@ -185,9 +184,6 @@ msgstr "USt-IdNr. (EU-Erwerber)"
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:60
 #, fuzzy, python-format
-#| msgid ""
-#| "Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) "
-#| "with vat \"{vat}\"."
 msgid ""
 "Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) with "
 "vat \"{vat}\"."
@@ -198,9 +194,6 @@ msgstr ""
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:69
 #, fuzzy, python-format
-#| msgid ""
-#| "Wrong country code ({code}) for ZM report at partner "
-#| "\"{partner}\" ({ref}) with vat \"{vat}\". Please check your configuration."
 msgid ""
 "Wrong country code ({code}) for ZM report at partner \"{partner}\" ({ref}) "
 "with vat \"{vat}\". Please check your configuration."
