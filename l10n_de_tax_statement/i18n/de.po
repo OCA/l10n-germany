@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-11 18:56+0000\n"
-"PO-Revision-Date: 2019-02-11 18:56+0000\n"
-"Last-Translator: <thorsten.vocks@openbig.org>\n"
+"PO-Revision-Date: 2020-08-20 09:59+0000\n"
+"Last-Translator: André Volksdorf <volksdorf@smartpage.de>\n"
 "Language-Team: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
 
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
@@ -105,7 +107,10 @@ msgstr "Rechnung hinzufügen"
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Add/Remove the Undeclared Invoices listed below. Afterwards press the Update button in order to recompute the statement lines!"
-msgstr "In der folgenden Liste können Sie noch nicht in der UstVA erklärte Rechnungen hinzufügen bzw. entfernen. Aktualiseren Sie diese UstVA Auswertung durch Klick auf den Button "Aktualisieren"! "
+msgstr ""
+"In der folgenden Liste können Sie noch nicht in der UstVA erklärte "
+"Rechnungen hinzufügen bzw. entfernen. Aktualiseren Sie diese UstVA "
+"Auswertung durch Klick auf den Button \"Aktualisieren\"!"
 
 #. module: l10n_de_tax_statement
 #: selection:l10n.de.tax.statement,target_move:0
@@ -324,7 +329,9 @@ msgstr "In Rechnungen unrichtig oder unberechtigt ausgewiesene Steuerbeträge ge
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Include Undeclared Invoices"
-msgstr "Ergänze bislang noch nicht erklärte, bei der Umsatzsteuervoranmeldung anzumeldende Rechnungen."
+msgstr ""
+"Ergänze bislang noch nicht erklärte, bei der Umsatzsteuervoranmeldung "
+"anzumeldende Rechnungen"
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_l10n_de_tax_statement_include
@@ -1032,7 +1039,10 @@ msgstr "Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr abgeändert werd
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:629
 #, python-format
 msgid "You cannot post a statement if all the previous statements are not yet posted! Please Post all the other statements first."
-msgstr "Eine Umsatzsteuervoranmeldung kann nicht gesendet werden, wenn vorherige Erklärungen noch nicht gesendet wurden. Bitte versetzen Sie alle vorherigen UstVA Auswertungen in den Status "gesendet"!"
+msgstr ""
+"Eine Umsatzsteuervoranmeldung kann nicht gesendet werden, wenn vorherige "
+"Erklärungen noch nicht gesendet wurden! Bitte versetzen Sie alle vorherigen "
+"UstVA Auswertungen in den Status \"gesendet\"."
 
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
@@ -1225,4 +1235,3 @@ msgstr "Übrige n. steuerb. Umsätze, Leistungsort ist nicht im Inland (45)"
 #, python-format
 msgid "Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer n. § 13b Abs. 5 UStG schuldet (60)"
 msgstr "Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer n. § 13b Abs. 5 UStG schuldet (60)"
-
