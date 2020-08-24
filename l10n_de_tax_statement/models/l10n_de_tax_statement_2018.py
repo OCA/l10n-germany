@@ -277,9 +277,7 @@ def _finalize_lines_2018(lines):
     _33b = lines['33']['tax']
     lines['34']['tax'] = lines['34']['tax'] * -1
     _34b = lines['34']['tax']
-    lines['35']['tax'] = lines['35']['tax'] * -1
     _35b = lines['35']['tax']
-    lines['36']['tax'] = lines['36']['tax'] * -1
     _36b = lines['36']['tax']
     # calculate reverse of lines 48 - line 52 base
     lines['48']['base'] = lines['48']['base'] * -1
