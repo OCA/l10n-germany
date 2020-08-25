@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2019 OpenBIG (<http://www.openbig.org>)
      Copyright 2019 Onestein (<https://www.onestein.eu>)
+     Copyright 2020 sewisoft (<https://sewisoft.de>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 
 <odoo>
@@ -121,6 +122,7 @@
                 <field name="to_date"/>
                 <field name="tax_total"/>
                 <field name="company_id" groups="base.group_multi_company"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
