@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from dateutil import easter
 
 from odoo import _, api, fields, models
-from odoo.addons.hr_holidays_public.wizards import hr_holidays_public_generator
+from . import hr_holidays_public_generator
 from odoo.exceptions import UserError
 
 hr_holidays_public_generator.COUNTRY_GENERATORS.append("DE")
