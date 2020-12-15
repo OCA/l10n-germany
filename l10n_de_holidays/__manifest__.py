@@ -13,6 +13,9 @@
         "hr_holidays_public",
         "l10n_de_country_states",
     ],
+    'data': [
+        'wizards/hr_holidays_public_generator_view.xml',
+    ],
     "installable": True,
     "auto_install": False,
 }
