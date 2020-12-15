@@ -80,6 +80,17 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                                         'year_id': existing_holidays.id})
 
     @api.model
+    def get_state_ids(self, codes=[]):
+        """
+        :codes: list of states' codes
+        Returns states ids in :codes:
+        """
+        state_ids = self.env['res.country.state'].search([
+            ('code', 'in', codes)
+        ])
+        return state_ids.ids
+
+    @api.model
     def calculate_state_floating_holidays(self,
                                           existing_holidays,
                                           state=None):
@@ -87,14 +98,9 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         easter = self.calculate_easter_sunday(self.year)
         # Baden-Württemberg, Bavaria, Hesse, North
         # Rhine-Westphalia, Rhineland-Palatinate, Saarland
-        state_ids = [
-            self.env.ref('l10n_de_country_states.res_country_state_BW').id,
-            self.env.ref('l10n_de_country_states.res_country_state_BY').id,
-            self.env.ref('l10n_de_country_states.res_country_state_HE').id,
-            self.env.ref('l10n_de_country_states.res_country_state_NW').id,
-            self.env.ref('l10n_de_country_states.res_country_state_RP').id,
-            self.env.ref('l10n_de_country_states.res_country_state_SL').id
-        ]
+        codes = ['BW', 'BY', 'HE', 'NW', 'RP', 'SL']
+        state_ids = self.get_state_ids(codes)
+
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
                 'name': _("Corpus Christi"),
@@ -143,11 +149,9 @@ class HrHolidaysPublicGenerator(models.TransientModel):
     def calculate_state_fixed_holidays(self, existing_holidays, state=None):
         public_holiday_line_obj = self.env['hr.holidays.public.line']
         # Baden-Württemberg, Bavaria, Saxony-Anhalt
-        state_ids = [
-            self.env.ref('l10n_de_country_states.res_country_state_BW').id,
-            self.env.ref('l10n_de_country_states.res_country_state_BY').id,
-            self.env.ref('l10n_de_country_states.res_country_state_ST').id
-        ]
+        codes = ['BW', 'BY', 'ST']
+        state_ids = self.get_state_ids(codes)
+
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
                 'name': _("Three Kings Day"),
@@ -157,10 +161,8 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 'year_id': existing_holidays.id
             })
         # Bavaria, Saarland
-        state_ids = [
-            self.env.ref('l10n_de_country_states.res_country_state_BY').id,
-            self.env.ref('l10n_de_country_states.res_country_state_SL').id
-        ]
+        codes = ['BY', 'SL']
+        state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
@@ -173,16 +175,8 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         # BB, HB, HH, MVP, NDS, SH, SN, ST, TH
         # (depends on
         # https://www.timeanddate.com/holidays/germany/reformation-day)
-        state_ids = [
-            self.env.ref('l10n_de_country_states.res_country_state_BB').id,
-            self.env.ref('l10n_de_country_states.res_country_state_HB').id,
-            self.env.ref('l10n_de_country_states.res_country_state_HH').id,
-            self.env.ref('l10n_de_country_states.res_country_state_MV').id,
-            self.env.ref('l10n_de_country_states.res_country_state_NI').id,
-            self.env.ref('l10n_de_country_states.res_country_state_SH').id,
-            self.env.ref('l10n_de_country_states.res_country_state_SN').id,
-            self.env.ref('l10n_de_country_states.res_country_state_ST').id,
-            self.env.ref('l10n_de_country_states.res_country_state_TH').id]
+        codes = ['BB', 'HB', 'HH', 'MV', 'NI', 'SH', 'SN', 'ST', 'TH']
+        state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
@@ -194,13 +188,9 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             })
         # Baden-Württemberg, Bavaria,
         # North Rhine-Westphalia, Rhineland-Palatinate, Saarland
-        state_ids = [
-            self.env.ref('l10n_de_country_states.res_country_state_BW').id,
-            self.env.ref('l10n_de_country_states.res_country_state_BY').id,
-            self.env.ref('l10n_de_country_states.res_country_state_NW').id,
-            self.env.ref('l10n_de_country_states.res_country_state_RP').id,
-            self.env.ref('l10n_de_country_states.res_country_state_SL').id
-        ]
+        codes = ['BW', 'BY', 'NW', 'RP', 'SL']
+        state_ids = self.get_state_ids(codes)
+
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
                 'name': _("All Saints' Day"),
@@ -210,8 +200,9 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 'year_id': existing_holidays.id
             })
         # Sachsen
-        state_ids = \
-            [self.env.ref('l10n_de_country_states.res_country_state_SN').id]
+        codes = ['SN']
+        state_ids = self.get_state_ids(codes)
+
         if not state or state.id in state_ids:
             public_holiday_line_obj.create({
                 'name': _("Repentance Day"),
