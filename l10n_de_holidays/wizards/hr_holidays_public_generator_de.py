@@ -85,8 +85,9 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         :codes: list of states' codes
         Returns states ids in :codes:
         """
+        country = self.env.ref('base.de')
         state_ids = self.env['res.country.state'].search([
-            ('code', 'in', codes)
+            ('code', 'in', codes), ('country_id', '=', country.id)
         ])
         return state_ids.ids
 
