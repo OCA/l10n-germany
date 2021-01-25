@@ -60,13 +60,6 @@ class VatStatement(models.Model):
     )
     date_range_id = fields.Many2one("date.range", "Date range")
     currency_id = fields.Many2one("res.currency", related="company_id.currency_id")
-    target_move = fields.Selection(
-        [("posted", "All Posted Entries"), ("all", "All Entries")],
-        "Target Moves",
-        readonly=True,
-        required=True,
-        default="posted",
-    )
     date_posted = fields.Datetime(readonly=True)
     date_update = fields.Datetime(readonly=True)
 

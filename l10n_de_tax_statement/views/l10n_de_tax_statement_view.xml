@@ -95,7 +95,6 @@
                             <field name="date_posted" />
                             <field name="date_update" />
                             <field name="currency_id" />
-                            <field name="target_move" />
                         </group>
                     </group>
                     <notebook name="notebook">
