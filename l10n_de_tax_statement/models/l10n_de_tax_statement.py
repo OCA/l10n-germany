@@ -132,6 +132,8 @@ class VatStatement(models.Model):
             if statement.date_range_id and statement.state == "draft":
                 statement.from_date = statement.date_range_id.date_start
                 statement.to_date = statement.date_range_id.date_end
+            statement.from_date = statement.from_date
+            statement.to_date = statement.to_date
 
     @api.depends("from_date", "to_date")
     def _compute_name(self):
