@@ -80,11 +80,13 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                                         'year_id': existing_holidays.id})
 
     @api.model
-    def get_state_ids(self, codes=[]):
+    def get_state_ids(self, codes=None):
         """
-        :codes: list of states' codes
+        :codes: should be a list of states' codes
         Returns states ids in :codes:
         """
+        if codes is None:
+            codes = []
         country = self.env.ref('base.de')
         state_ids = self.env['res.country.state'].search([
             ('code', 'in', codes), ('country_id', '=', country.id)
