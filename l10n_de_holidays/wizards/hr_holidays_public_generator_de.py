@@ -283,7 +283,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             for holiday in wizard.template_id.line_ids:
                 if holiday.variable_date:
                     continue
-                holiday_date = datetime.strptime(holiday.date, '%Y-%m-%d')
+                holiday_date = datetime.strptime(str(holiday.date), '%Y-%m-%d')
                 new_holiday_date = \
                     "%s-%s-%s" % (wizard.year,
                                   holiday_date.month, holiday_date.day)
