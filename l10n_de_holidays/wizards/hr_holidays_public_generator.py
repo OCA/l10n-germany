@@ -24,6 +24,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         name action_generate_%s_holidays where %s id the county code
     """
     _name = 'hr.holidays.public.generator'
+    _description = 'Generate public holidays'
 
     year = \
         fields.Integer(
