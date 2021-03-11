@@ -13,6 +13,7 @@ hr_holidays_public_generator.COUNTRY_GENERATORS.append("DE")
 
 class HrHolidaysPublicGenerator(models.TransientModel):
     _inherit = 'hr.holidays.public.generator'
+    _description = 'Generate public holidays - Calculations'
 
     @api.model
     def calculate_easter_sunday(self, year):
