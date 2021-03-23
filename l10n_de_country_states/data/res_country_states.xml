@@ -1,0 +1,84 @@
+<odoo>
+  <data>
+    <record id="res_country_state_BW" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Baden-Wurttemberg</field>
+      <field name="code">BW</field>
+    </record>
+    <record id="res_country_state_BY" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Bavaria</field>
+      <field name="code">BY</field>
+    </record>
+    <record id="res_country_state_BE" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Berlin</field>
+      <field name="code">BE</field>
+    </record>
+    <record id="res_country_state_BB" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Brandenburg</field>
+      <field name="code">BB</field>
+    </record>
+    <record id="res_country_state_HB" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Bremen</field>
+      <field name="code">HB</field>
+    </record>
+    <record id="res_country_state_HH" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Hamburg</field>
+      <field name="code">HH</field>
+    </record>
+    <record id="res_country_state_HE" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Hesse</field>
+      <field name="code">HE</field>
+    </record>
+    <record id="res_country_state_NI" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Lower Saxony</field>
+      <field name="code">NI</field>
+    </record>
+    <record id="res_country_state_MV" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Mecklenburg-West Pomerania</field>
+      <field name="code">MV</field>
+    </record>
+    <record id="res_country_state_NW" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">North Rhine-Westphalia</field>
+      <field name="code">NW</field>
+    </record>
+    <record id="res_country_state_RP" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Rhineland-Palatinate</field>
+      <field name="code">RP</field>
+    </record>
+    <record id="res_country_state_SL" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Saarland</field>
+      <field name="code">SL</field>
+    </record>
+    <record id="res_country_state_SN" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Saxony</field>
+      <field name="code">SN</field>
+    </record>
+    <record id="res_country_state_ST" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Saxony-Anhalt</field>
+      <field name="code">ST</field>
+    </record>
+    <record id="res_country_state_SH" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Schleswig-Holstein</field>
+      <field name="code">SH</field>
+    </record>
+    <record id="res_country_state_TH" model="res.country.state">
+      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
+      <field name="name">Thuringia</field>
+      <field name="code">TH</field>
+    </record>
+  </data>
+</odoo>
