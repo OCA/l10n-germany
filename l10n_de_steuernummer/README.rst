@@ -81,6 +81,7 @@ Contributors
 * Rami Alwafaie <rami.alwafaie@initos.com>
 * Thore Baden
 * Achraf Mhadhbi <machraf@bloopark.de>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
