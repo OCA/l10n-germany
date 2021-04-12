@@ -66,7 +66,9 @@ class VatStatement(models.Model):
     tax_total = fields.Monetary(
         compute="_compute_tax_total", string="Verbl. Ust.-Vorauszahlung"
     )
-    format_tax_total = fields.Char(compute="_compute_amount_format_tax_total",)
+    format_tax_total = fields.Char(
+        compute="_compute_amount_format_tax_total",
+    )
     move_line_ids = fields.One2many(
         "account.move.line",
         "l10n_de_tax_statement_id",
@@ -75,7 +77,10 @@ class VatStatement(models.Model):
     )
 
     @api.depends(
-        "unreported_move_from_date", "company_id", "from_date", "to_date",
+        "unreported_move_from_date",
+        "company_id",
+        "from_date",
+        "to_date",
     )
     def _compute_unreported_move_ids(self):
         for statement in self:
