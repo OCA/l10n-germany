@@ -6,53 +6,53 @@ from odoo import api, models
 
 
 class NutsImport(models.TransientModel):
-    _inherit = 'nuts.import'
+    _inherit = "nuts.import"
     _de_state_map = {
         # BADEN-WÜRTTEMBERG
-        'DE1': 'l10n_de_country_states.res_country_state_BW',
+        "DE1": "l10n_de_country_states.res_country_state_BW",
         # BAYERN
-        'DE2': 'l10n_de_country_states.res_country_state_BY',
+        "DE2": "l10n_de_country_states.res_country_state_BY",
         # BERLIN
-        'DE3': 'l10n_de_country_states.res_country_state_BE',
+        "DE3": "l10n_de_country_states.res_country_state_BE",
         # BRANDENBURG
-        'DE4': 'l10n_de_country_states.res_country_state_BB',
+        "DE4": "l10n_de_country_states.res_country_state_BB",
         # BREMEN
-        'DE5': 'l10n_de_country_states.res_country_state_HB',
+        "DE5": "l10n_de_country_states.res_country_state_HB",
         # HAMBURG
-        'DE6': 'l10n_de_country_states.res_country_state_HH',
+        "DE6": "l10n_de_country_states.res_country_state_HH",
         # HESSEN
-        'DE7': 'l10n_de_country_states.res_country_state_HE',
+        "DE7": "l10n_de_country_states.res_country_state_HE",
         # MECKLENBURG-VORPOMMERN
-        'DE8': 'l10n_de_country_states.res_country_state_MV',
+        "DE8": "l10n_de_country_states.res_country_state_MV",
         # NIEDERSACHSEN
-        'DE9': 'l10n_de_country_states.res_country_state_NI',
+        "DE9": "l10n_de_country_states.res_country_state_NI",
         # NORDRHEIN-WESTFALEN
-        'DEA': 'l10n_de_country_states.res_country_state_NW',
+        "DEA": "l10n_de_country_states.res_country_state_NW",
         # RHEINLAND-PFALZ
-        'DEB': 'l10n_de_country_states.res_country_state_RP',
+        "DEB": "l10n_de_country_states.res_country_state_RP",
         # SAARLAND
-        'DEC': 'l10n_de_country_states.res_country_state_SL',
+        "DEC": "l10n_de_country_states.res_country_state_SL",
         # SACHSEN
-        'DED': 'l10n_de_country_states.res_country_state_SN',
+        "DED": "l10n_de_country_states.res_country_state_SN",
         # SACHSEN-ANHALT
-        'DEE': 'l10n_de_country_states.res_country_state_ST',
+        "DEE": "l10n_de_country_states.res_country_state_ST",
         # SCHLESWIG-HOLSTEIN
-        'DEF': 'l10n_de_country_states.res_country_state_SH',
+        "DEF": "l10n_de_country_states.res_country_state_SH",
         # THÜRINGEN
-        'DEG': 'l10n_de_country_states.res_country_state_TH',
+        "DEG": "l10n_de_country_states.res_country_state_TH",
         # EXTRA-REGIO NUTS 1
-        'DEZ': False,
+        "DEZ": False,
     }
 
     @api.model
     def state_mapping(self, data, node):
         mapping = super(NutsImport, self).state_mapping(data, node)
-        level = data.get('level', 0)
-        code = data.get('code', '')
-        if self._current_country.code == 'DE' and level == 2:
+        level = data.get("level", 0)
+        code = data.get("code", "")
+        if self._current_country.code == "DE" and level == 2:
             toponyms = self._de_state_map.get(code, False)
             if toponyms:
                 state = self.env.ref(toponyms)
                 if state:
-                    mapping['state_id'] = state.id
+                    mapping["state_id"] = state.id
         return mapping
