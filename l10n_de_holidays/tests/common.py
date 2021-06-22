@@ -6,23 +6,19 @@ from odoo.tests import common
 
 
 class TestHolidaysGenerator(common.TransactionCase):
-
     def setUp(self):
         super(TestHolidaysGenerator, self).setUp()
 
         # Usefull models
-        self.HrHolidaysPublicGenerator = \
-            self.env['hr.holidays.public.generator']
-        self.HrHolidaysPublicLine = self.env['hr.holidays.public.line']
-        self.HrHolidaysPublic = self.env['hr.holidays.public']
+        self.HrHolidaysPublicGenerator = self.env["hr.holidays.public.generator"]
+        self.HrHolidaysPublicLine = self.env["hr.holidays.public.line"]
+        self.HrHolidaysPublic = self.env["hr.holidays.public"]
         self.TestYear = 2018
-        self.CountryId = self.ref('base.de')
+        self.CountryId = self.ref("base.de")
 
         # Test Create Public Holidays for 2018
-        wizard_data = {
-            "year": self.TestYear,
-            "country_id": self.CountryId
-        }
+        wizard_data = {"year": self.TestYear, "country_id": self.CountryId}
 
-        self.hr_holidays_public_generator = \
-            self.HrHolidaysPublicGenerator.create(wizard_data)
+        self.hr_holidays_public_generator = self.HrHolidaysPublicGenerator.create(
+            wizard_data
+        )
