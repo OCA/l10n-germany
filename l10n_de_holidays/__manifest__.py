@@ -4,7 +4,7 @@
 
 {
     "name": "Holidays for Germany",
-    "version": "12.0.1.0.0",
+    "version": "14.0.1.0.0",
     "license": "AGPL-3",
     "category": "Human Resources",
     "author": "Odoo Community Association (OCA)",
@@ -13,6 +13,7 @@
         "hr_holidays_public",
     ],
     "data": [
+        "security/ir.model.access.csv",
         "wizards/hr_holidays_public_generator_view.xml",
     ],
     "installable": True,
