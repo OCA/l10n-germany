@@ -2,20 +2,18 @@
 # Copyright 2018 initOS GmbH - Nikolina Todorova
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from . import common
 from odoo.exceptions import UserError
+
+from . import common
 
 
 class TestHrHolidaysPublicGenerator(common.TestHolidaysGenerator):
-
     def test_action_generate_de_holidays(self):
         self.hr_holidays_public_generator.action_run()
 
-        hr_holiday_public = \
-            self.HrHolidaysPublic.search([
-                ('year', '=', self.TestYear),
-                ('country_id', '=', self.CountryId)
-            ])
+        hr_holiday_public = self.HrHolidaysPublic.search(
+            [("year", "=", self.TestYear), ("country_id", "=", self.CountryId)]
+        )
         if not hr_holiday_public:
             hr_holiday_public = None
 
@@ -29,30 +27,27 @@ class TestHrHolidaysPublicGenerator(common.TestHolidaysGenerator):
 
     def test_action_copy_de_holidays(self):
         self.hr_holidays_public_generator.action_generate_de_holidays()
-        template_id = \
-            self.HrHolidaysPublic.search([
-                ('year', '=', self.TestYear),
-                ('country_id', '=', self.CountryId)
-            ])[0].id
+        template_id = self.HrHolidaysPublic.search(
+            [("year", "=", self.TestYear), ("country_id", "=", self.CountryId)]
+        )[0].id
 
         # Test Create Public Holidays for 2019 from 2019
         TestYear = 2019
         wizard_data = {
             "year": TestYear,
             "country_id": self.CountryId,
-            "template_id": template_id
+            "template_id": template_id,
         }
 
-        hr_holidays_public_generator_copy = \
-            self.HrHolidaysPublicGenerator.create(wizard_data)
+        hr_holidays_public_generator_copy = self.HrHolidaysPublicGenerator.create(
+            wizard_data
+        )
 
         hr_holidays_public_generator_copy.action_run()
 
-        hr_holiday_public = \
-            self.HrHolidaysPublic.search([
-                ('year', '=', TestYear),
-                ('country_id', '=', self.CountryId)
-            ])
+        hr_holiday_public = self.HrHolidaysPublic.search(
+            [("year", "=", TestYear), ("country_id", "=", self.CountryId)]
+        )
         if not hr_holiday_public:
             hr_holiday_public = None
 
@@ -66,23 +61,22 @@ class TestHrHolidaysPublicGenerator(common.TestHolidaysGenerator):
 
     def test_copy_function_name_does_not_exists(self):
         self.hr_holidays_public_generator.action_generate_de_holidays()
-        template_id = \
-            self.HrHolidaysPublic.search([
-                ('year', '=', self.TestYear),
-                ('country_id', '=', self.CountryId)
-            ])[0].id
+        template_id = self.HrHolidaysPublic.search(
+            [("year", "=", self.TestYear), ("country_id", "=", self.CountryId)]
+        )[0].id
 
         # Test Create Public Holidays for 2019 from 2019
         # with not existing function for the CountryId
-        CountryId = self.ref('base.fr')
+        CountryId = self.ref("base.fr")
         TestYear = 2019
         wizard_data = {
             "year": TestYear,
             "country_id": CountryId,
-            "template_id": template_id
+            "template_id": template_id,
         }
-        hr_holidays_public_generator_copy = \
-            self.HrHolidaysPublicGenerator.create(wizard_data)
+        hr_holidays_public_generator_copy = self.HrHolidaysPublicGenerator.create(
+            wizard_data
+        )
 
         with self.assertRaises(UserError):
             hr_holidays_public_generator_copy.action_run()
@@ -90,31 +84,28 @@ class TestHrHolidaysPublicGenerator(common.TestHolidaysGenerator):
     def test_generate_function_name_does_not_exists(self):
         # Test Generate Public Holidays for 2018
         # with not existing function for the CountryId
-        CountryId = self.ref('base.fr')
-        wizard_data = {
-            "year": self.TestYear,
-            "country_id": CountryId
-        }
-        hr_holidays_public_generator_generate = \
-            self.HrHolidaysPublicGenerator.create(wizard_data)
+        CountryId = self.ref("base.fr")
+        wizard_data = {"year": self.TestYear, "country_id": CountryId}
+        hr_holidays_public_generator_generate = self.HrHolidaysPublicGenerator.create(
+            wizard_data
+        )
 
         with self.assertRaises(UserError):
             hr_holidays_public_generator_generate.action_run()
 
     def test_copy_to_same_year_error(self):
         self.hr_holidays_public_generator.action_generate_de_holidays()
-        template_id = \
-            self.HrHolidaysPublic.search([
-                ('year', '=', self.TestYear),
-                ('country_id', '=', self.CountryId)
-            ])[0].id
+        template_id = self.HrHolidaysPublic.search(
+            [("year", "=", self.TestYear), ("country_id", "=", self.CountryId)]
+        )[0].id
         wizard_data = {
             "year": self.TestYear,
             "country_id": self.CountryId,
-            "template_id": template_id
+            "template_id": template_id,
         }
-        hr_holidays_public_generator_copy = \
-            self.HrHolidaysPublicGenerator.create(wizard_data)
+        hr_holidays_public_generator_copy = self.HrHolidaysPublicGenerator.create(
+            wizard_data
+        )
 
         with self.assertRaises(UserError):
             hr_holidays_public_generator_copy.action_run()
