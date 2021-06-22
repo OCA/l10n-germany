@@ -46,17 +46,14 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 self.template_id.country_id and self.template_id.country_id.id or False
             )
 
-    @api.multi
     def generate_function_copy_name(self):
         function_name = "action_copy_%s_holidays" % self.country_id.code.lower()
         return function_name
 
-    @api.multi
     def generate_function_generate_name(self):
         function_name = "action_generate_%s_holidays" % self.country_id.code.lower()
         return function_name
 
-    @api.multi
     def action_run(self):
         self.ensure_one()
         if self.template_id:
