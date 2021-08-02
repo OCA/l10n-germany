@@ -27,6 +27,7 @@ repos:
         entry: found forbidden files; remove them
         language: fail
         files: "\\.rej$"
+        stages: [commit, push, manual]
   - repo: https://github.com/oca/maintainer-tools
     rev: ab1d7f6
     hooks:
