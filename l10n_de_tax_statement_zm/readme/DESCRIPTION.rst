@@ -9,4 +9,3 @@ This additional VAT declaration report includes:
 * the total amount of intra-Community supplies from Germany for every customer during the selected period
 * The values for product deliveries and services are separated in two columns.
 * If you want to transmit the values to the official report form, f.e. by "www.elster.de" you would have to enter two lines if both columns product + services contains values.
-
