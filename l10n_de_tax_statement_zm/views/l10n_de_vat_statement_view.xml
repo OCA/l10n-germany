@@ -15,6 +15,7 @@
                         <div states="posted">Press the Update button in order to recompute the lines!</div>
                         <div class="oe_button_box" name="button_box">
                             <button name="zm_update" string="Update" states="posted" type="object" class="oe_stat_button" icon="fa-repeat"/>
+                            <button name="zm_download" string="Download.CSV" states="posted" type="object" class="oe_stat_button" icon="fa-download"/>
                         </div>
                     </group>
                     <field name="zm_line_ids">

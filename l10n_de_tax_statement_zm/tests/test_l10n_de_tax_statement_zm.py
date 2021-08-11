@@ -1,139 +1,202 @@
-# Copyright 2018 Onestein (<http://www.onestein.eu>)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# Copyright 2018-2019 Onestein (<https://www.onestein.eu>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import UserError, ValidationError
-
-from odoo.addons.l10n_de_tax_statement.tests.test_l10n_de_tax_statement\
-    import TestVatStatement
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
-class TestTaxStatementZM(TestVatStatement):
+class VatStatement(models.Model):
+    _inherit = 'l10n.de.tax.statement'
 
-    def _prepare_zm_invoice(self):
-        for invoice_line in self.invoice_1.invoice_line_ids:
-            for tax_line in invoice_line.invoice_line_tax_ids:
-                tax_line.tag_ids = self.tag_3
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.statement_with_zm.statement_update()
+    tag_41_base = fields.Many2one(
+        'account.account.tag',
+        compute='_compute_tag_41'
+    )
+    tag_21_base = fields.Many2one(
+        'account.account.tag',
+        compute='_compute_tag_41'
+    )
+    zm_line_ids = fields.One2many(
+        'l10n.de.tax.statement.zm.line',
+        'statement_id',
+        string='ZM Lines',
+        readonly=True
+    )
+    zm_total = fields.Monetary(
+        string='Total ZM amount',
+        readonly=True,
+        help='Total amount in currency of the statement.'
+    )
 
-    def test_01_compute_tag_41(self):
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+    @api.depends('company_id')
+    def _compute_tag_41(self):
+        '''Computes Tag 41'''
+        for statement in self:
+            config = self.env['l10n.de.tax.statement.config'].search([
+                ('company_id', '=', statement.company_id.id)
+            ], limit=1)
+            statement.tag_41_base = config.tag_41_base
+            statement.tag_21_base = config.tag_21_base
 
-        self.assertEqual(self.statement_with_zm.tag_41_base, self.tag_3)
-        self.assertEqual(self.statement_with_zm.tag_21_base, self.tag_4)
+    def _compute_zm_lines(self):
+        '''Computes ZM lines for the report'''
+        ZmLine = self.env['l10n.de.tax.statement.zm.line']
+        for statement in self:
+            statement.zm_line_ids.unlink()
+            statement.zm_total = 0.0
+            amounts_map = statement._get_partner_amounts_map()
+            for partner_id in amounts_map:
+                zm_values = self._prepare_zm_line(amounts_map[partner_id])
+                zm_values['partner_id'] = partner_id
+                zm_values['statement_id'] = statement.id
+                newline = ZmLine.create(zm_values)
+                statement.zm_line_ids += newline
+                zm_total = newline.amount_products + newline.amount_services
+                statement.zm_total += zm_total
 
-    def test_02_no_tag_41(self):
-        self.config.write({
-            'tag_41_base': False,
-            'tag_21_base': False,
-        })
-        self.statement_not_valid = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
-        self.statement_not_valid.statement_update()
-        with self.assertRaises(UserError):
-            self.statement_not_valid.post()
+    @api.model
+    def _prepare_zm_line(self, partner_amounts):
+        ''' Prepares an internal data structure representing the ZM line'''
+        return {
+            'country_code': partner_amounts['country_code'],
+            'vat': partner_amounts['vat'],
+            'amount_products': partner_amounts['amount_products'],
+            'amount_services': partner_amounts['amount_services'],
+            'currency_id': partner_amounts['currency_id'],
+        }
 
-    def test_03_post_final(self):
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+    def _is_41_line(self, line):
+        self.ensure_one()
 
-        # all previous statements must be already posted
-        self.statement_with_zm.statement_update()
-        with self.assertRaises(UserError):
-            self.statement_with_zm.post()
+        tag_41 = self.tag_41_base
+        tags = line.tax_ids.mapped('tag_ids')
+        if any(tags.filtered(lambda r: r == tag_41)):
+            return True
+        return False
 
-        self.statement_1.statement_update()
-        self.statement_1.post()
-        self.assertEqual(self.statement_1.state, 'posted')
+    def _is_21_line(self, line):
+        self.ensure_one()
 
-        # first post
-        self.statement_with_zm.post()
+        tag_21 = self.tag_21_base
+        tags = line.tax_ids.mapped('tag_ids')
+        if any(tags.filtered(lambda r: r == tag_21)):
+            return True
+        return False
 
-        self.assertEqual(self.statement_with_zm.state, 'posted')
-        self.assertTrue(self.statement_with_zm.date_posted)
+    def _get_partner_amounts_map(self):
+        ''' Generate an internal data structure representing the ICP line'''
+        self.ensure_one()
 
-        self.statement_with_zm.zm_update()
+        partner_amounts_map = {}
+        for line in self.move_line_ids:
+            is_41 = self._is_41_line(line)
+            is_21 = self._is_21_line(line)
+            if is_41 or is_21:
+                vals = self._prepare_zm_line_from_move_line(line)
+                if vals['partner_id'] not in partner_amounts_map:
+                    self._init_partner_amounts_map(partner_amounts_map, vals)
+                self._update_partner_amounts_map(partner_amounts_map, vals)
+        return partner_amounts_map
 
-        # then finalize
-        self.statement_with_zm.finalize()
-        self.assertEqual(self.statement_with_zm.state, 'final')
-        self.assertTrue(self.statement_with_zm.date_posted)
+    def _check_config_tag_41(self):
+        ''' Checks the tag 41, as configured for the tax statement'''
+        if self.env.context.get('skip_check_config_tag_41'):
+            return
+        for statement in self:
+            if not statement.tag_41_base:
+                raise UserError(
+                    _('Tag 41 not configured for this Company! '
+                      'Check the German Tax Tags Configuration.'))
 
-        with self.assertRaises(UserError):
-            self.statement_with_zm.zm_update()
+    @api.multi
+    def _check_config_tag_21(self):
+        ''' Checks the tag 21, as configured for the tax statement'''
+        if self.env.context.get('skip_check_config_tag_21'):
+            return
+        for statement in self:
+            if not statement.tag_21_base:
+                raise UserError(
+                    _('Tag 21 not configured for this Company! '
+                      'Check the German Tax Tags Configuration.'))
 
-    def test_04_zm_invoice(self):
-        self.statement_1.post()
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+    @classmethod
+    def _update_partner_amounts_map(cls, partner_amounts_map, vals):
+        ''' Update amounts of the internal ICP lines data structure'''
+        map_data = partner_amounts_map[vals['partner_id']]
+        map_data['amount_products'] += vals['amount_products']
+        map_data['amount_services'] += vals['amount_services']
 
-        self.invoice_1.partner_id.country_id = self.env.ref('base.be')
-        self._prepare_zm_invoice()
+    @classmethod
+    def _init_partner_amounts_map(cls, partner_amounts_map, vals):
+        ''' Initialize the internal ICP lines data structure'''
+        partner_amounts_map[vals['partner_id']] = {
+            'country_code': vals['country_code'],
+            'vat': vals['vat'],
+            'currency_id': vals['currency_id'],
+            'amount_products': 0.0,
+            'amount_services': 0.0,
+        }
 
-        self.statement_with_zm.post()
-        self.assertTrue(self.statement_with_zm.zm_line_ids)
-        self.assertTrue(self.statement_with_zm.zm_total)
+    def _prepare_zm_line_from_move_line(self, line):
+        ''' Gets move line details and prepares ZM report line data'''
+        self.ensure_one()
 
-        for zm_line in self.statement_with_zm.zm_line_ids:
-            self.assertTrue(zm_line.amount_products)
-            self.assertFalse(zm_line.amount_services)
-            amount_products = zm_line.format_amount_products
-            self.assertEqual(float(amount_products), zm_line.amount_products)
-            amount_services = zm_line.format_amount_services
-            self.assertEqual(float(amount_services), zm_line.amount_services)
+        balance = line.balance and -line.balance or 0
+        if line.company_currency_id != self.currency_id:
+            balance = line.company_currency_id.with_context(
+                date=line.date
+            ).compute(balance, self.currency_id, round=True)
+        amount_products = balance
+        amount_services = 0.0
+        if self._is_21_line(line):
+            amount_products = 0.0
+            amount_services = balance
 
-    def test_05_zm_invoice_service(self):
-        self.statement_1.post()
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+        return {
+            'partner_id': line.partner_id.id,
+            'country_code': line.partner_id.country_id.code,
+            'vat': line.partner_id.vat,
+            'amount_products': amount_products,
+            'amount_services': amount_services,
+            'currency_id': self.currency_id.id,
+        }
 
-        self.invoice_1.partner_id.country_id = self.env.ref('base.be')
-        for invoice_line in self.invoice_1.invoice_line_ids:
-            for tax_line in invoice_line.invoice_line_tax_ids:
-                tax_line.tag_ids = self.tag_4
-        self.invoice_1._onchange_invoice_line_ids()
-        self.invoice_1.action_invoice_open()
-        self.statement_with_zm.statement_update()
+    def reset(self):
+        ''' Removes ZM lines if reset to draft'''
+        self.mapped('zm_line_ids').unlink()
+        return super().reset()
 
-        self.statement_with_zm.post()
-        self.assertTrue(self.statement_with_zm.zm_line_ids)
-        self.assertTrue(self.statement_with_zm.zm_total)
+    def post(self):
+        ''' Checks configuration when validating the statement'''
+        self.ensure_one()
+        self._check_config_tag_41()
+        self._check_config_tag_21()
+        res = super().post()
+        self._compute_zm_lines()
+        return res
 
-        for zm_line in self.statement_with_zm.zm_line_ids:
-            self.assertFalse(zm_line.amount_products)
-            self.assertTrue(zm_line.amount_services)
-            amount_products = zm_line.format_amount_products
-            self.assertEqual(float(amount_products), zm_line.amount_products)
-            amount_services = zm_line.format_amount_services
-            self.assertEqual(float(amount_services), zm_line.amount_services)
+    @api.model
+    def _modifiable_values_when_posted(self):
+        ''' Returns the modifiable fields even when the statement is posted'''
+        res = super()._modifiable_values_when_posted()
+        res.append('zm_line_ids')
+        res.append('zm_total')
+        return res
 
-    def test_06_zm_invoice_de(self):
-        self.statement_1.post()
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+    def zm_update(self):
+        ''' Update button'''
+        self.ensure_one()
 
-        self.invoice_1.partner_id.country_id = self.env.ref('base.de')
-        self._prepare_zm_invoice()
+        if self.state in ['final']:
+            raise UserError(
+                _('You cannot modify a final statement!'))
 
-        with self.assertRaises(ValidationError):
-            self.statement_with_zm.post()
+        # clean old lines
+        self.zm_line_ids.unlink()
 
-    def test_07_zm_invoice_outside_europe(self):
-        self.statement_1.post()
-        self.statement_with_zm = self.env['l10n.de.tax.statement'].create({
-            'name': 'Statement 1',
-        })
+        # check config
+        self._check_config_tag_41()
+        self._check_config_tag_21()
 
-        self.invoice_1.partner_id.country_id = self.env.ref('base.us')
-        self._prepare_zm_invoice()
-
-        with self.assertRaises(ValidationError):
-            self.statement_with_zm.post()
+        # create lines
+        self._compute_zm_lines()

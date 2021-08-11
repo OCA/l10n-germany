@@ -35,7 +35,7 @@ This additional VAT declaration report includes:
 * the VAT identification numbers of your customers
 * the total amount of intra-Community supplies from Germany for every customer during the selected period
 * The values for product deliveries and services are separated in two columns.
-* If you want to transmit the values to the official report form, f.e. by "www.elster.de" you would have to enter two lines if both columns product + services contains values.
+* If you want to transmit the values to the official report form, f.e. by "www.elster.de" you would have to go to the second tab of odoo’s tax statement form where you can see all the lines you would have to declare to the german tax authorities for the selected period. If you click on „Download.CSV“ you will get the file you may upload on the 2nd side of the declaration form „Zusammenfassende Meldung“ on the official tax declaration portal „www.elster.de“. As another option you may enter the valaues by hand, however you would have to enter two lines if both columns product + services on the tab „Zusammenfassende Meldung“ contains values.
 
 
 **Table of contents**
@@ -48,7 +48,7 @@ Installation
 
 To install this module, you need to:
 
-#. Install module *l10n_de_tax_statement* version >= *11.0.1.0.0*.
+#. Install module l10n_de_tax_statement version >= 12.0.1.0.0.
 
 Configuration
 =============
@@ -66,7 +66,7 @@ To use this module, you need to:
 #. Post the VAT Statement: a new tab VAT Statement Extended will be displayed; the tab contains the lines of the German VAT Statement report extended by a separated statement for the Intra-Community transactions declaration (Zusammenfassende Meldung).
 #. In tab Zusammenfassende Meldung press the Update button in order to recompute the  statement lines for this report.
 #. The values for product deliveries and services are separated in two columns.
-#. If you want to transmit the values to the official report form, f.e. by "www.elster.de" you would have to enter two lines if both columns product + services contains values.
+#. If you want to transmit the values to the official report form, f.e. by "www.elster.de" you would have to go to the second tab of odoo’s tax statement form where you can see all the lines you would have to declare to the german tax authorities for the selected period. If you click on „Download.CSV“ you will get the file you may upload on the 2nd side of the declaration form „Zusammenfassende Meldung“ on the official tax declaration portal „www.elster.de“. As another option you may enter the valaues by hand, however you would have to enter two lines if both columns product + services on the tab „Zusammenfassende Meldung“ contains values.
 
 Printing a PDF report:
 
@@ -76,7 +76,7 @@ Known issues / Roadmap
 ======================
 
 * Add checks to avoid errors in the report, e.g. no VAT code, tax-code not matching fiscal position, etc..
-* Calculate separated lines for product and service sales. Currently the values are in two columns per intra-community partner.
+* Calculate separated lines for product and service sales. Currently the values are in two columns per intra-community partner. You want have any issues if you declare the „Zusammenfassende Meldung“ report by upload of the .csv file you may download. Therefore you would have to go to the second tab of odoo’s tax statement form where you can see all the lines you would have to declare to the german tax authorities for the selected period. If you click on „Download.CSV“ you will get the file you may upload on the 2nd side of the declaration form „Zusammenfassende Meldung“ on the official tax declaration portal „www.elster.de“.
 
 Bug Tracker
 ===========
