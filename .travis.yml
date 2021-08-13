@@ -44,6 +44,7 @@ install:
 
 script:
   - travis_run_tests
+  - pip install psycopg2-binary
 
 after_success:
   - travis_after_tests_success
