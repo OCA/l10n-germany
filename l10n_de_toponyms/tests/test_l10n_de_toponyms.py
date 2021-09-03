@@ -17,7 +17,8 @@ class TestL10nDeToponyms(common.SavepointCase):
 
     def test_import(self):
         self.wizard.with_context(max_import=10).execute()
-        zips = self.env["res.better.zip"].search(
+        cities = self.env["res.city"].search(
             [("country_id", "=", self.env.ref("base.de").id)]
         )
-        self.assertTrue(zips)
+        self.assertTrue(cities)
+        self.assertTrue(cities.mapped("zip_ids"))

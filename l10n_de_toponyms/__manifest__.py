@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "German Toponyms",
-    "version": "11.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "IT IS AG Germany, " "initOS GmbH, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
     "category": "Localization",
@@ -13,8 +13,8 @@
     ],
     "license": "AGPL-3",
     "data": [
+        "security/ir.model.access.csv",
         "wizard/l10n_de_toponyms_wizard.xml",
-        "wizard/l10n_de_toponyms_zipcodes.xml",
     ],
     "installable": True,
 }

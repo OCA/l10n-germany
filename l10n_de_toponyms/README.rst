@@ -39,6 +39,7 @@ Contributors
 * IT IS AG <oca@itis.de>
 * Jordi Esteve <jesteve@zikzakmedia.com>
 * Pedro M. Baeza <pedro.baeza@tecnativa.com>
+* Helly kapatel <helly.kapatel@initos.com>
 
 Maintainer
 ----------

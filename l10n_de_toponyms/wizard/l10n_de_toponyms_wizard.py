@@ -3,37 +3,21 @@
 # Copyright 2018 IT IS AG <oca@itis.de>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-import os
 
-from odoo import api, fields, models, tools
+from odoo import fields, models
 
 
 class ConfigDeToponyms(models.TransientModel):
     _name = "config.de.toponyms"
     _inherit = "res.config.installer"
+    _description = "config de toponyms"
 
     name = fields.Char("Name", size=64)
 
-    @api.model
-    def create_zipcodes(self):
-        """Import spanish zipcodes information through an XML file."""
-        file_name = "l10n_de_toponyms_zipcodes.xml"
-        path = os.path.join("l10n_de_toponyms", "wizard", file_name)
-        with tools.file_open(path) as fp:
-            tools.convert_xml_import(
-                self.env.cr, "l10n_de_toponyms", fp, {}, "init", noupdate=True
-            )
-        return True
-
-    @api.multi
     def execute(self):
-        res = super(ConfigDeToponyms, self).execute()
-        wizard_obj = self.env["better.zip.geonames.import"]
+        res = super().execute()
+        wizard_obj = self.env["city.zip.geonames.import"]
         country_es = self.env["res.country"].search([("code", "=", "DE")])
-        wizard = wizard_obj.create({"country_id": country_es.id})
+        wizard = wizard_obj.create({"country_ids": [(4, country_es.id)]})
         wizard.run_import()
         return res
-
-    @api.multi
-    def execute_local(self):  # pragma: no cover
-        self.create_zipcodes()

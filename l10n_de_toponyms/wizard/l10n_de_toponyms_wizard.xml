@@ -16,20 +16,15 @@
                     string="This wizard will add city and state information to zip codes"
                 >
                     <label
+                        for="action_next"
                         colspan="2"
+                        class="o_form_label"
                         string="Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."
                     />
                 </group>
             </separator>
-            <button name="action_next" position="after">
-                <button
-                    string="Configure from local"
-                    type="object"
-                    name="execute_local"
-                />
-            </button>
             <button name="action_next" position="attributes">
-                <attribute name="string">Configure from GeoNames</attribute>
+                <attribute name="string">Import data from GeoNames</attribute>
             </button>
        </field>
     </record>
@@ -38,7 +33,6 @@
         <field name="name">German toponyms configuration</field>
         <field name="res_model">config.de.toponyms</field>
         <field name="view_id" ref="view_confirm_toponyms_de_form" />
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
