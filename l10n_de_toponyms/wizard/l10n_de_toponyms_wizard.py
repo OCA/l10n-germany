@@ -3,16 +3,16 @@
 # Copyright 2018 IT IS AG <oca@itis.de>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class ConfigDeToponyms(models.TransientModel):
     _name = "config.de.toponyms"
     _inherit = "res.config.installer"
+    _description = "config de toponyms"
 
     name = fields.Char("Name", size=64)
 
-    @api.multi
     def execute(self):
         res = super(ConfigDeToponyms, self).execute()
         wizard_obj = self.env["city.zip.geonames.import"]

@@ -9,7 +9,7 @@ class TestL10nDeToponyms(common.SavepointCase):
     @classmethod
     def setUpClass(cls):
         super(TestL10nDeToponyms, cls).setUpClass()
-        cls.wizard = cls.env["config.de.toponyms"].create({"name": "",})
+        cls.wizard = cls.env["config.de.toponyms"].create({"name": ""})
 
     def test_import(self):
         self.wizard.with_context(max_import=10).execute()
