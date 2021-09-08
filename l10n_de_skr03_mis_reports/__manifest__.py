@@ -6,12 +6,12 @@
     "summary": """
         MIS Builder templates for the German P&L
         and Balance Sheets (SKR03)""",
-    "author": "OpenBIG.org," "ACSONE SA/NV," "Odoo Community Association (OCA)",
+    "author": "OpenBIG.org, ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
     "category": "Reporting",
-    "version": "12.0.1.0.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["mis_builder", "l10n_de_skr03"],  # OCA/account-financial-reporting
+    "depends": ["mis_builder", "l10n_de_skr03"],  # OCA/mis-builder
     "data": [
         "data/mis_report_styles.xml",
         "data/mis_report_pl.xml",
