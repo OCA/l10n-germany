@@ -9,9 +9,13 @@
     "author": "OpenBIG.org," "ACSONE SA/NV," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
     "category": "Reporting",
-    "version": "12.0.1.0",
+    "version": "13.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["mis_builder", "l10n_de_skr04"],  # OCA/account-financial-reporting
+    "depends": [
+        "mis_builder",
+        "l10n_de_skr04",
+        "l10n_generic_coa",
+    ],  # OCA/account-financial-reporting
     "data": [
         "data/mis_report_styles.xml",
         "data/mis_report_pl.xml",
