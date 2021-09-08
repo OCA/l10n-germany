@@ -22,6 +22,7 @@ addon | version | maintainers | summary
 [l10n_de_country_states](l10n_de_country_states/) | 14.0.1.0.0 |  | German Country States
 [l10n_de_holidays](l10n_de_holidays/) | 14.0.1.0.0 |  | Holidays for Germany
 [l10n_de_location_nuts](l10n_de_location_nuts/) | 14.0.1.0.0 |  | NUTS specific options for German
+[l10n_de_skr03_mis_reports](l10n_de_skr03_mis_reports/) | 14.0.1.0.0 |  | MIS Builder templates for the German P&L and Balance Sheets (SKR03)
 [l10n_de_steuernummer](l10n_de_steuernummer/) | 14.0.1.0.0 |  | German SteuerNummer validation
 
 [//]: # (end addons)
