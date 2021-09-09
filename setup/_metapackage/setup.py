@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo14-addon-l10n_de_holidays',
         'odoo14-addon-l10n_de_location_nuts',
         'odoo14-addon-l10n_de_skr03_mis_reports',
+        'odoo14-addon-l10n_de_skr04_mis_reports',
         'odoo14-addon-l10n_de_steuernummer',
     ],
     classifiers=[
