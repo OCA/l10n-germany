@@ -47,6 +47,7 @@ Contributors
 
 * Yu Weng <yweng@elegosoft.com>
 * Nikolina Todorova <nikolina.todorova@initos.com>
+* Helly kapatel <helly.kapatel@initos.com>
 
 Do not contact contributors directly about support or help with technical issues.
 
