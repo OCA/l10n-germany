@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo12-addon-l10n_de_location_nuts',
         'odoo12-addon-l10n_de_steuernummer',
         'odoo12-addon-l10n_de_tax_statement',
+        'odoo12-addon-l10n_de_toponyms',
     ],
     classifiers=[
         'Programming Language :: Python',
