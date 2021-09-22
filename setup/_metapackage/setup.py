@@ -8,6 +8,7 @@ setuptools.setup(
     description="Meta package for oca-l10n-germany Odoo addons",
     version=version,
     install_requires=[
+        'odoo13-addon-l10n_de_holidays',
         'odoo13-addon-l10n_de_tax_statement',
     ],
     classifiers=[
