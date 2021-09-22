@@ -4,20 +4,18 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
-    <report
-        id="action_report_tax_statement_zm"
-        model="l10n.de.tax.statement"
-        string="Zusammenfassende Meldung"
-        report_type="qweb-pdf"
-        name="l10n_de_tax_statement_zm.report_tax_statement_zm"
-        file="l10n_de_tax_statement_zm.report_tax_statement_zm"
-    />
-
     <record id="action_report_tax_statement_zm" model="ir.actions.report">
+        <field name="name">Zusammenfassende Meldung</field>
+        <field name="model">l10n.de.tax.statement</field>
+        <field name="report_type">qweb-pdf</field>
         <field
-            name="paperformat_id"
-            ref="l10n_de_tax_statement.paperformat_de_tax_statement"
-        />
+            name="report_name"
+        >l10n_de_tax_statement_zm.report_tax_statement_zm</field>
+        <field
+            name="report_file"
+        >l10n_de_tax_statement_zm.report_tax_statement_zm</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="model_l10n_de_tax_statement" />
     </record>
 
 </odoo>

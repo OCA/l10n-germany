@@ -4,7 +4,7 @@
 
 {
     "name": "German VAT Statement Extension",
-    "version": "11.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Localization",
     "license": "AGPL-3",
     "author": "OpenBIG.org, Onestein, Odoo Community Association (OCA)",

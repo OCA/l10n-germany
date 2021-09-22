@@ -34,7 +34,6 @@ class VatStatement(models.Model):
             statement.tag_41_base = config.tag_41_base
             statement.tag_21_base = config.tag_21_base
 
-    @api.multi
     def _compute_zm_lines(self):
         """Computes ZM lines for the report"""
         zmline = self.env["l10n.de.tax.statement.zm.line"]
@@ -62,7 +61,6 @@ class VatStatement(models.Model):
             "currency_id": partner_amounts["currency_id"],
         }
 
-    @api.multi
     def _is_41_line(self, line):
         self.ensure_one()
 
@@ -72,7 +70,6 @@ class VatStatement(models.Model):
                 return True
         return False
 
-    @api.multi
     def _is_21_line(self, line):
         self.ensure_one()
 
@@ -82,7 +79,6 @@ class VatStatement(models.Model):
                 return True
         return False
 
-    @api.multi
     def _get_partner_amounts_map(self):
         """ Generate an internal data structure representing the ICP line"""
         self.ensure_one()
@@ -98,7 +94,6 @@ class VatStatement(models.Model):
                 self._update_partner_amounts_map(partner_amounts_map, vals)
         return partner_amounts_map
 
-    @api.multi
     def _check_config_tag_41(self):
         """ Checks the tag 41, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_41"):
@@ -112,7 +107,6 @@ class VatStatement(models.Model):
                     )
                 )
 
-    @api.multi
     def _check_config_tag_21(self):
         """ Checks the tag 21, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_21"):
@@ -144,7 +138,6 @@ class VatStatement(models.Model):
             "amount_services": 0.0,
         }
 
-    @api.multi
     def _prepare_zm_line_from_move_line(self, line):
         """ Gets move line details and prepares ZM report line data"""
         self.ensure_one()
@@ -169,14 +162,12 @@ class VatStatement(models.Model):
             "currency_id": self.currency_id.id,
         }
 
-    @api.multi
     def reset(self):
         """ Removes ZM lines if reset to draft"""
         for statement in self:
             statement.zm_line_ids.unlink()
         return super(VatStatement, self).reset()
 
-    @api.multi
     def post(self):
         """ Checks configuration when validating the statement"""
         self.ensure_one()
@@ -194,7 +185,6 @@ class VatStatement(models.Model):
         res.append("zm_total")
         return res
 
-    @api.multi
     def zm_update(self):
         """ Update button"""
         self.ensure_one()
@@ -248,13 +238,12 @@ class VatStatement(models.Model):
                 lines.append([v["1_country"], v["2_vat"], amount_services, "S"])
         return lines
 
-    @api.multi
     def zm_download(self):
         """ Download button """
         self.ensure_one()
         self._generate_zm_download_lines()
         zm_download = "\n".join(
-            ",".join(str(l) for l in line)
+            ",".join(str(i) for i in line)
             for line in self._generate_zm_download_lines()
         )
         zm_download_base64 = base64.b64encode(zm_download.encode("iso-8859-15"))
