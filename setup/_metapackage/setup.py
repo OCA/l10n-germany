@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo13-addon-l10n_de_country_states',
         'odoo13-addon-l10n_de_holidays',
         'odoo13-addon-l10n_de_tax_statement',
+        'odoo13-addon-l10n_de_toponyms',
     ],
     classifiers=[
         'Programming Language :: Python',
