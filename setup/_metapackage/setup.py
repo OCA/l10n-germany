@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo13-addon-l10n_de_country_states',
         'odoo13-addon-l10n_de_holidays',
+        'odoo13-addon-l10n_de_skr03_mis_reports',
         'odoo13-addon-l10n_de_skr04_mis_reports',
         'odoo13-addon-l10n_de_tax_statement',
         'odoo13-addon-l10n_de_toponyms',
