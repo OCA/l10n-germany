@@ -131,6 +131,21 @@ msgstr ""
 "i. d. letzten Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Add Invoice"
 msgstr "Rechnung hinzufügen"
@@ -192,6 +207,11 @@ msgstr "Anmeldung der Umsatzsteuer Vorauszahlung"
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
 msgid "Apply"
 msgstr "Bestätigen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__base
@@ -323,6 +343,21 @@ msgid "Finalize"
 msgstr "Abschließen"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__format_base
 msgid "Format Base"
 msgstr "Steuermessbetrag"
@@ -386,6 +421,21 @@ msgid "ID"
 msgstr "ID"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid ""
 "If you confirm, it will be not possible to modify this Statement or reset it "
@@ -430,6 +480,11 @@ msgid ""
 "Innergemeinschaftliche Erwerbe Steuerfreie innergemeinschaftliche Erwerbe"
 msgstr ""
 "Innergemeinschaftliche Erwerbe Steuerfreie innergemeinschaftliche Erwerbe"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_is_follower
+msgid "Is Follower"
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__is_group
@@ -558,9 +613,39 @@ msgid "Lines"
 msgstr "Positionen"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__name
 msgid "Name"
 msgstr "Name"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:122
@@ -570,9 +655,44 @@ msgid "Nicht steuerb. sonst. Leist. gem. § 18b S. 1 Nr. 2 (21)"
 msgstr "Nicht steuerb. sonst. Leist. gem. § 18b S. 1 Nr. 2 (21)"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: selection:l10n.de.tax.statement,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Past Undeclared Invoices"
 msgstr "Unangemeldete Rechnungen aus der Vergangenheit"
+
+#. module: l10n_de_tax_statement
+#: selection:l10n.de.tax.statement,activity_state:0
+msgid "Planned"
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
@@ -606,6 +726,11 @@ msgid "Reset to Draft"
 msgstr "Zurücksetzen"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move__l10n_de_tax_statement_id
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__statement_id
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
@@ -616,6 +741,15 @@ msgstr "Ust.-Voranmeldung"
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__state
 msgid "Status"
 msgstr "Status"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
@@ -996,7 +1130,7 @@ msgid "Tag 98 Tax"
 msgstr "Kennzahl 98 Steuer"
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:195
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:196
 #, python-format
 msgid ""
 "Tags mapping not configured for this Company! Check the DE Tags "
@@ -1038,6 +1172,11 @@ msgid "To Date"
 msgstr "Datum bis"
 
 #. module: l10n_de_tax_statement
+#: selection:l10n.de.tax.statement,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:164
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:147
 #, python-format
@@ -1064,6 +1203,16 @@ msgid ""
 "Umsätze nach § 24 UStG, z.B. Sägewerke, Getränke u. alk. Flüssigk. (76 / 80)"
 msgstr ""
 "Umsätze nach § 24 UStG, z.B. Sägewerke, Getränke u. alk. Flüssigk. (76 / 80)"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__unreported_move_ids
@@ -1182,6 +1331,16 @@ msgstr ""
 "und 23a UStG (63)"
 
 #. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:38
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:38
 #, python-format
@@ -1193,7 +1352,7 @@ msgstr ""
 "§ 4 Nr. 2-7 UStG (43)"
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:357
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:358
 #, python-format
 msgid ""
 "You cannot delete a posted statement! Reset the statement to draft first."
@@ -1202,7 +1361,7 @@ msgstr ""
 "Zunächst sollten Sie auf Entwurf zurücksetzen."
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:361
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:362
 #, python-format
 msgid "You cannot delete a statement set as final!"
 msgstr ""
@@ -1228,14 +1387,14 @@ msgstr ""
 "gelöscht werden!"
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:210
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:211
 #, python-format
 msgid "You cannot modify a posted statement!"
 msgstr ""
 "Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr modifiziert werden!"
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:348
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:349
 #, python-format
 msgid ""
 "You cannot modify a posted statement! Reset the statement to draft first."
@@ -1244,14 +1403,14 @@ msgstr ""
 "Zuerst sollten Sie die Ust.-Voranmeldung zurücksetzen."
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:342
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:343
 #, python-format
 msgid "You cannot modify a statement set as final!"
 msgstr ""
 "Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr abgeändert werden!"
 
 #. module: l10n_de_tax_statement
-#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:293
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:294
 #, python-format
 msgid ""
 "You cannot post a statement if all the previous statements are not yet "
