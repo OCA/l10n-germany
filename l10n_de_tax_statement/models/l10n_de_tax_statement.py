@@ -19,6 +19,7 @@ from .l10n_de_tax_statement_2019 import \
 
 class VatStatement(models.Model):
     _name = 'l10n.de.tax.statement'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'German Vat Statement'
 
     name = fields.Char(
