@@ -1,10 +1,5 @@
 <odoo>
   <data>
-    <record id="res_country_state_BW" model="res.country.state">
-      <field model="res.country" name="country_id" search="[('code','=','DE')]" />
-      <field name="name">Baden-Wurttemberg</field>
-      <field name="code">BW</field>
-    </record>
     <record id="res_country_state_BY" model="res.country.state">
       <field model="res.country" name="country_id" search="[('code','=','DE')]" />
       <field name="name">Bavaria</field>
