@@ -1,0 +1,231 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_tax_statement_zm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-11 09:54+0000\n"
+"PO-Revision-Date: 2020-05-11 09:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "(product + service)"
+msgstr "(Lieferungen + Leistungen)"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Amount Product"
+msgstr "Lieferungen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_amount_products
+msgid "Amount Products"
+msgstr "Bemessungsgrundlage Lieferung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Amount Service"
+msgstr "Sonstige Leistungen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_amount_services
+msgid "Amount Services"
+msgstr "Bemessungsgrundlage Sonstige Leistungen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_country_code
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Country Code"
+msgstr "Länderkennzeichen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_currency_id
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Currency"
+msgstr "Währung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_display_name
+msgid "Display Name"
+msgstr "Bezeichnung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_format_amount_products
+msgid "Format Amount Products"
+msgstr "Format Bemessungsgrundlage Lieferungen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_format_amount_services
+msgid "Format Amount Services"
+msgstr "Format Bemessungsgrundlage Sonstige Leistungen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement
+#, fuzzy
+msgid "German Vat Statement"
+msgstr "Zusammenfassende Meldung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model,name:l10n_de_tax_statement_zm.model_l10n_de_tax_statement_zm_line
+msgid "Intra-Community transactions (ZM) line"
+msgstr "Zusmammenfassende Meldung Positionen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line___last_update
+msgid "Last Modified on"
+msgstr "Geändert am"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_write_uid
+msgid "Last Updated by"
+msgstr "Aktualisiert von"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_write_date
+msgid "Last Updated on"
+msgstr "Aktualisiert am"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_partner_id
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Partner"
+msgstr "Partner"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
+msgid "Press the Update button in order to recompute the lines!"
+msgstr "Für eine Neuberechnung der Positionen klicken Sie auf Aktualisieren !"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_statement_id
+msgid "Statement"
+msgstr "Zusammenfassende Meldung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_tag_21_base
+msgid "Tag 21 Base"
+msgstr "Steuerschlüssel 21"
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:126
+#, python-format
+msgid ""
+"Tag 21 not configured for this Company! Check the German Tax Tags "
+"Configuration."
+msgstr ""
+"Der Steuerschlüssel 21 wurde noch nicht für dieses Unternehmen konfiguriert! "
+"Prüfen Sie die Vollständigkeit Ihrer Steuerschlüsselzuordnung."
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_tag_41_base
+msgid "Tag 41 Base"
+msgstr "Steuerschlüssel 41"
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:115
+#, python-format
+msgid ""
+"Tag 41 not configured for this Company! Check the German Tax Tags "
+"Configuration."
+msgstr ""
+"Der Steuerschlüssel 41 wurde noch nicht für dieses Unternehmen konfiguriert! "
+"Prüfen Sie die Vollständigkeit Ihrer Steuerschlüsselzuordnung."
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_total
+msgid "Total ZM amount"
+msgstr "Summe Bemessungsgrundlagen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "Total amount"
+msgstr "Bemessungsgrundlagen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,help:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_total
+msgid "Total amount in currency of the statement."
+msgstr "Summe der Bemessungsgrundlage in der ausgewählten Währung"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
+msgid "Update"
+msgstr "Aktualisieren"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_vat
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "VAT"
+msgstr "USt-IdNr. (EU-Erwerber)"
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:60
+#, fuzzy, python-format
+msgid ""
+"Wrong country code (DE) for ZM report at partner \"{partner}\" ({ref}) with "
+"vat \"{vat}\"."
+msgstr ""
+"Falscher Länderschlüssel (DE) für die Zusammenfassende Meldung von Partner "
+"\"{partner}\" ({ref}) mit USt-IDt \"{vat}\"."
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:69
+#, fuzzy, python-format
+msgid ""
+"Wrong country code ({code}) for ZM report at partner \"{partner}\" ({ref}) "
+"with vat \"{vat}\". Please check your configuration."
+msgstr ""
+"Falscher Länderschlüssel Code ({code}) für Zusammenfassende Meldung von "
+"Partner \"{partner}\" ({ref}) mit USt-IDt \"{vat}\". Bitte prüfen Sie die "
+"Konfiguration!"
+
+#. module: l10n_de_tax_statement_zm
+#: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:204
+#, python-format
+msgid "You cannot modify a final statement!"
+msgstr ""
+"Ein abgeschlossene Umsatzsteuervoranmeldung kann nicht mehr geändert werden."
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
+msgid "ZM"
+msgstr "ZM"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line_ids
+msgid "ZM Lines"
+msgstr "ZM Positionen"
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.actions.report,name:l10n_de_tax_statement_zm.action_report_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
+msgid "Zusammenfassende Meldung"
+msgstr ""
+
+#. module: l10n_de_tax_statement_zm
+#: model:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
+msgid "Zusammenfassende Meldung Positionen"
+msgstr ""

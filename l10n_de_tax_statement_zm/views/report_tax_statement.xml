@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2019 Onestein (<http://www.onestein.eu>)
+     Copyright 2019 BIG-Consulting (<http://www.openbig.org>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+<odoo>
+
+    <report
+      id="action_report_tax_statement_zm"
+      model="l10n.de.tax.statement"
+      string="Zusammenfassende Meldung"
+      report_type="qweb-pdf"
+      name="l10n_de_tax_statement_zm.report_tax_statement_zm"
+      file="l10n_de_tax_statement_zm.report_tax_statement_zm"
+    />
+
+    <record id="action_report_tax_statement_zm" model="ir.actions.report">
+        <field name="paperformat_id" ref="l10n_de_tax_statement.paperformat_de_tax_statement"/>
+    </record>
+
+</odoo>
