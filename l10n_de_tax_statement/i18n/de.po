@@ -105,7 +105,7 @@ msgstr "Rechnung hinzufügen"
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Add/Remove the Undeclared Invoices listed below. Afterwards press the Update button in order to recompute the statement lines!"
-msgstr "In der folgenden Liste können Sie noch nicht in der UstVA erklärte Rechnungen hinzufügen bzw. entfernen. Aktualiseren Sie diese UstVA Auswertung durch Klick auf den Button "Aktualisieren"! "
+msgstr "In der folgenden Liste können Sie noch nicht in der UstVA erklärte Rechnungen hinzufügen bzw. entfernen. Aktualiseren Sie diese UstVA Auswertung durch Klick auf den Button \"Aktualisieren\"! "
 
 #. module: l10n_de_tax_statement
 #: selection:l10n.de.tax.statement,target_move:0
@@ -1032,7 +1032,7 @@ msgstr "Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr abgeändert werd
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:629
 #, python-format
 msgid "You cannot post a statement if all the previous statements are not yet posted! Please Post all the other statements first."
-msgstr "Eine Umsatzsteuervoranmeldung kann nicht gesendet werden, wenn vorherige Erklärungen noch nicht gesendet wurden. Bitte versetzen Sie alle vorherigen UstVA Auswertungen in den Status "gesendet"!"
+msgstr "Eine Umsatzsteuervoranmeldung kann nicht gesendet werden, wenn vorherige Erklärungen noch nicht gesendet wurden. Bitte versetzen Sie alle vorherigen UstVA Auswertungen in den Status \"gesendet\"!"
 
 #. module: l10n_de_tax_statement
 #: model:ir.ui.view,arch_db:l10n_de_tax_statement.view_account_tax_statement_de_config
