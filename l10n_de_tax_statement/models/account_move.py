@@ -9,7 +9,7 @@ class AccountMove(models.Model):
     _inherit = "account.move"
 
     l10n_de_tax_statement_id = fields.Many2one(
-        "l10n.de.tax.statement", "Statement", copy=False
+        "l10n.de.tax.statement", "statement", copy=False
     )
     l10n_de_tax_statement_include = fields.Boolean(
         "Include in VAT Statement", copy=False
