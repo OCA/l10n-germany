@@ -343,16 +343,16 @@ def _finalize_lines_2019(lines):
     lines["50"]["tax"] = lines["50"]["tax"] * 1
     _50b = lines["50"]["tax"]
     # calculate lines 26, 27, 28, 33, 34
-    lines["26"]["tax"] = lines["26"]["base"] * 0.19
-    _26b = lines["26"]["tax"]
-    lines["27"]["tax"] = lines["27"]["base"] * 0.07
-    _27b = lines["27"]["tax"]
-    lines["30"]["tax"] = lines["30"]["base"] * 0.19
+    # lines["26"]["tax"] = lines["26"]["base"] * 0.19
+    # _26b = lines["26"]["tax"]
+    # lines["27"]["tax"] = lines["27"]["base"] * 0.07
+    # _27b = lines["27"]["tax"]
+    # lines["30"]["tax"] = lines["30"]["base"] * 0.19
     _30b = lines["30"]["tax"]
-    lines["33"]["tax"] = lines["33"]["base"] * 0.19
-    _33b = lines["33"]["tax"]
-    lines["34"]["tax"] = lines["34"]["base"] * 0.07
-    _34b = lines["34"]["tax"]
+    # lines["33"]["tax"] = lines["33"]["base"] * 0.19
+    # _33b = lines["33"]["tax"]
+    # lines["34"]["tax"] = lines["34"]["base"] * 0.07
+    # _34b = lines["34"]["tax"]
     # calculate reverse of lines 32 - line 36 base
     lines["32"]["base"] = lines["32"]["base"] * -1
     lines["33"]["base"] = lines["33"]["base"] * -1
@@ -413,6 +413,16 @@ def _finalize_lines_2019(lines):
     lines["64"].update({"tax": _64b})
     lines["51"].update({"tax": _51b})
     lines["60"].update({"tax": _60b})
+
+    # in case it differs from the sign of related tax
+    to_be_checked_inverted = ["26", "27", "28", "30", "33", "34", "35", "36"]
+    for code in to_be_checked_inverted:
+        tax_sign = 1 if lines[code]["tax"] >= 0.0 else -1
+        base_sign = 1 if lines[code]["base"] >= 0.0 else -1
+        if tax_sign != base_sign:
+            lines[code]["base"] *= -1
+
+    return lines
 
 
 def _totals_2019():
@@ -523,4 +533,6 @@ def _total_display_2019():
     return (
         "51",
         "60",
+        "64",
+        "65",
     )
