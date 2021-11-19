@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Onestein (<https://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div id="eu_service" position="after">
+                <div
+                    class="col-xs-12 col-md-6 o_setting_box"
+                    title="If this checkbox is ticked, you will enable the german Tax Invoice Basis."
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="l10n_de_tax_invoice_basis" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="l10n_de_tax_invoice_basis" />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                           DE Tax Invoice Basis
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>
