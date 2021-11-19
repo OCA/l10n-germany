@@ -336,29 +336,26 @@ def _finalize_lines_2019(lines):
     _62b = lines["62"]["tax"]
     _63b = lines["63"]["tax"]
     # calculate lines 48 - 50
-    lines["48"]["tax"] = lines["48"]["tax"] * 1
+    lines["48"]["tax"] = lines["48"]["base"] * 0.19
     _48b = lines["48"]["tax"]
-    lines["49"]["tax"] = lines["49"]["tax"] * 1
+    lines["49"]["tax"] = lines["48"]["base"] * 0.19
     _49b = lines["49"]["tax"]
-    lines["50"]["tax"] = lines["50"]["tax"] * 1
+    lines["50"]["tax"] = lines["48"]["base"] * 0.19
     _50b = lines["50"]["tax"]
     # calculate lines 26, 27, 28, 33, 34
-    # lines["26"]["tax"] = lines["26"]["base"] * 0.19
-    # _26b = lines["26"]["tax"]
-    # lines["27"]["tax"] = lines["27"]["base"] * 0.07
-    # _27b = lines["27"]["tax"]
-    # lines["30"]["tax"] = lines["30"]["base"] * 0.19
+    lines["28"]["tax"] = lines["28"]["base"] * 0.19
+    _28b = lines["28"]["tax"]
+    lines["30"]["tax"] = lines["30"]["base"] * 0.19
     _30b = lines["30"]["tax"]
-    # lines["33"]["tax"] = lines["33"]["base"] * 0.19
-    # _33b = lines["33"]["tax"]
-    # lines["34"]["tax"] = lines["34"]["base"] * 0.07
-    # _34b = lines["34"]["tax"]
+
     # calculate reverse of lines 32 - line 36 base
     lines["32"]["base"] = lines["32"]["base"] * -1
     lines["33"]["base"] = lines["33"]["base"] * -1
     lines["34"]["base"] = lines["34"]["base"] * -1
-    lines["35"]["base"] = lines["35"]["base"] * -1
-    lines["36"]["base"] = lines["36"]["base"] * -1
+    lines["35"]["tax"] = lines["35"]["base"] * 0.19
+    _48b = lines["35"]["tax"]
+    lines["36"]["tax"] = lines["36"]["base"] * 0.19
+    _49b = lines["36"]["tax"]
     # calculate reverse of lines 32 - line 36 tax
     lines["33"]["tax"] = lines["33"]["tax"] * -1
     _33b = lines["33"]["tax"]

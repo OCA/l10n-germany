@@ -300,27 +300,8 @@ class VatStatement(models.Model):
         self.ensure_one()
         self.write({"state": "final"})
 
-    def _check_prev_open_statements(self):
-        prev_open_statements = self.search(
-            [
-                ("company_id", "=", self.company_id.id),
-                ("state", "=", "draft"),
-                ("id", "<", self.id),
-            ],
-            limit=1,
-        )
-        if prev_open_statements:
-            raise UserError(
-                _(
-                    "You cannot post a statement if all the previous "
-                    "statements are not yet posted! "
-                    "Please Post all the other statements first."
-                )
-            )
-
     def post(self):
         self.ensure_one()
-        self._check_prev_open_statements()
 
         self.write({"state": "posted", "date_posted": fields.Datetime.now()})
         self.unreported_move_ids.filtered(

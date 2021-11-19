@@ -132,8 +132,11 @@ class VatStatementLine(models.Model):
                 code = self.statement_id._strip_sign_in_tag_code(code)
                 line_code = self.statement_id.map_tax_code_line_code(code)
                 if line_code and line_code == self.code:
-                    if (tax_or_base == "tax" and column == "tax") or (
-                        tax_or_base == "base" and column == "base"
+                    if (
+                        (tax_or_base == "tax" and column == "tax")
+                        or (tax_or_base == "base" and column == "base")
+                        or (tax_or_base == "base" and not column)
+                        or (tax_or_base == "tax" and not column)
                     ):
                         domain_lines_ids += [line.id]
         return [("id", "in", domain_lines_ids)]
