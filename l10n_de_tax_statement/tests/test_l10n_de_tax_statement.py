@@ -27,11 +27,32 @@ class TestVatStatement(TransactionCase):
             self.registry._assertion_report,
         )
 
+    def _create_company_children(self):
+        self.company_child_1 = self.env["res.company"].create(
+            {
+                "name": "Child 1 Company",
+                "country_id": self.env.ref("base.de").id,
+                "parent_id": self.company_parent.id,
+            }
+        )
+        self.env.user.company_id = self.company_child_1
+        self.coa.try_loading()
+        self.company_child_2 = self.env["res.company"].create(
+            {
+                "name": "Child 2 Company",
+                "country_id": self.env.ref("base.de").id,
+                "parent_id": self.company_parent.id,
+            }
+        )
+        self.env.user.company_id = self.company_child_2
+        self.coa.try_loading()
+        self.env.user.company_id = self.company_parent
+
     def setUp(self):
         super().setUp()
 
         self.eur = self.env["res.currency"].search([("name", "=", "EUR")])
-        self.coa = self.env.ref("l10n_de.l10nde_chart_template", False)
+        self.coa = self.env.ref("l10n_de_skr03.l10n_de_chart_template", False)
         self.coa = self.coa or self.env.ref(
             "l10n_generic_coa.configurable_chart_template"
         )
@@ -43,9 +64,8 @@ class TestVatStatement(TransactionCase):
             }
         )
         self.env.user.company_id = self.company_parent
-        self.coa.try_loading_for_current_company()
-
-        self.env["l10n.de.tax.statement"].search([]).unlink()
+        self.coa.try_loading()
+        self.env["l10n.de.tax.statement"].search([("state", "!=", "posted")]).unlink()
 
         self.tag_1 = self.env["account.account.tag"].create(
             {
@@ -115,7 +135,7 @@ class TestVatStatement(TransactionCase):
             }
         )
         invoice_form = Form(
-            self.env["account.move"].with_context(default_type="out_invoice")
+            self.env["account.move"].with_context(default_move_type="out_invoice")
         )
         invoice_form.partner_id = partner
         invoice_form.journal_id = journal
@@ -256,7 +276,6 @@ class TestVatStatement(TransactionCase):
         self.assertFalse(_25.format_tax)
         self.assertTrue(_25.is_group)
         self.assertTrue(_25.is_readonly)
-
         self.assertEqual(_26.format_base, "100.00")
         self.assertFalse(_26.is_group)
         self.assertFalse(_26.is_readonly)
