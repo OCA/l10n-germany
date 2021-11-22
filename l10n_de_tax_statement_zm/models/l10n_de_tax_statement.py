@@ -1,6 +1,8 @@
 # Copyright 2018 Onestein (<http://www.onestein.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import base64
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -25,6 +27,7 @@ class VatStatement(models.Model):
     @api.depends("company_id")
     def _compute_tag_41(self):
         """Computes Tag 41"""
+        config = self
         for statement in self:
             config = self.env["l10n.de.tax.statement.config"].search(
                 [("company_id", "=", statement.company_id.id)], limit=1
@@ -32,7 +35,6 @@ class VatStatement(models.Model):
             statement.tag_41_base = config.tag_41_base
             statement.tag_21_base = config.tag_21_base
 
-    @api.multi
     def _compute_zm_lines(self):
         """Computes ZM lines for the report"""
         zmline = self.env["l10n.de.tax.statement.zm.line"]
@@ -60,27 +62,12 @@ class VatStatement(models.Model):
             "currency_id": partner_amounts["currency_id"],
         }
 
-    @api.multi
     def _is_41_line(self, line):
         self.ensure_one()
 
-        tag_41 = self.tag_41_base
-        for tax in line.tax_ids:
-            if tax.tag_ids.filtered(lambda r: r == tag_41):
-                return True
-        return False
-
-    @api.multi
     def _is_21_line(self, line):
         self.ensure_one()
 
-        tag_21 = self.tag_21_base
-        for tax in line.tax_ids:
-            if tax.tag_ids.filtered(lambda r: r == tag_21):
-                return True
-        return False
-
-    @api.multi
     def _get_partner_amounts_map(self):
         """ Generate an internal data structure representing the ICP line"""
         self.ensure_one()
@@ -96,33 +83,15 @@ class VatStatement(models.Model):
                 self._update_partner_amounts_map(partner_amounts_map, vals)
         return partner_amounts_map
 
-    @api.multi
     def _check_config_tag_41(self):
         """ Checks the tag 41, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_41"):
             return
-        for statement in self:
-            if not statement.tag_41_base:
-                raise UserError(
-                    _(
-                        "Tag 41 not configured for this Company! "
-                        "Check the German Tax Tags Configuration."
-                    )
-                )
 
-    @api.multi
     def _check_config_tag_21(self):
         """ Checks the tag 21, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_21"):
             return
-        for statement in self:
-            if not statement.tag_21_base:
-                raise UserError(
-                    _(
-                        "Tag 21 not configured for this Company! "
-                        "Check the German Tax Tags Configuration."
-                    )
-                )
 
     @classmethod
     def _update_partner_amounts_map(cls, partner_amounts_map, vals):
@@ -142,7 +111,6 @@ class VatStatement(models.Model):
             "amount_services": 0.0,
         }
 
-    @api.multi
     def _prepare_zm_line_from_move_line(self, line):
         """ Gets move line details and prepares ZM report line data"""
         self.ensure_one()
@@ -167,14 +135,12 @@ class VatStatement(models.Model):
             "currency_id": self.currency_id.id,
         }
 
-    @api.multi
     def reset(self):
         """ Removes ZM lines if reset to draft"""
         for statement in self:
             statement.zm_line_ids.unlink()
         return super(VatStatement, self).reset()
 
-    @api.multi
     def post(self):
         """ Checks configuration when validating the statement"""
         self.ensure_one()
@@ -192,7 +158,6 @@ class VatStatement(models.Model):
         res.append("zm_total")
         return res
 
-    @api.multi
     def zm_update(self):
         """ Update button"""
         self.ensure_one()
@@ -209,3 +174,62 @@ class VatStatement(models.Model):
 
         # create lines
         self._compute_zm_lines()
+
+    def _round_zm_amount(self, x, n=0):
+        try:
+            return int(x / abs(x) * int(abs(x) * 10 ** n + 0.5) / 10 ** n)
+        except ZeroDivisionError:
+            return 0
+
+    def _generate_zm_download_lines(self):
+        self.ensure_one()
+        res = {}
+        for zml in self.zm_line_ids:
+            if not zml.vat:
+                raise _("Partner {} has no vat id!").format(zml.partner_id.name)
+            vat = zml.vat.replace(" ", "").replace("-", "")
+            if vat not in res:
+                res[vat] = {
+                    "1_country": vat[:2],
+                    "2_vat": vat[2:],
+                    "3_amount_products": zml.amount_products,
+                    "4_amount_services": zml.amount_services,
+                }
+            else:
+                res[vat]["3_amount_products"] += zml.amount_products
+                res[vat]["4_amount_services"] += zml.amount_services
+        lines = [
+            ["Laenderkennzeichen", "USt-IdNr.", "Betrag(Euro)", "Art der Leistung"]
+        ]
+        for vat in res:
+            v = res[vat]
+            amount_products = self._round_zm_amount(v["3_amount_products"])
+            if amount_products:
+                lines.append([v["1_country"], v["2_vat"], amount_products, "L"])
+            amount_services = self._round_zm_amount(v["4_amount_services"])
+            if amount_services:
+                lines.append([v["1_country"], v["2_vat"], amount_services, "S"])
+        return lines
+
+    def zm_download(self):
+        """ Download button """
+        self.ensure_one()
+        self._generate_zm_download_lines()
+        zm_download = "\n".join(
+            ",".join(str(i) for i in line)
+            for line in self._generate_zm_download_lines()
+        )
+        zm_download_base64 = base64.b64encode(zm_download.encode("iso-8859-15"))
+        attachment_id = self.env["ir.attachment"].create(
+            {
+                "name": "{}.csv".format(self.name),
+                "datas": zm_download_base64,
+                "public": True,
+            }
+        )
+        return {
+            "type": "ir.actions.act_url",
+            "url": "/web/content/{}?download=true".format(attachment_id.id),
+            "target": "new",
+            "nodestroy": False,
+        }
