@@ -14,7 +14,7 @@ German VAT Statement Extension
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-germany/tree/11.0/l10n_de_tax_statement_zm
+    :target: https://github.com/OCA/l10n-germany/tree/14.0/l10n_de_tax_statement_zm
     :alt: OCA/l10n-germany
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/l10n-germany-11-0/l10n-germany-11-0-l10n_de_tax_statement_zm
@@ -48,7 +48,7 @@ Installation
 
 To install this module, you need to:
 
-#. Install module *l10n_de_tax_statement* version >= *11.0.1.0.0*.
+#. Install module *l10n_de_tax_statement* version >= *14.0.1.0.0*.
 
 Configuration
 =============
