@@ -294,6 +294,11 @@ class VatStatement(models.Model):
                             column = "tax"
                         else:
                             column = "base"
+
+                    # Workaround for 85_BASE-tagged tax
+                    if code == "85" and "base" in lines[line_code]:
+                        column = "tax"
+
                     lines[line_code][column] -= line.balance
 
     def finalize(self):
