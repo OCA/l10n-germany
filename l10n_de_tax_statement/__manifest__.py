@@ -11,7 +11,6 @@
     "website": "https://github.com/OCA/l10n-germany",
     "depends": ["account", "date_range", "l10n_de_skr03"],
     "data": [
-        "data/account_tags_data.xml",
         "security/ir.model.access.csv",
         "security/tax_statement_security_rule.xml",
         "data/paperformat.xml",

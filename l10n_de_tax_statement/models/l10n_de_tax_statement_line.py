@@ -121,22 +121,67 @@ class VatStatementLine(models.Model):
         vals["domain"] = self._get_move_lines_domain(tax_or_base)
         return vals
 
+    def _match_no_tag(self, line, tax_or_base, tags_map):
+        rep_line = line.tax_repartition_line_id
+        if (
+            rep_line
+            and not rep_line.tag_ids
+            and rep_line.repartition_type == tax_or_base
+        ):
+            # Workaround missing repartition tag
+            if rep_line.invoice_tax_id:
+                tax_id = rep_line.invoice_tax_id
+
+                siblings = tax_id.invoice_repartition_line_ids
+            elif rep_line.refund_tax_id:
+                tax_id = rep_line.refund_tax_id
+
+                siblings = tax_id.refund_repartition_line_ids
+            else:
+                return self.env["account.account.tag"]
+
+            for sibling in siblings.filtered_domain([("tag_ids", "!=", False)]):
+                for tag in sibling.tag_ids:
+                    tag_map = tags_map.get(tag.id, ("", ""))
+                    code, column = tag_map
+                    code = self.statement_id._strip_sign_in_tag_code(code)
+                    line_code = self.statement_id.map_tax_code_line_code(code)
+                    if line_code and line_code == self.code:
+                        return True
+
+        return False
+
+    def _match_tag(self, tax_or_base, code, column):
+        # Special cases
+        if code == "85" and column == "base":
+            return tax_or_base == "tax"
+
+        if tax_or_base == column or not column:
+            return True
+
+        return False
+
     def _get_move_lines_domain(self, tax_or_base):
         all_amls = self.statement_id._get_all_statement_move_lines()
         domain_lines_ids = []
         tags_map = self.statement_id._get_tags_map()
         for line in all_amls:
-            for tag in line.tax_tag_ids:
+            tags = line.tax_tag_ids
+
+            if not line.tax_tag_ids and self._match_no_tag(line, tax_or_base, tags_map):
+                domain_lines_ids += [line.id]
+
+            for tag in tags:
                 tag_map = tags_map.get(tag.id, ("", ""))
                 code, column = tag_map
                 code = self.statement_id._strip_sign_in_tag_code(code)
                 line_code = self.statement_id.map_tax_code_line_code(code)
-                if line_code and line_code == self.code:
-                    if (
-                        (tax_or_base == "tax" and column == "tax")
-                        or (tax_or_base == "base" and column == "base")
-                        or (tax_or_base == "base" and not column)
-                        or (tax_or_base == "tax" and not column)
-                    ):
-                        domain_lines_ids += [line.id]
+                if (
+                    line_code
+                    and line_code == self.code
+                    and self._match_tag(tax_or_base, code, column)
+                ):
+                    domain_lines_ids += [line.id]
+                    continue
+
         return [("id", "in", domain_lines_ids)]
