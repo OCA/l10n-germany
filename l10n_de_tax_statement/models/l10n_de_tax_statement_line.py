@@ -153,7 +153,7 @@ class VatStatementLine(models.Model):
 
     def _match_tag(self, tax_or_base, code, column):
         # Special cases
-        if code == "85" and column == "base":
+        if column == "base" and code in ("85", "47", "74"):
             return tax_or_base == "tax"
 
         if tax_or_base == column or not column:
