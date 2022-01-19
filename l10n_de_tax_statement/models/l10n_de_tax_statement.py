@@ -272,10 +272,49 @@ class VatStatement(models.Model):
         domain = self._get_move_lines_domain()
         return self.env["account.move.line"].search(domain)
 
+    def _match_no_tag(self, lines, move_line, tags_map):
+        rep_line = move_line.tax_repartition_line_id
+        if rep_line and not rep_line.tag_ids:
+            # Workaround missing repartition tag
+            if rep_line.invoice_tax_id:
+                tax_id = rep_line.invoice_tax_id
+
+                siblings = tax_id.invoice_repartition_line_ids
+            elif rep_line.refund_tax_id:
+                tax_id = rep_line.refund_tax_id
+
+                siblings = tax_id.refund_repartition_line_ids
+            else:
+                return False, False
+
+            for sibling in siblings.filtered_domain([("tag_ids", "!=", False)]):
+                for tag in sibling.tag_ids:
+                    tag_map = tags_map.get(tag.id)
+                    if tag_map:
+                        code, column = tag_map
+                        code = self._strip_sign_in_tag_code(code)
+                        line_code = self.map_tax_code_line_code(code)
+                        if not line_code:
+                            continue
+                        # Flip column, to pick the other if only one has a tag
+                        if column == "tax":
+                            column = "base"
+                        else:
+                            column = "tax"
+
+                        return line_code, column
+
+        return False, False
+
     def _set_statement_lines(self, lines, move_lines):
         self.ensure_one()
         tags_map = self._get_tags_map()
         for line in move_lines:
+            if not line.tax_tag_ids:
+                line_code, column = self._match_no_tag(lines, line, tags_map)
+                if line_code and column:
+                    lines[line_code][column] -= line.balance
+
             for tag in line.tax_tag_ids:
                 tag_map = tags_map.get(tag.id)
                 if tag_map:
@@ -296,7 +335,7 @@ class VatStatement(models.Model):
                             column = "base"
 
                     # Workaround for 85_BASE-tagged tax
-                    if code == "85" and "base" in lines[line_code]:
+                    if column == "base" and code in ("85", "47", "74"):
                         column = "tax"
 
                     lines[line_code][column] -= line.balance
