@@ -10,8 +10,6 @@ from odoo.exceptions import UserError
 class VatStatement(models.Model):
     _inherit = "l10n.de.tax.statement"
 
-    tag_41_base = fields.Many2one("account.account.tag", compute="_compute_tag_41")
-    tag_21_base = fields.Many2one("account.account.tag", compute="_compute_tag_41")
     zm_line_ids = fields.One2many(
         "l10n.de.tax.statement.zm.line",
         "statement_id",
@@ -23,17 +21,6 @@ class VatStatement(models.Model):
         readonly=True,
         help="Total amount in currency of the statement.",
     )
-
-    @api.depends("company_id")
-    def _compute_tag_41(self):
-        """Computes Tag 41"""
-        config = self
-        for statement in self:
-            config = self.env["l10n.de.tax.statement.config"].search(
-                [("company_id", "=", statement.company_id.id)], limit=1
-            )
-            statement.tag_41_base = config.tag_41_base
-            statement.tag_21_base = config.tag_21_base
 
     def _compute_zm_lines(self):
         """Computes ZM lines for the report"""
@@ -62,11 +49,23 @@ class VatStatement(models.Model):
             "currency_id": partner_amounts["currency_id"],
         }
 
+    def _check_line_code(self, line, line_code):
+        tags_map = self._get_tags_map()
+        for tag in line.tax_tag_ids:
+            tag_map = tags_map.get(tag.id)
+            if tag_map:
+                code, column = tag_map
+                code = self._strip_sign_in_tag_code(code)
+                if code == line_code:
+                    return True
+
+            return False
+
     def _is_41_line(self, line):
-        self.ensure_one()
+        return self._check_line_code(line, "41")
 
     def _is_21_line(self, line):
-        self.ensure_one()
+        return self._check_line_code(line, "21")
 
     def _get_partner_amounts_map(self):
         """ Generate an internal data structure representing the ICP line"""
@@ -82,16 +81,6 @@ class VatStatement(models.Model):
                     self._init_partner_amounts_map(partner_amounts_map, vals)
                 self._update_partner_amounts_map(partner_amounts_map, vals)
         return partner_amounts_map
-
-    def _check_config_tag_41(self):
-        """ Checks the tag 41, as configured for the tax statement"""
-        if self.env.context.get("skip_check_config_tag_41"):
-            return
-
-    def _check_config_tag_21(self):
-        """ Checks the tag 21, as configured for the tax statement"""
-        if self.env.context.get("skip_check_config_tag_21"):
-            return
 
     @classmethod
     def _update_partner_amounts_map(cls, partner_amounts_map, vals):
@@ -144,8 +133,6 @@ class VatStatement(models.Model):
     def post(self):
         """ Checks configuration when validating the statement"""
         self.ensure_one()
-        self._check_config_tag_41()
-        self._check_config_tag_21()
         res = super(VatStatement, self).post()
         self._compute_zm_lines()
         return res
@@ -167,10 +154,6 @@ class VatStatement(models.Model):
 
         # clean old lines
         self.zm_line_ids.unlink()
-
-        # check config
-        self._check_config_tag_41()
-        self._check_config_tag_21()
 
         # create lines
         self._compute_zm_lines()
