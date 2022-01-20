@@ -36,7 +36,7 @@ class VatStatement(models.Model):
         store=True,
         readonly=False,
     )
-    version = fields.Selection([("2018", "2018"), ("2019", "2019")], required=True)
+    version = fields.Selection([("2018", "2018"), ("2019", "2019/2020")], required=True)
     state = fields.Selection(
         [("draft", "Draft"), ("posted", "Posted"), ("final", "Final")],
         readonly=True,
