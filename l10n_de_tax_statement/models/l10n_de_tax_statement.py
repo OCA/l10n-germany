@@ -23,6 +23,12 @@ from .l10n_de_tax_statement_2019 import (
     _tax_statement_dict_2019,
     _totals_2019,
 )
+from .l10n_de_tax_statement_2021 import (
+    _finalize_lines_2021,
+    _map_tax_code_line_code_2021,
+    _tax_statement_dict_2021,
+    _totals_2021,
+)
 
 
 class VatStatement(models.Model):
@@ -36,7 +42,9 @@ class VatStatement(models.Model):
         store=True,
         readonly=False,
     )
-    version = fields.Selection([("2018", "2018"), ("2019", "2019/2020")], required=True)
+    version = fields.Selection(
+        [("2018", "2018"), ("2019", "2019/2020"), ("2021", "2021/2022")], required=True
+    )
     state = fields.Selection(
         [("draft", "Draft"), ("posted", "Posted"), ("final", "Final")],
         readonly=True,
@@ -195,7 +203,9 @@ class VatStatement(models.Model):
     def _prepare_lines(self):
         self.ensure_one()
 
-        if self.version == "2019":
+        if self.version == "2021":
+            lines = _tax_statement_dict_2021()
+        elif self.version == "2019":
             lines = _tax_statement_dict_2019()
         else:
             lines = _tax_statement_dict_2018()
@@ -204,7 +214,9 @@ class VatStatement(models.Model):
 
     def _finalize_lines(self, lines):
         self.ensure_one()
-        if self.version == "2019":
+        if self.version == "2021":
+            lines = _finalize_lines_2021(lines)
+        elif self.version == "2019":
             lines = _finalize_lines_2019(lines)
         else:
             lines = _finalize_lines_2018(lines)
@@ -423,7 +435,9 @@ class VatStatement(models.Model):
         for statement in self:
             lines = statement.line_ids
 
-            if statement.version == "2019":
+            if statement.version == "2021":
+                list_totals = _totals_2021()
+            elif statement.version == "2019":
                 list_totals = _totals_2019()
             else:
                 list_totals = _totals_2018()
@@ -443,7 +457,9 @@ class VatStatement(models.Model):
 
     def map_tax_code_line_code(self, code):
         self.ensure_one()
-        if self.version == "2019":
+        if self.version == "2021":
+            map_tax_line_code = _map_tax_code_line_code_2021()
+        elif self.version == "2019":
             map_tax_line_code = _map_tax_code_line_code_2019()
         else:
             map_tax_line_code = _map_tax_code_line_code_2018()
