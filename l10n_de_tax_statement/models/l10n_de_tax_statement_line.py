@@ -20,6 +20,13 @@ from .l10n_de_tax_statement_2019 import (
     _tax_display_2019,
     _total_display_2019,
 )
+from .l10n_de_tax_statement_2021 import (
+    _base_display_2021,
+    _editable_display_2021,
+    _group_display_2021,
+    _tax_display_2021,
+    _total_display_2021,
+)
 
 
 class VatStatementLine(models.Model):
@@ -48,7 +55,10 @@ class VatStatementLine(models.Model):
     @api.depends("base", "tax", "code")
     def _compute_amount_format(self):
         for line in self:
-            if line.statement_id.version == "2019":
+            if line.statement_id.version == "2021":
+                base_display = _base_display_2021()
+                tax_display = _tax_display_2021()
+            elif line.statement_id.version == "2019":
                 base_display = _base_display_2019()
                 tax_display = _tax_display_2019()
             else:
@@ -67,7 +77,10 @@ class VatStatementLine(models.Model):
     @api.depends("code")
     def _compute_is_group(self):
         for line in self:
-            if line.statement_id.version == "2019":
+            if line.statement_id.version == "2021":
+                group_display = _group_display_2021()
+                total_display = _total_display_2021()
+            elif line.statement_id.version == "2019":
                 group_display = _group_display_2019()
                 total_display = _total_display_2019()
             else:
@@ -80,7 +93,9 @@ class VatStatementLine(models.Model):
     @api.depends("code")
     def _compute_is_readonly(self):
         for line in self:
-            if line.statement_id.version == "2019":
+            if line.statement_id.version == "2021":
+                editable_display = _editable_display_2021()
+            elif line.statement_id.version == "2019":
                 editable_display = _editable_display_2019()
             else:
                 editable_display = _editable_display_2018()
