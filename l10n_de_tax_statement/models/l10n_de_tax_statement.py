@@ -360,6 +360,18 @@ class VatStatement(models.Model):
     def post(self):
         self.ensure_one()
 
+        prev_open_statements = self.search([
+            ('company_id', '=', self.company_id.id),
+            ('state', '=', 'draft'),
+            ('id', '<', self.id)
+        ], limit=1)
+
+        if prev_open_statements:
+            raise UserError(
+                _('You cannot post a statement if all the previous '
+                  'statements are not yet posted! '
+                  'Please Post all the other statements first.'))
+
         self.write({"state": "posted", "date_posted": fields.Datetime.now()})
         self.unreported_move_ids.filtered(
             lambda m: m.l10n_de_tax_statement_include
