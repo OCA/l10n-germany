@@ -130,7 +130,7 @@ class VatStatementLine(models.Model):
 
     def get_lines_action(self, tax_or_base="tax"):
         self.ensure_one()
-        action = self.env.ref("account.action_account_moves_all_tree")
+        action = self.sudo().env.ref("account.action_account_moves_all_tree")
         vals = action.read()[0]
         vals["context"] = {}
         vals["domain"] = self._get_move_lines_domain(tax_or_base)
