@@ -161,6 +161,11 @@ class VatStatementLine(models.Model):
                     code, column = tag_map
                     code = self.statement_id._strip_sign_in_tag_code(code)
                     line_code = self.statement_id.map_tax_code_line_code(code)
+
+                    # Special case, otherwise 62 appears twice and sums up to zero
+                    if code == "62":
+                        return False
+
                     if line_code and line_code == self.code:
                         return True
 
