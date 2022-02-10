@@ -315,6 +315,10 @@ class VatStatement(models.Model):
                         else:
                             column = "tax"
 
+                        # Special case, otherwise 62 appears twice and sums up to zero
+                        if code == "62":
+                            return False, False
+
                         return line_code, column
 
         return False, False
@@ -347,7 +351,7 @@ class VatStatement(models.Model):
                         else:
                             column = "tax"
 
-                    # Workaround for 85_BASE-tagged tax
+                    # Workaround for falsely-tagged tax
                     if column == "base" and code in ("85", "47", "74"):
                         column = "tax"
 
