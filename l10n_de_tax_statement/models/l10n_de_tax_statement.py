@@ -342,10 +342,10 @@ class VatStatement(models.Model):
                             )
                         )
                     if not column:
-                        if "tax" in lines[line_code]:
-                            column = "tax"
-                        else:
+                        if "base" in lines[line_code]:
                             column = "base"
+                        else:
+                            column = "tax"
 
                     # Workaround for 85_BASE-tagged tax
                     if column == "base" and code in ("85", "47", "74"):
