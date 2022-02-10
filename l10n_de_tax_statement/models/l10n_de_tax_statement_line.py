@@ -168,7 +168,13 @@ class VatStatementLine(models.Model):
 
     def _match_tag(self, tax_or_base, code, column):
         # Special cases
-        if column == "base" and code in ("85", "47", "74"):
+        if column == "base" and code in ("85", "74"):
+            return tax_or_base == "tax"
+
+        # No column value
+        if code == "46":
+            return tax_or_base == "base"
+        if code == "47":
             return tax_or_base == "tax"
 
         if tax_or_base == column or not column:
@@ -191,6 +197,7 @@ class VatStatementLine(models.Model):
                 code, column = tag_map
                 code = self.statement_id._strip_sign_in_tag_code(code)
                 line_code = self.statement_id.map_tax_code_line_code(code)
+
                 if (
                     line_code
                     and line_code == self.code
