@@ -181,6 +181,10 @@ class VatStatementLine(models.Model):
             return tax_or_base == "base"
         if code == "47":
             return tax_or_base == "tax"
+        if code == "84":
+            return tax_or_base == "base"
+        if code == "85":
+            return tax_or_base == "tax"
 
         if tax_or_base == column or not column:
             return True
