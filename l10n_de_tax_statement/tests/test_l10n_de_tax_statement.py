@@ -110,11 +110,11 @@ class TestVatStatement(TransactionCase):
             }
         )
 
-        self.tax_1 = self.env["account.tax"].create({"name": "Tax 1", "amount": 22.5})
+        self.tax_1 = self.env["account.tax"].create({"name": "Tax 1", "amount": 19})
         self.tax_1.invoice_repartition_line_ids[0].tag_ids = self.tag_1
         self.tax_1.invoice_repartition_line_ids[1].tag_ids = self.tag_2
 
-        self.tax_2 = self.env["account.tax"].create({"name": "Tax 2", "amount": 22.5})
+        self.tax_2 = self.env["account.tax"].create({"name": "Tax 2", "amount": 7})
         self.tax_2.invoice_repartition_line_ids[0].tag_ids = self.tag_3
         self.tax_2.invoice_repartition_line_ids[1].tag_ids = self.tag_4
 
