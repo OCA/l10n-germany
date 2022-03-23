@@ -380,3 +380,16 @@ class TestVatStatement(TransactionCase):
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 44)
         self.assertEqual(self.statement_1.tax_total, 22.5)
+
+    def test_15_2021_version(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice()
+        self.invoice_1.action_post()
+        self.statement_1.version = "2021"
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 45)
+        self.assertEqual(self.statement_1.tax_total, 22.5)
