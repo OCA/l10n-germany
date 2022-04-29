@@ -47,6 +47,7 @@ Contributors
 
 * Yu Weng <yweng@elegosoft.com>
 * Nikolina Todorova <nikolina.todorova@initos.com>
+* Achraf Mhadhbi <machraf@bloopark.de>
 
 Do not contact contributors directly about support or help with technical issues.
 

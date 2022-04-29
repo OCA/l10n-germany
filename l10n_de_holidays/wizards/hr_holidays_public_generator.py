@@ -27,9 +27,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
     _name = "hr.holidays.public.generator"
     _description = "Generate public holidays"
 
-    year = fields.Integer(
-        "Year", required=True, default=(lambda self: datetime.today().year)
-    )
+    year = fields.Integer(required=True, default=(lambda self: datetime.today().year))
     country_id = fields.Many2one(
         "res.country",
         string="Country",
@@ -61,9 +59,12 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             if not hasattr(self, function_name):
                 raise UserError(
                     _(
-                        """There is no copy function defined for this county or
-                    the function name does not fit the requirement -
-                    action_copy_%s_holidays where %s id the county code."""
+                        "There is no copy function defined for this county or the "
+                        "function name does not fit the requirement "
+                        "-action_copy_%(function_name)s_holidays where "
+                        "%(function_name)s id the county "
+                        "code.",
+                        function_name=function_name,
                     )
                 )
             getattr(self, function_name)()
@@ -72,10 +73,11 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             if not hasattr(self, function_name):
                 raise UserError(
                     _(
-                        """There is no generate function defined for this county
-                    or the function name does not fit the requirement -
-                    action_generate_%s_holidays where %s is
-                    the county code."""
+                        "There is no generate function defined for this county or the "
+                        "function name does not fit the requirement "
+                        "-action_generate_%(function_name)s_holidays where "
+                        "%(function_name)s is the county code.",
+                        function_name=function_name,
                     )
                 )
             getattr(self, function_name)()
