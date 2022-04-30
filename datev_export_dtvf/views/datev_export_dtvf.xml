@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Hunki Enterprises BV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+<record id="l10n_de_dtfv_export_view_form" model="ir.ui.view">
+    <field name="model">datev_export_dtvf.export</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button
+                        type="object"
+                        name="action_generate"
+                        states="draft"
+                        class="btn-primary"
+                        string="Generate"
+                    />
+                <button
+                        type="object"
+                        name="action_draft"
+                        states="done"
+                        class="btn-secondary"
+                        string="Reset to draft"
+                    />
+                <field name="state" widget="statusbar" />
+            </header>
+            <sheet>
+                <group name="data">
+                    <field name="fiscalyear_id" />
+                    <field name="fiscalyear_start" invisible="True" />
+                    <field name="fiscalyear_end" invisible="True" />
+                    <field
+                            name="period_ids"
+                            domain="[('date_start', '&gt;=', fiscalyear_start), ('date_end', '&lt;=', fiscalyear_end)]"
+                            attrs="{'readonly': [('fiscalyear_id', '=', False)]}"
+                        />
+                    <field name="journal_ids" widget="many2many_tags" />
+                </group>
+                <group name="result" states="done">
+                    <field name="date_generated" />
+                    <field name="file_name" invisible="True" />
+                    <field name="file_data" filename="file_name" />
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="datev_export_dtvf_view_tree" model="ir.ui.view">
+    <field name="model">datev_export_dtvf.export</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="display_name" />
+            <field name="fiscalyear_id" />
+            <field name="state" />
+            <field name="date_generated" />
+        </tree>
+    </field>
+</record>
+
+<record id="action_datev_export_dtvf" model="ir.actions.act_window">
+    <field name="res_model">datev_export_dtvf.export</field>
+    <field name="name">DATEV DTVF Export</field>
+</record>
+
+<menuitem
+        id="menu_datev_export_dtvf"
+        parent="account.menu_finance_reports"
+        sequence="110"
+        action="action_datev_export_dtvf"
+    />
+
+</odoo>
