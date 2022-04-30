@@ -18,3 +18,8 @@ class ResCompany(models.Model):
         size=5,
         help="Number from 0 to 99999",
     )
+
+    datev_account_code_length = fields.Integer(
+        string="DATEV account code length",
+        default=5,
+    )

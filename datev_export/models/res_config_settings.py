@@ -16,3 +16,8 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.datev_client_number",
         readonly=False,
     )
+
+    datev_account_code_length = fields.Integer(
+        related="company_id.datev_account_code_length",
+        readonly=False,
+    )
