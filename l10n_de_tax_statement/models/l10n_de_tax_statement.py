@@ -101,9 +101,9 @@ class VatStatement(models.Model):
 
     def _init_move_line_domain(self):
         return [
-            ("company_id", "=", self.company_id.id),
-            ("l10n_de_tax_statement_id", "=", False),
-            ("parent_state", "=", "posted"),
+            ("move_id.company_id", "=", self.company_id.id),
+            ("move_id.l10n_de_tax_statement_id", "=", False),
+            ("move_id.state", "=", "posted"),
             "|",
             ("tax_ids", "!=", False),
             ("tax_line_id", "!=", False),
