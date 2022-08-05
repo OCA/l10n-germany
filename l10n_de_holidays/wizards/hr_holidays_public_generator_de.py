@@ -215,6 +215,18 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 'state_ids': [(6, 0, state_ids)],
                 'year_id': existing_holidays.id
             })
+        # Berlin
+        codes = ['BE']
+        state_ids = self.get_state_ids(codes)
+
+        if not state or state.id in state_ids:
+            public_holiday_line_obj.create({
+                'name': _("International Women's Day"),
+                'date': "%s-03-08" % existing_holidays.year,
+                'variable_date': False,
+                'state_ids': [(6, 0, state_ids)],
+                'year_id': existing_holidays.id
+            })
 
     @api.multi
     def action_delete_holidays(self, existing_holidays):
