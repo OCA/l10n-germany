@@ -132,6 +132,12 @@ msgid "ID"
 msgstr ""
 
 #. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:224
+#, python-format
+msgid "International Women's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:128
 #, python-format
 msgid "International Workers' Day"
@@ -204,7 +210,7 @@ msgid "Year"
 msgstr ""
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:264
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:276
 #, python-format
 msgid "You cannot copy the holidays to the same year."
 msgstr ""
