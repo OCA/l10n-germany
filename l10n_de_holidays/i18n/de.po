@@ -17,111 +17,211 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:206
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:200
 #, python-format
 msgid "All Saints' Day"
 msgstr "Allerheiligen"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:68
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:69
 #, python-format
 msgid "Ascension Day"
 msgstr "Christi Himmelfahrt"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:167
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:173
 #, python-format
 msgid "Assumption Day"
 msgstr "Mariä Himmelfahrt"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:136
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:146
 #, python-format
 msgid "Boxing Day"
 msgstr "2. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:130
+#: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:140
 #, python-format
 msgid "Christmas Day"
 msgstr "1. Weihnachtsfeiertag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:100
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:110
 #, python-format
 msgid "Corpus Christi"
 msgstr "Fronleichnam"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:124
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__country_id
+msgid "Country"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:134
 #, python-format
 msgid "Day of German Unity"
 msgstr "Tag der Deutschen Einheit"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:189
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:187
 #, python-format
 msgid "Day of Reformation"
 msgstr "Reformationstag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:62
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:63
 #, python-format
 msgid "Easter Monday"
 msgstr "Ostermontag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:57
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:58
 #, python-format
 msgid "Easter Sunday"
 msgstr "Ostersonntag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:51
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__template_id
+msgid "From Template"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
+msgid "Generate"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.actions.act_window,name:l10n_de_holidays.hr_holidays_public_generator_action
+#: model:ir.ui.menu,name:l10n_de_holidays.hr_holidays_public_generator_menu
+#: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
+msgid "Generate Public Holidays"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model,name:l10n_de_holidays.model_hr_holidays_public_generator
+msgid "Generate public holidays - Calculations"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:52
 #, python-format
 msgid "Good Friday"
 msgstr "Karfreitag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:118
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:224
+#, python-format
+msgid "International Women's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:128
 #, python-format
 msgid "International Workers' Day"
 msgstr "Tag der Arbeit"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:112
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:122
 #, python-format
 msgid "New Years's Day"
 msgstr "Neujahr"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:217
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:212
 #, python-format
 msgid "Repentance Day"
 msgstr "Buß- und Bettag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:153
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__state_id
+msgid "State"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator.py:71
+#, python-format
+msgid ""
+"There is no copy function defined for this county or\n"
+"                    the function name does not fit the requirement -\n"
+"                    action_copy_%s_holidays where %s id the county code."
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator.py:80
+#, python-format
+msgid ""
+"There is no generate function defined for this county\n"
+"                    or the function name does not fit the requirement -\n"
+"                    action_generate_%s_holidays where %s is\n"
+"                    the county code."
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:161
 #, python-format
 msgid "Three Kings Day"
 msgstr "Heilige Drei Könige"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:75
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:76
 #, python-format
 msgid "Whit Monday"
 msgstr "Pfingstmontag"
 
 #. module: l10n_de_holidays
-#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:269
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__year
+msgid "Year"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:276
 #, python-format
 msgid "You cannot copy the holidays to the same year."
 msgstr "Sie können die Feiertage nicht für dasselbe Jahr kopieren."
 
-#. module: l10n_de_holidays
-#: model:ir.model,name:l10n_de_holidays.model_hr_holidays_public_generator
-msgid "hr.holidays.public.generator"
-msgstr "hr.holidays.public.generator"
+#~ msgid "hr.holidays.public.generator"
+#~ msgstr "hr.holidays.public.generator"
 
 #~ msgid "Warning"
 #~ msgstr "Warnung"
