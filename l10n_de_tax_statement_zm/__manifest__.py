@@ -12,6 +12,7 @@
     "website": "https://github.com/OCA/l10n-germany",
     "depends": [
         "l10n_de_tax_statement",
+        "sale",
     ],
     "data": [
         "security/ir.model.access.csv",
