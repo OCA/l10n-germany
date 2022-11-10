@@ -116,9 +116,9 @@ class VatStatement(models.Model):
             amount_services = balance * -1
 
         return {
-            "partner_id": line.partner_id.id,
-            "country_code": line.partner_id.country_id.code,
-            "vat": line.partner_id.vat,
+            "partner_id": line.move_id.partner_shipping_id.id,
+            "country_code": line.move_id.partner_shipping_id.country_id.code,
+            "vat": line.move_id.partner_shipping_id.vat,
             "amount_products": amount_products,
             "amount_services": amount_services,
             "currency_id": self.currency_id.id,
