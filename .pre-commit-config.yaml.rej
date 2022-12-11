@@ -1,0 +1,10 @@
+diff a/.pre-commit-config.yaml b/.pre-commit-config.yaml	(rejected hunks)
+@@ -30,2 +29,3 @@ repos:
+         files: "\\.rej$"
++        stages: [commit, push, manual]
+   - repo: https://github.com/oca/maintainer-tools
+@@ -49,3 +49,3 @@ repos:
+   - repo: https://github.com/psf/black
+-    rev: 20.8b1
++    rev: 22.3.0
+     hooks:
