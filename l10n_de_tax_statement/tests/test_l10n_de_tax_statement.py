@@ -104,7 +104,7 @@ class TestVatStatement(TransactionCase):
         )
         self.tag_6 = self.env["account.account.tag"].create(
             {
-                "name": "+21",
+                "name": "+62",
                 "applicability": "taxes",
                 "country_id": self.env.ref("base.de").id,
             }
@@ -118,11 +118,19 @@ class TestVatStatement(TransactionCase):
         self.tax_2.invoice_repartition_line_ids[0].tag_ids = self.tag_3
         self.tax_2.invoice_repartition_line_ids[1].tag_ids = self.tag_4
 
+        self.tax_3 = self.env["account.tax"].create({"name": "Tax 3", "amount": 25})
+        self.tax_3.invoice_repartition_line_ids[0].tag_ids = self.tag_5
+        self.tax_3.invoice_repartition_line_ids[1].tag_ids = self.tag_5
+
+        self.tax_4 = self.env["account.tax"].create({"name": "Tax 4", "amount": 5})
+        self.tax_4.invoice_repartition_line_ids[0].tag_ids = self.tag_6
+        self.tax_4.invoice_repartition_line_ids[1].tag_ids = self.tag_6
+
         self.statement_1 = self.env["l10n.de.tax.statement"].create(
             {"name": "Statement 1", "version": "2018"}
         )
 
-    def _create_test_invoice(self):
+    def _create_test_invoice(self, additional=False):
         journal = self.env["account.journal"].create(
             {"name": "Journal 1", "code": "Jou1", "type": "sale"}
         )
@@ -154,8 +162,23 @@ class TestVatStatement(TransactionCase):
             line.price_unit = 50.0
             line.tax_ids.clear()
             line.tax_ids.add(self.tax_2)
+        if additional:
+            with invoice_form.invoice_line_ids.new() as line:
+                line.name = "Test line"
+                line.quantity = 1.0
+                line.account_id = account_receivable
+                line.price_unit = 100.0
+                line.tax_ids.clear()
+                line.tax_ids.add(self.tax_3)
+            with invoice_form.invoice_line_ids.new() as line:
+                line.name = "Test line"
+                line.quantity = 1.0
+                line.account_id = account_receivable
+                line.price_unit = 100.0
+                line.tax_ids.clear()
+                line.tax_ids.add(self.tax_4)
         self.invoice_1 = invoice_form.save()
-        self.assertEqual(len(self.invoice_1.line_ids), 5)
+        self.assertEqual(len(self.invoice_1.line_ids), 5 if not additional else 9)
 
     def test_01_onchange(self):
         daterange_type = self.env["date.range.type"].create({"name": "Type 1"})
@@ -393,3 +416,31 @@ class TestVatStatement(TransactionCase):
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
         self.assertEqual(self.statement_1.tax_total, 22.5)
+
+    def test_16_2021_version_unreported_move_from_date_false(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice(additional=True)
+        self.invoice_1.action_post()
+        self.statement_1.version = "2021"
+        self.statement_1.unreported_move_from_date = False
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 45)
+        self.assertEqual(self.statement_1.tax_total, 127.5)
+
+    def test_17_2021_version_is_invoice_basis_false(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice(additional=True)
+        self.invoice_1.action_post()
+        self.statement_1.version = "2021"
+        self.statement_1.company_id.l10n_de_tax_invoice_basis = False
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 45)
+        self.assertEqual(self.statement_1.tax_total, 127.5)
