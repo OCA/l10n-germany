@@ -124,7 +124,6 @@ class TestVatStatement(TransactionCase):
 
         self.tax_4 = self.env["account.tax"].create({"name": "Tax 4", "amount": 5})
         self.tax_4.invoice_repartition_line_ids[0].tag_ids = self.tag_6
-        self.tax_4.invoice_repartition_line_ids[1].tag_ids = self.tag_6
 
         self.statement_1 = self.env["l10n.de.tax.statement"].create(
             {"name": "Statement 1", "version": "2018"}
@@ -429,7 +428,7 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 127.5)
+        self.assertEqual(self.statement_1.tax_total, 122.5)
 
     def test_17_2021_version_is_invoice_basis_false(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -443,4 +442,4 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 127.5)
+        self.assertEqual(self.statement_1.tax_total, 122.5)
