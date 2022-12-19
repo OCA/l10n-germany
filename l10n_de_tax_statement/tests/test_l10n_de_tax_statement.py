@@ -155,14 +155,14 @@ class TestVatStatement(TransactionCase):
         self.tax_5.invoice_repartition_line_ids[1].tag_ids = self.tag_8
 
         self.tax_6 = self.env["account.tax"].create({"name": "Tax 6", "amount": 7})
-        self.tax_6.invoice_repartition_line_ids[0].tag_ids = self.tag_9
-        self.tax_6.invoice_repartition_line_ids[1].tag_ids = self.tag_10
+        self.tax_6.refund_repartition_line_ids[0].tag_ids = self.tag_9
+        self.tax_6.refund_repartition_line_ids[1].tag_ids = self.tag_10
 
         self.statement_1 = self.env["l10n.de.tax.statement"].create(
             {"name": "Statement 1", "version": "2018"}
         )
 
-    def _create_test_invoice(self, additional=False):
+    def _create_test_invoice(self, additional=False, refund=False):
         journal = self.env["account.journal"].create(
             {"name": "Journal 1", "code": "Jou1", "type": "sale"}
         )
@@ -175,7 +175,9 @@ class TestVatStatement(TransactionCase):
             }
         )
         invoice_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice")
+            self.env["account.move"].with_context(
+                default_move_type="out_refund" if refund else "out_invoice"
+            ),
         )
         invoice_form.partner_id = partner
         invoice_form.journal_id = journal
@@ -490,3 +492,17 @@ class TestVatStatement(TransactionCase):
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
         self.assertEqual(self.statement_1.tax_total, 122.5)
+
+    def test_18_2021_version_refund(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice(additional=True, refund=True)
+        self.invoice_1.action_post()
+        self.statement_1.version = "2021"
+        self.statement_1.company_id.l10n_de_tax_invoice_basis = False
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 45)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
