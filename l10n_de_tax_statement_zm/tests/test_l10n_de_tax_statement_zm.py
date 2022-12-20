@@ -50,7 +50,7 @@ class VatStatement(models.Model):
 
     @api.model
     def _prepare_zm_line(self, partner_amounts):
-        """ Prepares an internal data structure representing the ZM line"""
+        """Prepares an internal data structure representing the ZM line"""
         return {
             "country_code": partner_amounts["country_code"],
             "vat": partner_amounts["vat"],
@@ -78,7 +78,7 @@ class VatStatement(models.Model):
         return False
 
     def _get_partner_amounts_map(self):
-        """ Generate an internal data structure representing the ICP line"""
+        """Generate an internal data structure representing the ICP line"""
         self.ensure_one()
 
         partner_amounts_map = {}
@@ -93,7 +93,7 @@ class VatStatement(models.Model):
         return partner_amounts_map
 
     def _check_config_tag_41(self):
-        """ Checks the tag 41, as configured for the tax statement"""
+        """Checks the tag 41, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_41"):
             return
         for statement in self:
@@ -106,7 +106,7 @@ class VatStatement(models.Model):
                 )
 
     def _check_config_tag_21(self):
-        """ Checks the tag 21, as configured for the tax statement"""
+        """Checks the tag 21, as configured for the tax statement"""
         if self.env.context.get("skip_check_config_tag_21"):
             return
         for statement in self:
@@ -120,14 +120,14 @@ class VatStatement(models.Model):
 
     @classmethod
     def _update_partner_amounts_map(cls, partner_amounts_map, vals):
-        """ Update amounts of the internal ICP lines data structure"""
+        """Update amounts of the internal ICP lines data structure"""
         map_data = partner_amounts_map[vals["partner_id"]]
         map_data["amount_products"] += vals["amount_products"]
         map_data["amount_services"] += vals["amount_services"]
 
     @classmethod
     def _init_partner_amounts_map(cls, partner_amounts_map, vals):
-        """ Initialize the internal ICP lines data structure"""
+        """Initialize the internal ICP lines data structure"""
         partner_amounts_map[vals["partner_id"]] = {
             "country_code": vals["country_code"],
             "vat": vals["vat"],
@@ -137,7 +137,7 @@ class VatStatement(models.Model):
         }
 
     def _prepare_zm_line_from_move_line(self, line):
-        """ Gets move line details and prepares ZM report line data"""
+        """Gets move line details and prepares ZM report line data"""
         self.ensure_one()
 
         balance = line.balance and -line.balance or 0
@@ -161,12 +161,12 @@ class VatStatement(models.Model):
         }
 
     def reset(self):
-        """ Removes ZM lines if reset to draft"""
+        """Removes ZM lines if reset to draft"""
         self.mapped("zm_line_ids").unlink()
         return super().reset()
 
     def post(self):
-        """ Checks configuration when validating the statement"""
+        """Checks configuration when validating the statement"""
         self.ensure_one()
         self._check_config_tag_41()
         self._check_config_tag_21()
@@ -176,14 +176,14 @@ class VatStatement(models.Model):
 
     @api.model
     def _modifiable_values_when_posted(self):
-        """ Returns the modifiable fields even when the statement is posted"""
+        """Returns the modifiable fields even when the statement is posted"""
         res = super()._modifiable_values_when_posted()
         res.append("zm_line_ids")
         res.append("zm_total")
         return res
 
     def zm_update(self):
-        """ Update button"""
+        """Update button"""
         self.ensure_one()
 
         if self.state in ["final"]:
