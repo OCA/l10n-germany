@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 BIG-Consulting GmbH (<https://www.openbig.org>)
+     Copyright 2019 Onestein (<http://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="action_report_tax_statement_report" model="ir.actions.report">
+        <field name="name">UstVA-Report</field>
+        <field name="model">l10n.de.tax.statement</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">l10n_de_tax_statement.report_tax_statement</field>
+        <field name="report_file">l10n_de_tax_statement.report_tax_statement</field>
+        <field name="print_report_name">(object.name)</field>
+        <field name="binding_model_id" ref="model_l10n_de_tax_statement" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_de_tax_statement" />
+    </record>
+
+</odoo>
