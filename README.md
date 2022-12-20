@@ -26,6 +26,7 @@ addon | version | maintainers | summary
 [l10n_de_skr03_mis_reports](l10n_de_skr03_mis_reports/) | 14.0.1.0.0 |  | MIS Builder templates for the German P&L and Balance Sheets (SKR03)
 [l10n_de_skr04_mis_reports](l10n_de_skr04_mis_reports/) | 14.0.1.0.0 |  | MIS Builder templates for the German P&L and Balance Sheets (SKR04)
 [l10n_de_steuernummer](l10n_de_steuernummer/) | 14.0.1.0.0 |  | German SteuerNummer validation
+[l10n_de_tax_statement](l10n_de_tax_statement/) | 14.0.1.0.0 |  | German VAT Statement
 [l10n_de_toponyms](l10n_de_toponyms/) | 14.0.1.0.0 |  | German Toponyms
 
 [//]: # (end addons)
