@@ -40,7 +40,7 @@ class VatStatement(models.Model):
 
     @api.model
     def _prepare_zm_line(self, partner_amounts):
-        """ Prepares an internal data structure representing the ZM line"""
+        """Prepares an internal data structure representing the ZM line"""
         return {
             "country_code": partner_amounts["country_code"],
             "vat": partner_amounts["vat"],
@@ -68,7 +68,7 @@ class VatStatement(models.Model):
         return self._check_line_code(line, "21")
 
     def _get_partner_amounts_map(self):
-        """ Generate an internal data structure representing the ICP line"""
+        """Generate an internal data structure representing the ICP line"""
         self.ensure_one()
 
         partner_amounts_map = {}
@@ -84,14 +84,14 @@ class VatStatement(models.Model):
 
     @classmethod
     def _update_partner_amounts_map(cls, partner_amounts_map, vals):
-        """ Update amounts of the internal ICP lines data structure"""
+        """Update amounts of the internal ICP lines data structure"""
         map_data = partner_amounts_map[vals["partner_id"]]
         map_data["amount_products"] += vals["amount_products"]
         map_data["amount_services"] += vals["amount_services"]
 
     @classmethod
     def _init_partner_amounts_map(cls, partner_amounts_map, vals):
-        """ Initialize the internal ICP lines data structure"""
+        """Initialize the internal ICP lines data structure"""
         partner_amounts_map[vals["partner_id"]] = {
             "country_code": vals["country_code"],
             "vat": vals["vat"],
@@ -101,7 +101,7 @@ class VatStatement(models.Model):
         }
 
     def _prepare_zm_line_from_move_line(self, line):
-        """ Gets move line details and prepares ZM report line data"""
+        """Gets move line details and prepares ZM report line data"""
         self.ensure_one()
 
         balance = line.balance
@@ -125,13 +125,13 @@ class VatStatement(models.Model):
         }
 
     def reset(self):
-        """ Removes ZM lines if reset to draft"""
+        """Removes ZM lines if reset to draft"""
         for statement in self:
             statement.zm_line_ids.unlink()
         return super(VatStatement, self).reset()
 
     def post(self):
-        """ Checks configuration when validating the statement"""
+        """Checks configuration when validating the statement"""
         self.ensure_one()
         res = super(VatStatement, self).post()
         self._compute_zm_lines()
@@ -139,14 +139,14 @@ class VatStatement(models.Model):
 
     @api.model
     def _modifiable_values_when_posted(self):
-        """ Returns the modifiable fields even when the statement is posted"""
+        """Returns the modifiable fields even when the statement is posted"""
         res = super(VatStatement, self)._modifiable_values_when_posted()
         res.append("zm_line_ids")
         res.append("zm_total")
         return res
 
     def zm_update(self):
-        """ Update button"""
+        """Update button"""
         self.ensure_one()
 
         if self.state in ["final"]:
@@ -160,7 +160,7 @@ class VatStatement(models.Model):
 
     def _round_zm_amount(self, x, n=0):
         try:
-            return int(x / abs(x) * int(abs(x) * 10 ** n + 0.5) / 10 ** n)
+            return int(x / abs(x) * int(abs(x) * 10**n + 0.5) / 10**n)
         except ZeroDivisionError:
             return 0
 
@@ -195,7 +195,7 @@ class VatStatement(models.Model):
         return lines
 
     def zm_download(self):
-        """ Download button """
+        """Download button"""
         self.ensure_one()
         self._generate_zm_download_lines()
         zm_download = "\n".join(
