@@ -10,5 +10,12 @@
     "author": "Hunki Enterprises BV, Odoo Community Association (OCA)",
     "maintainers": ["hbrunn"],
     "license": "AGPL-3",
-    "depends": ["account"],
+    "depends": [
+        "account",
+        "auditlog",
+    ],
+    "data": [
+        "data/auditlog_rule.xml",
+        "data/ir_cron.xml",
+    ],
 }

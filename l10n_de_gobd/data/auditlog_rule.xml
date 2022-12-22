@@ -1,0 +1,26 @@
+<odoo noupdate="1">
+    <record id="rule_partner" model="auditlog.rule">
+        <field name="name">Partners</field>
+        <field name="model_id" ref="base.model_res_partner" />
+        <field name="log_type">fast</field>
+        <field name="state">subscribed</field>
+    </record>
+    <record id="rule_partner_bank" model="auditlog.rule">
+        <field name="name">Partner bank accounts</field>
+        <field name="model_id" ref="base.model_res_partner_bank" />
+        <field name="log_type">fast</field>
+        <field name="state">subscribed</field>
+    </record>
+    <record id="rule_account_move" model="auditlog.rule">
+        <field name="name">Journal entries</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="log_type">fast</field>
+        <field name="state">subscribed</field>
+    </record>
+    <record id="rule_account_move_line" model="auditlog.rule">
+        <field name="name">Journal items</field>
+        <field name="model_id" ref="account.model_account_move_line" />
+        <field name="log_type">fast</field>
+        <field name="state">subscribed</field>
+    </record>
+</odoo>

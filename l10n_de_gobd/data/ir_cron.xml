@@ -1,0 +1,14 @@
+<odoo noupdate="1">
+    <record id="cron_update_lock_date" model="ir.cron">
+        <field name="name">Update accounting lock date</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="nextcall">2022-01-10 12:00:00</field>
+        <field name="model_id" ref="base.model_res_company" />
+        <field name="code">
+            env['res.company'].search([]).write({
+                'period_lock_date': datetime.date.today() + dateutil.relativedelta.relativedelta(months=-2, day=32),
+            })
+        </field>
+    </record>
+</odoo>
