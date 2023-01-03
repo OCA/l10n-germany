@@ -169,7 +169,9 @@ class VatStatement(models.Model):
         res = {}
         for zml in self.zm_line_ids:
             if not zml.vat:
-                raise _("Partner {} has no vat id!").format(zml.partner_id.name)
+                raise UserError(
+                    _("Partner {} has no vat id!").format(zml.partner_id.name)
+                )
             vat = zml.vat.replace(" ", "").replace("-", "")
             if vat not in res:
                 res[vat] = {
