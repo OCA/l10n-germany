@@ -239,3 +239,21 @@ class TestTaxStatementZM(TransactionCase):
 
         with self.assertRaises(ValidationError):
             self.statement_with_zm.post()
+
+    def test_06_zm_invoice_download(self):
+        self.statement_1.post()
+        self.statement_with_zm = self.env["l10n.de.tax.statement"].create(
+            {
+                "name": "Statement 1",
+                "version": "2021",
+            }
+        )
+
+        invoice = self._create_test_invoice()
+        invoice.partner_id.country_id = self.env.ref("base.nl")
+        invoice.partner_id.vat = "NL000099998B57"
+        invoice.action_post()
+        self.statement_with_zm.statement_update()
+        self.statement_with_zm.post()
+
+        self.statement_with_zm.zm_download()
