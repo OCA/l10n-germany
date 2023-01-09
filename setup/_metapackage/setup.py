@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-l10n_de_skr04_mis_reports',
         'odoo14-addon-l10n_de_steuernummer',
         'odoo14-addon-l10n_de_tax_statement',
+        'odoo14-addon-l10n_de_tax_statement_zm',
         'odoo14-addon-l10n_de_toponyms',
     ],
     classifiers=[
