@@ -451,7 +451,7 @@ class VatStatement(models.Model):
                 )
             if statement.state == "final":
                 raise UserError(_("You cannot delete a statement set as final!"))
-        super().unlink()
+        return super().unlink()
 
     @api.depends("line_ids.tax")
     def _compute_tax_total(self):

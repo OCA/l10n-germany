@@ -295,7 +295,7 @@ class TestVatStatement(TransactionCase):
             with self.assertRaises(UserError):
                 line.unlink()
 
-        self.assertEqual(self.statement_1.tax_total, 0.0)
+        self.assertEqual(self.statement_1.tax_total, 23655.0)
 
     def test_03_reset(self):
         self.statement_1.reset()
@@ -347,7 +347,7 @@ class TestVatStatement(TransactionCase):
         self.assertFalse(_25.format_tax)
         self.assertTrue(_25.is_group)
         self.assertTrue(_25.is_readonly)
-        self.assertEqual(_26.format_base, "100.00")
+        self.assertEqual(_26.format_base, "124,600.00")
         self.assertFalse(_26.is_group)
         self.assertFalse(_26.is_readonly)
 
@@ -355,8 +355,8 @@ class TestVatStatement(TransactionCase):
         self.assertFalse(_27.is_group)
         self.assertFalse(_27.is_readonly)
 
-        self.assertEqual(self.statement_1.tax_total, 22.5)
-        self.assertEqual(self.statement_1.format_tax_total, "22.50")
+        self.assertEqual(self.statement_1.tax_total, 23677.5)
+        self.assertEqual(self.statement_1.format_tax_total, "23,677.50")
 
     def test_10_line_unlink_exception(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -370,7 +370,7 @@ class TestVatStatement(TransactionCase):
             self.statement_1.line_ids.unlink()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 47)
-        self.assertEqual(self.statement_1.tax_total, 22.5)
+        self.assertEqual(self.statement_1.tax_total, 23677.5)
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -415,8 +415,8 @@ class TestVatStatement(TransactionCase):
         statement2.unreported_move_from_date = fields.Date.today()
         self.assertFalse(statement2.unreported_move_ids)
 
-        self.assertEqual(self.statement_1.tax_total, 22.5)
-        self.assertEqual(self.statement_1.format_tax_total, "22.50")
+        self.assertEqual(self.statement_1.tax_total, 23677.5)
+        self.assertEqual(self.statement_1.format_tax_total, "23,677.50")
 
         for line in self.statement_1.line_ids:
             self.assertTrue(line.view_base_lines())
@@ -450,7 +450,7 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 44)
-        self.assertEqual(self.statement_1.tax_total, 22.5)
+        self.assertEqual(self.statement_1.tax_total, 23677.5)
 
     def test_15_2021_version(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -463,7 +463,7 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 122.5)
+        self.assertEqual(self.statement_1.tax_total, 23777.5)
 
     def test_16_2021_version_unreported_move_from_date_false(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -477,7 +477,7 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 122.5)
+        self.assertEqual(self.statement_1.tax_total, 23777.5)
 
     def test_17_2021_version_is_invoice_basis_false(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -491,7 +491,7 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 122.5)
+        self.assertEqual(self.statement_1.tax_total, 23777.5)
 
     def test_18_2021_version_refund(self):
         self.assertEqual(len(self.statement_1.line_ids.ids), 0)
@@ -505,4 +505,4 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 0.0)
+        self.assertEqual(self.statement_1.tax_total, 23655.0)

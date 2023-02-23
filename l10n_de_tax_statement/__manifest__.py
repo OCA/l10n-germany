@@ -4,7 +4,7 @@
 
 {
     "name": "German VAT Statement",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Localization",
     "license": "AGPL-3",
     "author": "Onestein, Odoo Community Association (OCA)",
@@ -14,11 +14,13 @@
         "security/ir.model.access.csv",
         "security/tax_statement_security_rule.xml",
         "data/paperformat.xml",
-        "templates/assets.xml",
         "views/l10n_de_tax_statement_view.xml",
         "views/report_tax_statement.xml",
         "views/res_config_settings.xml",
         "report/report_tax_statement.xml",
     ],
+    "assets": {
+        "web.report_assets_common": ["/l10n_de_tax_statement/static/src/css/report.css"]
+    },
     "installable": True,
 }
