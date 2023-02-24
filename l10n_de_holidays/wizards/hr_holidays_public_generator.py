@@ -27,9 +27,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
     _name = "hr.holidays.public.generator"
     _description = "Generate public holidays"
 
-    year = fields.Integer(
-        "Year", required=True, default=(lambda self: datetime.today().year)
-    )
+    year = fields.Integer(required=True, default=(lambda self: datetime.today().year))
     country_id = fields.Many2one(
         "res.country",
         string="Country",
