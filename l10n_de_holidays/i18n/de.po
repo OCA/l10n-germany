@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-07 09:48+0000\n"
-"PO-Revision-Date: 2018-09-07 09:48+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-02-28 11:22+0000\n"
+"Last-Translator: Alexander Bigga <alexander@bigga.de>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -43,7 +44,7 @@ msgstr "2. Weihnachtsfeiertag"
 #. module: l10n_de_holidays
 #: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -60,17 +61,17 @@ msgstr "Fronleichnam"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__country_id
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Erstellt von"
 
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Erstellt am"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -87,7 +88,7 @@ msgstr "Reformationstag"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -104,24 +105,24 @@ msgstr "Ostersonntag"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__template_id
 msgid "From Template"
-msgstr ""
+msgstr "Aus Vorlage"
 
 #. module: l10n_de_holidays
 #: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
 msgid "Generate"
-msgstr ""
+msgstr "Erzeugen"
 
 #. module: l10n_de_holidays
 #: model:ir.actions.act_window,name:l10n_de_holidays.hr_holidays_public_generator_action
 #: model:ir.ui.menu,name:l10n_de_holidays.hr_holidays_public_generator_menu
 #: model_terms:ir.ui.view,arch_db:l10n_de_holidays.hr_holidays_public_generator_view
 msgid "Generate Public Holidays"
-msgstr ""
+msgstr "Erzeuge Feiertage"
 
 #. module: l10n_de_holidays
 #: model:ir.model,name:l10n_de_holidays.model_hr_holidays_public_generator
 msgid "Generate public holidays - Calculations"
-msgstr ""
+msgstr "Erzeuge Feiertage - Berechnungen"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -132,13 +133,13 @@ msgstr "Karfreitag"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
 #, python-format
 msgid "International Women's Day"
-msgstr ""
+msgstr "Internationaler Frauentag"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -149,17 +150,17 @@ msgstr "Tag der Arbeit"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zuletzt geändert am"
 
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zuletzt aktualisiert von"
 
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zuletzt aktualisiert am"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
@@ -176,7 +177,7 @@ msgstr "Buß- und Bettag"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__state_id
 msgid "State"
-msgstr ""
+msgstr "Bundesland"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator.py:0
@@ -212,7 +213,7 @@ msgstr "Pfingstmontag"
 #. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__year
 msgid "Year"
-msgstr ""
+msgstr "Jahr"
 
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
