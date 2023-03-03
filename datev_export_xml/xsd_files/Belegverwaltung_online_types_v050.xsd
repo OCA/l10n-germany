@@ -1,0 +1,1767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xml.datev.de/DD/DE/bedi/tps/invoice/v050"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="p1">
+        <xsd:annotation>
+            <xsd:documentation>Name: Währung ISO-Code 4217</xsd:documentation>
+            <xsd:documentation>English Name: Currency Code ISO 4217</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Gesetzliches Zahlungsmittel eines Landes. ISO 4217 ist die von der Internationalen Organisation für
+                Normung publizierte Norm für Währungs-Abkürzungen, die im internationalen Zahlungsverkehr zur
+                eindeutigen Identifizierung benutzt werden sollen. Es sind die aktuellen und früher gültigen Währungen
+                des DATEV-Währungsrechners enthalten. Währungen, die nicht von einem Einzelstaat oder Staatenbund
+                herausgegeben werden, der durch ein Kürzel klar definiert ist, haben als ersten Buchstaben ein X. Die
+                beiden folgenden Buchstaben geben die Währung an. Dies ist sowohl bei Währungsunionen der Fall, die
+                keinem durch Kürzel definierten Staatenbund zugehörig sind (z. B. der Ostkaribische Dollar (XCD)), als
+                auch bei den IWF-Sonderziehungsrechten (XDR).
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                A country’s statutory legal tender. ISO 4217 embodies the currency abbreviations published by the
+                International Organisation for Standardisation used in international monetary transactions to clearly
+                identify the currency or currencies used. It contains both currently and formerly valid DATEV currency
+                calculator currencies. Each abbreviation comprises three letters. Currencies which are not issued by an
+                individual state or union of countries which is clearly defined by an abbreviation are designated by an
+                initial letter ‘X’. The two subsequent letters then designate the currency itself. This applies both in
+                the case of currency unions not associated with any union of countries designated by an abbreviation
+                (e.g., the East Caribbean dollar (XCD) and also to IMF Special Drawing Rights (XDR).
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                AED = Vereinigte Arabische Emirate Dirham = United Arab Emirates Dirham
+                AFA = Afghani bis 2002 = Afghani until 2002
+                AFN = Afghani = Afghani
+                ALL = Albanische Lek = Albania Lek
+                AMD = Armenien Dram = Armenian Dram
+                ANG = Antillen Gulden = Netherlands Antillian Guilder
+                AOA = Angola Kwanza = Angola Kwanza
+                AON = Angola Kwanza bis 1995 = Angola Kwanza until 1995
+                AOR = Angola Kwanza bis 1999 = Angola Kwanza until 1999
+                ARS = Argentinische Peso = Argentine Peso
+                ATS = Österreichische Schilling bis 2001 = Austria Schilling until 2001
+                AUD = Australische Dollar = Australian Dollar
+                AWG = Aruba Gulden = Aruban Guilder
+                AZM = Aserbaidschan Manat bis 2006 = Azerbaijan Manat until 2006
+                AZN = Aserbaidschan Manat = Azerbaijanian Manat
+                BAM = Bosnien Mark = Convertible Marks
+                BBD = Barbados Dollar = Barbados Dollar
+                BDT = Bangladesch Taka = Bangladesh Taka
+                BEF = Belgische Francs bis 2001 = Belgian Franc until 2001
+                BGL = Bulgarische Lew bis 1999 = Bulgarian Lev until 1999
+                BGN = Bulgarische Lew = Bulgarian Lev
+                BHD = Bahrain Dinar = Bahraini Dinar
+                BIF = Burundi Franc = Burundi Franc
+                BMD = Bermuda Dollar = Bermudian Dollar
+                BND = Brunei Dollar = Brunei Dollar
+                BOB = Boliviano = Boliviano
+                BRL = Brasilianische Real = Brazilian Real
+                BSD = Bahama Dollar = Bahamian Dollar
+                BTN = Bhutan Ngultrum = Bhutan Ngultrum
+                BWP = Botswana Pula = Botswana Pula
+                BYB = Belarus Rubel bis 2000 = Belarus Ruble until 2000
+                BYN = Belarussischer Rubel = Belarussian Ruble
+                BYR = Belarus Rubel bis 2016 = Belarussian Ruble until 2016
+                BZD = Belize Dollar = Belize Dollar
+                CAD = Kanadische Dollar = Canadian Dollar
+                CDF = Kongo Franc = Franc Congolais
+                CHF = Schweizer Franken = Swiss Franc
+                CLP = Chilenische Peso = Chilean Peso
+                CMG = Karibische Gulden = Caribbean Guilder
+                CNH = Chinesische Renminbi (Offshore) = Yuan Renminbi (Offshore)
+                CNY = Chinesische Renminbi = Yuan Renminbi
+                COP = Kolumbien Peso bis 2003 = Colombian Peso
+                CRC = Costa Rica Colon = Costa Rican Colon
+                CSD = Serbische Dinar bis 2006 = Serbian Dinar until 2006
+                CUP = Cuba Peso = Cuban Peso
+                CVE = Cap Verde Escudo = Cape Verde Escudo
+                CYP = Zypriotische Pfund bis 2008 = Cyprus Pound
+                CZK = Tschechische Kronen = Czech Koruna
+                DEM = Deutsche Mark bis 2001 = German Deutsche Mark until 2001
+                DJF = Dschibuti Franc = Djibouti Franc
+                DJV = Dschibuti Franc - alt = Djibouti Franc- old
+                DKK = Dänische Kronen = Danish Krone
+                DOP = Dominikanische Peso = Dominican Peso
+                DZD = Algerische Dinar = Algerian Dinar
+                ECS = Ecuador Sucre bis 2000 = Ecuador Sucre until 2000
+                EEK = Estnische Krone bis 2010 = Estonia Kroon
+                EGP = Ägyptische Pfund = Egyptian Pound
+                ERN = Eritrea Nakfa = Eritrea Nakfa
+                ESP = Spanische Pesetas bis 2001 = Spanish Peseta until 2001
+                ETB = Äthiopien Birr = Ethiopian Birr
+                EUR = Euro = Euro
+                FIM = Finnmark bis 2001 = Finland Markka until 2001
+                FJD = Fidschi Dollar = Fiji Dollar
+                FKP = Falkland Pfund = Falkland Islands Pound
+                FRF = Französische Francs bis 2001 = French Franc until 2001
+                GBP = Britische Pfund = Pound Sterling
+                GEL = Georgische Lari = Georgia Lari
+                GHC = Ghana Cedi bis 2007 = Ghana Cedi until 2007
+                GHS = Ghana Cedi = Ghana Cedi
+                GIP = Gibraltar Pfund = Gibraltar Pound
+                GMD = Gambia Dalasi = Gambia Dalasi
+                GNF = Guinea Franc = Guinea Franc
+                GRD = Griechische Drachmen bis 2001 = Greek Drachma until 2001
+                GTQ = Guatemala Quetzal = Guatemala Quetzal
+                GWP = Guinea-Bissau Peso bis 1997 = Guinea-Bissau Peso
+                GYD = Guyana Dollar = Guyana Dollar
+                HKD = Hongkong Dollar = Hong Kong Dollar
+                HNL = Honduras Lempira = Honduras Lempira
+                HRK = Kroatische Kuna = Croatian Kuna
+                HTG = Haiti Gourde = Haiti Gourde
+                HUF = Ungarische Forint = Hungary Forint
+                IDR = Indonesische Rupie = Indonesia Rupiah
+                IEP = Irische Pfund bis 2001 = Irish Pound until 2001
+                ILS = Israelische Schekel = New Israeli Sheqel
+                INR = Indische Rupie = Indian Rupee
+                IQD = Irak Dinar = Iraqi Dinar
+                IRR = Iranischer Rial = Iranian Rial
+                ISK = Isländische Krone = Iceland Krona
+                ITL = Italienische Lire bis 2001 = Italian Lira until 2001
+                JMD = Jamaika Dollar = Jamaican Dollar
+                JOD = Jordanische Dinar = Jordanian Dinar
+                JPY = Japanische Yen = Japan Yen
+                KES = Kenia Schilling = Kenyan Shilling
+                KGS = Kirgisische Som = Kyrgyzstan Som
+                KHR = Kambodscha Riel = Cambodia Riel
+                KMF = Komoren Franc = Comoro Franc
+                KPW = Nordkorea Won = North Korean Won
+                KRW = Koreanische Won = Korea Won
+                KWD = Kuwait Dinar = Kuwaiti Dinar
+                KYD = Kaimaninseln Dollar = Cayman Islands Dollar
+                KZT = Kasachische Tenge = Kazakhstan Tenge
+                LAK = Laotische Kip = Lao Kip
+                LBP = Libanon Pfund = Lebanese Pound
+                LKR = Sri Lanka Rupie = Sri Lanka Rupee
+                LRD = Liberianische Dollar = Liberian Dollar
+                LSL = Lesotho Loti = Lesotho Loti
+                LTL = Litauische Litas bis 2014 = Lithuanian Litas until 2014
+                LUF = Luxemburgische Francs bis 2001 = Luxembourg Franc until 2001
+                LVL = Lettische Lats bis 2013 = Latvian Lats until 2013
+                LYD = Libyen Dinar = Libyan Dinar
+                MAD = Marokkanische Dirham = Moroccan Dirham
+                MDL = Moldawische Leu = Moldovan Leu
+                MGA = Madagaskar Ariary = Malagasy Ariary
+                MGF = Madagaskar Franc bis 2004 = Malagasy Franc until 2004
+                MKD = Mazedonische Dinar = Macedonia Denar
+                MMK = Myanmar Kyat = Myanmar Kyat
+                MNT = Mongolische Tugrik = Mongolia Tugrik
+                MOP = Macau Pataca = Macau Pataca
+                MRO = Mauretanische Ouguiya bis 2018 = Mauritania Ouguiya until 2018
+                MRU = Mauretanische Ouguiya = Mauritania Ouguiya
+                MTL = Maltesische Lira bis 2007 = Maltese Lira
+                MUR = Mauritius Rupie = Mauritius Rupee
+                MVR = Malediven Rufiyaa = Maldives Rufiyaa
+                MWK = Malawi Kwacha = Malawi Kwacha
+                MXN = Mexikanische Peso = Mexican Peso
+                MYR = Malayische Ringgit = Malaysian Ringgit
+                MZM = Mosambik Metical bis 2006 = Mozambique Metical until 2006
+                MZN = Mosambik Metical = Mozambique Metical
+                NAD = Namibia Dollar = Namibia Dollar
+                NGN = Nigeria Naira = Nigeria Naira
+                NIO = Nicaragua Cordoba = Cordoba Oro
+                NLG = Holländische Gulden bis 2001 = Netherlands Guilder until 2001
+                NOK = Norwegische Kronen = Norwegian Krone
+                NPR = Nepalesische Rupie = Nepalese Rupee
+                NZD = Neuseeland-Dollar = New Zealand Dollar
+                OMR = Oman Rial = Rial Omani
+                PAB = Panama Balboa = Panama Balboa
+                PEN = Peruanische Sol = Nuevo Sol
+                PGK = Papua Kina = Papua New Guinea Kina
+                PHP = Philippinische Peso = Philippine Peso
+                PKR = Pakistanische Rupie = Pakistan Rupee
+                PLN = Polnische Zloty = Poland Zloty
+                PLZ = Polnische Zloty bis 1994 = Polish Zloty until 1994
+                PTE = Portugiesische Escudos bis 2001 = Portuguese Escudo until 2001
+                PYG = Paraguay Guarani = Paraguay Guarani
+                QAR = Qatar Rial = Qatari Rial
+                ROL = Rumänische Leu bis 2005 = Romanian Leu until 2005
+                RON = Rumänische Leu = New Leu
+                RSD = Serbische Dinar = Serbian Dinar
+                RUB = Russische Rubel = Russian Ruble
+                RUR = Russische Rubel bis 1998 = Russian Federation Ruble until 1998
+                RWF = Ruanda Franc = Rwanda Franc
+                SAR = Saudische Riyal = Saudi Riyal
+                SBD = Salomon Dollar = Solomon Islands Dollar
+                SCR = Seyschellen Rupie = Seychelles Rupee
+                SDD = Sudanesische Dinar bis 2007 = Sudanese Dinar until 2007
+                SDG = Sudanesisches Pfund = Sudanese Pound
+                SEK = Schwedische Kronen = Swedish Krona
+                SGD = Singapur-Dollar = Singapore Dollar
+                SHP = St. Helena Pfund = Saint Helena Pound
+                SIT = Slowenische Tolar bis 2006 = Slovenia Tolar until 2006
+                SKK = Slowakische Krone = Slovak Koruna
+                SLL = Sierra Leone = Sierra Leone
+                SOS = Somali Schilling = Somali Shilling
+                SRD = Suriname-Dollar = Surinam Dollar
+                SRG = Suriname Gulden bis 2003 = Suriname Guilder until 2003
+                SSP = Südsudanesisches Pfund = South Sudanese Pound
+                STD = Sao Tome Dobra = Sao Tome Dobra
+                SVC = Salvador Colon = El Salvador Colon
+                SYP = Syrische Pfund = Syrian Pound
+                SZL = Swasiland Lilangeni = Swaziland Lilangeni
+                THB = Thailändische Baht = Thailand Baht
+                TJR = Tadschikische Rubel bis 2000 = Tajikistan Ruble
+                TJS = Tadschikische Somoni = Tajikistan Somoni
+                TMM = Turkmenische Manat bis 2008 = Turkmenistan Manat until 2008
+                TMT = Turkmenische Manat = Turkmenistan Manat
+                TND = Tunesische Dinar = Tunisian Dinar
+                TOP = Tonga Pa'anga = Tonga Pa'anga
+                TRL = Türkische Lira bis 2004 = Turkish Lira until 2004
+                TRY = Türkische Lira = New Turkish Lira
+                TTD = Trinidad u. Tobago Dollar = Trinidad and Tobago Dollar
+                TWD = Taiwan-Dollar = New Taiwan Dollar
+                TZS = Tansania Schilling = Tanzanian Shilling
+                UAH = Ukrainische Hryvnia = Ukraine Hryvnia
+                UGX = Uganda Schilling = Uganda Shilling
+                USD = US-Dollar = US Dollar
+                UYU = Uruguay Peso = Peso Uruguayo
+                UZS = Usbekische Sum = Uzbekistan Sum
+                VEB = Venezuela Bolivar bis 2007 = Venezuela Bolivar until 2007
+                VEF = Venezuela Bolivar Fuerte bis 2018 = Bolivar Fuerte until 2018
+                VES = Venezuela Bolívar Soberano = Venezuela Bolívar Soberano
+                VND = Vietnam Dong = Viet Nam Dong
+                VUV = Vanuata Vatu = Vanuatu Vatu
+                WST = Samoa Tala = Samoa Tala
+                XAF = CFA Franc BEAC = CFA Franc BEAC
+                XCD = Ost-Karibik-Dollar = East Caribbean Dollar
+                XEU = ECU = European Currency Unit
+                XOF = CFA Franc BCEAO = CFA Franc BCEAO
+                XPF = CFP Franc = CFP Franc
+                YER = Jemen Rial = Yemeni Rial
+                YUM = Jugoslawische Dinar bis 2003 = Yugoslav Dinar until 2003
+                ZAR = Südafrikanische Rand = South Africa Rand
+                ZMK = Sambia Kwacha bis 2012 = Zambia Kwacha until 2012
+                ZMW = Sambia Kwacha = Zambia Kwacha
+                ZRN = Zaire bis 1997 = Zairean New Zaire until 1997
+                ZWD = Zimbabwe Dollar bis 2008 = Zimbabwe Dollar until 2008
+                ZWR = Zimbabwe Dollar = Zimbabwe Dollar
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="3"/>
+            <xsd:pattern
+                    value="AED|AFA|AFN|ALL|AMD|ANG|AOA|AON|AOR|ARS|ATS|AUD|AWG|AZM|AZN|BAM|BBD|BDT|BEF|BGL|BGN|BHD|BIF|BMD|BND|BOB|BRL|BSD|BTN|BWP|BYB|BYN|BYR|BZD|CAD|CDF|CHF|CLP|CMG|CNH|CNY|COP|CRC|CSD|CUP|CVE|CYP|CZK|DEM|DJF|DJV|DKK|DOP|DZD|ECS|EEK|EGP|ERN|ESP|ETB|EUR|FIM|FJD|FKP|FRF|GBP|GEL|GHC|GHS|GIP|GMD|GNF|GRD|GTQ|GWP|GYD|HKD|HNL|HRK|HTG|HUF|IDR|IEP|ILS|INR|IQD|IRR|ISK|ITL|JMD|JOD|JPY|KES|KGS|KHR|KMF|KPW|KRW|KWD|KYD|KZT|LAK|LBP|LKR|LRD|LSL|LTL|LUF|LVL|LYD|MAD|MDL|MGA|MGF|MKD|MMK|MNT|MOP|MRO|MRU|MTL|MUR|MVR|MWK|MXN|MYR|MZM|MZN|NAD|NGN|NIO|NLG|NOK|NPR|NZD|OMR|PAB|PEN|PGK|PHP|PKR|PLN|PLZ|PTE|PYG|QAR|ROL|RON|RSD|RUB|RUR|RWF|SAR|SBD|SCR|SDD|SDG|SEK|SGD|SHP|SIT|SKK|SLL|SOS|SRD|SRG|SSP|STD|SVC|SYP|SZL|THB|TJR|TJS|TMM|TMT|TND|TOP|TRL|TRY|TTD|TWD|TZS|UAH|UGX|USD|UYU|UZS|VEB|VEF|VES|VND|VUV|WST|XAF|XCD|XEU|XOF|XPF|YER|YUM|ZAR|ZMK|ZMW|ZRN|ZWD|ZWR"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p2">
+        <xsd:annotation>
+            <xsd:documentation>Name: Beschreibung</xsd:documentation>
+            <xsd:documentation>English Name: Description</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                fixer Wert "DATEV Import invoices"
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Fixer value "DATEV Import invoices"
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Basistyp) / Value range (Extentable enumeration)
+                DATEV Import invoices = DATEV Import invoices
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+            <xsd:pattern value="[0-9a-zA-Z\. _]{1,30}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p3">
+        <xsd:annotation>
+            <xsd:documentation>Name: Version</xsd:documentation>
+            <xsd:documentation>English Name: Version</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Versionsnummer; aktuell 5.0
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Version number; currently 5.0
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                5.0 = 5.0
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="3"/>
+            <xsd:pattern value="5.0"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p4">
+        <xsd:annotation>
+            <xsd:documentation>Name: Rechnungsart</xsd:documentation>
+            <xsd:documentation>English Name: Invoice Type</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Identifizierung der Rechnungsart (Rechnung/Gutschrift);
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Identification of invoice type (invoice/credit note)
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                Abschlagsrechnung = Abschlagsrechnung
+                Bargutschrift = Bargutschrift
+                Barrechnung = Barrechnung
+                Barrechnungskorrektur = Barrechnungskorrektur
+                Gutschrift § 14 UStG = Gutschrift § 14 UStG
+                Gutschrift/Rechnungskorrektur = Gutschrift/Rechnungskorrektur
+                Rechnung = Rechnung
+                Rechnungskorrektur = Rechnungskorrektur
+                Schlussrechnung = Schlussrechnung
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+            <xsd:pattern
+                    value="Abschlagsrechnung|Bargutschrift|Barrechnung|Barrechnungskorrektur|Gutschrift § 14 UStG|Gutschrift/Rechnungskorrektur|Rechnung|Rechnungskorrektur|Schlussrechnung"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p5">
+        <xsd:annotation>
+            <xsd:documentation>Name: Globale Lokationsnummer</xsd:documentation>
+            <xsd:documentation>English Name: Global Location Number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                GLN-Angabe (Global Location Number) Beschreibung lt. standardisierter GLN z.B. auf GS1-Homepage;
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                GLN (Global Location Number) description re standardised GLN e.g., on GS1 homepage
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:long">
+            <xsd:totalDigits value="13"/>
+            <xsd:minInclusive value="0000000000000"/>
+            <xsd:maxInclusive value="9999999999998"/>
+            <xsd:pattern value="[\+\-]?(\d{1,13})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p6">
+        <xsd:annotation>
+            <xsd:documentation>Name: Prozentsatz in Relation zum Maximum 2.2</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                DER PROZENTSATZ IN RELATION ZUM MAXIMUM IST DER ANTEIL IN PROZENT, DER VOM MAXIMUM (=100) GEGEBEN IST.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Input of a percentage. The percentage states the ratio of a given value (=100) to the value under
+                consideration. value 0.00 not permitted; no prefixed sign permitted
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="4"/>
+            <xsd:fractionDigits value="2"/>
+            <xsd:minInclusive value="0.00"/>
+            <xsd:maxInclusive value="99.99"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,1}|0)(\.\d{2})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p7">
+        <xsd:annotation>
+            <xsd:documentation>Name: Betrag</xsd:documentation>
+            <xsd:documentation>English Name: Amount</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Betragsfelder für alle Betragseingabemöglichkeiten (z.B. Rechnungsbetrag, Steuerbertrag …); Betrag 0.00
+                nicht zulässig; Vorzeichen vor Betrag und nur Minus verwenden
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Amount fields for all amount entry options (e.g., invoice amount, tax amount, etc.); amount of 0.00 not
+                permitted; sign before amount and only use minus
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:union>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="12"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="0.01"/>
+                            <xsd:maxInclusive value="9999999999.99"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,9}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="12"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="-9999999999.99"/>
+                            <xsd:maxInclusive value="-0.01"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,9}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:union>
+            </xsd:simpleType>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p8">
+        <xsd:annotation>
+            <xsd:documentation>Name: Mengenangabe</xsd:documentation>
+            <xsd:documentation>English Name: Quantity entry</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Mengenangaben zu Artikeln; Menge 0.00 nicht zulässig;
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Quantity entry re items; quantity of 0.00 not permitted;
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:union>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="9"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="0.01"/>
+                            <xsd:maxInclusive value="9999999.99"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,6}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="9"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="-9999999.99"/>
+                            <xsd:maxInclusive value="-0.01"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,6}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:union>
+            </xsd:simpleType>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p9">
+        <xsd:annotation>
+            <xsd:documentation>Name: Betrag mit 3 Nachkommastellen</xsd:documentation>
+            <xsd:documentation>English Name: Amount with 3 decimal places</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Betragsfeld mit 3 Nachkommastellen; Betrag 0.00 nicht zulässig; Vorzeichen vor Betrag und nur Minus
+                erlaubt
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Amount field with 3 decimal places; amount of 0.00 not permitted; sign before amount and only minus
+                permitted
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:union>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="13"/>
+                            <xsd:fractionDigits value="3"/>
+                            <xsd:minInclusive value="0.001"/>
+                            <xsd:maxInclusive value="9999999999.999"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,9}|0)(\.\d{3})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="13"/>
+                            <xsd:fractionDigits value="3"/>
+                            <xsd:minInclusive value="-9999999999.999"/>
+                            <xsd:maxInclusive value="-0.001"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,9}|0)(\.\d{3})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:union>
+            </xsd:simpleType>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p11">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kontonummer in der Buchhaltung</xsd:documentation>
+            <xsd:documentation>English Name: account number in the bookkeeping</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Personen-Kontonummer (Debitorenkonto bzw. Kreditorenkonto) identifiziert ein Konto innerhalb der
+                Buchhaltung eindeutig. Format Personenkonten numerisch 9, 8, 7, 6, 5 – abhängig von der angegebenen
+                Kontonummernlänge des Sachkontos
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The personal account number (debtor account or creditor account) uniquely identifies an account within
+                the bookkeeping. Format personal accounts numerical 9, 8, 7, 6, 5 – depending on the stated length of
+                the impersonal account number
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="9"/>
+            <xsd:minInclusive value="10000"/>
+            <xsd:maxInclusive value="999999999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p12">
+        <xsd:annotation>
+            <xsd:documentation>Name: Skontobetrag im Fibu-Buchungssatz</xsd:documentation>
+            <xsd:documentation>English Name: Discount Fibu accounting record</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Eingegebener Betrag im Fibu-Buchungssatz für Skonto-Abzug. Das Skonto ist ein Nachlass vom
+                Zieleinkaufspreis bei Barzahlung binnen einer bestimmten Frist. Betrag 0,00 unzulässig;
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Deducted discount amount entered in Fibu accounting record. The discount is a reduction of the target
+                sale price offered in return for cash payment within a specified period. value of 0.00 not permitted;
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction>
+            <xsd:simpleType>
+                <xsd:union>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="10"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="0.01"/>
+                            <xsd:maxInclusive value="99999999.99"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,7}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:decimal">
+                            <xsd:totalDigits value="10"/>
+                            <xsd:fractionDigits value="2"/>
+                            <xsd:minInclusive value="-99999999.99"/>
+                            <xsd:maxInclusive value="-0.01"/>
+                            <xsd:pattern value="[\+\-]?([1-9]\d{0,7}|0)(\.\d{2})"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:union>
+            </xsd:simpleType>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p13">
+        <xsd:annotation>
+            <xsd:documentation>Name: AuftragsId</xsd:documentation>
+            <xsd:documentation>English Name: OrderId</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Identifiziert einen Auftrag. Eine Rechnung kann z.B. mehrere Aufträge umfassen.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="30"/>
+            <xsd:pattern value="[a-zA-Z0-9$%&amp;\*\+\-\./]{1,36}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p14">
+        <xsd:annotation>
+            <xsd:documentation>Name: Währungsfaktor / Umrechnungskurs</xsd:documentation>
+            <xsd:documentation>English Name: Currency factor / conversion rate</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Der Währungsfaktor gibt den Faktor an, der eine Währung wertmäßig in der anderen Währung ausdrückt. Kein
+                Vorzeichen zulässig.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The currency factor expresses the value of one currency in terms of another currency. No prefixed sign
+                permitted.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="10"/>
+            <xsd:fractionDigits value="6"/>
+            <xsd:minInclusive value="0.000001"/>
+            <xsd:maxInclusive value="9999.999999"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,3}|0)(\.\d{6})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p23">
+        <xsd:annotation>
+            <xsd:documentation>Name: Zahlungsbedingungs-Nummer OPOS</xsd:documentation>
+            <xsd:documentation>English Name: payment_conditions_id</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Zahlungsbedingungsnummer in der Offenen Posten Buchhaltung incl. nicht Mahn-/Zahlkennzeichnung
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                id of the payment-condition in the booking-programm by datev
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:short">
+            <xsd:totalDigits value="3"/>
+            <xsd:minInclusive value="10"/>
+            <xsd:maxInclusive value="999"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p29">
+        <xsd:annotation>
+            <xsd:documentation>Name: Datum TTMM</xsd:documentation>
+            <xsd:documentation>English Name: DateTTMM</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Das Datum ist eine konkrete Zeitangabe nach dem Kalender mit der Genauigkeit Tag und Monat.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The date is a specific calendar-based time statement comprising the day and month.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:gMonthDay">
+            <xsd:minInclusive value="--01-01"/>
+            <xsd:maxInclusive value="--12-31"/>
+            <xsd:pattern value="[^:Z]*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p30">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 120</xsd:documentation>
+            <xsd:documentation>English Name: Designation 120</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="120"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p31">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kurs nur positiv</xsd:documentation>
+            <xsd:documentation>English Name: Exchange Rate</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Betragsfelder für Betragseingabemöglichkeiten zum Kurs; Betrag 0.00 nicht zulässig;
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Amount fields for exchange rate; amount of 0.00 not permitted
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="10"/>
+            <xsd:fractionDigits value="6"/>
+            <xsd:minInclusive value="0.000001"/>
+            <xsd:maxInclusive value="9999.999999"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,3}|0)(\.\d{6})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p33">
+        <xsd:annotation>
+            <xsd:documentation>Name: Prozentsatz mit 2 Vorkommastellen</xsd:documentation>
+            <xsd:documentation>English Name: Percentage</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Eingabe eines %-Satzes. Der Prozentsatz bestimmt das Verhältnis einer gegebenen Größe (=100) zu einer
+                betrachteten Größe. Wert 0.00 nicht zulässig; Kein Vorzeichen erlaubt
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Input of a percentage. The percentage states the ratio of a given value (=100) to the value under
+                consideration. value 0.00 not permitted; no prefixed sign permitted
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="4"/>
+            <xsd:fractionDigits value="2"/>
+            <xsd:minInclusive value="0.00"/>
+            <xsd:maxInclusive value="99.99"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,1}|0)(\.\d{2})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p34">
+        <xsd:annotation>
+            <xsd:documentation>Name: Skontobetrag positiv im Fibu-Buchungssatz</xsd:documentation>
+            <xsd:documentation>English Name: Discount Fibu accounting record positivly</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Eingegebener Betrag im Fibu-Buchungssatz für Skonto-Abzug. Das Skonto ist ein Nachlass vom
+                Zieleinkaufspreis bei Barzahlung binnen einer bestimmten Frist. Betrag 0,00 unzulässig;
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Deducted discount amount entered in Fibu accounting record. The discount is a reduction of the target
+                sale price offered in return for cash payment within a specified period. value of 0.00 not permitted;
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="10"/>
+            <xsd:fractionDigits value="2"/>
+            <xsd:minInclusive value="0.01"/>
+            <xsd:maxInclusive value="99999999.99"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,7}|0)(\.\d{2})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p35">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kennzeichen Boolean True_False</xsd:documentation>
+            <xsd:documentation>English Name: Boolean True_False</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Dieses Kennzeichen wird verwendet: true = gültig bzw. ja bzw. gesetzt false = ungültig bzw. nein bzw.
+                nicht gesetzt
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                false = false
+                true = true
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:boolean"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="p36">
+        <xsd:annotation>
+            <xsd:documentation>Name: XML-Data Beschreibung</xsd:documentation>
+            <xsd:documentation>English Name: Description</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                fixer Wert "Kopie nur zur Verbuchung berechtigt nicht zum Vorsteuerabzug"
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Fixer value "Kopie nur zur Verbuchung berechtigt nicht zum Vorsteuerabzug"
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Basistyp) / Value range (Extentable enumeration)
+                Kopie nur zur Verbuchung berechtigt nicht zum Vorsteuerabzug = Kopie nur zur Verbuchung berechtigt nicht
+                zum Vorsteuerabzug
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:pattern value="[0-9a-zA-Z\. _]{1,60}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p37">
+        <xsd:annotation>
+            <xsd:documentation>Name: KostMenge 12.4</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                KostMenge ist ein Feld der Kostenrechnung des Rechnungswesens. Die KostMenge besitzt fachlich eine Länge
+                von 12 Vorkammastellen und 4 Nachkommastellen.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The cost quantity is the quantity of a given benchmark figure to be charged to the cost centre or cost
+                unit. no prefixed sign permitted; permitted characters: [ a-Z, 0-9, special characters]
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="16"/>
+            <xsd:fractionDigits value="4"/>
+            <xsd:minInclusive value="0.0001"/>
+            <xsd:maxInclusive value="+999999999999.9999"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,11}|0)(\.\d{4})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10003">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bemerkung 020</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                FREITEXTLICHE BEMERKUNG ZU EINEM SACHVERHALT. BEMERKUNG, ANMERKUNG, NOTIZ.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10005">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bankkontonummer International</xsd:documentation>
+            <xsd:documentation>English Name: International bank account number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Bankkontonummer identifiziert ein Bankkonto innerhalb einer Bank.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The bank account number identifies a bank account within a bank.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Zentrale DEId:
+                DE: 11, AT:34, IT: 35, CZ: 38, PL: 36
+
+                SDV Projekt DEId
+                DE = 697, AT = 2096, IT = 2321, CZ = 2181, PL = 2452
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10006">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bankkurzbezeichnung</xsd:documentation>
+            <xsd:documentation>English Name: Brief bank designation</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Bezeichnung (Name) einer Bank.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Designation (name) of a bank.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Stadtsparkasse Nürnber, Dresdner Bank Ansbach, ETC.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="27"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10007">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bankleitzahl International</xsd:documentation>
+            <xsd:documentation>English Name: International bank sort code</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Numerische Schlüsselzahl zur Identifizierung aller Kreditinstitute eines Landes mit eigenem
+                Zentralbankgirokonto. Bankfilialen werden nicht identifiziert.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Numeric key number to identify all banking institutions in a country which have their own central bank
+                current account. Bank branches are not identified.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="10"/>
+            <xsd:pattern value="([1-9]|[0-9]{2,10})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10008">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 030</xsd:documentation>
+            <xsd:documentation>English Name: Designation 030</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10009">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 040</xsd:documentation>
+            <xsd:documentation>English Name: Designation 040</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10010">
+        <xsd:annotation>
+            <xsd:documentation>Name: IBAN International Bank Account Number</xsd:documentation>
+            <xsd:documentation>English Name: IBAN International Bank Account Number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Identifiziert ein Bankkonto weltweit. ISO 13616
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Identifies a bank account worldwide. ISO 13616
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="34"/>
+            <xsd:pattern value="([A-Z]{2}\d\d([A-Za-z0-9]){11,30})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10011">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 015</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                ALLGEMEINE BEZEICHNUNG, BENENNUNG, BEGRIFF.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="15"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10012">
+        <xsd:annotation>
+            <xsd:documentation>Name: Name Betrieb 3zeilig</xsd:documentation>
+            <xsd:documentation>English Name: Name company 3lines</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Sehr langer Betriebsname
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Very long business name.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Huber GmbH, und Söhne, Metallwaren
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="50"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10013">
+        <xsd:annotation>
+            <xsd:documentation>Name: Zusatzinfo-Inhalt zum Buchungssatz</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Hier können zusätzliche Informationen für einen Buchungssatz erfaßt werden.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Dieser Buchungssatz gehört eigentlich zu Geschäftsbereich B - wurde allerdings aus best. Gründen dem
+                Bereich A zugeordnet, etc.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="210"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10014">
+        <xsd:annotation>
+            <xsd:documentation>Name: Nationalitätskennzeichen ISO 3166 2stellig</xsd:documentation>
+            <xsd:documentation>English Name: Nationality codes ISO 3166, 2 characters</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Name eines Staates, einer Nation. Die ISO 3166 ist ein Standard für die Kodierung von Staaten und
+                einigen abhängigen Gebieten, herausgegeben von der Internationalen Organisation für Normung (ISO). Die
+                deutschen Bedeutungswerte richten sich nach der offiziellen deutschen Bezeichnung der Länder, festgelegt
+                durch den ständigen Ausschuß für geografische Namen.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Name of a country, a nation. Die ISO 3166 defines codes for country and dependent area names. The German
+                designations are the official German designations for countries as determined by the Standing Committee
+                for Geographical Names.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                AD = Andorra = Andorra
+                AE = Vereinigte Arabische Emirate = United Arab Emirates
+                AF = Afghanistan = Afghanistan
+                AG = Antigua und Barbuda = Antigua and Barbuda
+                AI = Anguilla = Anquilla
+                AL = Albanien = Albania
+                AM = Armenien = Armenia
+                AN = Niederländische Antillen (bis 2010) = Netherlands Antilles (until 2010)
+                AO = Angola = Angola
+                AQ = Antarktis = Antarctica
+                AR = Argentinien = Argentina
+                AS = Amerikanisch-Samoa = American Samoa
+                AT = Österreich = Austria
+                AU = Australien = Australia
+                AW = Aruba = Aruba
+                AX = Ålandinseln = Åland Islands
+                AZ = Aserbaidschan = Azerbaijan
+                BA = Bosnien und Herzegowina = Bosnia and Herzegowina
+                BB = Barbados = Barbados
+                BD = Bangladesch = Bangladesh
+                BE = Belgien = Belgium
+                BF = Burkina Faso = Burkina Faso
+                BG = Bulgarien = Bulgaria
+                BH = Bahrain = Bahrain
+                BI = Burundi = Burundi
+                BJ = Benin = Benin
+                BL = St. Barthélemy = Saint Barthélemy
+                BM = Bermuda = Bermuda
+                BN = Brunei Darussalam = Brunei Darussalam
+                BO = Bolivien, Plurinationaler Staat = Bolivia, Plurinational State of
+                BQ = Bonaire, St. Eustatius und Saba = Bonaire,Saint Eustatius and Saba
+                BR = Brasilien = Brazil
+                BS = Bahamas = Bahamas
+                BT = Bhutan = Bhutan
+                BV = Bouvetinsel = Bouvet Island
+                BW = Botsuana = Botswana
+                BY = Belarus = Belarus
+                BZ = Belize = Belize
+                CA = Kanada = Canada
+                CC = Kokosinseln = Cocos Islands
+                CD = Kongo, Demokratische Republik = Congo, the Democratic Republic of the
+                CF = Zentralafrikanische Republik = Central African Republic
+                CG = Kongo = Congo
+                CH = Schweiz = Switzerland
+                CI = Cote d'Ivoire = Cote d'Ivoire
+                CK = Cookinseln = Cook Islands
+                CL = Chile = Chile
+                CM = Kamerun = Cameroon
+                CN = China = China
+                CO = Kolumbien = Colombia
+                CR = Costa Rica = Costa Rica
+                CS = Serbien und Montenegro (bis 2006) = Serbia and Montenegro (until 2006)
+                CU = Kuba = Cuba
+                CV = Cabo Verde = Cabo Verde
+                CW = Curaçao = Curaçao
+                CX = Weihnachtsinsel = Christmas Island
+                CY = Zypern = Cyprus
+                CZ = Tschechische Republik = Czech Republic
+                DE = Deutschland = Germany
+                DJ = Dschibuti = Djibouti
+                DK = Dänemark = Denmark
+                DM = Dominica = Dominica
+                DO = Dominikanische Republik = Dominican Republic
+                DZ = Algerien = Algeria
+                EC = Ecuador = Ecuador
+                EE = Estland = Estonia
+                EG = Ägypten = Egypt
+                EH = Westsahara = Western Sahara
+                ER = Eritrea = Eritrea
+                ES = Spanien = Spain
+                ET = Äthiopien = Ethiopia
+                FI = Finnland = Finland
+                FJ = Fidschi = Fiji
+                FK = Falklandinseln = Falkland Islands
+                FM = Mikronesien, Föderierte Staaten von = Micronesia, Federated States of
+                FO = Färöer = Faroe Islands
+                FR = Frankreich = France
+                GA = Gabun = Gabon
+                GB = Großbritannien = United Kingdom
+                GD = Grenada = Grenada
+                GE = Georgien = Georgia
+                GF = Französisch-Guayana = French Guiana
+                GG = Guernsey = Guernsey
+                GH = Ghana = Ghana
+                GI = Gibraltar = Gibraltar
+                GL = Grönland = Greenland
+                GM = Gambia = Gambia
+                GN = Guinea = Guinea
+                GP = Guadeloupe = Guadeloupe
+                GQ = Äquatorialguinea = Equatorial Guinea
+                GR = Griechenland = Greece
+                GS = Südgeorgien und die Südlichen Sandwichinseln = South Georgia and the South Sandwich Islands
+                GT = Guatemala = Guatemala
+                GU = Guam = Guam
+                GW = Guinea-Bissau = Guinea-Bissau
+                GY = Guyana = Guyana
+                HK = Hongkong = Hong Kong
+                HM = Heard und McDonaldinseln = Heard Island and McDonald Islands
+                HN = Honduras = Honduras
+                HR = Kroatien = Croatia
+                HT = Haiti = Haiti
+                HU = Ungarn = Hungary
+                ID = Indonesien = Indonesia
+                IE = Irland = Ireland
+                IL = Israel = Israel
+                IM = Insel Man = Isle of Man
+                IN = Indien = India
+                IO = Britisches Territorium im Indischen Ozean = British Indian Ocean Territory
+                IQ = Irak = Iraq
+                IR = Iran, Islamische Republik = Iran, Islamic Republic of
+                IS = Island = Iceland
+                IT = Italien = Italy
+                JE = Jersey = Jersey
+                JM = Jamaika = Jamaica
+                JO = Jordanien = Jordan
+                JP = Japan = Japan
+                KE = Kenia = Kenya
+                KG = Kirgisistan = Kyrgyzstan
+                KH = Kambodscha = Cambodia
+                KI = Kiribati = Kiribati
+                KM = Komoren = Comoros
+                KN = St. Kitts und Nevis = Saint Kitts and Nevis
+                KP = Korea, Demokratische Volksrepublik = Korea, Democratic People's Republic of
+                KR = Korea, Republik = Korea, Republic of
+                KW = Kuwait = Kuwait
+                KY = Kaimaninseln = Cayman Islands
+                KZ = Kasachstan = Kazakhstan
+                LA = Laos, Demokratische Volksrepublik = Lao People's Democratic Republic
+                LB = Libanon = Lebanon
+                LC = St. Lucia = Saint Lucia
+                LI = Liechtenstein = Liechtenstein
+                LK = Sri Lanka = Sri Lanka
+                LR = Liberia = Liberia
+                LS = Lesotho = Lesotho
+                LT = Litauen = Lithuania
+                LU = Luxemburg = Luxembourg
+                LV = Lettland = Latvia
+                LY = Libyen = Libya
+                MA = Marokko = Morocco
+                MC = Monaco = Monaco
+                MD = Moldau, Republik = Moldova, Republic of
+                ME = Montenegro = Montenegro
+                MF = St. Martin (französischer Teil) = Saint Martin (French part)
+                MG = Madagaskar = Madagascar
+                MH = Marshallinseln = Marshall Islands
+                MK = Nordmazedonien = North Macedonia
+                ML = Mali = Mali
+                MM = Myanmar = Myanmar
+                MN = Mongolei = Mongolia
+                MO = Macau = Macau
+                MP = Nördliche Marianen = Northern Mariana Islands
+                MQ = Martinique = Martinique
+                MR = Mauretanien = Mauritania
+                MS = Montserrat = Montserrat
+                MT = Malta = Malta
+                MU = Mauritius = Mauritius
+                MV = Malediven = Maldives
+                MW = Malawi = Malawi
+                MX = Mexiko = Mexico
+                MY = Malaysia = Malaysia
+                MZ = Mosambik = Mozambique
+                NA = Namibia = Namibia
+                NC = Neukaledonien = New Caledonia
+                NE = Niger = Niger
+                NF = Norfolkinsel = Norfolk Island
+                NG = Nigeria = Nigeria
+                NI = Nicaragua = Nicaragua
+                NL = Niederlande = Netherlands
+                NO = Norwegen = Norway
+                NP = Nepal = Nepal
+                NR = Nauru = Nauru
+                NU = Niue = Niue
+                NZ = Neuseeland = New Zealand
+                OM = Oman = Oman
+                PA = Panama = Panama
+                PE = Peru = Peru
+                PF = Französisch-Polynesien = French Polynesia
+                PG = Papua-Neuguinea = Papua New Guinea
+                PH = Philippinen = Philippines
+                PK = Pakistan = Pakistan
+                PL = Polen = Poland
+                PM = St. Pierre und Miquelon = Saint Pierre and Miquelon
+                PN = Pitcairninseln = Pitcairn
+                PR = Puerto Rico = Puerto Rico
+                PS = Palästinensische Gebiete = Palestinian Territory
+                PT = Portugal = Portugal
+                PW = Palau = Palau
+                PY = Paraguay = Paraguay
+                QA = Katar = Qatar
+                RE = Réunion = Reunion
+                RO = Rumänien = Romania
+                RS = Serbien = Serbia
+                RU = Russische Föderation = Russian Federation
+                RW = Ruanda = Rwanda
+                SA = Saudi-Arabien = Saudi Arabia
+                SB = Salomonen = Solomon Islands
+                SC = Seychellen = Seychelles
+                SD = Sudan = Sudan
+                SE = Schweden = Sweden
+                SG = Singapur = Singapore
+                SH = St. Helena, Ascension und Tristan da Cunha = Saint Helena, Ascension and Tristan da Cunha
+                SI = Slowenien = Slovenia
+                SJ = Svalbard und Jan Mayen = Svalbard and Jan Mayen
+                SK = Slowakei = Slovakia
+                SL = Sierra Leone = Sierra Leone
+                SM = San Marino = San Marino
+                SN = Senegal = Senegal
+                SO = Somalia = Somalia
+                SR = Suriname = Suriname
+                SS = Südsudan = South Sudan
+                ST = Sao Tomé und Principe = Sao Tome and Principe
+                SV = El Salvador = El Salvador
+                SX = St. Martin (niederländischer Teil) = Sint Maarten (Dutch part)
+                SY = Syrien, Arabische Republik = Syrian Arab Republic
+                SZ = Eswatini = Eswatini
+                TC = Turks- und Caicosinseln = Turks and Caicos Islands
+                TD = Tschad = Chad
+                TF = Französische Süd- und Antarktisgebiete = French Southern Territories
+                TG = Togo = Togo
+                TH = Thailand = Thailand
+                TJ = Tadschikistan = Tajikistan
+                TK = Tokelau = Tokelau
+                TL = Timor-Leste = Timor-Leste
+                TM = Turkmenistan = Turkmenistan
+                TN = Tunesien = Tunisia
+                TO = Tonga = Tonga
+                TR = Türkei = Turkey
+                TT = Trinidad und Tobago = Trinidad and Tobago
+                TV = Tuvalu = Tuvalu
+                TW = Taiwan = Taiwan, Province of China
+                TZ = Tansania, Vereinigte Republik = Tanzania, United Republic of
+                UA = Ukraine = Ukraine
+                UG = Uganda = Uganda
+                UM = Amerikanische Überseeinseln, Kleinere = United States Minor Outlying Islands
+                US = Vereinigte Staaten von Amerika = United States
+                UY = Uruguay = Uruguay
+                UZ = Usbekistan = Uzbekistan
+                VA = Vatikanstadt = Vatican City State
+                VC = St. Vincent und die Grenadinen = Saint Vincent and the Grenadines
+                VE = Venezuela, Bolivarische Republik = Venezuela
+                VG = Britische Jungferninseln = Virgin Islands (British)
+                VI = Amerikanische Jungferninseln = Virgin Islands (U.S.)
+                VN = Vietnam = Viet Nam
+                VU = Vanuatu = Vanuatu
+                WF = Wallis und Futuna = Wallis and Futuna
+                WS = Samoa = Samoa
+                XK = Kosovo = Kosovo
+                YE = Jemen = Yemen
+                YT = Mayotte = Mayotte
+                ZA = Südafrika = South Africa
+                ZM = Sambia = Zambia
+                ZW = Simbabwe = Zimbabwe
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="2"/>
+            <xsd:pattern
+                    value="AD|AE|AF|AG|AI|AL|AM|AN|AO|AQ|AR|AS|AT|AU|AW|AX|AZ|BA|BB|BD|BE|BF|BG|BH|BI|BJ|BL|BM|BN|BO|BQ|BR|BS|BT|BV|BW|BY|BZ|CA|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|CR|CS|CU|CV|CW|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EE|EG|EH|ER|ES|ET|FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN|GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL|IM|IN|IO|IQ|IR|IS|IT|JE|JM|JO|JP|KE|KG|KH|KI|KM|KN|KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA|MC|MD|ME|MF|MG|MH|MK|ML|MM|MN|MO|MP|MQ|MR|MS|MT|MU|MV|MW|MX|MY|MZ|NA|NC|NE|NF|NG|NI|NL|NO|NP|NR|NU|NZ|OM|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PS|PT|PW|PY|QA|RE|RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN|SO|SR|SS|ST|SV|SX|SY|SZ|TC|TD|TF|TG|TH|TJ|TK|TL|TM|TN|TO|TR|TT|TV|TW|TZ|UA|UG|UM|US|UY|UZ|VA|VC|VE|VG|VI|VN|VU|WF|WS|XK|YE|YT|ZA|ZM|ZW"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10016">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 060</xsd:documentation>
+            <xsd:documentation>English Name: Designation 060</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10017">
+        <xsd:annotation>
+            <xsd:documentation>Name: Postfach</xsd:documentation>
+            <xsd:documentation>English Name: PO Box</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Kennung für ein vom Adressaten bei einem Postamt gemietetes Postschliesfach. Es können Auslands- und
+                Inlandspostfächer eingetragen werden.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Code for a post office box rented from a post office by the addressee. Both foreign and domestic PO
+                boxes may be entered.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                2345, 123, 643243, 798xy98763, etc.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10018">
+        <xsd:annotation>
+            <xsd:documentation>Name: Postleitzahl International</xsd:documentation>
+            <xsd:documentation>English Name: International postcode</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Kennzahl eines Ortes für den postalen Brief- und Paketdienst innerhalb eines Landes.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                A place code for the postal letters and parcel service within a country.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Zentrale DatenelementId für die nationalen Ersetzungen
+                Richtet sich in der Länge nach CZ
+                DE = 94, AT = 97, CZ = 541, IT = 96, PL = 98
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="10"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10019">
+        <xsd:annotation>
+            <xsd:documentation>Name: Ortsname</xsd:documentation>
+            <xsd:documentation>English Name: Place name</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Stadt bzw. Gemeindenamen.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                City, town or local authority names.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                AACHEN, NUERNBERG, OLCHING, ROSENHEIM, SCHLIERSEE, ZUERICH, ETC.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10020">
+        <xsd:annotation>
+            <xsd:documentation>Name: Prozentsatz 2.2</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                DER PROZENTSATZ BESTIMMT DAS VERHÄLTNIS EINER GEGEBENEN GRÖßE (=100) ZU EINER BETRACHTETEN GRÖßE.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The percentage (%) states the ratio of a given value (=100) to the value under consideration.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:decimal">
+            <xsd:totalDigits value="4"/>
+            <xsd:fractionDigits value="2"/>
+            <xsd:minInclusive value="-99.99"/>
+            <xsd:maxInclusive value="+99.99"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d{0,1}|0)(\.\d{2})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10023">
+        <xsd:annotation>
+            <xsd:documentation>Name: Steuernummer</xsd:documentation>
+            <xsd:documentation>English Name: Tax number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Steuernummer identifiziert einen Steuerpflichtigen bei seinem zuständigen Finanzamt. Der
+                Steuerpflichtige hat pro Steuerart eine Steuernummer.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The tax number identifies taxpayers to their respective tax office. Taxpayers have one tax number per
+                tax type.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                450045045, 3343J/43223, ETC.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10025">
+        <xsd:annotation>
+            <xsd:documentation>Name: Straße und Hausnummer International</xsd:documentation>
+            <xsd:documentation>English Name: Street with house number International</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Name einer Straße in einer Stadt/Ort, in der sich ein Gebäude befindet, und die Nummer des Gebäudes in
+                dieser Straße.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Name of a street in the city/town/place where the building is located, plus the number of the building
+                in that street.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                richtet sich nach Polen:
+                Zentrale DEId
+                PL: 135, DE: 136, AT: 136, IT: 134
+
+                SDV Projekt DEId
+                PL = 2366, DE: 1411, AT = 1411, IT = 2449
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="41"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10027">
+        <xsd:annotation>
+            <xsd:documentation>Name: Umsatzsteuer-ID</xsd:documentation>
+            <xsd:documentation>English Name: Value added tax ID no.</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Umsatzsteuer-Id (USt-IdNr.) ist eine eindeutige EU-weite Kennzeichnung eines
+                Umsatzsteuerpflichtigen.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The Value added tax identification number (VATIN) is an identifier used in the European Union Value
+                Added Tax for taxation purposes.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                DE833475312, DE938485329, DE93857364, DE039583749, ETC.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+            <xsd:pattern value="[0-9a-zA-Z\. _]{1,15}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10028">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kontonummer Sachkonto</xsd:documentation>
+            <xsd:documentation>English Name: Impersonal account number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Kontonummer identifiziert eindeutig ein Konto. Die Kontonummer gilt sowohl für den eigentlichen
+                Buchungssatz als auch für die Stammdaten. Für Konto-von und Konto-bis einer Bereichsangabe werden somit
+                zwei Datenelemente des Typs Kontonummer verwendet. Die Sachkontolänge kann zwischen 4 und 8 Stellen
+                variieren.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The account number uniquely identifies an account. The account number applies both to the actual
+                accounting record and to the master data. Thus, two data elements of the type ‘account number’ are used
+                for the Account from and the Account to of an area statement. The impersonal account length can be from
+                4 to 8 characters long.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="8"/>
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="99999999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10029">
+        <xsd:annotation>
+            <xsd:documentation>Name: Datum</xsd:documentation>
+            <xsd:documentation>English Name: Date</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Das Datum ist eine konkrete Zeitangabe nach dem Kalender mit der Genauigkeit Jahr, Monat und Tag.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The date is a specific calendar-based time statement comprising the year, month and day.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:date">
+            <xsd:minInclusive value="1753-01-01"/>
+            <xsd:maxInclusive value="9999-12-31"/>
+            <xsd:pattern value="[^:Z]*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10030">
+        <xsd:annotation>
+            <xsd:documentation>Name: BIC Bank Identifier Code</xsd:documentation>
+            <xsd:documentation>English Name: BIC Bank Identifier Code</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Eindeutige Kennung für einen SWIFT-Teilnehmer. BIC (Bank Identifier Code). SWIFT ist die Abkürzung für
+                "Society for Worldwide Interbank Financial Telecommunications". Wie aus dem Namen hervorgeht, handelt es
+                sich um eine Gesellschaft, die für Telekommunikation zwischen Banken weltweit sorgt.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Unique code for each SWIFT participant. BIC (Bank Identifier Code). A familiar term in connection with
+                foreign payment transactions is SWIFT, which stands for "Society for Worldwide Interbank Financial
+                Telecommunications".
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="11"/>
+            <xsd:pattern value="([A-Z]{4}[A-Z]{2}([A-Z0-9]){2}([A-Z0-9]){0,3})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10031">
+        <xsd:annotation>
+            <xsd:documentation>Name: Rufnummer Teilnehmer Telefon und Fax</xsd:documentation>
+            <xsd:documentation>English Name: Telephone and fax number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Rufnummer ist eine Kommunikationsnummer für ein Kommunikationsmedium wie z.B. Telefon und Fax,
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The number is for communications using media such as telephone or fax.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                08123999999, 0911223322, 0041833422222, ETC.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="20"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10032">
+        <xsd:annotation>
+            <xsd:documentation>Name: E-Mail Adresse</xsd:documentation>
+            <xsd:documentation>English Name: Email address</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Eine E-Mail-Adresse ist die eindeutige Absender- und Empfängeradresse im E-Mail-Verkehr. Eine
+                E-Mail-Adresse, wie sie für den Transport per SMTP im Internet verwendet wird, besteht aus zwei Teilen:
+                Einem lokalen Teil, im Englischen local-part genannt (steht vor dem @-Zeichen) und einem globalen Teil,
+                im Englischen domain-part genannt (steht nach dem @-Zeichen).
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                An email address is the unique sender and recipient address used for email communications. An email
+                address as used for SMTP Internet transmissions consists of two parts: the local part found to the left
+                of the ‘@’ character plus a global domain part to the right of the ‘@’ character.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="60"/>
+            <xsd:pattern value="[^@]+@([^@\.\s]+\.)+([^@\.\s]{2,})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10033">
+        <xsd:annotation>
+            <xsd:documentation>Name: Berichtigungs-/Umsatzsteuerschlüssel</xsd:documentation>
+            <xsd:documentation>English Name: Adjustment code/value added tax code</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Durch den Berichtigungs-/Umsatzsteuerschlüssel wird angegeben, ob es sich bei dem komplexen Buchungssatz
+                um Berichtigungsbuchungen oder Umsatzsteuerbuchungen handelt. Der Berichtigungs-/Umsatzsteuerschlüssel
+                hat folgende Form: Die erste Stelle enthält den Berichtigungsschlüssel. Wenn kein Berichtigungsschlüssel
+                benötigt wird, ist die erste Stelle leer (Blank). Die zweite Stelle enthält den Umsatzsteuerschlüssel.
+                Wenn kein Umsatzsteuerschlüssel benötigt wird, wird an zweiter Stelle eine 0 eingetragen. Detailliertere
+                Hinweise zu Berichtigungs-/Umsatzsteuerschlüsseln finden sie im FIBU-Handbuch.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The adjustment code or VAT code indicates whether a complex accounting record relates to adjustment
+                accounting or VAT accounting. The adjustment code/VAT code takes the following form: the first space
+                contains the adjustment code. If no adjustment code is needed this space is left blank. The second space
+                contains the VAT code. If no VAT code is needed a zero is entered in the second space. Details of the
+                adjustment and VAT codes are given in the FIBU manual.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedShort">
+            <xsd:totalDigits value="4"/>
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="9999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10036">
+        <xsd:annotation>
+            <xsd:documentation>Name: Buchungstext 60stellig</xsd:documentation>
+            <xsd:documentation>English Name: Booking text</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                DER BUCHUNGSTEXT IST EIN INDIVIDUELLER TEXT ZU EINEM BUCHUNGSSATZ.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The booking text is the individual text accompanying an accounting record. Al characters permitted.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                Aushilfslöhne, Fahrgeldzuschuß, etc.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="60"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10039">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kontonummer in der Buchhaltung</xsd:documentation>
+            <xsd:documentation>English Name: account number for bookkeeping</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Kontonummer identifiziert eindeutig ein Konto innerhalb der Buchhaltung. Die Kontonummer gilt sowohl
+                für den eigentlichen Buchungssatz als auch für die Stammdaten (S,K,I). Für Konto-von und Konto-bis einer
+                Bereichsangabe werden somit zwei Datenelemente des Typs KONTONUMMER verwendet.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="9"/>
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="999999999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10040">
+        <xsd:annotation>
+            <xsd:documentation>Name: Belegnummer der Länge 36</xsd:documentation>
+            <xsd:documentation>English Name: Voucher number</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Identifiziert einen Beleg. Ein Beleg ist z.B. eine Rechnung. Entspricht dem Belegfeld1.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Uniquely identifies a document according to GOB. A document is, for instance, an invoice and corresponds
+                to the invoice number. Corresponds to Document Field 1 in the DATEV bookkeeping system.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="36"/>
+            <xsd:pattern value="[a-zA-Z0-9$%&amp;\*\+\-/]{1,36}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10041">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kostenstellennummer Länge 36</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Kostenstelle des Rechnungswesens.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The cost centre number identifies a cost centre. A cost centre is a delimited sphere of responsibility,
+                a sub-unit of the overall business for accounting purposes for which a cost burden is calculated.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Regeltyp) / Value range (Regular expression)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="36"/>
+            <xsd:pattern value="([\S][\S ]{0,34}[\S]|[\S]{0,1})"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="noTYPE">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

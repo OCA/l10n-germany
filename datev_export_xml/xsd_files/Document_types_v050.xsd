@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xml.datev.de/DD/DE/bedi/tps/document/v050" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:simpleType name="p16">
+        <xsd:annotation>
+            <xsd:documentation>Name: Version Document</xsd:documentation>
+            <xsd:documentation>English Name: Version Document</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Versionsnummer der document-Schemadatei; aktuell 5.0
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                Version number of document schema; currently 5.0
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                5.0 = 5.0
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="6"/>
+            <xsd:pattern value="5.0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p17">
+        <xsd:annotation>
+            <xsd:documentation>Name: Name Mandant</xsd:documentation>
+            <xsd:documentation>English Name: Clientname</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Bezeichnet einen Mandanten.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example): Musterholz GmbH
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="36"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p18">
+        <xsd:annotation>
+            <xsd:documentation>Name: Rechnungstyp</xsd:documentation>
+            <xsd:documentation>English Name: Invoice Type</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Bei der Bereitstellung der Daten wird unterschieden nach Rechnungseingang und Rechnungsausgang.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                Incoming = eingehend = Incoming
+                Outgoing = ausgehend = Outgoing
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="8"/>
+            <xsd:pattern value="Incoming|Outgoing"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p19">
+        <xsd:annotation>
+            <xsd:documentation>Name: Name der Eigenschaft einer Rechnung</xsd:documentation>
+            <xsd:documentation>English Name: Invoice Property Name</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Bezeichnet die Eigenschaft einer Rechnung (z.B. &quot;Rechnungstyp&quot;).
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                InvoiceType = Rechnungstyp = InvoiceType
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="15"/>
+            <xsd:pattern value="InvoiceType"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p20">
+        <xsd:annotation>
+            <xsd:documentation>Name: Dateiname im Document</xsd:documentation>
+            <xsd:documentation>English Name: Filename document</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Enthält den Namen der übertragenen Datei. Pfadangabe kann enthalten sein.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                rechnung.xml file1.tif
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p25">
+        <xsd:annotation>
+            <xsd:documentation>Name: Dokumententyp</xsd:documentation>
+            <xsd:documentation>English Name: type of document</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Determination des Dokumententyps, Basis ist die Zuordnung zum Belegkreis (Rechnungseingang und Rechnungsausgang)
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                1 = Belegkreis Rechnungseingang
+                2 = Belegkreis Rechnungsausgang
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:byte">
+            <xsd:pattern value="1|2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p26">
+        <xsd:annotation>
+            <xsd:documentation>Name: ProzessID</xsd:documentation>
+            <xsd:documentation>English Name: processId</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die ProcessID enthält Steuerinformationen für die Verarbeitung
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value
+                 range (Enumeration)
+                1 = Buchungsrelevant
+                2 = Archivierungsrelevant
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:byte">
+            <xsd:pattern value="1|2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p27">
+        <xsd:annotation>
+            <xsd:documentation>Name: Hierarchieebene</xsd:documentation>
+            <xsd:documentation>English Name: Level Id</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                ID der Hierarchieebene.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:byte">
+            <xsd:totalDigits value="2"/>
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="99"/>
+            <xsd:pattern value="[\+\-]?([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p28">
+        <xsd:annotation>
+            <xsd:documentation>Name: Periode</xsd:documentation>
+            <xsd:documentation>English Name: Period</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Das Datum ist eine konkrete Zeitangabe nach dem Kalender mit der Genauigkeit Jahr, und Monat.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                The date is a specific calendar-based time statement comprising the year and month.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:gYearMonth">
+            <xsd:minInclusive value="1753-01"/>
+            <xsd:maxInclusive value="9999-12"/>
+            <xsd:pattern value="[^:Z]*"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p32">
+        <xsd:annotation>
+            <xsd:documentation>Name: KassenInformationen</xsd:documentation>
+            <xsd:documentation>English Name: CashInformations</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Bezeichnet die Eigenschaften zur Kasse/Rechnungseingang/Rechnungsausgang
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Aufzählungstyp) / Value range (Enumeration)
+                1 = Periode
+                2 = CashAccountNumber
+                3 = CashName|InvoiceReceiptName|AccountReceivableName
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedByte">
+            <xsd:pattern value="1|2|3"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10008">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 030</xsd:documentation>
+            <xsd:documentation>English Name: Designation 030</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example): -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="30"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10009">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bezeichnung 040</xsd:documentation>
+            <xsd:documentation>English Name: Designation 040</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Allgemeine Bezeichnung, Benennung, Begriff.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                General designation, name, heading.
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example): -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10037">
+        <xsd:annotation>
+            <xsd:documentation>Name: Global Unique Identifier Datenbank</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Weltweit eindeutiger Identifizierer (SQL-Server). Technisches Datenelement.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example):
+                9FFD1116-DA0C-4A30-95D4-EF93FE31097A,
+                8211E5F0-7363-44D7-BD95-457F0F8C6A4D,
+                4EAA212B-1588-4D46-8BF4-70273F3C0369,
+                C200E360-38C5-11CE-AE62-08002B2B79EF, etc.
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="36"/>
+            <xsd:pattern value="[0-9A-Fa-f]{8,8}\-[0-9A-Fa-f]{4,4}\-[0-9A-Fa-f]{4,4}\-[0-9A-Fa-f]{4,4}\-[0-9A-Fa-f]{12,12}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10039">
+        <xsd:annotation>
+            <xsd:documentation>Name: Kontonummer in der Buchhaltung</xsd:documentation>
+            <xsd:documentation>English Name: account number for bookkeeping</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Kontonummer identifiziert eindeutig ein Konto innerhalb der Buchhaltung. Die Kontonummer gilt sowohl für den eigentlichen Buchungssatz als auch für die Stammdaten (S,K,I). Für Konto-von und Konto-bis einer Bereichsangabe werden somit zwei Datenelemente des Typs KONTONUMMER verwendet.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="9"/>
+            <xsd:minInclusive value="1"/>
+            <xsd:maxInclusive value="999999999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10048">
+        <xsd:annotation>
+            <xsd:documentation>Name: Datum und Uhrzeit yyyy.MM.dd HH:mm:ss</xsd:documentation>
+            <xsd:documentation>English Name: Datetime yyyy.MM.dd HH:mm:ss</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                DAS DATUM UND UHRZEIT IST EINE KONKRETE ZEITANGABE MIT DER GENAUIGKEIT JAHR, MONAT, TAG, STUNDE, MINUTE UND SEKUNDE.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:dateTime">
+            <xsd:minInclusive value="0001-01-01T00:00:00"/>
+            <xsd:maxInclusive value="9999-12-31T23:59:59"/>
+            <xsd:pattern value=".+T[^Z\+\-]+"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10049">
+        <xsd:annotation>
+            <xsd:documentation>Name: Beraternummer</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Identifiziert eine Nutzungsbereichtigung auf Mitgliedsebene. Hier wird kein Berater identifiziert. (Aufgepasst: Ein Mitglied kann mehrere Beraternummern haben. Eine Beraternummer kann auch mandantengenutzt sein).
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="7"/>
+            <xsd:minInclusive value="1000"/>
+            <xsd:maxInclusive value="9999999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10050">
+        <xsd:annotation>
+            <xsd:documentation>Name: Mandantennummer</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                Die Mandantennummer dient zur Identifikation eines Mandanten. Die Mandantennummer ist eine für den Anwender sichtbare Nummer (im Gegensatz zur Mandantenidentifikation, die zur eindeutigen Identifikation im Systementwurf benötigt wird). Die Mandantennummer wird vom Mitglied vergeben. Die erweiterte Mandantennummer ist eine Mandantennummer aus einem Fremdprogramm zu den Schnittstellen bestehen (z.B. zu bestehenden weiteren Systemen in der Kanzlei).
+            </xsd:documentation>
+            <xsd:documentation>
+                Description: doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Bereichstyp) / Value range (Range)
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:unsignedInt">
+            <xsd:totalDigits value="5"/>
+            <xsd:minInclusive value="0"/>
+            <xsd:maxInclusive value="99999"/>
+            <xsd:pattern value="([1-9]\d*|0)"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10051">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bemerkung 255</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                FREITEXTLICHE BEMERKUNG ZU EINEM SACHVERHALT. BEMERKUNG, ANMERKUNG, NOTIZ.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example): -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="255"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="p10052">
+        <xsd:annotation>
+            <xsd:documentation>Name: Bemerkung 040</xsd:documentation>
+            <xsd:documentation>
+                Beschreibung:
+                FREITEXTLICHE BEMERKUNG ZU EINEM SACHVERHALT. BEMERKUNG, ANMERKUNG, NOTIZ.
+            </xsd:documentation>
+            <xsd:documentation>
+                Description:
+                doesn't exist in english
+            </xsd:documentation>
+            <xsd:documentation>
+                Wertebereich (Exemplartyp) / Value range (Example): -
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1"/>
+            <xsd:maxLength value="40"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="noTYPE">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>
