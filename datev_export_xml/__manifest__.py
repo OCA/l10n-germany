@@ -17,8 +17,7 @@
     "summary": "Export invoices and refunds as xml and pdf files zipped in DATEV format.",
     "website": "https://github.com/OCA/l10n-germany",
     "depends": [
-        "account",
-        "l10n_de",
+        "datev_export",
     ],
     "data": [
         "data/ir_cron_data.xml",
