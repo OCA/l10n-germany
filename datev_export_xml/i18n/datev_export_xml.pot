@@ -1,13 +1,11 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * datev_export_xml
+# 	* datev_export_xml
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-16 06:01+0000\n"
-"PO-Revision-Date: 2022-09-16 06:01+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -25,48 +23,46 @@ msgstr ""
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid ""
-"<span class=\"o_form_label\">Client Number</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: datev_export_xml
-#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
-msgid ""
-"<span class=\"o_form_label\">Consultant Number</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
-
-#. module: datev_export_xml
-#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
-msgid ""
 "<span class=\"o_form_label\">Customer Order Reference</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid ""
 "<span class=\"o_form_label\">Default Period</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid ""
 "<span class=\"o_form_label\">Export State</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid ""
 "<span class=\"o_form_label\">Vendor Order Reference</span>\n"
-"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+"                        <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
 
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
 msgid "<span class=\"o_stat_text\">Invoices</span>"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:product.product,name:datev_export_xml.product_datev_01
+#: model:product.template,name:datev_export_xml.product_datev_01_product_template
+msgid "A-IT-Consulting"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:product.product,name:datev_export_xml.product_datev_02
+#: model:product.template,name:datev_export_xml.product_datev_02_product_template
+msgid "A-Office-Lease"
 msgstr ""
 
 #. module: datev_export_xml
@@ -111,8 +107,6 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__client_number
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_client_number
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_client_number
 msgid "Client Number"
 msgstr ""
 
@@ -138,8 +132,6 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__consultant_number
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_consultant_number
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_consultant_number
 msgid "Consultant Number"
 msgstr ""
 
@@ -193,8 +185,8 @@ msgid "DATEV Export file is ready to download!"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_filesize
-msgid "DATEV Filesize"
+#: model:ir.model,name:datev_export_xml.model_datev_pdf_generator
+msgid "DATEV PDF Generator"
 msgstr ""
 
 #. module: datev_export_xml
@@ -211,10 +203,20 @@ msgid "DATEV XML Export Wizard"
 msgstr ""
 
 #. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_datev_xml_generator
+msgid "DATEV XML Generator"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:ir.actions.server,name:datev_export_xml.cron_create_datev_export_ir_actions_server
 #: model:ir.cron,cron_name:datev_export_xml.cron_create_datev_export
 #: model:ir.cron,name:datev_export_xml.cron_create_datev_export
 msgid "DATEV XML: Create Export File"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_datev_zip_generator
+msgid "DATEV ZIP Generator"
 msgstr ""
 
 #. module: datev_export_xml
@@ -240,29 +242,9 @@ msgid "Datev Default Period"
 msgstr ""
 
 #. module: datev_export_xml
-#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
-msgid "Datev Export"
-msgstr ""
-
-#. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_export_state
 #: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_export_state
 msgid "Datev Export State"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model,name:datev_export_xml.model_datev_pdf_generator
-msgid "Datev Pdf Generator"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model,name:datev_export_xml.model_datev_xml_generator
-msgid "Datev Xml Generator"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model,name:datev_export_xml.model_datev_zip_generator
-msgid "Datev Zip Generator"
 msgstr ""
 
 #. module: datev_export_xml
@@ -378,6 +360,11 @@ msgid "Failed"
 msgstr ""
 
 #. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_filesize
+msgid "Filesize"
+msgstr ""
+
+#. module: datev_export_xml
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -446,6 +433,7 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_error
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -460,7 +448,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid ""
 "If set, the invoices are marked as exported when finishing a Datev export.\n"
-"                                    Only not yet exported invoices are suggested for next Datev export."
+"                            Only not yet exported invoices are suggested for next Datev export."
 msgstr ""
 
 #. module: datev_export_xml
@@ -563,6 +551,12 @@ msgid "Manually Selected Documents"
 msgstr ""
 
 #. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "Manually set to Done by %s!"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:res.groups,name:datev_export_xml.group_datev_export_status
 msgid "Mark invoices as exported to Datev"
 msgstr ""
@@ -631,18 +625,12 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__client_number
-#: model:ir.model.fields,help:datev_export_xml.field_res_company__datev_client_number
-#: model:ir.model.fields,help:datev_export_xml.field_res_config_settings__datev_client_number
-#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
 msgid "Number from 0 to 99999"
 msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__consultant_number
-#: model:ir.model.fields,help:datev_export_xml.field_res_company__datev_consultant_number
-#: model:ir.model.fields,help:datev_export_xml.field_res_config_settings__datev_consultant_number
-#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
-msgid "Number from 1000 to 9999999"
+msgid "Number from 1000 to 99999999"
 msgstr ""
 
 #. module: datev_export_xml
@@ -752,6 +740,11 @@ msgid "Running"
 msgstr ""
 
 #. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
 msgid "Set Done"
 msgstr ""
@@ -829,6 +822,14 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_exception_decoration
 msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: datev_export_xml
+#: model:product.product,uom_name:datev_export_xml.product_datev_01
+#: model:product.product,uom_name:datev_export_xml.product_datev_02
+#: model:product.template,uom_name:datev_export_xml.product_datev_01_product_template
+#: model:product.template,uom_name:datev_export_xml.product_datev_02_product_template
+msgid "Units"
 msgstr ""
 
 #. module: datev_export_xml

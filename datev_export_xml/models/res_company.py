@@ -13,18 +13,6 @@ from odoo import _, fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    datev_consultant_number = fields.Char(
-        string="Consultant Number",
-        size=32,
-        help="Number from 1000 to 9999999",
-    )
-
-    datev_client_number = fields.Char(
-        string="Client Number",
-        size=32,
-        help="Number from 0 to 99999",
-    )
-
     datev_default_period = fields.Selection(
         [
             ("day", _("Day")),

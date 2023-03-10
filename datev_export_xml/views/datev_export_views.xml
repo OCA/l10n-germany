@@ -102,7 +102,7 @@
                         name="action_done"
                         type="object"
                         string="Set Done"
-                        attrs="{'invisible':  ['|', ('state', 'not in', ['pending', 'failed']), ('manually_document_selection', '=', True)]}"
+                        attrs="{'invisible':  ['|', ('state', 'not in', ['running', 'failed']), ('manually_document_selection', '=', True)]}"
                         confirm="Do you really want to set the export manually to 'Done'?"
                     />
 
