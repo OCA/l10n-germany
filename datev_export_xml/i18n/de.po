@@ -44,7 +44,7 @@ msgstr "<span class=\"o_form_label\">Beraternummer</span>\n"
 msgid ""
 "<span class=\"o_form_label\">Customer Order Reference</span>\n"
 "                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
-"<span class=\"o_form_label\">Kunden Bestellreferenz</span>\n"
+msgstr "<span class=\"o_form_label\">Kunden Bestellreferenz</span>\n"
 "                                <span class=\"fa fa-lg fa-building-o\" title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
 
 #. module: datev_export_xml
