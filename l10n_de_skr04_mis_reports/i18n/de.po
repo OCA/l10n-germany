@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_de_skr04_mis_reports
+# 	* l10n_de_skr04_mis_reports
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2019-03-04 11:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -389,6 +390,16 @@ msgid "Einstellung in Gewinnrücklagen"
 msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
+#: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_entnahme_gewinnruecklage
+msgid "Entnahme aus der Gewinnrücklage"
+msgstr ""
+
+#. module: l10n_de_skr04_mis_reports
+#: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_entnahme_kapitalruecklage
+msgid "Entnahme aus der Kapitalrücklage"
+msgstr ""
+
+#. module: l10n_de_skr04_mis_reports
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_ergebnis_geschaeftstaetigkeit
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_ergebnis_gewoehnliche
 msgid "Ergebnis der gewöhnlichen Geschäftstätigkeit"
@@ -406,13 +417,13 @@ msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_bs
-msgid "German Balance Sheet for SKR03 (§ 266 HGB)"
-msgstr "Bilanz für SKR03 Kontenplan Deutschland (§ 266 HGB)"
+msgid "German Balance Sheet for SKR04 (§ 266 HGB)"
+msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report,description:l10n_de_skr04_mis_reports.mis_report_pl
-msgid "German P&L Sheet for SKR03 (§ 275 HGB)"
-msgstr "Gewinn- und Verlustrechnung Deutschland (§ 275 HGB)"
+msgid "German P&L Sheet for SKR04 (§ 275 HGB)"
+msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_gewinnvortrag_vj
@@ -576,7 +587,9 @@ msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
 #: model:mis.report.kpi,description:l10n_de_skr04_mis_reports.mis_report_pl_abschreibungen_a
-msgid "a. auf Vermögensgeg. des AV, Sachanlagen, akt. Aufw. f. die Ingangs. u. Erweit. d. Geschäftsb."
+msgid ""
+"a. auf Vermögensgeg. des AV, Sachanlagen, akt. Aufw. f. die Ingangs. u. "
+"Erweit. d. Geschäftsb."
 msgstr ""
 
 #. module: l10n_de_skr04_mis_reports
@@ -594,3 +607,8 @@ msgstr ""
 msgid "b. auf Vermögensgegenstände des UV"
 msgstr ""
 
+#~ msgid "German Balance Sheet for SKR03 (§ 266 HGB)"
+#~ msgstr "Bilanz für SKR03 Kontenplan Deutschland (§ 266 HGB)"
+
+#~ msgid "German P&L Sheet for SKR03 (§ 275 HGB)"
+#~ msgstr "Gewinn- und Verlustrechnung Deutschland (§ 275 HGB)"
