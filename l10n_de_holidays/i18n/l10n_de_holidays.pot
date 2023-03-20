@@ -134,6 +134,12 @@ msgstr ""
 #. module: l10n_de_holidays
 #: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
 #, python-format
+msgid "International Women's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
+#, python-format
 msgid "International Workers' Day"
 msgstr ""
 
