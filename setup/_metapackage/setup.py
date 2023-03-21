@@ -8,6 +8,8 @@ setuptools.setup(
     description="Meta package for oca-l10n-germany Odoo addons",
     version=version,
     install_requires=[
+        'odoo14-addon-datev_export',
+        'odoo14-addon-datev_export_xml',
         'odoo14-addon-l10n_de_country_states',
         'odoo14-addon-l10n_de_holidays',
         'odoo14-addon-l10n_de_location_nuts',
