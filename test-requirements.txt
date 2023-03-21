@@ -1,0 +1,2 @@
+# datev_export_xml: Newer version is required because of empty namespaces in formats
+lxml>=4.4.0
