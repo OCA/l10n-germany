@@ -21,3 +21,14 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.datev_account_code_length",
         readonly=False,
     )
+    datev_partner_numbering = fields.Selection(
+        related="company_id.datev_partner_numbering", readonly=False
+    )
+
+    datev_customer_sequence_id = fields.Many2one(
+        related="company_id.datev_customer_sequence_id", readonly=False
+    )
+
+    datev_supplier_sequence_id = fields.Many2one(
+        related="company_id.datev_supplier_sequence_id", readonly=False
+    )

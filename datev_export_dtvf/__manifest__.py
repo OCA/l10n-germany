@@ -18,5 +18,6 @@
         "security/ir.model.access.csv",
         "views/account_account.xml",
         "views/datev_export_dtvf.xml",
+        "views/res_partner.xml",
     ],
 }

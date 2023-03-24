@@ -3,10 +3,11 @@
 import base64
 import datetime
 import io
+import unittest
 import zipfile
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase, can_import
 
 
 class TestDatevExportDtvf(TransactionCase):
@@ -26,12 +27,10 @@ class TestDatevExportDtvf(TransactionCase):
                 "date_end": datetime.date.today(),
             }
         )
-        self.wizard = self.env["datev_export_dtvf.export"].create(
-            {
-                "fiscalyear_id": self.range.id,
-                "period_ids": [(6, 0, self.range.ids)],
-            }
-        )
+        with Form(self.env["datev_export_dtvf.export"]) as WizardForm:
+            WizardForm.fiscalyear_id = self.range
+            WizardForm.period_ids.add(self.range)
+            self.wizard = WizardForm.save()
         self.env.user.company_id.write(
             {
                 "datev_consultant_number": "4242424",
@@ -61,6 +60,10 @@ class TestDatevExportDtvf(TransactionCase):
                 "reconcile": True,
             }
         )
+        self.customer = self.env["res.partner"].search(
+            [("is_company", "=", True)],
+            limit=1,
+        )
         self.move = self.env["account.move"].create(
             {
                 "journal_id": self.journal.id,
@@ -79,6 +82,7 @@ class TestDatevExportDtvf(TransactionCase):
                         {
                             "account_id": self.account2.id,
                             "debit": 42,
+                            "partner_id": self.customer.id,
                         },
                     ),
                 ],
@@ -97,19 +101,18 @@ class TestDatevExportDtvf(TransactionCase):
 
     def test_happy_flow(self):
         """Test generation works as expected"""
+        self.wizard.name = "Hello World"
+        self.move.action_post()
         self.wizard.action_generate()
+        self.assertEqual(self.wizard.file_name, "Hello_World.zip")
         zip_buffer = io.BytesIO(base64.b64decode(self.wizard.file_data))
         self.assertTrue(zipfile.is_zipfile(zip_buffer))
         with zipfile.ZipFile(zip_buffer) as zip_file:
             files = zip_file.namelist()
             partners = "EXTF_DebKred_Stamm.csv"
             self.assertIn(partners, files)
-            customer = self.env["res.partner"].search(
-                [("is_company", "=", True)],
-                limit=1,
-            )
             self.assertIn(
-                customer.name,
+                self.customer.name,
                 zip_file.open(partners).read().decode("utf8"),
             )
         self.wizard.action_draft()
@@ -146,5 +149,41 @@ class TestDatevExportDtvf(TransactionCase):
                 ],
             }
         )
+        self.move.action_post()
+        self.wizard.action_generate()
+
+    def test_sequence(self):
+        """Test datev_partner_numbering = sequence"""
+        self.wizard.company_id.datev_partner_numbering = "sequence"
+        self.wizard.company_id.datev_customer_sequence_id = self.env[
+            "ir.sequence"
+        ].create(
+            {
+                "name": "DATEV customer sequence",
+            }
+        )
+        self.wizard.company_id.datev_supplier_sequence_id = self.env[
+            "ir.sequence"
+        ].create(
+            {
+                "name": "DATEV supplier sequence",
+            }
+        )
+        self.move.line_ids.write({"partner_id": self.customer.id})
+        self.assertFalse(self.customer.l10n_de_datev_export_identifier_customer)
+        self.assertFalse(self.customer.l10n_de_datev_export_identifier_supplier)
+        self.move.action_post()
+        self.wizard.action_generate()
+        self.assertTrue(self.customer.l10n_de_datev_export_identifier_customer)
+
+    @unittest.skipUnless(
+        can_import("odoo.addons.l10n_de_datev_reports"),
+        "l10n_de_datev_reports is not installed, not testing it",
+    )
+    def test_ee(self):
+        """Test datev_partner_numbering = ee"""
+        self.wizard.company_id.datev_partner_numbering = "ee"
+        self.move.line_ids.write({"partner_id": self.customer.id})
+        self.customer.l10n_de_datev_identifier_customer = "424242"
         self.move.action_post()
         self.wizard.action_generate()
