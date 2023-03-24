@@ -2,9 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import io
+import string
 import zipfile
 
-from odoo import _, exceptions, fields, models
+from odoo import _, api, exceptions, fields, models
 from odoo.osv.expression import TRUE_LEAF
 
 from ..datev import DatevAccountWriter, DatevPartnerWriter, DatevTransactionWriter
@@ -12,7 +13,6 @@ from ..datev import DatevAccountWriter, DatevPartnerWriter, DatevTransactionWrit
 
 class DatevExportDtvfExport(models.Model):
     _name = "datev_export_dtvf.export"
-    _rec_name = "fiscalyear_id"
     _description = "DATEV export"
     _order = "fiscalyear_id desc, create_date desc"
 
@@ -22,6 +22,10 @@ class DatevExportDtvfExport(models.Model):
     fiscalyear_id = fields.Many2one(
         "date.range",
         string="Fiscal year",
+        states={"draft": [("required", True), ("readonly", False)]},
+        readonly=True,
+    )
+    name = fields.Char(
         states={"draft": [("required", True), ("readonly", False)]},
         readonly=True,
     )
@@ -41,12 +45,27 @@ class DatevExportDtvfExport(models.Model):
     )
     date_generated = fields.Datetime("Generated at", readonly=True, copy=False)
     file_data = fields.Binary("Data", readonly=True, copy=False)
-    file_name = fields.Char("Filename", readonly=True, copy=False)
+    file_name = fields.Char("Filename", readonly=True, compute="_compute_file_name")
     company_id = fields.Many2one(
         "res.company",
         required=True,
         default=lambda self: self.env.company,
     )
+
+    @api.onchange("fiscalyear_id")
+    def _onchange_fiscalyear_id(self):
+        self.name = self.name or self.fiscalyear_id.display_name
+
+    @api.depends("name")
+    def _compute_file_name(self):
+        for this in self:
+            this.file_name = (
+                "".join(
+                    c if c in string.ascii_letters + string.digits + "-_" else "_"
+                    for c in (this.name or "datev_export")
+                )
+                + ".zip"
+            )
 
     def action_draft(self):
         return self.filtered(lambda x: x.state != "draft").write({"state": "draft"})
@@ -72,6 +91,8 @@ class DatevExportDtvfExport(models.Model):
                 token[:1].upper() for token in self.env.user.name.split()
             )[:2]
 
+            partners = self.env["res.partner"].browse([])
+
             for date_range in this.period_ids:
                 moves = self.env["account.move"].search(
                     [
@@ -84,6 +105,9 @@ class DatevExportDtvfExport(models.Model):
                         else TRUE_LEAF,
                     ],
                     order="date desc",
+                )
+                partners += moves.mapped("line_ids.partner_id") + moves.mapped(
+                    "partner_id"
                 )
                 writer = DatevTransactionWriter(
                     this.company_id.datev_consultant_number,
@@ -105,13 +129,6 @@ class DatevExportDtvfExport(models.Model):
                 )
                 zip_file.writestr(filename, writer.buffer.getvalue())
 
-            partners = self.env["res.partner"].search(
-                [
-                    "|",
-                    ("company_id", "=", False),
-                    ("company_id", "=", this.company_id.id),
-                ]
-            )
             writer = DatevPartnerWriter(
                 self.company_id.datev_consultant_number,
                 self.company_id.datev_client_number,
@@ -150,7 +167,6 @@ class DatevExportDtvfExport(models.Model):
             zip_file.close()
             this.write(
                 {
-                    "file_name": "%s.zip" % self.display_name,
                     "file_data": base64.b64encode(zip_buffer.getvalue()),
                     "state": "done",
                     "date_generated": fields.Datetime.now(),
@@ -190,13 +206,35 @@ class DatevExportDtvfExport(models.Model):
                 move_line, move_line2 = move_line2, move_line
             if move_line.account_id.datev_export_nonautomatic:
                 move_line, move_line2 = move_line2, move_line
+            account_number = move_line.account_id.code[-code_length:]
+            offset_account_number = move_line2.account_id.code[-code_length:]
+            if self.company_id.datev_partner_numbering in ("ee", "sequence"):
+                for ml in (move_line, move_line2):
+                    number = (
+                        account_number if ml == move_line else offset_account_number
+                    )
+                    number_type = (
+                        "customer"
+                        if ml.account_id.internal_type == "receivable"
+                        else (
+                            "supplier"
+                            if ml.account_id.internal_type == "payable"
+                            else None
+                        )
+                    )
+                    if number_type and ml.partner_id:
+                        number = self._get_partner_number(
+                            ml.partner_id, number_type, True
+                        )
+                    if ml == move_line:
+                        account_number = number
+                    else:
+                        offset_account_number = number
             data = {
                 "Umsatz (ohne Soll/Haben-Kz)": ("%.2f" % abs(amount)).replace(".", ","),
                 "Soll/Haben-Kennzeichen": move_line.debit and "S" or "H",
-                "Konto": move_line.account_id.code[-code_length:],
-                "Gegenkonto (ohne BU-Schlüssel)": move_line2.account_id.code[
-                    -code_length:
-                ],
+                "Konto": account_number,
+                "Gegenkonto (ohne BU-Schlüssel)": offset_account_number,
                 "BU-Schlüssel": "40"
                 if move_line.account_id.datev_export_nonautomatic
                 or move_line2.account_id.datev_export_nonautomatic
@@ -238,8 +276,10 @@ class DatevExportDtvfExport(models.Model):
             yield data
 
     def _get_data_partner(self, partner):
-        yield {
-            "Konto": partner.id,
+        data = {
+            "Konto": self._get_partner_number(partner, "customer")
+            or self._get_partner_number(partner, "supplier")
+            or partner.id,
             "Name (Adressattyp Unternehmen)": partner.name,
             "Name (Adressattyp natürl. Person)": partner.name,
             "Adressattyp": partner.is_company and "2" or "1",
@@ -271,6 +311,12 @@ class DatevExportDtvfExport(models.Model):
             if partner.lang[:2] == "it"
             else "5",
         }
+        yield data
+        if self._get_partner_number(partner, "customer") and self._get_partner_number(
+            partner, "supplier"
+        ):
+            data["Konto"] = self._get_partner_number(partner, "supplier")
+            yield data
 
     def _get_data_account(self, account):
         yield {
@@ -279,3 +325,22 @@ class DatevExportDtvfExport(models.Model):
             "SprachId": self.env.user.lang.replace("_", "-"),
             "Kontenbeschriftung lang": account.name,
         }
+
+    def _get_partner_number(self, partner, number_type, generate=False):
+        if self.company_id.datev_partner_numbering == "sequence":
+            field_name = "l10n_de_datev_export_identifier_%s" % number_type
+            if not partner[field_name] and generate:
+                getattr(
+                    partner,
+                    "action_l10n_de_datev_export_identifier_%s" % number_type,
+                )()
+            return partner[field_name]
+        elif self.company_id.datev_partner_numbering == "ee":
+            account_length = self.env["account.general.ledger"]._get_account_length()
+            return partner[
+                "l10n_de_datev_identifier%s"
+                % ("_customer" if number_type == "customer" else "")
+            ] or str(
+                (1 if number_type == "customer" else 7) * 10**account_length
+                + partner.id
+            )

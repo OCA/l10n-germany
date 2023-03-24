@@ -27,6 +27,7 @@
             <sheet>
                 <group name="data">
                     <field name="fiscalyear_id" />
+                    <field name="name" />
                     <field name="fiscalyear_start" invisible="True" />
                     <field name="fiscalyear_end" invisible="True" />
                     <field

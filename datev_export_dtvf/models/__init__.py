@@ -2,3 +2,4 @@
 
 from . import account_account
 from . import datev_export_dtvf
+from . import res_partner

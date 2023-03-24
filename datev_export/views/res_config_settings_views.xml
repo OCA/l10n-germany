@@ -77,6 +77,88 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="o_setting_left_pane" />
+                            <div class="o_setting_right_pane">
+                                <span class="o_form_label">Partner numbering</span>
+                                <span
+                                    class="fa fa-lg fa-building-o"
+                                    title="Values set here are company-specific."
+                                    aria-label="Values set here are company-specific."
+                                    groups="base.group_multi_company"
+                                />
+                                <div class="text-muted">
+                                    Select the way partners in DATEV export are numbered
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field
+                                            name="datev_partner_numbering"
+                                            class="o_light_label"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="o_setting_left_pane"
+                                attrs="{'invisible': [('datev_partner_numbering', '!=', 'sequence')]}"
+                            />
+                            <div
+                                class="o_setting_right_pane"
+                                attrs="{'invisible': [('datev_partner_numbering', '!=', 'sequence')]}"
+                            >
+                                <span class="o_form_label">Customer sequence</span>
+                                <span
+                                    class="fa fa-lg fa-building-o"
+                                    title="Values set here are company-specific."
+                                    aria-label="Values set here are company-specific."
+                                    groups="base.group_multi_company"
+                                />
+                                <div class="text-muted">
+                                    The sequence used to number customers
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field
+                                            name="datev_customer_sequence_id"
+                                            class="o_light_label"
+                                            attrs="{'required': [('datev_partner_numbering', '=', 'sequence')]}"
+                                            domain="[('company_id', 'in', (company_id, False))]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="o_setting_left_pane"
+                                attrs="{'invisible': [('datev_partner_numbering', '!=', 'sequence')]}"
+                            />
+                            <div
+                                class="o_setting_right_pane"
+                                attrs="{'invisible': [('datev_partner_numbering', '!=', 'sequence')]}"
+                            >
+                                <span class="o_form_label">Supplier sequence</span>
+                                <span
+                                    class="fa fa-lg fa-building-o"
+                                    title="Values set here are company-specific."
+                                    aria-label="Values set here are company-specific."
+                                    groups="base.group_multi_company"
+                                />
+                                <div class="text-muted">
+                                    The sequence used to number suppliers
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field
+                                            name="datev_supplier_sequence_id"
+                                            class="o_light_label"
+                                            attrs="{'required': [('datev_partner_numbering', '=', 'sequence')]}"
+                                            domain="[('company_id', 'in', (company_id, False))]"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
