@@ -114,7 +114,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         easter = self.calculate_easter_sunday(self.year)
         # Baden-Württemberg, Bavaria, Hesse, North
         # Rhine-Westphalia, Rhineland-Palatinate, Saarland
-        codes = ["BW", "BY", "HE", "NW", "RP", "SL"]
+        codes = ["DE-BW", "DE-BY", "DE-HE", "DE-NW", "DE-RP", "DE-SL"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -177,7 +177,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
     def calculate_state_fixed_holidays(self, existing_holidays, state=None):
         public_holiday_line_obj = self.env["hr.holidays.public.line"]
         # Baden-Württemberg, Bavaria, Saxony-Anhalt
-        codes = ["BW", "BY", "ST"]
+        codes = ["DE-BW", "DE-BY", "DE-ST"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -191,7 +191,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 }
             )
         # Bavaria, Saarland
-        codes = ["BY", "SL"]
+        codes = ["DE-BY", "DE-SL"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -207,7 +207,17 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         # BB, HB, HH, MVP, NDS, SH, SN, ST, TH
         # (depends on
         # https://www.timeanddate.com/holidays/germany/reformation-day)
-        codes = ["BB", "HB", "HH", "MV", "NI", "SH", "SN", "ST", "TH"]
+        codes = [
+            "DE-BB",
+            "DE-HB",
+            "DE-HH",
+            "DE-MV",
+            "DE-NI",
+            "DE-SH",
+            "DE-SN",
+            "DE-ST",
+            "DE-TH",
+        ]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -222,7 +232,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             )
         # Baden-Württemberg, Bavaria,
         # North Rhine-Westphalia, Rhineland-Palatinate, Saarland
-        codes = ["BW", "BY", "NW", "RP", "SL"]
+        codes = ["DE-BW", "DE-BY", "DE-NW", "DE-RP", "DE-SL"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -236,7 +246,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 }
             )
         # Sachsen
-        codes = ["SN"]
+        codes = ["DE-SN"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
@@ -251,7 +261,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             )
 
         # Berlin
-        codes = ["BE"]
+        codes = ["DE-BE"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
