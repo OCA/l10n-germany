@@ -181,7 +181,8 @@ msgstr ""
 msgid ""
 "There is no copy function defined for this county or\n"
 "                    the function name does not fit the requirement -\n"
-"                    action_copy_%s_holidays where %s id the county code."
+"                    action_copy_{country_code}_holidays where \"{country_code}\" id the\n"
+"                    county code."
 msgstr ""
 
 #. module: l10n_de_holidays
@@ -190,7 +191,7 @@ msgstr ""
 msgid ""
 "There is no generate function defined for this county\n"
 "                    or the function name does not fit the requirement -\n"
-"                    action_generate_%s_holidays where %s is\n"
+"                    action_generate_{country_code}_holidays where \"{country_code}\" is\n"
 "                    the county code."
 msgstr ""
 
