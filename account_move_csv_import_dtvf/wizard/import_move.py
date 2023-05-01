@@ -2,14 +2,16 @@
 # @author Alexis de Lattre <alexis.delattre@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models, fields, _
-from odoo.exceptions import UserError
-from odoo.tools import float_is_zero
-from datetime import datetime, date as datelib
-import unicodecsv
-from tempfile import TemporaryFile
 import base64
 import logging
+from datetime import date as datelib, datetime
+from tempfile import TemporaryFile
+
+import unicodecsv
+
+from odoo import _, fields, models
+from odoo.exceptions import UserError
+from odoo.tools import float_is_zero
 
 _logger = logging.getLogger(__name__)
 
@@ -95,7 +97,7 @@ class AccountMoveImport(models.TransientModel):
         return action
 
     def clean_strip_pivot(self, pivot):
-        for l in pivot:
+        for l in pivot:  # noqa: E741
             for key, value in l.items():
                 if value:
                     if isinstance(value, str):
@@ -110,7 +112,7 @@ class AccountMoveImport(models.TransientModel):
         force_journal_code = (
             self.force_journal_id and self.force_journal_id.code or False
         )
-        for l in pivot:
+        for l in pivot:  # noqa: E741
             if force_move_date:
                 l["date"] = force_move_date
             if force_move_line_name:
@@ -156,7 +158,7 @@ class AccountMoveImport(models.TransientModel):
         res = []
         year_str = ""
         i = 0
-        for l in reader:
+        for l in reader:  # noqa: E741
             i += 1
             if i == 1 and l["discount"]:
                 year_str = l["discount"][0:4]
@@ -186,7 +188,7 @@ class AccountMoveImport(models.TransientModel):
                 res.append(vals)
         return res
 
-    def create_moves_from_pivot(self, pivot, post=False):
+    def create_moves_from_pivot(self, pivot, post=False):  # noqa: C901
         _logger.debug("Final pivot: %s", pivot)
         amo = self.env["account.move"]
         company_id = self.env.user.company_id.id
@@ -196,21 +198,21 @@ class AccountMoveImport(models.TransientModel):
         acc_sr = self.env["account.account"].search_read(
             [("company_id", "=", company_id), ("deprecated", "=", False)], ["code"]
         )
-        for l in acc_sr:
+        for l in acc_sr:  # noqa: E741
             acc_speed_dict[l["code"].upper()] = l["id"]
         # contra_account
         accc_speed_dict = {}
         accc_sr = self.env["account.account"].search_read(
             [("company_id", "=", company_id), ("deprecated", "=", False)], ["code"]
         )
-        for l in accc_sr:
+        for l in accc_sr:  # noqa: E741
             accc_speed_dict[l["code"].upper()] = l["id"]
         # journal
         journal_speed_dict = {}
         journal_sr = self.env["account.journal"].search_read(
             [("company_id", "=", company_id)], ["code"]
         )
-        for l in journal_sr:
+        for l in journal_sr:  # noqa: E741
             journal_speed_dict[l["code"].upper()] = l["id"]
         key2label = {
             "account": _("account codes"),
@@ -221,7 +223,7 @@ class AccountMoveImport(models.TransientModel):
         for key in key2label.keys():
             errors[key] = {}
         # MATCHES + CHECKS
-        for l in pivot:
+        for l in pivot:  # noqa: E741
             assert l.get("line") and isinstance(
                 l.get("line"), int
             ), "missing line number"
@@ -330,7 +332,7 @@ class AccountMoveImport(models.TransientModel):
         prec = self.env.user.company_id.currency_id.rounding
         seq = self.env["ir.sequence"].next_by_code("account.move.import")
         cur_move = {}
-        for l in pivot:
+        for l in pivot:  # noqa: E741
             indicator = l.get("indicator", False)
             if cur_date == l["date"]:
                 cur_move["line_ids"].append(

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data>
         <record id="account_move_import_form" model="ir.ui.view">
@@ -18,7 +18,10 @@
                         <field name="force_move_line_name" />
                         <field name="date_format" invisible="1" />
                     </group>
-                    <div name="info-csv" attrs="{'invisible': [('file_format', '!=', 'genericcsv')]}">
+                    <div
+                        name="info-csv"
+                        attrs="{'invisible': [('file_format', '!=', 'genericcsv')]}"
+                    >
                         <h2>Information about the Generic CSV format</h2>
                         <ul>
                             <li>
@@ -36,17 +39,17 @@
                                 <ol>
                                     <li>Umsatz (ohne Soll/Haben-Kz)</li>
                                     <li>Soll/Haben-Kennzeichen</li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
+                                    <li />
+                                    <li />
+                                    <li />
+                                    <li />
                                     <li>Konto</li>
                                     <li>Gegenkonto (ohne BU-Schl?ssel)</li>
-                                    <li></li>
+                                    <li />
                                     <li>Belegdatum (DDMM)</li>
-                                    <li></li>
-                                    <li></li>
-                                    <li></li>
+                                    <li />
+                                    <li />
+                                    <li />
                                     <li>Buchungstext</li>
                                 </ol>
                             </li>
@@ -69,7 +72,12 @@
                         </ul>
                     </div>
                     <footer>
-                        <button name="run_import" type="object" string="Run Import" class="oe_highlight" />
+                        <button
+                            name="run_import"
+                            type="object"
+                            string="Run Import"
+                            class="oe_highlight"
+                        />
                         <button special="cancel" string="Cancel" class="oe_link" />
                     </footer>
                 </form>
@@ -83,7 +91,12 @@
             <field name="target">new</field>
         </record>
 
-        <menuitem id="account_move_import_menu" parent="account.menu_finance_entries" action="account_move_import_action" sequence="150" />
+        <menuitem
+            id="account_move_import_menu"
+            parent="account.menu_finance_entries"
+            action="account_move_import_action"
+            sequence="150"
+        />
     </data>
 
 </odoo>
