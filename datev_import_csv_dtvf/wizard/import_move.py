@@ -336,10 +336,10 @@ class AccountMoveImport(models.TransientModel):
             indicator = l.get("indicator", False)
             if cur_date == l["date"]:
                 cur_move["line_ids"].append(
-                    (0, 0, self._prepare_move_line_02(l, seq, indicator))
+                    (0, 0, self._prepare_move_line_01(l, seq, indicator))
                 )
                 cur_move["line_ids"].append(
-                    (0, 0, self._prepare_move_line_01(l, seq, indicator))
+                    (0, 0, self._prepare_move_line_02(l, seq, indicator))
                 )
             else:
                 # new move
@@ -360,8 +360,8 @@ class AccountMoveImport(models.TransientModel):
                     moves.append(cur_move)
                 cur_move = self._prepare_move(l)
                 cur_move["line_ids"] = [
-                    (0, 0, self._prepare_move_line_02(l, seq, indicator)),
                     (0, 0, self._prepare_move_line_01(l, seq, indicator)),
+                    (0, 0, self._prepare_move_line_02(l, seq, indicator)),
                 ]
                 cur_date = l["date"]
             cur_balance += l["credit"] - l["debit"]
@@ -396,12 +396,12 @@ class AccountMoveImport(models.TransientModel):
         if indicator == "S":
             vals.update(
                 {
-                    "credit": pivot_line["credit"],
-                    "debit": 0.0,
+                    "credit": 0.0,
+                    "debit": pivot_line["debit"],
                 }
             )
         if indicator == "H":
-            vals.update({"credit": 0.0, "debit": pivot_line["debit"]})
+            vals.update({"credit": pivot_line["credit"], "debit": 0})
         vals.update(
             {
                 "name": pivot_line["name"],
@@ -417,15 +417,15 @@ class AccountMoveImport(models.TransientModel):
         if indicator == "S":
             vals.update(
                 {
-                    "credit": 0.0,
-                    "debit": pivot_line["debit"],
+                    "credit": pivot_line["debit"],
+                    "debit": 0,
                 }
             )
         if indicator == "H":
             vals.update(
                 {
-                    "credit": pivot_line["debit"],
-                    "debit": 0.0,
+                    "credit": 0,
+                    "debit": pivot_line["credit"],
                 }
             )
         vals.update(
