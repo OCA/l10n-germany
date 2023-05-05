@@ -98,7 +98,6 @@ class TestDatevImportCsvDtvf(TransactionCase):
                     .read()
                     .encode("utf8")
                 ),
-                "file_format": "genericcsv",
                 "force_journal_id": self.env["account.journal"]
                 .search([("type", "=", "sale")], limit=1)
                 .id,

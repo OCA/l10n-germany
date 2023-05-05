@@ -9,8 +9,6 @@
                     <group name="main">
                         <field name="file_to_import" filename="filename" />
                         <field name="filename" invisible="1" />
-                        <field name="file_format" />
-                        <field name="file_encoding" />
                         <field name="post_move" />
                         <field name="force_journal_id" required="1" />
                         <field name="force_move_date" />
@@ -18,11 +16,11 @@
                         <field name="force_move_line_name" />
                         <field name="date_format" invisible="1" />
                     </group>
-                    <div
-                        name="info-csv"
-                        attrs="{'invisible': [('file_format', '!=', 'genericcsv')]}"
-                    >
-                        <h2>Information about the Generic CSV format</h2>
+                    <div class="bg-warning">
+                        Note this import does not handle taxes!
+                    </div>
+                    <div>
+                        <h2>Information about the DATEV CSV format</h2>
                         <ul>
                             <li>
                                 <em>First Row : contains information like year</em>
@@ -85,7 +83,7 @@
         </record>
 
         <record id="account_move_import_action" model="ir.actions.act_window">
-            <field name="name">Import Account Move</field>
+            <field name="name">Import DATEV Format (.csv)</field>
             <field name="res_model">account.move.import</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
@@ -93,7 +91,7 @@
 
         <menuitem
             id="account_move_import_menu"
-            parent="account.menu_finance_entries"
+            parent="account.menu_finance_entries_actions"
             action="account_move_import_action"
             sequence="150"
         />
