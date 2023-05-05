@@ -28,20 +28,6 @@ class AccountMoveImport(models.TransientModel):
         help="File containing the journal entry(ies) to import.",
     )
     filename = fields.Char()
-    file_format = fields.Selection(
-        [("genericcsv", "Generic CSV")],
-        string="File Format",
-        required=True,
-        help="Select the type of file you are importing.",
-    )
-    file_encoding = fields.Selection(
-        [
-            ("utf-8", "UTF-8"),
-            ("windows-1252", "Western (Windows-1252)"),
-        ],
-        string="File Encoding",
-        default="utf-8",
-    )
     post_move = fields.Boolean(
         string="Post Journal Entry",
         help="If True, the journal entry will be posted after the import.",
@@ -191,29 +177,24 @@ class AccountMoveImport(models.TransientModel):
     def create_moves_from_pivot(self, pivot, post=False):  # noqa: C901
         _logger.debug("Final pivot: %s", pivot)
         amo = self.env["account.move"]
-        company_id = self.env.user.company_id.id
+        company_id = self.env.company.id
         # Generate SPEED DICTS
         # account
-        acc_speed_dict = {}
-        acc_sr = self.env["account.account"].search_read(
-            [("company_id", "=", company_id), ("deprecated", "=", False)], ["code"]
-        )
-        for l in acc_sr:  # noqa: E741
-            acc_speed_dict[l["code"].upper()] = l["id"]
+        acc_speed_dict = {
+            account["code"].upper(): account["id"]
+            for account in self.env["account.account"].search_read(
+                [("company_id", "=", company_id), ("deprecated", "=", False)], ["code"]
+            )
+        }
         # contra_account
-        accc_speed_dict = {}
-        accc_sr = self.env["account.account"].search_read(
-            [("company_id", "=", company_id), ("deprecated", "=", False)], ["code"]
-        )
-        for l in accc_sr:  # noqa: E741
-            accc_speed_dict[l["code"].upper()] = l["id"]
+        accc_speed_dict = acc_speed_dict.copy()
         # journal
-        journal_speed_dict = {}
-        journal_sr = self.env["account.journal"].search_read(
-            [("company_id", "=", company_id)], ["code"]
-        )
-        for l in journal_sr:  # noqa: E741
-            journal_speed_dict[l["code"].upper()] = l["id"]
+        journal_speed_dict = {
+            journal["code"].upper(): journal["id"]
+            for journal in self.env["account.journal"].search_read(
+                [("company_id", "=", company_id)], ["code"]
+            )
+        }
         key2label = {
             "account": _("account codes"),
             "contra_account": _("contra account codes"),
@@ -222,59 +203,40 @@ class AccountMoveImport(models.TransientModel):
         errors = {"other": []}
         for key in key2label.keys():
             errors[key] = {}
+
+        def match_account(line, speed_dict, id_field, code_field):
+            if line[code_field] in speed_dict:
+                line[id_field] = speed_dict[l[code_field]]
+            if not line.get(id_field):
+                # Match when import = 61100000 and Odoo has 611000
+                acc_code_tmp = l[code_field]
+                while acc_code_tmp and acc_code_tmp[-1] == "0":
+                    acc_code_tmp = acc_code_tmp[:-1]
+                    if acc_code_tmp and acc_code_tmp in speed_dict:
+                        line[id_field] = speed_dict[acc_code_tmp]
+                        break
+            if not line.get(id_field):
+                # Match when import = 611000 and Odoo has 611000XX
+                for code, account_id in speed_dict.items():
+                    if code.startswith(line[code_field]):
+                        _logger.warning(
+                            "Approximate match: import account %s has been matched "
+                            "with Odoo account %s" % (line[code_field], code)
+                        )
+                        line[id_field] = account_id
+                        break
+            if not line.get(id_field):
+                errors["account"].setdefault(line[code_field], []).append(l["line"])
+
         # MATCHES + CHECKS
         for l in pivot:  # noqa: E741
             assert l.get("line") and isinstance(
                 l.get("line"), int
             ), "missing line number"
             # 1. account
-            if l["account"] in acc_speed_dict:
-                l["account_id"] = acc_speed_dict[l["account"]]
-            if not l.get("account_id"):
-                # Match when import = 61100000 and Odoo has 611000
-                acc_code_tmp = l["account"]
-                while acc_code_tmp and acc_code_tmp[-1] == "0":
-                    acc_code_tmp = acc_code_tmp[:-1]
-                    if acc_code_tmp and acc_code_tmp in acc_speed_dict:
-                        l["account_id"] = acc_speed_dict[acc_code_tmp]
-                        break
-            if not l.get("account_id"):
-                # Match when import = 611000 and Odoo has 611000XX
-                for code, account_id in acc_speed_dict.items():
-                    if code.startswith(l["account"]):
-                        _logger.warning(
-                            "Approximate match: import account %s has been matched "
-                            "with Odoo account %s" % (l["account"], code)
-                        )
-                        l["account_id"] = account_id
-                        break
-            if not l.get("account_id"):
-                errors["account"].setdefault(l["account"], []).append(l["line"])
+            match_account(l, acc_speed_dict, "account_id", "account")
             # 2. contra_account
-            if l["contra_account"] in accc_speed_dict:
-                l["contra_account_id"] = accc_speed_dict[l["contra_account"]]
-            if not l.get("contra_account_id"):
-                # Match when import = 61100000 and Odoo has 611000
-                accc_code_tmp = l["contra_account"]
-                while accc_code_tmp and accc_code_tmp[-1] == "0":
-                    accc_code_tmp = accc_code_tmp[:-1]
-                    if accc_code_tmp and accc_code_tmp in accc_speed_dict:
-                        l["contra_account_id"] = accc_speed_dict[accc_code_tmp]
-                        break
-            if not l.get("contra_account_id"):
-                # Match when import = 611000 and Odoo has 611000XX
-                for code, contra_account_id in accc_speed_dict.items():
-                    if code.startswith(l["contra_account"]):
-                        _logger.warning(
-                            "Approximate match: import account %s has been matched "
-                            "with Odoo account %s" % (l["contra_account"], code)
-                        )
-                        l["contra_account_id"] = contra_account_id
-                        break
-            if not l.get("contra_account_id"):
-                errors["contra_account"].setdefault(l["contra_account"], []).append(
-                    l["line"]
-                )
+            match_account(l, accc_speed_dict, "contra_account_id", "contra_account")
             # 3. journal
             if l["journal"] in journal_speed_dict:
                 l["journal_id"] = journal_speed_dict[l["journal"]]
@@ -329,7 +291,7 @@ class AccountMoveImport(models.TransientModel):
         moves = []
         cur_balance = 0.0
         cur_date = False
-        prec = self.env.user.company_id.currency_id.rounding
+        prec = self.env.company.currency_id.rounding
         seq = self.env["ir.sequence"].next_by_code("account.move.import")
         cur_move = {}
         for l in pivot:  # noqa: E741
@@ -380,7 +342,7 @@ class AccountMoveImport(models.TransientModel):
             rmoves += amo.create(move)
         _logger.info("Account moves IDs %s created via file import" % rmoves.ids)
         if post:
-            rmoves.post()
+            rmoves._post()
         return rmoves
 
     def _prepare_move(self, pivot_line):
