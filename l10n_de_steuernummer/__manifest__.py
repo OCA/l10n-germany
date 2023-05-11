@@ -5,7 +5,7 @@
 {
     "name": "German SteuerNummer validation",
     "category": "Localisation/Europe",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "depends": ["base_vat"],
     "author": "Tecnativa, " "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
