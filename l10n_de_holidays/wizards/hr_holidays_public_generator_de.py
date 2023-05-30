@@ -4,6 +4,7 @@
 from datetime import datetime, timedelta
 
 from dateutil import easter
+from dateutil.relativedelta import SU, relativedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -45,6 +46,13 @@ class HrHolidaysPublicGenerator(models.TransientModel):
     def calculate_corpus_christi(self, easter):
         corpus_christi = easter + timedelta(days=60)
         return fields.Date.to_string(corpus_christi)
+
+    @api.model
+    def calculate_repentance_day(self, year):
+        # Repentance Day is always 11 days befor the first advent
+        first_advent = datetime(year, 12, 24) + relativedelta(weekday=SU(-4))
+        repentance_day = first_advent + relativedelta(days=-11)
+        return fields.Date.to_string(repentance_day)
 
     @api.model
     def calculate_floating_holidays(self, existing_holidays):
@@ -127,6 +135,20 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                     "year_id": existing_holidays.id,
                 }
             )
+        # Sachsen
+        codes = ["DE-SN"]
+        state_ids = self.get_state_ids(codes)
+
+        if not state or state.id in state_ids:
+            public_holiday_line_obj.create(
+                {
+                    "name": _("Repentance Day"),
+                    "date": self.calculate_repentance_day(self.year),
+                    "variable_date": True,
+                    "state_ids": [(6, 0, state_ids)],
+                    "year_id": existing_holidays.id,
+                }
+            )
 
     @api.model
     def calculate_fixed_holidays(self, existing_holidays):
@@ -190,6 +212,21 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                     "year_id": existing_holidays.id,
                 }
             )
+        # Thüringen
+        codes = ["DE-TH"]
+        state_ids = self.get_state_ids(codes)
+
+        if not state or state.id in state_ids:
+            public_holiday_line_obj.create(
+                {
+                    "name": _("World Children's Day"),
+                    "date": "%s-09-20" % existing_holidays.year,
+                    "variable_date": False,
+                    "state_ids": [(6, 0, state_ids)],
+                    "year_id": existing_holidays.id,
+                }
+            )
+
         # Bavaria, Saarland
         codes = ["DE-BY", "DE-SL"]
         state_ids = self.get_state_ids(codes)
@@ -245,23 +282,8 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                     "year_id": existing_holidays.id,
                 }
             )
-        # Sachsen
-        codes = ["DE-SN"]
-        state_ids = self.get_state_ids(codes)
-
-        if not state or state.id in state_ids:
-            public_holiday_line_obj.create(
-                {
-                    "name": _("Repentance Day"),
-                    "date": "%s-11-23" % existing_holidays.year,
-                    "variable_date": False,
-                    "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
-                }
-            )
-
-        # Berlin
-        codes = ["DE-BE"]
+        # Berlin, Mecklenburg-Vorpommern
+        codes = ["DE-BE", "DE-MV"]
         state_ids = self.get_state_ids(codes)
 
         if not state or state.id in state_ids:
