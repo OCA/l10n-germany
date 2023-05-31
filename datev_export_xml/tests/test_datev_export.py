@@ -17,72 +17,69 @@ _logger = logging.getLogger(__name__)
 
 
 class TestDatevExport(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.receivable = self.env.ref("account.data_account_type_receivable")
-        self.income = self.env.ref("account.data_account_type_revenue")
-        self.payable = self.env.ref("account.data_account_type_payable")
-        self.expense = self.env.ref("account.data_account_type_expenses")
-        self.JournalObj = self.env["account.journal"]
-        self.sale_journal = self.JournalObj.search([("type", "=", "sale")])[0]
-        self.purchase_journal = self.JournalObj.search([("type", "=", "purchase")])[0]
-        self.AccountObj = self.env["account.account"]
-        self.PartnerObj = self.env["res.partner"]
-        self.AnalyticAccountObj = self.env["account.analytic.account"]
-        self.ProductObj = self.env["product.product"]
-        self.today = fields.Date.today()
-        self.InvoiceObj = self.env["account.move"]
-        self.InvoiceLineObj = self.env["account.move.line"]
-        self.AttachmentObj = self.env["ir.attachment"]
-        self.DatevExportObj = self.env["datev.export.xml"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.receivable = cls.env.ref("account.data_account_type_receivable")
+        cls.income = cls.env.ref("account.data_account_type_revenue")
+        cls.payable = cls.env.ref("account.data_account_type_payable")
+        cls.expense = cls.env.ref("account.data_account_type_expenses")
+        cls.JournalObj = cls.env["account.journal"]
+        cls.sale_journal = cls.JournalObj.search([("type", "=", "sale")])[0]
+        cls.purchase_journal = cls.JournalObj.search([("type", "=", "purchase")])[0]
+        cls.AccountObj = cls.env["account.account"]
+        cls.PartnerObj = cls.env["res.partner"]
+        cls.AnalyticAccountObj = cls.env["account.analytic.account"]
+        cls.ProductObj = cls.env["product.product"]
+        cls.today = fields.Date.today()
+        cls.InvoiceObj = cls.env["account.move"]
+        cls.InvoiceLineObj = cls.env["account.move.line"]
+        cls.AttachmentObj = cls.env["ir.attachment"]
+        cls.DatevExportObj = cls.env["datev.export.xml"]
 
-        self.inv_attach_de = self.env.ref("datev_export_xml.vendor_bill_attachment_DE")
-        self.inv_attach_eu = self.env.ref("datev_export_xml.vendor_bill_attachment_EU")
-        self.inv_attach_noneu = self.env.ref(
+        cls.inv_attach_de = cls.env.ref("datev_export_xml.vendor_bill_attachment_DE")
+        cls.inv_attach_eu = cls.env.ref("datev_export_xml.vendor_bill_attachment_EU")
+        cls.inv_attach_noneu = cls.env.ref(
             "datev_export_xml.vendor_bill_attachment_NonEU"
         )
 
-        self.refund_attach_de = self.env.ref(
-            "datev_export_xml.bill_refund_attachment_DE"
-        )
-        self.refund_attach_eu = self.env.ref(
-            "datev_export_xml.bill_refund_attachment_EU"
-        )
-        self.refund_attach_noneu = self.env.ref(
+        cls.refund_attach_de = cls.env.ref("datev_export_xml.bill_refund_attachment_DE")
+        cls.refund_attach_eu = cls.env.ref("datev_export_xml.bill_refund_attachment_EU")
+        cls.refund_attach_noneu = cls.env.ref(
             "datev_export_xml.bill_refund_attachment_NonEU"
         )
 
-        self.customer_de = self.env.ref("datev_export_xml.customer_DE")
-        self.vendor_de = self.env.ref("datev_export_xml.vendor_DE")
+        cls.customer_de = cls.env.ref("datev_export_xml.customer_DE")
+        cls.vendor_de = cls.env.ref("datev_export_xml.vendor_DE")
 
-        self.customer_eu = self.env.ref("datev_export_xml.customer_EU")
-        self.vendor_eu = self.env.ref("datev_export_xml.vendor_EU")
+        cls.customer_eu = cls.env.ref("datev_export_xml.customer_EU")
+        cls.vendor_eu = cls.env.ref("datev_export_xml.vendor_EU")
 
-        self.customer_noneu = self.env.ref("datev_export_xml.customer_NonEU")
-        self.vendor_noneu = self.env.ref("datev_export_xml.vendor_NonEU")
+        cls.customer_noneu = cls.env.ref("datev_export_xml.customer_NonEU")
+        cls.vendor_noneu = cls.env.ref("datev_export_xml.vendor_NonEU")
 
-        self.account_income = self.env.ref("datev_export_xml.account_datev_income")
-        self.account_expense = self.env.ref("datev_export_xml.account_datev_expense")
+        cls.account_income = cls.env.ref("datev_export_xml.account_datev_income")
+        cls.account_expense = cls.env.ref("datev_export_xml.account_datev_expense")
 
-        self.consulting = self.env.ref("datev_export_xml.product_datev_01")
-        self.lease = self.env.ref("datev_export_xml.product_datev_02")
+        cls.consulting = cls.env.ref("datev_export_xml.product_datev_01")
+        cls.lease = cls.env.ref("datev_export_xml.product_datev_02")
 
-        self.analytic_account_it = self.env.ref(
+        cls.analytic_account_it = cls.env.ref(
             "datev_export_xml.analytic_account_datev_01"
         )
-        self.analytic_account_office = self.env.ref(
+        cls.analytic_account_office = cls.env.ref(
             "datev_export_xml.analytic_account_datev_02"
         )
 
-        self.parent_customer = self.env.ref("datev_export_xml.customer_parent")
-        self.child_customer = self.env.ref("datev_export_xml.customer_child")
+        cls.parent_customer = cls.env.ref("datev_export_xml.customer_parent")
+        cls.child_customer = cls.env.ref("datev_export_xml.customer_child")
 
         # Ensure the initial state
-        self.refund_date = self.today - timedelta(days=55)
-        self.start_date = self.today - timedelta(days=34)
-        self.end_date = self.today - timedelta(days=32)
-        self.InvoiceObj.with_context(force_delete=True).search([]).unlink()
-        self.env.company.datev_default_period = "week"
+        cls.refund_date = cls.today - timedelta(days=55)
+        cls.start_date = cls.today - timedelta(days=34)
+        cls.end_date = cls.today - timedelta(days=32)
+        cls.InvoiceObj.with_context(force_delete=True).search([]).unlink()
+        cls.env.company.datev_default_period = "week"
 
     def _check_filecontent(self, export):
         # check content only for single invoice
@@ -593,7 +590,7 @@ class TestDatevExport(TransactionCase):
         self.assertEqual(datev_export.state, "pending")
         # manually do export via button : 'Create DATEV Export File'
         datev_export.with_user(datev_export.create_uid.id).with_context(
-            {"datev_mode": "datev_export"}
+            datev_mode="datev_export"
         ).export_zip()
         self.assertEqual(datev_export.state, "done")
         self.assertTrue(datev_export.datev_file)

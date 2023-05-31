@@ -69,25 +69,25 @@ class DatevExport(models.Model):
         states={"draft": [("readonly", False)]},
     )
     export_invoice = fields.Boolean(
-        string="Export Invoices",
+        "Export Invoices",
         default=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
     export_refund = fields.Boolean(
-        string="Export Refunds",
+        "Export Refunds",
         default=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
     date_start = fields.Date(
-        string="From Date",
+        "From Date",
         default=_default_start,
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
     date_stop = fields.Date(
-        string="To Date",
+        "To Date",
         default=_default_stop,
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -103,7 +103,7 @@ class DatevExport(models.Model):
         related="company_id.datev_consultant_number", readonly=True
     )
     check_xsd = fields.Boolean(
-        string="Check XSD",
+        "Check XSD",
         required=True,
         default=True,
         readonly=True,
@@ -122,12 +122,10 @@ class DatevExport(models.Model):
     )
 
     invoice_ids = fields.Many2many(comodel_name="account.move", string="Invoices")
-    invoices_count = fields.Integer(
-        string="Invoices Count", compute="_compute_invoices_count", store=True
-    )
+    invoices_count = fields.Integer(compute="_compute_invoices_count", store=True)
 
     manually_document_selection = fields.Boolean(default=False)
-    exception_info = fields.Text(string="Exception Info", readonly=True)
+    exception_info = fields.Text(readonly=True)
 
     state = fields.Selection(
         [
@@ -219,19 +217,18 @@ class DatevExport(models.Model):
                 )
                 if not self.manually_document_selection:
                     description = _(
-                        "Filtered Export of {} Documents\nDate Range: {}-{}\nTypes: {}"
-                    ).format(
-                        len(self.invoice_ids),
-                        self.date_start,
-                        self.date_stop,
-                        ", ".join(self.get_type_list()),
+                        "Filtered Export of %(count)s Documents\n "
+                        "Date Range: %(start)s-%(end)s\nTypes: %(types)s",
+                        count=len(self.invoice_ids),
+                        start=self.date_start,
+                        end=self.date_stop,
+                        types=", ".join(self.get_type_list()),
                     )
                 else:
                     description = _(
-                        "Manually Doc Export of {} Documents \nNumbers: {}"
-                    ).format(
-                        len(self.invoice_ids),
-                        ", ".join(self.invoice_ids.mapped("name")),
+                        "Manually Doc Export of %(count)s Documents \nNumbers: %(names)s",
+                        count=len(self.invoice_ids),
+                        names=", ".join(self.invoice_ids.mapped("name")),
                     )
 
                 attachment = self.env["ir.attachment"].create(

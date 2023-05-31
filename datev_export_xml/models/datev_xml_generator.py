@@ -27,7 +27,7 @@ class DatevXmlGenerator(models.AbstractModel):
         if not xsd:
             xsd = "Document_v050.xsd"
 
-        schema = tools.file_open(xsd, subdir="addons/datev_export_xml/xsd_files")
+        schema = tools.file_open(f"datev_export_xml/xsd_files/{xsd}")
         try:
             schema = etree.XMLSchema(etree.parse(schema))
             schema.assertValid(root)

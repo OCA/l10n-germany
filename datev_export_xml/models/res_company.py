@@ -25,7 +25,6 @@ class ResCompany(models.Model):
     )
 
     datev_export_state = fields.Boolean(
-        string="Datev Export State",
         help="If set, the invoices are marked as exported when finishing a Datev export.",
     )
 
@@ -35,7 +34,7 @@ class ResCompany(models.Model):
             ("partner", _("Partner Reference")),
             ("payment", _("Payment Reference")),
         ],
-        string="Vendor Order Reference",
+        "Vendor Order Reference",
         default="odoo",
         required=True,
     )
@@ -46,7 +45,7 @@ class ResCompany(models.Model):
             ("partner", _("Partner Reference")),
             ("payment", _("Payment Reference")),
         ],
-        string="Customer Order Reference",
+        "Customer Order Reference",
         default="odoo",
         required=True,
     )
