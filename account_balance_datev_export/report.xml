@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_report_trial_balance_datev" model="ir.actions.report">
+        <field name="name">DATEV ASCII Balance</field>
+        <field name="model">trial.balance.report.wizard</field>
+        <field name="encoding">cp1252</field>
+        <field name="report_type">csv</field>
+        <field
+            name="report_name"
+        >account_balance_datev_export.account_balance_datev</field>
+        <field
+            name="report_file"
+        >account_balance_datev_export.account_balance_datev</field>
+    </record>
+</odoo>
