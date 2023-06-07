@@ -23,6 +23,10 @@ class PartnerCSV(models.AbstractModel):
             "ending_credit": "VZ Haben",
         }
 
+    @api.model
+    def _csv_float_conversion(self, value):
+        return "{:.2f}".format(float_round(value, 2)).replace(".", ",")
+
     def generate_csv_report(self, writer, data, recs):
         report = self.env["report.account_financial_report.trial_balance"]
         data = report._get_report_values(recs.ids, data)
@@ -31,15 +35,19 @@ class PartnerCSV(models.AbstractModel):
         fields = self._csv_field_mapping()
         for balance in data.get("trial_balance", []):
             if balance["type"] == "account_type":
-                ending = float_round(balance["ending_balance"], 2)
+                ending = balance["ending_balance"]
                 writer.writerow(
                     {
                         fields["code"]: balance["code"],
                         fields["name"]: balance["name"],
-                        fields["debit"]: float_round(balance["debit"], 2),
-                        fields["credit"]: float_round(balance["credit"], 2),
-                        fields["ending_debit"]: ending if ending > 0 else 0,
-                        fields["ending_credit"]: -ending if ending < 0 else 0,
+                        fields["debit"]: self._csv_float_conversion(balance["debit"]),
+                        fields["credit"]: self._csv_float_conversion(balance["credit"]),
+                        fields["ending_debit"]: self._csv_float_conversion(
+                            max(0, ending)
+                        ),
+                        fields["ending_credit"]: self._csv_float_conversion(
+                            max(0, -ending)
+                        ),
                     }
                 )
 
