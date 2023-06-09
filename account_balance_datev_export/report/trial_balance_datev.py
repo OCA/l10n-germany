@@ -17,10 +17,10 @@ class PartnerCSV(models.AbstractModel):
         return {
             "code": "Konto",
             "name": "Kontobezeichnung",
-            "debit": "EB-Wert Soll",
-            "credit": "EB-Wert Haben",
-            "ending_debit": "VZ Soll",
-            "ending_credit": "VZ Haben",
+            "initial_debit": "EB-Wert Soll",
+            "initial_credit": "EB-Wert Haben",
+            "debit": "VZ Soll",
+            "credit": "VZ Haben",
         }
 
     @api.model
@@ -35,18 +35,18 @@ class PartnerCSV(models.AbstractModel):
         fields = self._csv_field_mapping()
         for balance in data.get("trial_balance", []):
             if balance["type"] == "account_type":
-                ending = balance["ending_balance"]
+                initial = balance["initial_balance"]
                 writer.writerow(
                     {
                         fields["code"]: balance["code"],
                         fields["name"]: balance["name"],
                         fields["debit"]: self._csv_float_conversion(balance["debit"]),
                         fields["credit"]: self._csv_float_conversion(balance["credit"]),
-                        fields["ending_debit"]: self._csv_float_conversion(
-                            max(0, ending)
+                        fields["initial_debit"]: self._csv_float_conversion(
+                            max(0, initial)
                         ),
-                        fields["ending_credit"]: self._csv_float_conversion(
-                            max(0, -ending)
+                        fields["initial_credit"]: self._csv_float_conversion(
+                            max(0, -initial)
                         ),
                     }
                 )
