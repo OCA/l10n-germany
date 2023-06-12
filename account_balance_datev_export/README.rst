@@ -25,6 +25,8 @@ Account Balance DATEV ASCII Export
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
+This module adds the DATEV ASCII export to the trial balance financial reports.
+The used format is based on the "Summen und Salden" export in the `additional DATEV formats <https://apps.datev.de/help-center/documents/1080789>`_ for medium-sized business invoicing.
 
 **Table of contents**
 
