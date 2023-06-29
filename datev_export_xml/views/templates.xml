@@ -2,8 +2,8 @@
 <odoo>
     <template id="export_party">
         <address
-            t-att-name="partner.display_name or ''"
-            t-att-street="partner.street or ''"
+            t-att-name="(partner.display_name or '')[:50]"
+            t-att-street="(partner.street or '')[:40]"
             t-att-zip="partner.zip or ''"
             t-att-city="partner.city or ''"
             t-att-country="partner.country_id.code or ''"
@@ -127,7 +127,7 @@
                         t-att-tax="'%.02f' % line.tax_line_id.amount"
                         t-att-currency="line.currency_id.name"
                         t-att-net_price_line_amount="'%.02f' % line.tax_base_amount"
-                        t-att-tax_amount="'%.02f' % line.price_total"
+                        t-att-tax_amount="'%.02f' % (line.price_total or abs(line.balance))"
                     />
                 </t>
                 <tax_line
