@@ -44,7 +44,25 @@ class DatevXmlGenerator(models.AbstractModel):
         return True
 
     @api.model
+    def _check_invoices(self, invoices):
+        # Check against double taxes
+        problems = invoices.browse()
+        for invoice in invoices:
+            if any(len(line.tax_ids) > 1 for line in invoice.invoice_line_ids):
+                problems |= invoice
+
+        if problems:
+            raise ValueError(
+                _(
+                    "There are multiple taxes in the following invoices: %(invoices)s",
+                    invoices=", ".join(problems.mapped("name")),
+                )
+            )
+
+    @api.model
     def generate_xml_document(self, invoices, check_xsd=True):
+        self._check_invoices(invoices)
+
         template = self.env.ref("datev_export_xml.export_invoice_document")
         root = etree.fromstring(
             template._render({"docs": invoices, "company": self.env.company}),
