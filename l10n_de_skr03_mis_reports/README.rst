@@ -63,6 +63,7 @@ Contributors
 * Thorsten Vocks <thorsten.vocks@openbig.org>
 * Stéphane Bidoul at ACSONE <stephane.bidoul@acsone.eu>
 * Virgine Dewulf <virginie@coopiteasy.be>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainer
 ----------
