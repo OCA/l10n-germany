@@ -389,7 +389,7 @@ class VatStatement(models.Model):
         self.unreported_move_ids.flush()
         move_lines = self._compute_move_lines()
         move_lines.move_id.write({"l10n_de_tax_statement_id": self.id})
-        move_lines.move_id.flush()
+        move_lines.move_id.flush_model()
 
     def _get_move_lines_domain(self):
         domain = self._init_move_line_domain()
@@ -451,7 +451,7 @@ class VatStatement(models.Model):
                 )
             if statement.state == "final":
                 raise UserError(_("You cannot delete a statement set as final!"))
-        super().unlink()
+        return super().unlink()
 
     @api.depends("line_ids.tax")
     def _compute_tax_total(self):

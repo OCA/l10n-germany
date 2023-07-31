@@ -118,7 +118,7 @@ class VatStatementLine(models.Model):
                 raise UserError(
                     _("You cannot delete lines of a statement set as final!")
                 )
-        super().unlink()
+        return super().unlink()
 
     def view_tax_lines(self):
         self.ensure_one()

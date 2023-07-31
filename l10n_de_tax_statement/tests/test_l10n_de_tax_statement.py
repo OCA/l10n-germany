@@ -169,7 +169,7 @@ class TestVatStatement(TransactionCase):
         partner = self.env["res.partner"].create({"name": "Test partner"})
         account_receivable = self.env["account.account"].create(
             {
-                "user_type_id": self.env.ref("account.data_account_type_expenses").id,
+                "account_type": "expense",
                 "code": "EXPTEST",
                 "name": "Test expense account",
             }
