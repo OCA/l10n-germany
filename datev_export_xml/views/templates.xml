@@ -25,9 +25,9 @@
     <template id="export_invoice_line_item">
         <price_line_amount
             t-att-currency="line.currency_id.name"
-            t-att-gross_price_line_amount="'%.02f' % prices['total_included']"
-            t-att-net_price_line_amount="'%.02f' % prices['total_excluded']"
-            t-att-tax="'%.02f' % line.tax_ids.amount"
+            t-att-gross_price_line_amount="doc.datev_format_total(prices['total_included'])"
+            t-att-net_price_line_amount="doc.datev_format_total(prices['total_excluded'])"
+            t-att-tax="doc.datev_format_total(line.tax_ids.amount)"
         />
 
         <accounting_info
@@ -46,7 +46,7 @@
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-product_id="line.product_id.default_code"
             t-att-description_short="(line.name or line.product_id.name)[:40]"
-            t-att-net_product_price="'%.03f' % prices['total_excluded']"
+            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
             t-att-order_unit="line.product_uom_id.name"
             t-att-quantity="'%.02f' % line.quantity"
         />
@@ -54,7 +54,7 @@
             t-else=""
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-description_short="line.name or ''"
-            t-att-net_product_price="'%.03f' % prices['total_excluded']"
+            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
             t-att-quantity="'%.02f' % line.quantity"
         />
     </template>
@@ -126,8 +126,8 @@
                         t-if="line.tax_line_id"
                         t-att-tax="'%.02f' % line.tax_line_id.amount"
                         t-att-currency="line.currency_id.name"
-                        t-att-net_price_line_amount="'%.02f' % line.tax_base_amount"
-                        t-att-tax_amount="'%.02f' % (line.price_total or abs(line.balance))"
+                        t-att-net_price_line_amount="doc.datev_format_total(line.tax_base_amount)"
+                        t-att-tax_amount="doc.datev_format_total(line.price_total or abs(line.balance))"
                     />
                 </t>
                 <tax_line
