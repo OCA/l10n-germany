@@ -13,7 +13,6 @@ class AccountMoveLine(models.Model):
         " Delete all importred move if need (error on file imported)"
     )
     indicator = fields.Char(
-        string="Indicator",
         help="Can be used to decide Soll/Haben-Kennzeichen,"
         "to decide credit or debit entry in first move line."
         "if 'S' then fill 'Credit' value in first move line OR "

@@ -152,11 +152,16 @@ class AccountMoveImport(models.TransientModel):
                 date_str = l["date"][0:2] + "/" + l["date"][-2:] + "/" + year_str
                 try:
                     date = datetime.strptime(date_str, self.date_format)
-                except Exception:
+                except Exception as error:
                     raise UserError(
-                        (_("time data : '%s' in line %s does not match format '%s"))
-                        % (date_str, i, self.date_format)
-                    )
+                        (
+                            _(
+                                "time data : '%(date)s' in line %(number)s does not "
+                                "match format '%(format)s"
+                            )
+                        )
+                        % {"date": date_str, "number": i, "format": self.date_format}
+                    ) from error
                 vals = {
                     "journal": self.force_journal_id.id,
                     "account": l["account"],
@@ -254,33 +259,38 @@ class AccountMoveImport(models.TransientModel):
                         l["date"] = datetime.strptime(l["date"], "%Y-%m-%d")
                     except Exception:
                         errors["other"].append(
-                            _("Line %d: bad date format %s") % (l["line"], l["date"])
+                            _("Line %(line)d: bad date format %(date)s") % l
                         )
             # 6. credit
             if not isinstance(l.get("credit"), float):
                 errors["other"].append(
-                    _("Line %d: bad value for credit (%s).") % (l["line"], l["credit"])
+                    _("Line %(line)d: bad value for credit (%(credit)s).") % l
                 )
             # 7. debit
             if not isinstance(l.get("debit"), float):
                 errors["other"].append(
-                    _("Line %d: bad value for debit (%s).") % (l["line"], l["debit"])
+                    _("Line %(line)d: bad value for debit (%(debit)s).") % l
                 )
             # test that they don't have both a value
         # LIST OF ERRORS
         msg = ""
         for key, label in key2label.items():
             if errors[key]:
-                msg += _("List of %s that don't exist in Odoo:\n%s\n\n") % (
-                    label,
-                    "\n".join(
+                msg += _(
+                    "List of %(label)s that don't exist in Odoo:\n%(codes)s\n\n"
+                ) % {
+                    "label": label,
+                    "codes": "\n".join(
                         [
-                            "- %s : line(s) %s"
-                            % (code, ", ".join([str(i) for i in lines]))
+                            "- %(code)s : line(s) %(lines)s"
+                            % {
+                                "code": code,
+                                "lines": ", ".join([str(i) for i in lines]),
+                            }
                             for (code, lines) in errors[key].items()
                         ]
                     ),
-                )
+                }
         if errors["other"]:
             msg += _("List of misc errors:\n%s") % (
                 "\n".join(["- %s" % e for e in errors["other"]])
@@ -308,16 +318,19 @@ class AccountMoveImport(models.TransientModel):
                 if moves and not float_is_zero(cur_balance, precision_rounding=prec):
                     raise UserError(
                         _(
-                            "The journal entry that ends on line %d is not "
-                            "balanced (balance is %s)."
+                            "The journal entry that ends on line %(line)d is not "
+                            "balanced (balance is %(balance)s)."
                         )
-                        % (l["line"] - 1, cur_balance)
+                        % {"line": l["line"] - 1, "balance": cur_balance}
                     )
                 if cur_move:
                     if len(cur_move["line_ids"]) <= 1:
                         raise UserError(
-                            _("move should have more than 1 line num: %s," "data : %s")
-                            % (l["line"], cur_move["line_ids"])
+                            _(
+                                "move should have more than 1 line num: %(line)s,"
+                                "data : %(lines)s"
+                            )
+                            % {"line": l["line"], "lines": cur_move["line_ids"]}
                         )
                     moves.append(cur_move)
                 cur_move = self._prepare_move(l)

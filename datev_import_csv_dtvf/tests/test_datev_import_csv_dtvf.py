@@ -81,9 +81,7 @@ class TestDatevImportCsvDtvf(TransactionCase):
                 {
                     "name": code,
                     "code": code,
-                    "user_type_id": self.env.ref(
-                        "account.data_account_type_receivable"
-                    ).id,
+                    "account_type": "asset_receivable",
                     "reconcile": True,
                 }
             )
