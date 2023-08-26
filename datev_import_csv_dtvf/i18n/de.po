@@ -1,0 +1,406 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* datev_import_csv_dtvf
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-26 10:50+0000\n"
+"PO-Revision-Date: 2023-08-26 10:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"<em>Columns</em>\n"
+"                                :"
+msgstr ""
+"<em>Spalten</em>\n"
+"                                :"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"<em>DateFormat</em>\n"
+"                                : %d/%m/%Y"
+msgstr ""
+"<em>Datumsformat</em>\n"
+"                                : DDMM"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"<em>Decimal separator</em>\n"
+"                                : . (dot) or , (coma)"
+msgstr ""
+"<em>Dezimaltrennzeichen</em>\n"
+"                                : . (Punkt) oder , (Komma)"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"<em>Field separator</em>\n"
+"                                : auto-detected"
+msgstr ""
+"<em>Feldtrennzeichen</em>\n"
+"                                : Automatische Erkennung"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "<em>First Row : contains information like year</em>"
+msgstr "<em>Erste Zeile : enthält z.B. das Jahr</em>"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "<em>Second Row : contains header of columns</em>"
+msgstr "<em>Zweite Zeile : enthält die Spalten</em>"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"<em>Text separator</em>\n"
+"                                : \" (quote)"
+msgstr ""
+"<em>Texttrennzeichen</em>\n"
+"                                : \" (Anführungszeichen)"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "<em>Third Row : starts records of account.move</em>"
+msgstr "Dritte Zeile : erste Zeile mit Buchungszeilen</em>"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Belegdatum (DDMM)"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Buchungstext"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_line__indicator
+msgid ""
+"Can be used to decide Soll/Haben-Kennzeichen,to decide credit or debit entry"
+" in first move line.if 'S' then fill 'Credit' value in first move line OR if"
+" 'H' then 'Debit' value in first move line"
+msgstr ""
+"Das Soll/Haben-Kennzeichen wird genutzt,um zu entscheiden, ob die erste Zeile"
+" im Soll oder Haben gebucht wird. Bei 'S' wird der Betrag der erste Zeile im 'Haben' eingetragen, bei"
+" 'H' wird der Betrag  im 'Soll' eingetragen."
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_line__import_external_id
+msgid ""
+"Can be used to tag imported move. Delete all importred move if need (error "
+"on file imported)"
+msgstr ""
+"Kann zur Kennzeichnung der importierten Buchung genutzt werden. Lösche bei Bedarf alle importierten "
+"Buchungen im Fehlerfall"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__date_format
+msgid "Date Format"
+msgstr "Datumsformat"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__date_format
+msgid "Date format is applicable only on Generic csv file ex \"%d%m%Y\""
+msgstr "Datumsformate wie \"%d%m%Y\ können nur beim DATEV Format CSV angewendet werden "
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__display_name
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_line__display_name
+msgid "Display Name"
+msgstr "Anzeige Name"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__file_encoding
+msgid "File Encoding"
+msgstr "Zeichenkodierung"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__file_format
+msgid "File Format"
+msgstr "Datei Format"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__file_to_import
+msgid "File containing the journal entry(ies) to import."
+msgstr "Datei enthält zu importierende Buchungssätze"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__file_to_import
+msgid "File to Import"
+msgstr "Import Datei"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__filename
+msgid "Filename"
+msgstr "Datei Name"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__force_move_date
+msgid "Force Date"
+msgstr "Erzwinge Datum"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__force_move_line_name
+msgid "Force Label"
+msgstr "Erzwinge Buchungstext"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Gegenkonto (ohne BU-Schl?ssel)"
+msgstr "Gegenkonto (ohne BU-Schlüssel)"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields.selection,name:datev_import_csv_dtvf.selection__account_move_import__file_format__genericcsv
+msgid "Generic CSV"
+msgstr "DATEV Format .csv"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__id
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__post_move
+msgid "If True, the journal entry will be posted after the import."
+msgstr "Bei Aktivierung wird nach Import direkt gebucht"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.actions.act_window,name:datev_import_csv_dtvf.account_move_import_action
+#: model:ir.ui.menu,name:datev_import_csv_dtvf.account_move_import_menu
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Import Account Move"
+msgstr "DATEV Import"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_line__import_external_id
+msgid "Import External"
+msgstr "Externer Import"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model,name:datev_import_csv_dtvf.model_account_move_import
+msgid "Import account move from CSV file"
+msgstr "DATEV Import durch .csv Datei"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Imported Journal Entries"
+msgstr "Importierte Buchungssätze"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_line__indicator
+msgid "Indicator"
+msgstr "Indikator"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Information about the Generic CSV format"
+msgstr "Informationen zum DATEV Format .csv"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__force_journal_id
+msgid "Journal"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model,name:datev_import_csv_dtvf.model_account_move_line
+msgid "Journal Item"
+msgstr "Buchungssatz"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__force_journal_id
+msgid "Journal in which the journal entry will be created"
+msgstr "Journal in dem der Buchungssatz erstellt wird"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Konto"
+msgstr "Konto"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import____last_update
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_line____last_update
+msgid "Last Modified on"
+msgstr "Geändert am"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__write_uid
+msgid "Last Updated by"
+msgstr "Aktualisiert durch"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__write_date
+msgid "Last Updated on"
+msgstr "Aktualisiert am"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Line %d: bad date format %s"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Line %d: bad value for credit (%s)."
+msgstr "Buchungszeile %d: falsches Format %s"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Line %d: bad value for debit (%s)."
+msgstr "Buchunsgzeile %d: falscher Wert im Soll %s"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Line %d: missing date."
+msgstr "Buchunsgzeile %d: fehlendes Datum."
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "Line %d: missing label."
+msgstr "Buchungszeile %d: fehlender Buchungstext."
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid ""
+"List of %s that don't exist in Odoo:\n"
+"%s\n"
+"\n"
+msgstr ""
+"Liste der nicht existierenden %s in Odoo:\n"
+"%s\n"
+"\n"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid ""
+"List of misc errors:\n"
+"%s"
+msgstr ""
+"Liste der sonstigen Fehler:\n"
+"%s"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Note this import does not handle taxes!"
+msgstr "HINWEIS: Der Import kann aktuell keine DATEV Buchungsschlüssel verarbeiten !"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__post_move
+msgid "Post Journal Entry"
+msgstr "Bestätige Buchung"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__force_move_ref
+msgid "Reference"
+msgstr "Referenz"
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Run Import"
+msgstr "Import"
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__file_format
+msgid "Select the type of file you are importing."
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Soll/Haben-Kennzeichen"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid ""
+"The journal entry that ends on line %d is not balanced (balance is %s)."
+msgstr ""
+"Die Buchung mit der letzten Zeile %d ist nicht ausgegelichen (Saldo ist %s)."
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid ""
+"The journal entry that ends on the last line is not balanced (balance is "
+"%s)."
+msgstr ""
+"Die Buchung mit der letzten Zeile %d ist nicht ausgegelichen (Saldo ist %s)."
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields.selection,name:datev_import_csv_dtvf.selection__account_move_import__file_encoding__utf-8
+msgid "UTF-8"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid "Umsatz (ohne Soll/Haben-Kz)"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields.selection,name:datev_import_csv_dtvf.selection__account_move_import__file_encoding__windows-1252
+msgid "Western (Windows-1252)"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "account codes"
+msgstr "Konto"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "contra account codes"
+msgstr "Gegenkonto"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "journal codes"
+msgstr "Journal Kürzel"
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "move should have more than 1 line num: %s,data : %s"
+msgstr "die Buchung sollte mindestens eine Zeile haben: Nummer: %s,Daten : %s "
+
+#. module: datev_import_csv_dtvf
+#: code:addons/datev_import_csv_dtvf/wizard/import_move.py:0
+#, python-format
+msgid "time data : '%s' in line %s does not match format '%s"
+msgstr "Datum : '%s' in der Zeile %s passt nicht zum Format '%s"
