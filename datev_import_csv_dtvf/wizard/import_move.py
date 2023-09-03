@@ -129,6 +129,30 @@ class AccountMoveImport(models.TransientModel):
             "doc_field_2",
             "discount",
             "name",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "/",
+            "analytic_account_1",
+            "analytic_account_2",
         ]
         first_line = fileobj.readline().decode()
         dialect = unicodecsv.Sniffer().sniff(first_line)
@@ -175,6 +199,8 @@ class AccountMoveImport(models.TransientModel):
                     else self.force_move_ref,
                     "indicator": l.get("indicator", "").upper(),
                     "line": i,
+                    "analytic_account_1": l["analytic_account_1"],
+                    "analytic_account_2": l["analytic_account_2"],
                 }
                 res.append(vals)
         return res
@@ -200,10 +226,21 @@ class AccountMoveImport(models.TransientModel):
                 [("company_id", "=", company_id)], ["code"]
             )
         }
+        # analytic account
+        analytic_speed_dict = {
+            (
+                analytic_account["code"] or analytic_account["name"]
+            ).upper(): analytic_account["id"]
+            for analytic_account in self.env["account.analytic.account"].search_read(
+                [("company_id", "=", company_id)], ["code", "name"]
+            )
+        }
         key2label = {
             "account": _("account codes"),
             "contra_account": _("contra account codes"),
             "journal": _("journal codes"),
+            "analytic_account_1": _("analytic account codes"),
+            "analytic_account_2": _("analytic account codes"),
         }
         errors = {"other": []}
         for key in key2label.keys():
@@ -231,7 +268,7 @@ class AccountMoveImport(models.TransientModel):
                         line[id_field] = account_id
                         break
             if not line.get(id_field):
-                errors["account"].setdefault(line[code_field], []).append(l["line"])
+                errors[code_field].setdefault(line[code_field], []).append(l["line"])
 
         # MATCHES + CHECKS
         for l in pivot:  # noqa: E741
@@ -270,6 +307,20 @@ class AccountMoveImport(models.TransientModel):
             if not isinstance(l.get("debit"), float):
                 errors["other"].append(
                     _("Line %(line)d: bad value for debit (%(debit)s).") % l
+                )
+            if l["analytic_account_1"]:
+                match_account(
+                    l,
+                    analytic_speed_dict,
+                    "analytic_account_1_id",
+                    "analytic_account_1",
+                )
+            if l["analytic_account_2"]:
+                match_account(
+                    l,
+                    analytic_speed_dict,
+                    "analytic_account_2_id",
+                    "analytic_account_2",
                 )
             # test that they don't have both a value
         # LIST OF ERRORS
@@ -383,6 +434,14 @@ class AccountMoveImport(models.TransientModel):
                 "account_id": pivot_line["account_id"],
                 "import_external_id": "%s-%s" % (sequence, pivot_line.get("line")),
                 "indicator": indicator,
+                "analytic_distribution": {
+                    pivot_line.get(analytic_account_id_field): 100.0
+                    for analytic_account_id_field in (
+                        "analytic_account_1_id",
+                        "analytic_account_2_id",
+                    )
+                    if pivot_line.get(analytic_account_id_field)
+                },
             }
         )
         return vals
@@ -409,6 +468,14 @@ class AccountMoveImport(models.TransientModel):
                 "account_id": pivot_line["contra_account_id"],
                 "import_external_id": "%s-%s" % (sequence, pivot_line.get("line")),
                 "indicator": indicator,
+                "analytic_distribution": {
+                    pivot_line.get(analytic_account_id_field): 100.0
+                    for analytic_account_id_field in (
+                        "analytic_account_1_id",
+                        "analytic_account_2_id",
+                    )
+                    if pivot_line.get(analytic_account_id_field)
+                },
             }
         )
         return vals
