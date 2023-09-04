@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="account_move_import_form" model="ir.ui.view">
+        <field name="name">account.move.import.form</field>
+        <field name="model">account.move.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Account Move">
+                <group name="main">
+                    <field name="file_to_import" filename="filename" />
+                    <field name="filename" invisible="1" />
+                    <field name="post_move" />
+                    <field name="force_journal_id" required="1" />
+                    <field name="force_move_date" />
+                    <field name="force_move_ref" required="1" />
+                    <field name="force_move_line_name" />
+                    <field name="date_format" invisible="1" />
+                </group>
+                <div class="bg-warning">
+                    Note this import does not handle taxes!
+                </div>
+                <div>
+                    <h2>Information about the DATEV CSV format</h2>
+                    <ul>
+                        <li>
+                            <em>First Row : contains information like year</em>
+                        </li>
+                        <li>
+                            <em>Second Row : contains header of columns</em>
+                        </li>
+                        <li>
+                            <em>Third Row : starts records of account.move</em>
+                        </li>
+                        <li>
+                            <em>Columns</em>
+                            :
+                            <ol>
+                                <li>Umsatz (ohne Soll/Haben-Kz)</li>
+                                <li>Soll/Haben-Kennzeichen</li>
+                                <li />
+                                <li />
+                                <li />
+                                <li />
+                                <li>Konto</li>
+                                <li>Gegenkonto (ohne BU-Schl?ssel)</li>
+                                <li />
+                                <li>Belegdatum (DDMM)</li>
+                                <li />
+                                <li />
+                                <li />
+                                <li>Buchungstext</li>
+                            </ol>
+                        </li>
+                        <li>
+                            <em>Field separator</em>
+                            : auto-detected
+                        </li>
+                        <li>
+                            <em>Text separator</em>
+                            : &quot; (quote)
+                        </li>
+                        <li>
+                            <em>Decimal separator</em>
+                            : . (dot) or , (coma)
+                        </li>
+                        <li>
+                            <em>DateFormat</em>
+                            : %d/%m/%Y
+                        </li>
+                    </ul>
+                </div>
+                <footer>
+                    <button
+                        name="run_import"
+                        type="object"
+                        string="Run Import"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="account_move_import_action" model="ir.actions.act_window">
+        <field name="name">Import DATEV Format (.csv)</field>
+        <field name="res_model">account.move.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="account_move_import_menu"
+        parent="account.menu_finance_entries_actions"
+        action="account_move_import_action"
+        sequence="150"
+    />
+
+</odoo>
