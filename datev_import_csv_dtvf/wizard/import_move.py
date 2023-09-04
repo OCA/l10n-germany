@@ -441,6 +441,13 @@ class AccountMoveImport(models.TransientModel):
                         "analytic_account_2_id",
                     )
                     if pivot_line.get(analytic_account_id_field)
+                    and self.env["account.account"]
+                    .browse(pivot_line["account_id"])
+                    .account_type
+                    in (
+                        "income",
+                        "expense",
+                    )
                 },
             }
         )
@@ -475,6 +482,13 @@ class AccountMoveImport(models.TransientModel):
                         "analytic_account_2_id",
                     )
                     if pivot_line.get(analytic_account_id_field)
+                    and self.env["account.account"]
+                    .browse(pivot_line["contra_account_id"])
+                    .account_type
+                    in (
+                        "income",
+                        "expense",
+                    )
                 },
             }
         )

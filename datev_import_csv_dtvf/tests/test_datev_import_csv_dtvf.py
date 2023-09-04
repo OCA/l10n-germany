@@ -87,6 +87,9 @@ class TestDatevImportCsvDtvf(TransactionCase):
             )
         self.env["account.account"].search([("code", "=", "7095")]).code = "7095000"
         self.env["account.account"].search([("code", "=", "1700")]).code = "170"
+        self.env["account.account"].search(
+            [("code", "=", "4900")]
+        ).account_type = "income"
         for code in ("4811",):
             if self.env["account.analytic.account"].search(
                 [
@@ -129,8 +132,8 @@ class TestDatevImportCsvDtvf(TransactionCase):
         self.assertEqual(last_line.account_id.code, "2450")
         self.assertEqual(last_line.debit, 72)
         analytic_lines = move.line_ids.mapped("analytic_line_ids")
-        self.assertEqual(len(analytic_lines), 2)
-        self.assertEqual(sum(analytic_lines.mapped("amount")), 0)
+        self.assertEqual(len(analytic_lines), 1)
+        self.assertEqual(sum(analytic_lines.mapped("amount")), 0.01)
 
     def test_wizard_broken_file(self):
         wizard = self.env["account.move.import"].create(
