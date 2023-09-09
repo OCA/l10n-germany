@@ -3,11 +3,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import base64
+import csv
 import logging
 from datetime import date as datelib, datetime
-from tempfile import TemporaryFile
 
-import unicodecsv
+import chardet
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
@@ -48,12 +48,8 @@ class AccountMoveImport(models.TransientModel):
 
     def run_import(self):
         self.ensure_one()
-        fileobj = TemporaryFile("wb+")
         file_bytes = base64.b64decode(self.file_to_import)
-        fileobj.write(file_bytes)
-        fileobj.seek(2)  # We must start reading 3rd line !
-        pivot = self.genericcsv2pivot(fileobj)
-        fileobj.close()
+        pivot = self.genericcsv2pivot(file_bytes)
         _logger.debug("pivot before update: %s", pivot)
         self.clean_strip_pivot(pivot)
         self.update_pivot(pivot)
@@ -112,7 +108,7 @@ class AccountMoveImport(models.TransientModel):
             if not l["debit"]:
                 l["debit"] = 0.0
 
-    def genericcsv2pivot(self, fileobj):
+    def genericcsv2pivot(self, file_bytes):
         # Prisme
         fieldnames = [
             "sales",
@@ -154,16 +150,17 @@ class AccountMoveImport(models.TransientModel):
             "analytic_account_1",
             "analytic_account_2",
         ]
-        first_line = fileobj.readline().decode()
-        dialect = unicodecsv.Sniffer().sniff(first_line)
-        fileobj.seek(0)
-        reader = unicodecsv.DictReader(
-            fileobj,
+        content = file_bytes.decode(chardet.detect(file_bytes)["encoding"])
+        try:
+            dialect = csv.Sniffer().sniff(content, delimiters=";,")
+        except csv.Error:
+            dialect = csv.excel
+        reader = csv.DictReader(
+            content.splitlines(),
             fieldnames=fieldnames,
             delimiter=dialect.delimiter,
-            quotechar='"',
-            quoting=unicodecsv.QUOTE_MINIMAL,
-            encoding="ISO-8859-1",
+            quotechar=dialect.quotechar,
+            quoting=csv.QUOTE_MINIMAL,
         )
         res = []
         year_str = ""
@@ -247,11 +244,10 @@ class AccountMoveImport(models.TransientModel):
             errors[key] = {}
 
         def match_account(line, speed_dict, id_field, code_field):
-            if line[code_field] in speed_dict:
-                line[id_field] = speed_dict[l[code_field]]
+            line[id_field] = speed_dict.get(line[code_field].upper())
             if not line.get(id_field):
                 # Match when import = 61100000 and Odoo has 611000
-                acc_code_tmp = l[code_field]
+                acc_code_tmp = line[code_field].upper()
                 while acc_code_tmp and acc_code_tmp[-1] == "0":
                     acc_code_tmp = acc_code_tmp[:-1]
                     if acc_code_tmp and acc_code_tmp in speed_dict:
@@ -268,7 +264,7 @@ class AccountMoveImport(models.TransientModel):
                         line[id_field] = account_id
                         break
             if not line.get(id_field):
-                errors[code_field].setdefault(line[code_field], []).append(l["line"])
+                errors[code_field].setdefault(line[code_field], []).append(line["line"])
 
         # MATCHES + CHECKS
         for l in pivot:  # noqa: E741
@@ -280,8 +276,8 @@ class AccountMoveImport(models.TransientModel):
             # 2. contra_account
             match_account(l, accc_speed_dict, "contra_account_id", "contra_account")
             # 3. journal
-            if l["journal"] in journal_speed_dict:
-                l["journal_id"] = journal_speed_dict[l["journal"]]
+            if (l["journal"] or "").upper() in journal_speed_dict:
+                l["journal_id"] = journal_speed_dict[(l["journal"] or "").upper()]
             else:
                 errors["journal"].setdefault(l["journal"], []).append(l["line"])
             # 4. name
