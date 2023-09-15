@@ -106,14 +106,10 @@ class TestDatevImportCsvDtvf(TransactionCase):
                 }
             )
 
-    def test_wizard(self):
+    def _test_wizard(self, filename):
         wizard = self.env["account.move.import"].create(
             {
-                "file_to_import": b64encode(
-                    file_open("datev_import_csv_dtvf/examples/datev_export.csv")
-                    .read()
-                    .encode("utf8")
-                ),
+                "file_to_import": b64encode(file_open(filename).read().encode("utf8")),
                 "force_journal_id": self.env["account.journal"]
                 .search([("type", "=", "sale")], limit=1)
                 .id,
@@ -134,6 +130,12 @@ class TestDatevImportCsvDtvf(TransactionCase):
         analytic_lines = move.line_ids.mapped("analytic_line_ids")
         self.assertEqual(len(analytic_lines), 1)
         self.assertEqual(sum(analytic_lines.mapped("amount")), 0.01)
+
+    def test_wizard_comma_separated(self):
+        self._test_wizard("datev_import_csv_dtvf/examples/datev_export.csv")
+
+    def test_wizard_semicolon_separated(self):
+        self._test_wizard("datev_import_csv_dtvf/examples/datev_export_semicolon.csv")
 
     def test_wizard_broken_file(self):
         wizard = self.env["account.move.import"].create(

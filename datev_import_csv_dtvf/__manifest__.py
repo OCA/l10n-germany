@@ -8,7 +8,7 @@
     "depends": ["account"],
     "website": "https://github.com/OCA/l10n-germany",
     "demo": [],
-    "external_dependencies": {"python": ["unicodecsv"]},
+    "external_dependencies": {"python": ["chardet"]},
     "data": [
         "security/ir.model.access.csv",
         "data/sequence.xml",
