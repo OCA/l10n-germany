@@ -94,126 +94,6 @@ class CarrierAccount(models.Model):
             "target": "current",
         }
 
-    def get_label(self, data, preview=False):
-        if not data.get("prod_code"):
-            raise UserError(_("Product Code required"))
-
-        if data["prod_code"] not in [k for k in inema.inema.default_products]:
-            raise UserError(_("Product Code %s does not exist") % (data["prod_code"]))
-
-        logging.basicConfig(level=logging.INFO)
-        im = inema.Internetmarke(self.partner_id, self.partner_key, KEY_PHASE)
-
-        try:
-            im.authenticate(self.account, self.password)
-        except Exception as e:
-            raise e from None
-        sysmo_addr = im.build_addr(
-            street=data["source"]["street2"],
-            house="",
-            zipcode=data["source"]["zip"],
-            city=data["source"]["city"],
-            country=data["source"]["country"],
-            additional=data["source"]["street"],
-        )
-        sysmo_naddr = im.build_comp_addr(
-            company=data["source"]["name"], address=sysmo_addr
-        )
-
-        if data["dest"]["street"] and data["dest"]["street2"]:
-            street = data["dest"]["street2"]
-            additional = data["dest"]["street"]
-        elif data["dest"]["street"]:
-            street = data["dest"]["street"]
-            additional = ""
-        elif data["dest"]["street2"]:
-            street = data["dest"]["street2"]
-            additional = ""
-        else:
-            raise UserError(_("Street missing in address"))
-
-        city = ""
-        if data["dest"]["state"] and data["dest"]["city"]:
-            city = data["dest"]["city"] + ", " + data["dest"]["state"]
-        elif data["dest"]["city"]:
-            city = data["dest"]["city"]
-        elif data["dest"]["state"]:
-            city = data["dest"]["state"]
-
-        dest_addr = im.build_addr(
-            street=street,
-            house="",
-            zipcode=data["dest"]["zip"],
-            city=city,
-            country=data["dest"]["country"],
-            additional=additional,
-        )
-
-        if not data["dest"]["company"]:
-            dest_naddr = im.build_pers_addr(
-                first=data["dest"]["first"],
-                last=data["dest"]["last"],
-                address=dest_addr,
-                salutation=None,
-                title=data["dest"]["title"],
-            )
-        else:
-            person = im.build_pers_name(
-                first=data["dest"]["first"],
-                last=data["dest"]["last"],
-                salutation=None,
-                title=data["dest"]["title"],
-            )
-            dest_naddr = im.build_comp_addr(
-                company=data["dest"]["company"], address=dest_addr, person=person
-            )
-
-        position = im.build_position(
-            product=data["prod_code"],
-            sender=sysmo_naddr,
-            receiver=dest_naddr,
-            layout="AddressZone",
-            pdf=True,
-            x=1,
-            y=1,
-            page=1,
-        )
-        im.add_position(position)
-
-        if preview:
-            resp_data = im.retrievePreviewPDF(
-                data["prod_code"], self.file_format, layout="AddressZone"
-            )
-            response = requests.get(resp_data)
-
-            file_name = "Test"
-            file_data = response.content
-        else:
-            try:
-                resp_data = im.checkoutPDF(self.file_format)
-            except Exception as e:
-                raise UserError(_("Deutsche Post Checkout Error")) from e
-
-            voucher = resp_data["shoppingCart"]["voucherList"]["voucher"][0]
-            file_name = voucher["trackId"]
-            if not file_name and data["prod_code"] in prod_code_with_tracking:
-                file_name = voucher["voucherId"]
-            file_data = resp_data["pdf_bin"]
-
-        self.env["de.post.logs"].create(
-            {
-                "prod_code": data["prod_code"],
-                "format_code": self.file_format,
-                "request": "%s\n%s" % (str(sysmo_naddr), str(dest_naddr)),
-                "response": resp_data,
-                "name": data["name"],
-                "account_id": self.id,
-                "tracking_num": file_name,
-            }
-        )
-
-        return file_name, base64.encodestring(file_data)
-
     def view_forms(self):
         return {
             "type": "ir.actions.act_window",
@@ -262,11 +142,7 @@ class DownloadFile(models.TransientModel):
                 "country": self.env.user.company_id.country_id.code_iso or "",
             },
         }
-        file_name, file_data = (
-            self.env["carrier.account"]
-            .browse(self._context["active_id"])
-            .get_label(test_data, preview=True)
-        )
+        _, _, file_name, file_data = self.picking_id.carrier_id.create_depost_label(test_data, preview=True)
 
         carrier_form = self.env["carrier.form"].search(
             [("prod_code", "=", self.prod_code)]
@@ -275,7 +151,7 @@ class DownloadFile(models.TransientModel):
             file_data = carrier_form.append_carrier_form(file_data, self.picking_id)
 
         self.write(
-            {"file": file_data, "file_name": (file_name or "_Download_") + ".pdf"}
+            {"file": base64.b64encode(file_data), "file_name": (file_name or "_Download_") + ".pdf"}
         )
 
         return {
