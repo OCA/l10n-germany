@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_de_toponyms
+# 	* l10n_de_toponyms
 #
 msgid ""
 msgstr ""
@@ -18,32 +18,27 @@ msgstr ""
 "X-Generator: Weblate 3.3\n"
 
 #. module: l10n_de_toponyms
-#: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
+#: model_terms:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "Configure from GeoNames"
 msgstr "Konfiguriere mit Geo Namen"
 
 #. module: l10n_de_toponyms
-#: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
-msgid "Configure from local"
-msgstr "Konfiguriere mit lokaler Datei"
-
-#. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_create_uid
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_create_date
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_display_name
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: l10n_de_toponyms
-#: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
+#: model_terms:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "German cities configuration"
 msgstr "Konfiguration der deutschen Städte"
 
@@ -53,42 +48,54 @@ msgid "German toponyms configuration"
 msgstr "Konfiguration der deutschen Ortsbezeichnung"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_id
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__id
 msgid "ID"
 msgstr "ID"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms___last_update
+#: model:ir.model,name:l10n_de_toponyms.model_city_zip_geonames_import
+msgid "Import City Zips from Geonames"
+msgstr ""
+
+#. module: l10n_de_toponyms
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_write_uid
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert durch"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_write_date
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: l10n_de_toponyms
-#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms_name
+#: model:ir.model.fields,field_description:l10n_de_toponyms.field_config_de_toponyms__name
 msgid "Name"
 msgstr "Name"
 
 #. module: l10n_de_toponyms
-#: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
+#: model_terms:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
 msgid "This wizard will add city and state information to zip codes"
 msgstr ""
 "Dieser Assistent wird Informationen über Städte und Postleitzahlen hinzufügen"
 
 #. module: l10n_de_toponyms
-#: model:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
-msgid "Warning! Adding this bunch of records can take a lot of time. If you are behind a SSL proxy, check your timeout."
-msgstr "Achtung! Das Hinzufügen der Daten kann einige Zeit dauern. Falls sie hinter einem SSL Proxy sind, prüfen sie Zeitbeschränkung."
+#: model_terms:ir.ui.view,arch_db:l10n_de_toponyms.view_confirm_toponyms_de_form
+msgid ""
+"Warning! Adding this bunch of records can take a lot of time. If you are "
+"behind a SSL proxy, check your timeout."
+msgstr ""
+"Achtung! Das Hinzufügen der Daten kann einige Zeit dauern. Falls sie hinter "
+"einem SSL Proxy sind, prüfen sie Zeitbeschränkung."
 
 #. module: l10n_de_toponyms
 #: model:ir.model,name:l10n_de_toponyms.model_config_de_toponyms
 msgid "config.de.toponyms"
 msgstr "config.de.toponyms"
+
+#~ msgid "Configure from local"
+#~ msgstr "Konfiguriere mit lokaler Datei"
