@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_de_steuernummer
+# 	* l10n_de_steuernummer
 #
 msgid ""
 msgstr ""
