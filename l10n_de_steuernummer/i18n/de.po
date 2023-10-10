@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* l10n_de_steuernummer
+# 	* l10n_de_steuernummer
 #
 msgid ""
 msgstr ""
@@ -20,3 +20,18 @@ msgstr ""
 #: model:ir.model,name:l10n_de_steuernummer.model_res_partner
 msgid "Contact"
 msgstr "Kontakt"
+
+#. module: l10n_de_steuernummer
+#: model:ir.model.fields,field_description:l10n_de_steuernummer.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_de_steuernummer
+#: model:ir.model.fields,field_description:l10n_de_steuernummer.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_de_steuernummer
+#: model:ir.model.fields,field_description:l10n_de_steuernummer.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
