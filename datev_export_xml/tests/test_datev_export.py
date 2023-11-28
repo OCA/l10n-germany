@@ -294,10 +294,7 @@ class TestDatevExport(TransactionCase):
 
     def update_attachment(self, attachment, invoice):
         attachment.write(
-            {
-                "res_model": "account.invoice",
-                "res_id": invoice.id,
-            }
+            {"res_model": "account.invoice", "res_id": invoice.id,}
         )
         return attachment
 
@@ -346,8 +343,7 @@ class TestDatevExport(TransactionCase):
 
         sign = -1 if invoice.move_type.endswith("_refund") else 1
         self.assertEqual(
-            float(total["net_total_amount"]),
-            sign * invoice.amount_untaxed,
+            float(total["net_total_amount"]), sign * invoice.amount_untaxed,
         )
         self.assertEqual(
             float(total["total_gross_amount_excluding_third-party_collection"]),
@@ -378,12 +374,10 @@ class TestDatevExport(TransactionCase):
         datev_export = self.create_customer_datev_export(start_date, end_date)
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         # There is always a first invoice
@@ -429,12 +423,10 @@ class TestDatevExport(TransactionCase):
         attachment = self.update_attachment(attachment, refund)
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         # There is always a first invoice
@@ -478,12 +470,10 @@ class TestDatevExport(TransactionCase):
         datev_export = self.create_customer_datev_export(start_date, end_date)
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         # There is always a first invoice
@@ -529,12 +519,10 @@ class TestDatevExport(TransactionCase):
         attachment = self.update_attachment(attachment, invoice)
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         self.assertEqual(datev_export.invoices_count, 1)
@@ -575,12 +563,10 @@ class TestDatevExport(TransactionCase):
         datev_export = self.create_customer_datev_export_manually(invoice)
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         self.assertEqual(datev_export.invoices_count, 1)
@@ -735,11 +721,7 @@ class TestDatevExport(TransactionCase):
         # (Invoices/Refunds) you want to export!"
         with self.assertRaises(ValidationError):
             datev_export = self.DatevExportObj.create(
-                {
-                    "export_type": "out",
-                    "export_invoice": False,
-                    "export_refund": False,
-                }
+                {"export_type": "out", "export_invoice": False, "export_refund": False,}
             )
         # 2. when default values are set
         # date_start, date_end (based on datev_default_period of current company)
@@ -747,19 +729,13 @@ class TestDatevExport(TransactionCase):
         # export_refund = True,
         # check_xsd = True,
         # manually_document_selection = Flase
-        datev_export = self.DatevExportObj.create(
-            {
-                "export_type": "out",
-            }
-        )
+        datev_export = self.DatevExportObj.create({"export_type": "out",})
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
-            datev_export.client_number,
-            self.env.company.datev_client_number,
+            datev_export.client_number, self.env.company.datev_client_number,
         )
         self.assertEqual(
-            datev_export.consultant_number,
-            self.env.company.datev_consultant_number,
+            datev_export.consultant_number, self.env.company.datev_consultant_number,
         )
         self.assertEqual(datev_export.state, "draft")
         self.assertEqual(datev_export.date_start, date_start)
@@ -785,8 +761,7 @@ class TestDatevExport(TransactionCase):
         )
 
         self.DatevExportObj.with_context(
-            active_model="account.move",
-            active_ids=out_invoice.ids,
+            active_model="account.move", active_ids=out_invoice.ids,
         ).export_zip_invoice()
 
         in_invoice = self.create_in_invoice(

@@ -53,9 +53,7 @@ class DatevXmlGenerator(models.AbstractModel):
 
         if check_xsd:
             self.check_xml_file(
-                "document.xml",
-                root,
-                "Document_v050.xsd",
+                "document.xml", root, "Document_v050.xsd",
             )
 
         return "document.xml", etree.tostring(root)
@@ -71,9 +69,7 @@ class DatevXmlGenerator(models.AbstractModel):
 
         if check_xsd:
             self.check_xml_file(
-                doc_name,
-                root,
-                "Belegverwaltung_online_invoice_v050.xsd",
+                doc_name, root, "Belegverwaltung_online_invoice_v050.xsd",
             )
 
         return doc_name, etree.tostring(root)

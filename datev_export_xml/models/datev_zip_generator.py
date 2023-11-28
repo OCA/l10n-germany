@@ -45,9 +45,7 @@ class DatevZipGenerator(models.AbstractModel):
         with io.BytesIO() as s, zipfile.ZipFile(s, mode="w") as zip_file:
             xml_document_data = self.generate_xml_document(invoices, check_xsd)
             zip_file.writestr(
-                xml_document_data[0],
-                xml_document_data[1],
-                zipfile.ZIP_DEFLATED,
+                xml_document_data[0], xml_document_data[1], zipfile.ZIP_DEFLATED,
             )
 
             for invoice in invoices.with_context(progress_iter=True):
@@ -62,9 +60,7 @@ class DatevZipGenerator(models.AbstractModel):
                 attachment = self.generate_pdf(invoice)
                 if attachment:
                     zip_file.writestr(
-                        invoice.datev_filename(),
-                        attachment,
-                        zipfile.ZIP_DEFLATED,
+                        invoice.datev_filename(), attachment, zipfile.ZIP_DEFLATED,
                     )
 
             zip_file.close()

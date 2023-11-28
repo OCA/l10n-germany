@@ -116,10 +116,7 @@ class DatevExport(models.Model):
     datev_filename = fields.Char(
         "ZIP filename", readonly=True, related="attachment_id.name"
     )
-    datev_filesize = fields.Char(
-        "Filesize",
-        compute="_compute_datev_filesize",
-    )
+    datev_filesize = fields.Char("Filesize", compute="_compute_datev_filesize",)
 
     invoice_ids = fields.Many2many(comodel_name="account.move", string="Invoices")
     invoices_count = fields.Integer(
@@ -213,10 +210,7 @@ class DatevExport(models.Model):
 
             self.write({"state": "running", "exception_info": None})
             with self.env.cr.savepoint():
-                zip_file = self.generate_zip(
-                    self.invoice_ids,
-                    self.check_xsd,
-                )
+                zip_file = self.generate_zip(self.invoice_ids, self.check_xsd,)
                 if not self.manually_document_selection:
                     description = _(
                         "Filtered Export of {} Documents\nDate Range: {}-{}\nTypes: {}"
@@ -371,10 +365,7 @@ class DatevExport(models.Model):
                     _("It's not allowed to set an already running export to pending!")
                 )
             r.write(
-                {
-                    "state": "pending",
-                    "exception_info": None,
-                }
+                {"state": "pending", "exception_info": None,}
             )
 
     def action_draft(self):

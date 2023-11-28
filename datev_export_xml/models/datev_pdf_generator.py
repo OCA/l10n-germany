@@ -47,10 +47,7 @@ class DatevPdfGenerator(models.AbstractModel):
 
         # Otherwise generate a new once
         report = self.env["ir.actions.report"].search(
-            [
-                ("model", "=", "account.move"),
-                ("report_name", "=", self.report_name()),
-            ],
+            [("model", "=", "account.move"), ("report_name", "=", self.report_name()),],
         )
         if report:
             return report._render(invoice.ids)[0]
