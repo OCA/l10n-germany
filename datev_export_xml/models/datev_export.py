@@ -5,6 +5,7 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -187,7 +188,7 @@ class DatevExport(models.Model):
             ("amount_untaxed", "!=", 0),
             ("amount_total", "!=", 0),
             ("state", "in", ("posted", "open")),
-            ("move_type", "in", list_invoice_type),
+            ("type", "in", list_invoice_type),
             ("company_id", "=", self.company_id.id),
         ]
         if self.company_id.datev_export_state:
@@ -281,7 +282,7 @@ class DatevExport(models.Model):
             invoice_ids = self.env.context.get("active_ids")
 
         invoices = self.env["account.move"].browse(invoice_ids)
-        types = invoices.mapped("move_type")
+        types = invoices.mapped("type")
 
         if all(x.startswith("in_") for x in types):
             export_type = "in"
@@ -364,9 +365,7 @@ class DatevExport(models.Model):
                 raise ValidationError(
                     _("It's not allowed to set an already running export to pending!")
                 )
-            r.write(
-                {"state": "pending", "exception_info": None,}
-            )
+            r.write({"state": "pending", "exception_info": None})
 
     def action_draft(self):
         for r in self:

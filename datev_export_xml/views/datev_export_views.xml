@@ -7,6 +7,7 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
 <odoo>
@@ -252,7 +253,7 @@
                                 <field name="amount_residual" />
                                 <field name="currency_id" invisible="1" />
                                 <field name="state" />
-                                <field name="move_type" />
+                                <field name="type" />
                             </tree>
                         </field>
                     </group>
