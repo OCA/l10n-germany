@@ -1,9 +1,9 @@
 # Copyright (C) 2022-2023 initOS GmbH
 # Copyright (C) 2020, Elego Software Solutions GmbH, Berlin
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import io
-import logging
 import zipfile
 from datetime import date, timedelta
 
@@ -12,8 +12,6 @@ from lxml import etree
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests.common import TransactionCase
-
-_logger = logging.getLogger(__name__)
 
 
 class TestDatevExport(TransactionCase):
@@ -81,6 +79,7 @@ class TestDatevExport(TransactionCase):
         self.refund_date = self.today - timedelta(days=55)
         self.start_date = self.today - timedelta(days=34)
         self.end_date = self.today - timedelta(days=32)
+        self.InvoiceObj.search([("state", "=", "posted")]).button_draft()
         self.InvoiceObj.with_context(force_delete=True).search([]).unlink()
         self.env.company.datev_default_period = "week"
 
@@ -108,21 +107,17 @@ class TestDatevExport(TransactionCase):
             doc_data = z.read(doc_file)
             inv_data = z.read(inv_file)
             # document.xml
-            doc_root = etree.fromstring(doc_data.decode("utf-8"))
+            doc_root = etree.fromstring(doc_data)
             # invoice.xml file
-            inv_root = etree.fromstring(inv_data.decode("utf-8"))
+            inv_root = etree.fromstring(inv_data)
             for i in inv_root:
                 invoice_xml.update(i.attrib)
 
             return {
                 "file_list": file_list,
                 "zip_file": z,
-                "document": lambda xpath: doc_root.find(
-                    xpath, namespaces=doc_root.nsmap
-                ),
-                "invoice": lambda xpath: inv_root.find(
-                    xpath, namespaces=inv_root.nsmap
-                ),
+                "document": doc_root,
+                "invoice": inv_root,
             }
 
     def create_out_invoice(self, customer, start_date, end_date):
@@ -143,7 +138,7 @@ class TestDatevExport(TransactionCase):
                 "invoice_date_due": end_date,
                 "company_id": self.env.company.id,
                 "currency_id": self.env.company.currency_id.id,
-                "move_type": "out_invoice",
+                "type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -178,7 +173,7 @@ class TestDatevExport(TransactionCase):
                 "invoice_date_due": end_date,
                 "company_id": self.env.company.id,
                 "currency_id": self.env.company.currency_id.id,
-                "move_type": "out_invoice",
+                "type": "out_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -218,7 +213,7 @@ class TestDatevExport(TransactionCase):
                 "invoice_date_due": end_date,
                 "company_id": self.env.company.id,
                 "currency_id": self.env.company.currency_id.id,
-                "move_type": "in_invoice",
+                "type": "in_invoice",
                 "invoice_line_ids": [
                     (
                         0,
@@ -293,55 +288,73 @@ class TestDatevExport(TransactionCase):
         return datev_export
 
     def update_attachment(self, attachment, invoice):
-        attachment.write(
-            {"res_model": "account.invoice", "res_id": invoice.id,}
-        )
+        attachment.write({"res_model": "account.move", "res_id": invoice.id})
         return attachment
 
     def _run_test_document(self, doc, invoice):
         inv_number = invoice.name.replace("/", "-")
-        self.assertEqual(doc(".//header/clientName").text, invoice.company_id.name)
-        self.assertEqual(doc(".//document/description").text, invoice.name)
-        self.assertEqual(
-            doc(".//extension[@datafile]").attrib["datafile"], inv_number + ".xml"
-        )
-        self.assertEqual(doc(".//extension[@name]").attrib["name"], inv_number + ".pdf")
 
+        namespace_url = doc.nsmap.get(None, "")
+        client_name = doc.find(".//ns:clientName", namespaces={"ns": namespace_url})
+        description = doc.find(
+            ".//ns:content/ns:document/ns:description", namespaces={"ns": namespace_url}
+        )
+        extension_datafile = doc.find(
+            ".//ns:extension[@datafile]", namespaces={"ns": namespace_url}
+        )
+        extension_name = doc.find(
+            ".//ns:extension[@name]", namespaces={"ns": namespace_url}
+        )
+        property_invoice_type = doc.find(
+            ".//ns:property[@key='InvoiceType']", namespaces={"ns": namespace_url}
+        )
+
+        self.assertEqual(client_name.text, invoice.company_id.name)
+        self.assertEqual(description.text, invoice.name)
+        self.assertEqual(extension_datafile.attrib["datafile"], inv_number + ".xml")
+        self.assertEqual(extension_name.attrib["name"], inv_number + ".pdf")
         self.assertEqual(
-            doc(".//property[@key='InvoiceType']").attrib["value"],
-            "Outgoing" if invoice.move_type.startswith("out_") else "Incoming",
+            property_invoice_type.attrib["value"],
+            "Outgoing" if invoice.type.startswith("out_") else "Incoming",
         )
 
     def _run_test_invoice(self, doc, invoice):
         inv_line = invoice.invoice_line_ids.filtered("product_id")[0]
 
-        info = doc(".//invoice_info").attrib
-        line = doc(".//invoice_item_list").attrib
-        total = doc(".//total_amount").attrib
+        namespace_url = doc.nsmap.get(None, "")
+        info = doc.find(".//ns:invoice_info", namespaces={"ns": namespace_url}).attrib
+        line = doc.find(
+            ".//ns:invoice_item_list", namespaces={"ns": namespace_url}
+        ).attrib
+        total = doc.find(".//ns:total_amount", namespaces={"ns": namespace_url}).attrib
+        invoice_party_address = doc.find(
+            ".//ns:invoice_party/ns:address", namespaces={"ns": namespace_url}
+        )
+        supplier_party_address = doc.find(
+            ".//ns:supplier_party/ns:address", namespaces={"ns": namespace_url}
+        )
 
         self.assertEqual(
             info["invoice_type"],
             "Rechnung"
-            if invoice.move_type.endswith("_invoice")
+            if invoice.type.endswith("_invoice")
             else "Gutschrift/Rechnungskorrektur",
         )
         self.assertEqual(info["invoice_date"], invoice.invoice_date.isoformat())
 
-        if invoice.move_type.startswith("out_"):
+        if invoice.type.startswith("out_"):
             self.assertEqual(
-                doc(".//invoice_party/address").attrib["name"],
-                invoice.partner_id.display_name,
+                invoice_party_address.attrib["name"], invoice.partner_id.display_name
             )
         else:
             self.assertEqual(
-                doc(".//supplier_party/address").attrib["name"],
-                invoice.partner_id.display_name,
+                supplier_party_address.attrib["name"], invoice.partner_id.display_name
             )
 
         self.assertEqual(float(line["quantity"]), inv_line.quantity)
         self.assertEqual(line["product_id"], inv_line.product_id.default_code)
 
-        sign = -1 if invoice.move_type.endswith("_refund") else 1
+        sign = -1 if invoice.type.endswith("_refund") else 1
         self.assertEqual(
             float(total["net_total_amount"]), sign * invoice.amount_untaxed,
         )
@@ -351,7 +364,9 @@ class TestDatevExport(TransactionCase):
         )
         # partner has bank account
         if invoice.partner_id.bank_ids:
-            bank = doc(".//invoice_party/account").attrib
+            bank = doc.find(
+                ".//ns:invoice_party/ns:account", namespaces={"ns": namespace_url}
+            ).attrib
             self.assertEqual(
                 bank["bank_name"], invoice.partner_id.bank_ids[0].bank_name
             )
@@ -362,7 +377,7 @@ class TestDatevExport(TransactionCase):
 
     def _run_test_out_refund_datev_export(self, refund):
         line = refund.invoice_line_ids.filtered("product_id")[0]
-        self.assertEqual(refund.move_type, "out_refund")
+        self.assertEqual(refund.type, "out_refund")
         self.assertEqual(line.account_id, self.account_income)
         self.assertEqual(line.price_unit, 120.00)
         self.assertEqual(line.quantity, 5.00)
@@ -409,7 +424,7 @@ class TestDatevExport(TransactionCase):
 
     def _run_test_in_refund_datev_export(self, refund, attachment):
         line = refund.invoice_line_ids.filtered("product_id")[0]
-        self.assertEqual(refund.move_type, "in_refund")
+        self.assertEqual(refund.type, "in_refund")
         self.assertEqual(line.account_id, self.account_expense)
         self.assertEqual(line.price_unit, 900.00)
         self.assertEqual(line.quantity, 1.00)
@@ -458,7 +473,7 @@ class TestDatevExport(TransactionCase):
 
     def _run_test_out_invoice_datev_export(self, invoice):
         line = invoice.invoice_line_ids.filtered("product_id")[0]
-        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(invoice.type, "out_invoice")
         self.assertEqual(line.account_id, self.account_income)
         self.assertEqual(line.price_unit, 120.00)
         self.assertEqual(line.quantity, 5.00)
@@ -505,7 +520,7 @@ class TestDatevExport(TransactionCase):
 
     def _run_test_in_invoice_datev_export(self, invoice, attachment):
         line = invoice.invoice_line_ids.filtered("product_id")[0]
-        self.assertEqual(invoice.move_type, "in_invoice")
+        self.assertEqual(invoice.type, "in_invoice")
         self.assertEqual(line.account_id, self.account_expense)
         self.assertEqual(line.price_unit, 900.00)
         self.assertEqual(line.quantity, 1.00)
@@ -553,7 +568,7 @@ class TestDatevExport(TransactionCase):
 
     def _run_test_out_inv_datev_export_manually(self, invoice):
         line = invoice.invoice_line_ids.filtered("product_id")[0]
-        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(invoice.type, "out_invoice")
         self.assertEqual(line.account_id, self.account_income)
         self.assertEqual(line.price_unit, 120.00)
         self.assertEqual(line.quantity, 5.00)
@@ -721,7 +736,7 @@ class TestDatevExport(TransactionCase):
         # (Invoices/Refunds) you want to export!"
         with self.assertRaises(ValidationError):
             datev_export = self.DatevExportObj.create(
-                {"export_type": "out", "export_invoice": False, "export_refund": False,}
+                {"export_type": "out", "export_invoice": False, "export_refund": False}
             )
         # 2. when default values are set
         # date_start, date_end (based on datev_default_period of current company)
@@ -729,7 +744,7 @@ class TestDatevExport(TransactionCase):
         # export_refund = True,
         # check_xsd = True,
         # manually_document_selection = Flase
-        datev_export = self.DatevExportObj.create({"export_type": "out",})
+        datev_export = self.DatevExportObj.create({"export_type": "out"})
         self.assertEqual(datev_export.datev_file, False)
         self.assertEqual(
             datev_export.client_number, self.env.company.datev_client_number,

@@ -5,17 +5,15 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-import logging
 import re
 
 from lxml import etree
 
 from odoo import _, api, models, tools
 from odoo.exceptions import UserError
-
-_logger = logging.getLogger(__name__)
 
 
 class DatevXmlGenerator(models.AbstractModel):
@@ -27,12 +25,11 @@ class DatevXmlGenerator(models.AbstractModel):
         if not xsd:
             xsd = "Document_v050.xsd"
 
-        schema = tools.file_open(xsd, subdir="addons/datev_export_xml/xsd_files")
+        schema = tools.file_open(f"datev_export_xml/xsd_files/{xsd}")
         try:
             schema = etree.XMLSchema(etree.parse(schema))
             schema.assertValid(root)
         except (etree.DocumentInvalid, etree.XMLSyntaxError) as e:
-            _logger.warning(etree.tostring(root))
             raise UserError(
                 _(
                     "Wrong Data in XML file!\nTry to solve the problem with "
@@ -47,7 +44,7 @@ class DatevXmlGenerator(models.AbstractModel):
     def generate_xml_document(self, invoices, check_xsd=True):
         template = self.env.ref("datev_export_xml.export_invoice_document")
         root = etree.fromstring(
-            template._render({"docs": invoices, "company": self.env.company}),
+            template.render({"docs": invoices, "company": self.env.company}),
             parser=etree.XMLParser(remove_blank_text=True),
         )
 
@@ -63,7 +60,7 @@ class DatevXmlGenerator(models.AbstractModel):
         doc_name = re.sub(r"[^a-zA-Z0-9_\-.()]", "", f"{invoice.name}.xml")
         template = self.env.ref("datev_export_xml.export_invoice")
         root = etree.fromstring(
-            template._render({"doc": invoice}),
+            template.render({"doc": invoice}),
             parser=etree.XMLParser(remove_blank_text=True),
         )
 

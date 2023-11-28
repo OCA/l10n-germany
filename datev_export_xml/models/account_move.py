@@ -5,6 +5,7 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import logging
@@ -41,7 +42,7 @@ class AccountMove(models.Model):
 
     def datev_format_total(self, value):
         self.ensure_one()
-        return f"-{value:.2f}" if self.move_type.endswith("_refund") else f"{value:.2f}"
+        return f"-{value:.2f}" if self.type.endswith("_refund") else f"{value:.2f}"
 
     def datev_sanitize(self, value, length=36):
         return re.sub(r"[^a-zA-Z0-9$%&\*\+\-/]", "-", value)[:length]
@@ -57,10 +58,12 @@ class AccountMove(models.Model):
             return self.invoice_date
 
         pickings = self.env["stock.move"]
-        if self.move_type == "out_invoice":
+        if self.type == "out_invoice":
             pickings = self.mapped("invoice_line_ids.sale_line_ids.move_ids.picking_id")
-        elif self.move_type == "in_invoice":
-            pickings = self.mapped("invoice_line_ids.purchase_order_id.picking_ids")
+        elif self.type == "in_invoice":
+            pickings = self.mapped(
+                "invoice_line_ids.purchase_line_id.order_id.picking_ids"
+            )
 
         if pickings:
             return pickings.sorted("date DESC")[0].date.date()
@@ -70,7 +73,7 @@ class AccountMove(models.Model):
 
     def datev_invoice_type(self):
         self.ensure_one()
-        if self.move_type in ["out_invoice", "in_invoice"]:
+        if self.type in ["out_invoice", "in_invoice"]:
             return "Rechnung"
         return "Gutschrift/Rechnungskorrektur"
 
@@ -81,22 +84,17 @@ class AccountMove(models.Model):
     def datev_order_id(self):
         self.ensure_one()
         origin = self.invoice_origin or ""
-        if self.move_type not in (
-            "in_invoice",
-            "in_refund",
-            "out_invoice",
-            "out_refund",
-        ):
+        if self.type not in ("in_invoice", "in_refund", "out_invoice", "out_refund",):
             return self.datev_sanitize(origin)
 
         # Use the correct setting
-        if self.move_type.startswith("in_"):
+        if self.type.startswith("in_"):
             ref_field = self.sudo().company_id.datev_vendor_order_ref
         else:
             ref_field = self.sudo().company_id.datev_customer_order_ref
 
         # Show the original move because ref is a combined value for refund
-        if ref_field == "partner" and self.move_type.endswith("_refund"):
+        if ref_field == "partner" and self.type.endswith("_refund"):
             return self.datev_sanitize(self.reversed_entry_id.name or origin)
 
         # Show the partner reference from the orders stored in ref

@@ -5,13 +5,11 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
-import logging
 
 from odoo import api, models
-
-_logger = logging.getLogger(__name__)
 
 
 class DatevPdfGenerator(models.AbstractModel):
@@ -47,7 +45,7 @@ class DatevPdfGenerator(models.AbstractModel):
 
         # Otherwise generate a new once
         report = self.env["ir.actions.report"].search(
-            [("model", "=", "account.move"), ("report_name", "=", self.report_name()),],
+            [("model", "=", "account.move"), ("report_name", "=", self.report_name())],
         )
         if report:
-            return report._render(invoice.ids)[0]
+            return report.render(invoice.ids)[0]

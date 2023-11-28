@@ -3,8 +3,6 @@
   <record id="base.main_company" model="res.company">
       <field name="datev_client_number">1234</field>
         <field name="datev_consultant_number">12345</field>
-        <!-- <field name="group_account_user" eval="True"/> -->
-        <!-- <field name="group_analytic_accounting" eval="True"/> -->
     </record>
 
     <!-- Company Datev Accounts -->

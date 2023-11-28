@@ -1,4 +1,4 @@
-Open the **Invoicing** app or any other app and go to **Configuration > Settings**. Search for **DATEV** or find at the **Invoicing** page the **DATEV Export** section.
+Open the **Invoicing** app and go to **Configuration > Settings**. Find at the **Invoicing** page the **DATEV Export** section.
 
 Here you can configure the following:
 
