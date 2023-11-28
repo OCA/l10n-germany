@@ -10,12 +10,7 @@
     "Maria Sparenberg, initOS GmbH, Odoo Community Association (OCA)",
     "summary": "Export invoices and refunds as xml and pdf files zipped in DATEV format.",
     "website": "https://github.com/OCA/l10n-germany",
-    "depends": [
-        "account",
-        "l10n_de",
-    ],
-    "data": [
-        "views/res_config_settings_views.xml",
-    ],
+    "depends": ["account", "l10n_de",],
+    "data": ["views/res_config_settings_views.xml",],
     "installable": True,
 }

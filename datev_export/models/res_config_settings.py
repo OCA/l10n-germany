@@ -8,11 +8,9 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     datev_consultant_number = fields.Char(
-        related="company_id.datev_consultant_number",
-        readonly=False,
+        related="company_id.datev_consultant_number", readonly=False,
     )
 
     datev_client_number = fields.Char(
-        related="company_id.datev_client_number",
-        readonly=False,
+        related="company_id.datev_client_number", readonly=False,
     )
