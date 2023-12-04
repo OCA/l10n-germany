@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[datev_export](datev_export/) | 13.0.1.0.0 |  | Export invoices and refunds as xml and pdf files zipped in DATEV format.
 [l10n_de_country_states](l10n_de_country_states/) | 13.0.1.0.0 |  | German Country States
 [l10n_de_holidays](l10n_de_holidays/) | 13.0.1.0.1 |  | Holidays for Germany
 [l10n_de_skr03_mis_reports](l10n_de_skr03_mis_reports/) | 13.0.1.0.0 |  | MIS Builder templates for the German P&L and Balance Sheets (SKR03)
