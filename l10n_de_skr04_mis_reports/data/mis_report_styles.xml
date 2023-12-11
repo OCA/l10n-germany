@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2015-2018 ACSONE SA/NV
+     Copyright 2019 BIG-Consulting GmbH
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="mis_report_style_l10n_de_base" model="mis.report.style">
+      <field name="name">l10n_de base</field>
+      <field name="dp_inherit" eval="0" />
+      <field name="dp">2</field>
+    </record>
+    <record id="style_l10n_de_level1_green" model="mis.report.style">
+      <field name="name">l10n_de level 1 green</field>
+      <field name="color_inherit" eval="0" />
+      <field name="color">#000000</field>
+      <field name="background_color_inherit" eval="0" />
+      <field name="background_color">#3bff3b</field>
+      <field name="font_weight_inherit" eval="0" />
+      <field name="font_weight">bold</field>
+      <field name="font_size_inherit" eval="0" />
+      <field name="font_size">large</field>
+    </record>
+    <record id="style_l10n_de_level1_red" model="mis.report.style">
+      <field name="name">l10n_de level 1 red</field>
+      <field name="color_inherit" eval="0" />
+      <field name="color">#000000</field>
+      <field name="background_color_inherit" eval="0" />
+      <field name="background_color">#ff5719</field>
+      <field name="font_weight_inherit" eval="0" />
+      <field name="font_weight">bold</field>
+      <field name="font_size_inherit" eval="0" />
+      <field name="font_size">large</field>
+    </record>
+    <record id="style_l10n_de_level1_total" model="mis.report.style">
+      <field name="name">l10n_de level 1 total</field>
+      <field name="font_weight_inherit" eval="0" />
+      <field name="font_weight">bold</field>
+      <field name="font_size_inherit" eval="0" />
+      <field name="font_size">large</field>
+      <field name="indent_level_inherit" eval="0" />
+      <field name="indent_level">1</field>
+    </record>
+    <record id="style_l10n_de_level2" model="mis.report.style">
+      <field name="name">l10n_de level 2</field>
+      <field name="indent_level_inherit" eval="0" />
+      <field name="indent_level">1</field>
+    </record>
+    <record id="style_l10n_de_level3" model="mis.report.style">
+      <field name="name">l10n_de level 3</field>
+      <field name="indent_level_inherit" eval="0" />
+      <field name="indent_level">2</field>
+    </record>
+    <record id="style_l10n_de_level3_total" model="mis.report.style">
+      <field name="name">l10n_de level 3 total</field>
+      <field name="font_weight_inherit" eval="0" />
+      <field name="font_weight">bold</field>
+      <field name="indent_level_inherit" eval="0" />
+      <field name="indent_level">2</field>
+    </record>
+    <record id="style_l10n_de_level3_accounts" model="mis.report.style">
+      <field name="name">l10n_de level 3 account</field>
+      <field name="font_style_inherit" eval="0" />
+      <field name="font_style">italic</field>
+      <field name="font_size_inherit" eval="0" />
+      <field name="font_size">small</field>
+      <field name="indent_level_inherit" eval="0" />
+      <field name="indent_level">3</field>
+    </record>
+
+</odoo>
