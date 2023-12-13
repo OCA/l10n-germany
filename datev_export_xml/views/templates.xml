@@ -51,7 +51,7 @@
             t-att-quantity="'%.02f' % line.quantity"
         />
         <invoice_item_list
-            t-else=""
+            t-elif="not line.display_type"
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-description_short="line.name or ''"
             t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
