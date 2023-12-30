@@ -14,5 +14,6 @@
     "website": "https://github.com/grueneerde/ge_complaint_types",
     "license": "OPL-1",
     "depends": ["base", "stock"],
-    "data": ["views/stock_picking_views.xml", "views/delivery_carrier_views.xml"],
+    "data": ["views/stock_picking_views.xml",
+    "views/delivery_carrier_views.xml"],
 }
