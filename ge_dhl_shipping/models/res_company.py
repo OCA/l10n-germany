@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ResCompany(models.Model):
@@ -25,7 +25,8 @@ class ResCompany(models.Model):
         copy=False,
         help=(
             "When use the sandbox account developer portal password "
-            "use to as the password.When use the live account application token use to as the password."
+            "use to as the password.When use the live "
+            "account application token use to as the password."
         ),
     )
     dhl_shipping_dhl_api_key = fields.Char(
@@ -34,6 +35,8 @@ class ResCompany(models.Model):
         help="Obtained via Get Access! (app creation) and manually approved by DHL.",
     )
     dhl_shipping_url = fields.Char(compute="_compute_dhl_shipping_url", store=True)
+
+    code_alpha3 = fields.Char()
 
     @api.depends("dhl_shipping_domain", "dhl_shipping_endpoint")
     def _compute_dhl_shipping_url(self):

@@ -11,8 +11,8 @@
     "version": "15.0.1.0.0",
     "category": "Inventory",
     "author": "Grüne Erde",  # pylint: disable=all
-    "website": "https://github.com/grueneerde/ge_complaint_types",
-    "license": "OPL-1",
+    "website": "https://github.com/OCA/l10n-germany",
+    "license": "AGPL-3",
     "depends": [
         "base",
         "delivery",

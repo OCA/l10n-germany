@@ -6,19 +6,19 @@
 # See LICENSE file for full licensing details.
 #####################################################################################
 {
-    "name": "RMA Analytics",
+    "name": "DHL Parcel DE (Post & Parcel Germany)",
     "summary": """This module extends the standard functionality for analytics.
     In the GE context this mainly includes
     reports for complaint reasons and time at customer.""",
     "version": "15.0.1.0.0",
     "category": "Inventory",
     "author": "Grüne Erde",  # pylint: disable=all
-    "website": "https://github.com/grueneerde/ge_complaint_types",
-    "license": "OPL-1",
+    "website": "https://github.com/OCA/l10n-germany",
+    "license": "AGPL-3",
     "depends": [
         "base",
         "delivery",
-        "base_iso3166",
+        # "base_iso3166", it's recommended to use but it's not necessary
         "ge_dhl_base",
         # dhl doesn't support rate infos therefore
         # it's necessary to manually set the price / price rules
