@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
+<title>Datev Export XML</title>
+<style type="text/css">
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 8954 2022-01-20 10:10:25Z milde $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See https://docutils.sourceforge.io/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+.subscript {
+  vertical-align: sub;
+  font-size: smaller }
+
+.superscript {
+  vertical-align: super;
+  font-size: smaller }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
+  overflow: hidden;
+}
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left, .figure.align-left, object.align-left, table.align-left {
+  clear: left ;
+  float: left ;
+  margin-right: 1em }
+
+img.align-right, .figure.align-right, object.align-right, table.align-right {
+  clear: right ;
+  float: right ;
+  margin-left: 1em }
+
+img.align-center, .figure.align-center, object.align-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table.align-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.align-left {
+  text-align: left }
+
+.align-center {
+  clear: both ;
+  text-align: center }
+
+.align-right {
+  text-align: right }
+
+/* reset inner alignment in figures */
+div.align-right {
+  text-align: inherit }
+
+/* div.align-center * { */
+/*   text-align: left } */
+
+.align-top    {
+  vertical-align: top }
+
+.align-middle {
+  vertical-align: middle }
+
+.align-bottom {
+  vertical-align: bottom }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font: inherit }
+
+pre.literal-block, pre.doctest-block, pre.math, pre.code {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+pre.code .ln { color: grey; } /* line numbers */
+pre.code, code { background-color: #eeeeee }
+pre.code .comment, code .comment { color: #5C6576 }
+pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
+pre.code .literal.string, code .literal.string { color: #0C5404 }
+pre.code .name.builtin, code .name.builtin { color: #352B84 }
+pre.code .deleted, code .deleted { background-color: #DEB0A1}
+pre.code .inserted, code .inserted { background-color: #A3D289}
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+/* "booktabs" style (no vertical lines) */
+table.docutils.booktabs {
+  border: 0px;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-collapse: collapse;
+}
+table.docutils.booktabs * {
+  border: 0px;
+}
+table.docutils.booktabs th {
+  border-bottom: thin solid;
+  text-align: left;
+}
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+</style>
+</head>
+<body>
+<div class="document" id="datev-export-xml">
+<h1 class="title">Datev Export XML</h1>
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! This file is generated by oca-gen-addon-readme !!
+!! changes will be overwritten.                   !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! source digest: sha256:c83ea5209d03d33102d486bfe7b57425b39c8832ad790f36c189581297c01200
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-germany/tree/14.0/datev_export_xml"><img alt="OCA/l10n-germany" src="https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-germany-14-0/l10n-germany-14-0-datev_export_xml"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-germany&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<div class="section" id="odoo-export-to-datev-xml">
+<h1>Odoo Export to DATEV XML</h1>
+<p>The datev_export_xml module allows to export invoices and bills with their origin digitized receipts
+in order to transmitt structured accounting data via file-based DATEV XML format. The transfer of these files created by this module to the invoice books in DATEV Unternehmen Online can be done currently via the free DATEV document transfer app.</p>
+<p>The DATEV XML interface cannot cover use cases such as:</p>
+<ul class="simple">
+<li>Pure G/L account postings (G/L account to G/L account, e.g. payment postings)</li>
+<li>Master data transfer for business partners (customers/creditors)</li>
+<li>certain §13b UStG issues (see permissible tax codes for DATEV Unternehmen online)</li>
+</ul>
+<p><strong>Table of contents</strong></p>
+</div>
+<div class="section" id="usage">
+<h1>Usage</h1>
+<p>Normally you will use the <strong>Export Wizard</strong> for exporting a time period. There is also a manual export option available directly from the contextual actions of the invoices and bills list view.</p>
+<div class="section" id="export-by-wizard">
+<h2>Export by Wizard</h2>
+<p>The main export usage will be done by the <strong>DATEV Export</strong> Wizard, which can be executed from the menu item located at
+<strong>Invoicing &gt; Reporting &gt; Datev Export</strong>.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_wizard.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_wizard.png" style="width: 100%;" />
+<p>At the wizard you can filter by <em>Invoice types</em> and limit the <em>time range</em>. At the <em>General Settings</em> you can choose your company and if you want to validate the XML-Export file by the provided XSD-Schema (Recommended).</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">It’s very important for a valid import at DATEV that the export file meets the requirements! So make sure that
+these flag is set when you want to upload your <em>ZIP-Exportfile</em> on a productive DATEV system.</p>
+</div>
+<p>Click on the button <strong>Create DATEV Export File</strong> to create the zip file for the selected filter at background.</p>
+</div>
+<div class="section" id="manual-export">
+<h2>Manual Export</h2>
+<p>It is also possible to export selected invoice(s) or refund(s) from the Invoices / Refunds <em>Action-Dropdown</em>. As result you can download a zip file ready to transfer to DATEV Unternehmen Online. The file contains the selected invoices / refunds as xml and pdf file and a document file which summarizes and classify all included files. This method can be handy if an exception occurs while generating a huge amount of invoices / refunds via the wizard, to fix and validate the related invoice / refund before running the wizard again.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_wizard_manual.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_wizard_manual.png" style="width: 100%;" />
+<p>If you create a manual export from the vendor bills list the export type is „Vendors“. If you create this export from the customer invoices the export type is „Customers“.</p>
+<p>If you have the Check XSD option, it’s possible that some errors occurs.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_exception.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/example_datev_export_exception.png" style="width: 100%;" />
+<p>On errors, an activity will be applied to you for fixing the problem. If you have fixed the problem, just restart the wizard, or click on „Recreate DATEV Export File“. On success you can download the generated zip file from the wizards <strong>Download DATEV File</strong> section.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The duration of the file creation depends on the number of invoices / refunds for that you will create the zip file!</p>
+</div>
+</div>
+</div>
+<div class="section" id="import-into-datev">
+<h1>Import into DATEV</h1>
+<div class="section" id="requirements">
+<h2>Requirements</h2>
+<p>1.) DATEV Unternehmen Online is activated for the client. (In order to simply import the receipts, it is not necessary for the client to have their own access to DATEV Unternehmen Online). Please ensure you have configured the following “Advanced Settings” in DATEV Unternehmen Online in order to allow to import split account moves with many invoice lines from Invoices / Bills:</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen_rechnungsdatenschnittstelle.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen_rechnungsdatenschnittstelle.png" style="width: 100%;" />
+<p>2.) The DATEV Belegtransfer program is installed and open.</p>
+</div>
+<div class="section" id="transmission-to-the-tax-advisor">
+<h2>Transmission to the tax advisor</h2>
+<p>The ZIP file with the document images is first exported from Odoo and saved on the client’s computer. The files can then be transferred to the tax consultant in 3 different ways:</p>
+<p>1st way: Transfer receipts and posting records with DATEV Belegtransfer</p>
+<p>The client uploads both the ZIP file with the receipts and the CSV file with the posting records (posting batch) to DATEV Belegtransfer. The ZIP file with the receipts will be imported automatically. The invoices with the document data end up in DATEV Unternehmen Online. A provision for the tax consultant can now be made via the receipts app and the tile “Outgoing invoices” or “Incoming invoices”.</p>
+<p>2nd way: Transfer receipts and posting records outside of DATEV
+The client transfers both the ZIP file with the receipts independently of DATEV receipt transfer, e.g. by e-mail or on a USB stick. The tax consultant imports the ZIP file with the documents into DATEV document transfer and then fetches the batch of postings provided from the office.</p>
+</div>
+<div class="section" id="datev-belegtransfer">
+<h2>DATEV Belegtransfer</h2>
+<p>To transfer the .zip archive from Odoo, the DATEV document transfer program „DATEV Belegtransfer“ must be installed and open. In the opened DATEV Belegtransfer application you can now click on “Add directories” and make the following settings:</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_0.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_0.png" style="width: 100%;" />
+<p>1.) “Create directories” dialog: Specify where the directories should be saved, how the company directory should be named and whether you want to delete or archive the source files after the upload. Then click on “Save”.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_1.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_1.png" style="width: 100%;" />
+<p>2.) Now define the directories that are to be used by first selecting the client and then clicking on “Next”. You can now use the two following suggested entries and configure them as follows:
+* Activate <em>Rechnungseingang</em> “Create as directory”. Also activate “Configure as XML interface”. To activate the XML interface, slide the slider in the “Configure as XML interface” column to the right. Then it is green. The setting is important for the transfer of the files. DATEV only reads in the receipts correctly with an activated XML interface.
+* Activate <em>Rechnungsausgang</em> “Create as directory”. Also activate “Configure as XML interface”. To activate the XML interface, slide the slider in the “Configure as XML interface” column to the right. Then it is also green.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verezcihnis_anlegen_2.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verezcihnis_anlegen_2.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_3.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_3.png" style="width: 100%;" />
+</div>
+<div class="section" id="transfer-files">
+<h2>Transfer files</h2>
+<p>1.) Double-click on either the “Rechnungseingang” or “Rechnungsausgang” directory. The storage location for the files to be uploaded opens. Place the file in the storage location. Make sure you put the files in the right directory:
+* ZIP file for outgoing invoices from Odoo in the directory with activated XML interface „Ausgangsrechnungen“.
+* ZIP file for incoming invoices from Odoo in the directory with activated XML interface „Eingangsrechnungen”.
+* EXCURSION: if you want to upload .csv files, e.g. exported from the datev_export_acii application, copy them to a directory without an activated XML interface (in the screenshot “Other”)</p>
+<p>You can tell for which directory the XML interface is activated by the interface symbol at the beginning of the line. If the symbol is displayed, the XML interface is activated in the directory (it should therefore be active in the two directories “Eingangsrechnungen” and “Ausgangsrechnungen”).</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_belege_hochladen.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_belege_hochladen.png" style="width: 100%;" />
+<p>2.) Right-click on the directory. A new menu will open. Click Upload Receipts. Uploading deletes the files from the directory or moves them to an archive folder. You can specify which option should apply under Settings.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_belege_hochladen_dateiauswahl.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_belege_hochladen_dateiauswahl.png" style="width: 100%;" />
+<p>3.) To check whether the upload was successful, right-click on the directory. A new menu will open. Click Open Log. For more details click on “Import Log”</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_timestamp.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_timestamp.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_auswahl.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_auswahl.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_liste.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_liste.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_details.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/belegtransfer_protokoll_details.png" style="width: 100%;" />
+<p>4.) Repeat steps 1 to 3 with the other directory (either for A/R invoices / A/R invoices if you want to upload those as well).</p>
+<p>Check the import of the receipts in DATEV Unternehmen Online:</p>
+<p>DATEV Unternehmen Online automatically recognizes that the contents of the ZIP file are receipts that belong to a batch of bookings and imports them automatically. Further actions by the tax advisor are not required. If the receipts are displayed in the DATEV Unternehmen Online inbox, your client has transferred the ZIP file with the receipts to a directory with a deactivated XML interface. Ask your client to transfer the ZIP file with the receipts again to a directory with an activated XML interface. You can delete the receipts in the inbox. You can check whether the automatic receipt import worked correctly under: Applications → Receipts → Right side menu → Logs → Import → Display import log → Select import date and “Display”</p>
+</div>
+<div class="section" id="download-booking-records">
+<h2>Download booking records</h2>
+<p>1.) In DATEV Unternehmen Online:</p>
+<p>The “Provide” („Bereitstellen“)  position is on the Receipts start page in DATEV Unternehmen Online. The batch of bookings exported from Odoo and uploaded via DATEV document transfer for „Eingangsrechnungen“ and „Ausgangsrechnugnen“ can be marked here, in order to make them ready for collection by clicking on “Provide” for DATEV Kanzlei-Rechnungswesen. With the appropriate authorization, this process can be carried out by the client himself or by the tax consultant.</p>
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_uo_bereitstellen_1.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_uo_bereitstellen_1.png" style="width: 100%;" />
+<img alt="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_uo_bereitstellen_2.png" src="https://raw.githubusercontent.com/OCA/l10n-germany/14.0/datev_export_xml/static/description/datev_uo_bereitstellen_2.png" style="width: 100%;" />
+<p>2.) In DATEV Kanzlei-Rechnungswesen, this provided data must be retrieved via client supplement.
+The procedure is as follows:
+Under “Preparatory activities” in your overview on the left, click on “Add client”.
+Select the item “Cash register/invoice stack from cash book/receipts online”.
+The process is started by clicking on “Get data”.
+The “Edit booking suggestions” function is located in your booking line. This allows you to generate the posting proposals with the voucher image.
+Select your stack and confirm your selection with “Ok”. You have to repeat this in the next menu. Now your booking suggestions are displayed with the original voucher images from Odoo and can be booked there.</p>
+<p>EXCURSION for the tax consultant: If the client has also uploaded the CSV file with the posting records (posting batch) to DATEV Belegtransfer via the datev_export_ascii module, you will find this in DATEV Unternehmen Online in the inbox. Select “Download Original” to save the posting batch file on your computer. Import it from there into Kanzlei-Rechnungswesen. You can then delete the file from the inbox. In contrast to the receipts, the posting batch is not automatically recognized as such. The upload by the client using DATEV document transfer is only used for transmission to the tax consultant and could also be done by e-mail or on a USB stick.</p>
+</div>
+<div class="section" id="how-to-deal-with-errors-in-bookings">
+<h2>How to deal with errors in bookings</h2>
+<p>If there are errors in the postings, we recommend editing them at the source, i.e. in Odoo, and then providing a corrected posting stack.</p>
+</div>
+<div class="section" id="current-limitations-outlook">
+<h2>Current limitations / outlook</h2>
+<p>It is currently recommended to use a customer account according to DATEV number logic for customer accounts as the standard Odoo customer account. To do this, you can simply change the number of the existing standard customer account (e.g. 1410/1205 -&gt; 69999). It is also recommended to use a vendor account according to DATEV number logic for vendor accounts as a standard Odoo vendor account. To do this, you can simply change the number of the existing standard vendor account (e.g. 1610/3301 -&gt; 99999).</p>
+<p>In future versions it is planned to optionally have two additional fields on the partner: “DATEV Debitor” and “DATEV Vendor”. These accounts should be able to be assigned automatically when they are created. For accounts that already exist with the tax advisor, these two fields should be editable manually to use the tax advisor’s accounts for the export. The export of the “DATEV Debitor” and “DATEV Vendor” value should then optionally be exported instead of the current Odoo debtor / vendor accounts.</p>
+<p>Instead of the DATEV XML format type “Invoice data”, the type “Ledger” should also be optionally selectable. This type includes an extended export of posting data, e.g. exchange rates for currencies etc.</p>
+<p>With exported DATEV automatic accounts, any export of the DATEV tax key / posting key, which can be stored in Odoo for taxes, should be suppressed. This then prevents a momentary note in DATEV Kanzler-Rechnungswesen when postings are taken over (which can simply be ignored at the moment), since a posting key must also be transferred to DATEV for non-automatic accounts.</p>
+<p>At the moment it is recommended for an identical tax statement in DATEV and Odoo not to post income/expenses with tax in journals of the “Bank” and “Cash” type. Instead, it would be better to post an incoming invoice / outgoing invoice with tax and then match the open item in the bank / cash register journal and thus post the customer / vendor as an offsetting account.</p>
+<p>if you use Odoo just as a billing engine, then probably adoptions directly in DATEV Kanzlei-Rechnungswesen wouldn’t be a big issue. If you plan to move to a full-aaccounting approach into Odoo we would recommend to reconcile the Odoo and DATEV trial balance after each month.</p>
+</div>
+</div>
+<div class="section" id="bug-tracker">
+<h1>Bug Tracker</h1>
+<p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-germany/issues">GitHub Issues</a>.
+In case of trouble, please check there if your issue has already been reported.
+If you spotted it first, help us to smash it by providing a detailed and welcomed
+<a class="reference external" href="https://github.com/OCA/l10n-germany/issues/new?body=module:%20datev_export_xml%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<p>Do not contact contributors directly about support or help with technical issues.</p>
+</div>
+<div class="section" id="credits">
+<h1>Credits</h1>
+<div class="section" id="authors">
+<h2>Authors</h2>
+<ul class="simple">
+<li>Guenter Selbert</li>
+<li>Thorsten Vocks</li>
+<li>Maciej Wichowski</li>
+<li>Daniela Scarpa</li>
+<li>Maria Sparenberg</li>
+<li>initOS GmbH</li>
+</ul>
+</div>
+<div class="section" id="contributors">
+<h2>Contributors</h2>
+<ul class="simple">
+<li>Thorsten Vocks (OpenBIG.org)</li>
+<li>Guenter Selbert (sewisoft.de)</li>
+<li>initOS GmbH (initOS.com)</li>
+<li>Tecnativa - Carolina Fernandez</li>
+</ul>
+</div>
+<div class="section" id="maintainers">
+<h2>Maintainers</h2>
+<p>This module is maintained by the OCA.</p>
+<a class="reference external image-reference" href="https://odoo-community.org"><img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" /></a>
+<p>OCA, or the Odoo Community Association, is a nonprofit organization whose
+mission is to support the collaborative development of Odoo features and
+promote its widespread use.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-germany/tree/14.0/datev_export_xml">OCA/l10n-germany</a> project on GitHub.</p>
+<p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

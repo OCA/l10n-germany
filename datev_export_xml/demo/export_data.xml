@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="base.main_company" model="res.company">
+      <field name="datev_client_number">1234</field>
+        <field name="datev_consultant_number">12345</field>
+        <!-- <field name="group_account_user" eval="True"/> -->
+        <!-- <field name="group_analytic_accounting" eval="True"/> -->
+    </record>
+
+    <!-- Company Datev Accounts -->
+    <record id="account_datev_rec" model="account.account">
+      <field name="name">Company Account Receivable</field>
+      <field name="code">69999</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_receivable" />
+    </record>
+    <record id="account_datev_pay" model="account.account">
+      <field name="name">Company Account Payable</field>
+      <field name="code">99999</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_payable" />
+    </record>
+
+    <record id="base.main_partner" model="res.partner">
+        <field name="property_account_receivable_id" ref="account_datev_rec" />
+      <field name="property_account_payable_id" ref="account_datev_pay" />
+    </record>
+
+    <!-- German Accounts -->
+    <record id="account_datev_rec_DE" model="account.account">
+      <field name="name">A-Customer Account DE</field>
+      <field name="code">10001</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_receivable" />
+    </record>
+    <record id="account_datev_pay_DE" model="account.account">
+      <field name="name">A-Vendor Account DE</field>
+      <field name="code">70001</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_payable" />
+    </record>
+    <!-- EU Accounts -->
+    <record id="account_datev_rec_EU" model="account.account">
+      <field name="name">A-Customer Account EU</field>
+      <field name="code">10002</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_receivable" />
+    </record>
+    <record id="account_datev_pay_EU" model="account.account">
+      <field name="name">A-Vendor Account EU</field>
+      <field name="code">70002</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_payable" />
+    </record>
+    <!-- Non-EU Accounts -->
+    <record id="account_datev_rec_NonEU" model="account.account">
+      <field name="name">A-Customer Account Non-EU</field>
+      <field name="code">10003</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_receivable" />
+    </record>
+    <record id="account_datev_pay_NonEU" model="account.account">
+      <field name="name">A-Vendor Account Non-EU</field>
+      <field name="code">70003</field>
+      <field name="reconcile" eval="True" />
+      <field name="user_type_id" ref="account.data_account_type_payable" />
+    </record>
+    <!-- Accounts Income and Expense -->
+    <record id="account_datev_income" model="account.account">
+      <field name="name">A-Income</field>
+      <field name="code">8401</field>
+      <field name="reconcile" eval="False" />
+      <field name="user_type_id" ref="account.data_account_type_revenue" />
+    </record>
+    <record id="account_datev_expense" model="account.account">
+      <field name="name">A-Expense</field>
+      <field name="code">3401</field>
+      <field name="reconcile" eval="False" />
+      <field name="user_type_id" ref="account.data_account_type_expenses" />
+    </record>
+
+
+    <!-- German Partners -->
+    <record id="customer_DE" model="res.partner">
+      <field name="name">A-Customer DE</field>
+      <field name="street">Straße 1</field>
+      <field name="zip">12345</field>
+      <field name="city">City</field>
+      <field name="country_id" ref="base.de" />
+      <field name="customer_rank" eval="1" />
+      <field name="supplier_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_DE" />
+      <field name="property_account_payable_id" ref="account_datev_pay_DE" />
+    </record>
+    <record id="vendor_DE" model="res.partner">
+      <field name="name">A-Vendor DE</field>
+      <field name="street">Alle 9</field>
+      <field name="zip">54321</field>
+      <field name="city">Metropole</field>
+      <field name="country_id" ref="base.de" />
+      <field name="supplier_rank" eval="1" />
+      <field name="customer_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_DE" />
+      <field name="property_account_payable_id" ref="account_datev_pay_DE" />
+    </record>
+
+    <!-- EU Partners -->
+    <record id="customer_EU" model="res.partner">
+      <field name="name">A-Customer EU</field>
+      <field name="street">Straße 1</field>
+      <field name="zip">12345</field>
+      <field name="city">City</field>
+      <field name="country_id" ref="base.fr" />
+      <field name="customer_rank" eval="1" />
+      <field name="supplier_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_EU" />
+      <field name="property_account_payable_id" ref="account_datev_pay_EU" />
+    </record>
+    <record id="vendor_EU" model="res.partner">
+      <field name="name">A-Vendor EU</field>
+      <field name="street">Alle 9</field>
+      <field name="zip">54321</field>
+      <field name="city">Metropole</field>
+      <field name="country_id" ref="base.fr" />
+      <field name="supplier_rank" eval="1" />
+      <field name="customer_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_EU" />
+      <field name="property_account_payable_id" ref="account_datev_pay_EU" />
+    </record>
+
+    <!-- Non-EU Partners -->
+    <record id="customer_NonEU" model="res.partner">
+      <field name="name">A-Customer Non-EU</field>
+      <field name="street">Straße 1</field>
+      <field name="zip">12345</field>
+      <field name="city">City</field>
+      <field name="country_id" ref="base.us" />
+      <field name="customer_rank" eval="1" />
+      <field name="supplier_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_NonEU" />
+      <field name="property_account_payable_id" ref="account_datev_pay_NonEU" />
+    </record>
+    <record id="vendor_NonEU" model="res.partner">
+      <field name="name">A-Vendor Non-EU</field>
+      <field name="street">Alle 9</field>
+      <field name="zip">54321</field>
+      <field name="city">Metropole</field>
+      <field name="country_id" ref="base.us" />
+      <field name="supplier_rank" eval="1" />
+      <field name="customer_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_NonEU" />
+      <field name="property_account_payable_id" ref="account_datev_pay_NonEU" />
+    </record>
+
+    <record id="analytic_account_datev_01" model="account.analytic.account">
+      <field name="name">A-IT</field>
+      <field name="code">990010</field>
+    </record>
+    <record id="analytic_account_datev_02" model="account.analytic.account">
+      <field name="name">A-Office</field>
+      <field name="code">990000</field>
+    </record>
+
+    <record id="product_datev_01" model="product.product">
+      <field name="name">A-IT-Consulting</field>
+      <field name="default_code">11-001</field>
+      <field name="type">service</field>
+      <field name="sale_ok" eval="True" />
+      <field name="categ_id" ref="product.product_category_all" />
+      <field name="list_price">120.00</field>
+      <field name="property_account_income_id" ref="account_datev_income" />
+    </record>
+    <record id="product_datev_02" model="product.product">
+      <field name="name">A-Office-Lease</field>
+      <field name="default_code">99-015</field>
+      <field name="type">service</field>
+      <field name="purchase_ok" eval="True" />
+      <field name="categ_id" ref="product.product_category_all" />
+      <field name="list_price">900.00</field>
+      <field name="property_account_income_id" ref="account_datev_expense" />
+    </record>
+
+    <!-- Demo Attachment pdf for IN Invoice -->
+    <record id="vendor_bill_attachment_DE" model="ir.attachment">
+        <field name="name">vendor_bill_attachment_DE.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+    <record id="vendor_bill_attachment_EU" model="ir.attachment">
+        <field name="name">vendor_bill_attachment_EU.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+    <record id="vendor_bill_attachment_NonEU" model="ir.attachment">
+        <field name="name">vendor_bill_attachment_NonEU.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+    <!-- Demo Attachment pdf for IN Refund -->
+    <record id="bill_refund_attachment_DE" model="ir.attachment">
+        <field name="name">bill_refund_attachment_DE.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+    <record id="bill_refund_attachment_EU" model="ir.attachment">
+        <field name="name">bill_refund_attachment_EU.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+    <record id="bill_refund_attachment_NonEU" model="ir.attachment">
+        <field name="name">bill_refund_attachment_NonEU.pdf</field>
+        <field name="type">binary</field>
+        <field
+            name="datas"
+            type="base64"
+            file="datev_export_xml/static/src/demo/vendor_bill_attachment.pdf"
+        />
+    </record>
+
+    <!-- Bank Data -->
+    <record id="customer_parent" model="res.partner">
+      <field name="name">A-Customer Parent</field>
+      <field name="street">Straße 1</field>
+      <field name="zip">12345</field>
+      <field name="city">Berlin</field>
+      <field name="country_id" ref="base.de" />
+      <field name="customer_rank" eval="1" />
+      <field name="supplier_rank" eval="0" />
+      <field name="property_account_receivable_id" ref="account_datev_rec_DE" />
+      <field name="property_account_payable_id" ref="account_datev_pay_DE" />
+    </record>
+
+    <record id="example_bank" model="res.bank">
+        <field name="name">Example Bank</field>
+        <field name="active" eval="True" />
+        <field name="bic">ALSWCH21XXX</field>
+        <field name="country" ref="base.ch" />
+    </record>
+
+    <record id="customer_child" model="res.partner">
+      <field name="name">A-Customer Child</field>
+      <field name="type">contact</field>
+      <field name="parent_id" ref="customer_parent" />
+      <field name="vat">BE0477472701</field>
+      <field name="country_id" ref="base.de" />
+      <field name="customer_rank" eval="1" />
+      <field name="supplier_rank" eval="0" />
+    </record>
+
+    <record id="datev_partner_bank_1" model="res.partner.bank">
+        <field name="acc_number">DE89370400440532013000</field>
+        <field name="partner_id" ref="customer_child" />
+        <field name="acc_type">bank</field>
+        <field name="bank_id" ref="example_bank" />
+    </record>
+</odoo>
