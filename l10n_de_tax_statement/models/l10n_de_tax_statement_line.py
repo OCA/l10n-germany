@@ -105,7 +105,8 @@ class VatStatementLine(models.Model):
             else:
                 line.is_readonly = True
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_if_posted_or_final(self):
         for line in self:
             if line.statement_id.state == "posted":
                 raise UserError(
@@ -118,7 +119,6 @@ class VatStatementLine(models.Model):
                 raise UserError(
                     _("You cannot delete lines of a statement set as final!")
                 )
-        super().unlink()
 
     def view_tax_lines(self):
         self.ensure_one()

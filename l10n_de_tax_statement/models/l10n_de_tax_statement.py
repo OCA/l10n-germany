@@ -440,7 +440,8 @@ class VatStatement(models.Model):
                             )
         return super().write(values)
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_if_posted_or_final(self):
         for statement in self:
             if statement.state == "posted":
                 raise UserError(
@@ -451,7 +452,6 @@ class VatStatement(models.Model):
                 )
             if statement.state == "final":
                 raise UserError(_("You cannot delete a statement set as final!"))
-        super().unlink()
 
     @api.depends("line_ids.tax")
     def _compute_tax_total(self):
