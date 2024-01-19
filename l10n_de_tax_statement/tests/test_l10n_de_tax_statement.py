@@ -29,7 +29,9 @@ class TestVatStatement(TransactionCase):
         )
         cls.env.user.company_id = cls.company_parent
         cls.coa.try_loading(install_demo=False)
-        cls.env["l10n.de.tax.statement"].search([("state", "!=", "posted")]).unlink()
+        cls.env["l10n.de.tax.statement"].search(
+            [("state", "not in", ["posted", "final"])]
+        ).unlink()
 
         cls.tag_1 = cls.env["account.account.tag"].create(
             {
@@ -127,36 +129,41 @@ class TestVatStatement(TransactionCase):
         )
 
     def _create_test_invoice(self, additional=False, refund=False):
-        journal = self.env["account.journal"].create(
-            {"name": "Journal 1", "code": "Jou1", "type": "sale"}
-        )
-        partner = self.env["res.partner"].create({"name": "Test partner"})
         account_receivable = self.env["account.account"].create(
             {
-                "user_type_id": self.env.ref("account.data_account_type_expenses").id,
+                "account_type": "expense",
                 "code": "EXPTEST",
                 "name": "Test expense account",
             }
         )
+        journal = self.env["account.journal"].create(
+            {
+                "name": "Journal 1",
+                "code": "Jou1",
+                "type": "sale",
+                "default_account_id": account_receivable.id,
+            }
+        )
+        partner = self.env["res.partner"].create({"name": "Test partner"})
+
         invoice_form = Form(
             self.env["account.move"].with_context(
-                default_move_type="out_refund" if refund else "out_invoice"
+                default_move_type="out_refund" if refund else "out_invoice",
+                default_journal_id=journal.id,
             ),
         )
+        self.assertEqual(journal, invoice_form.journal_id)
         invoice_form.partner_id = partner
-        invoice_form.journal_id = journal
         invoice_form.invoice_date = fields.Date.today()
         with invoice_form.invoice_line_ids.new() as line:
             line.name = "Test line"
             line.quantity = 1.0
-            line.account_id = account_receivable
             line.price_unit = 100.0
             line.tax_ids.clear()
             line.tax_ids.add(self.tax_1)
         with invoice_form.invoice_line_ids.new() as line:
             line.name = "Test line"
             line.quantity = 1.0
-            line.account_id = account_receivable
             line.price_unit = 50.0
             line.tax_ids.clear()
             line.tax_ids.add(self.tax_2)
@@ -164,32 +171,30 @@ class TestVatStatement(TransactionCase):
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 100.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_3)
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 100.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_4)
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 100.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_5)
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 100.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_6)
         self.invoice_1 = invoice_form.save()
+        for line in self.invoice_1.invoice_line_ids:
+            self.assertEqual(account_receivable, line.account_id)
         self.assertEqual(len(self.invoice_1.line_ids), 5 if not additional else 13)
 
     def test_01_onchange(self):
