@@ -13,6 +13,13 @@
                         widget="statusbar"
                         statusbar_visible="draft,posted,final"
                     />
+                    <button
+                        name="statement_update"
+                        string="Update"
+                        states="draft"
+                        type="object"
+                        icon="fa-repeat"
+                    />
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -42,11 +49,14 @@
                             confirm="If you confirm, it will be not possible to modify this Statement or reset it back to draft anymore. Do you confirm?"
                         />
                     </div>
-                    <label for="name" />
-                    <h1>
-                        <field name="name" />
-                    </h1>
+
                     <group>
+                        <label for="name" />
+                        <div colspan="2">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
                         <group name="tax_report">
                             <field name="version" />
                             <field
@@ -94,15 +104,12 @@
                             <group name="statement_lines" string="Tax Statement lines">
                                 <div
                                     states="draft"
-                                >Press the Update button in order to recompute the statement lines!</div>
-                                <button
-                                    name="statement_update"
-                                    string="Update"
-                                    states="draft"
-                                    type="object"
-                                    class="oe_stat_button"
-                                    icon="fa-repeat"
-                                />
+                                    colspan="2"
+                                    class="text-info"
+                                >Press the <span class="text-uppercase"><i
+                                            class="fa fa-repeat"
+                                        />
+                                     Update</span> button in order to recompute the statement lines!</div>
                             </group>
                             <field name="line_ids">
                                 <form>
