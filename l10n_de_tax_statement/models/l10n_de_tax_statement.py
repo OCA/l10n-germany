@@ -386,10 +386,10 @@ class VatStatement(models.Model):
         self.unreported_move_ids.filtered(
             lambda m: m.l10n_de_tax_statement_include
         ).write({"l10n_de_tax_statement_id": self.id})
-        self.unreported_move_ids.flush()
+        self.unreported_move_ids.flush_recordset()
         move_lines = self._compute_move_lines()
         move_lines.move_id.write({"l10n_de_tax_statement_id": self.id})
-        move_lines.move_id.flush()
+        move_lines.move_id.flush_recordset()
 
     def _get_move_lines_domain(self):
         domain = self._init_move_line_domain()
