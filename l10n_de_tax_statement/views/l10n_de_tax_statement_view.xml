@@ -33,7 +33,7 @@
                         />
                         <button
                             name="reset"
-                            string="Reset to Draft"
+                            string="To Draft"
                             states="posted"
                             type="object"
                             class="oe_stat_button"
