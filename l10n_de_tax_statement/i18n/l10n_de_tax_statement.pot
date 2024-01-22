@@ -4,8 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-22 06:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -324,13 +325,9 @@ msgid "Date update"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move__display_name
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__display_name
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__display_name
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__display_name
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_company__display_name
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -380,11 +377,6 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -439,13 +431,14 @@ msgid "German Vat Statement Line"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move__id
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_line__id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__id
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__id
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__id
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_company__id
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -461,7 +454,6 @@ msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction
-#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
@@ -554,13 +546,9 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move____last_update
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement____last_update
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config____last_update
 #: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line____last_update
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_company____last_update
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -703,17 +691,12 @@ msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -733,7 +716,9 @@ msgstr ""
 
 #. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
-msgid "Press the Update button in order to recompute the statement lines!"
+msgid ""
+"Press the <span class=\"text-uppercase\"><i class=\"fa fa-repeat\"/>\n"
+"                                     Update</span> button in order to recompute the statement lines!"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -744,11 +729,6 @@ msgstr ""
 #. module: l10n_de_tax_statement
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
 msgid "Remove Invoice"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
-msgid "Reset to Draft"
 msgstr ""
 
 #. module: l10n_de_tax_statement
@@ -1126,6 +1106,11 @@ msgid "To Date"
 msgstr ""
 
 #. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Reset to Draft"
+msgstr ""
+
+#. module: l10n_de_tax_statement
 #: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_exception_decoration
 msgid "Type of the exception activity on record."
 msgstr ""
@@ -1159,16 +1144,6 @@ msgstr ""
 #: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
 #, python-format
 msgid "Umsätze, die unter das GrEStG fallen gem. § 13b Abs. 2 Nr. 3 (73 / 74)"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: l10n_de_tax_statement
-#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_unread_counter
-msgid "Unread Messages Counter"
 msgstr ""
 
 #. module: l10n_de_tax_statement
