@@ -4,13 +4,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-21 10:14+0000\n"
-"PO-Revision-Date: 2022-01-21 10:14+0000\n"
+"POT-Creation-Date: 2024-01-23 05:06+0000\n"
+"PO-Revision-Date: 2024-01-23 05:06+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -64,14 +63,13 @@ msgid "Currency"
 msgstr "Währung"
 
 #. module: l10n_de_tax_statement_zm
-#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement__display_name
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__display_name
 msgid "Display Name"
 msgstr "Bezeichnung"
 
 #. module: l10n_de_tax_statement_zm
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
-msgid "Download.CSV"
+msgid "Download CSV"
 msgstr "Download als CSV"
 
 #. module: l10n_de_tax_statement_zm
@@ -90,7 +88,6 @@ msgid "German Vat Statement"
 msgstr "Zusammenfassende Meldung"
 
 #. module: l10n_de_tax_statement_zm
-#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement__id
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__id
 msgid "ID"
 msgstr ""
@@ -101,7 +98,6 @@ msgid "Intra-Community transactions (ZM) line"
 msgstr "Zusmammenfassende Meldung Positionen"
 
 #. module: l10n_de_tax_statement_zm
-#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement____last_update
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line____last_update
 msgid "Last Modified on"
 msgstr "Geändert am"
@@ -120,7 +116,7 @@ msgstr "Aktualisiert am"
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__partner_id
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
 msgid "Partner"
-msgstr "Partner"
+msgstr ""
 
 #. module: l10n_de_tax_statement_zm
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement.py:0
@@ -130,8 +126,11 @@ msgstr "Partner {} hat keine USt-IdNr."
 
 #. module: l10n_de_tax_statement_zm
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm.view_l10n_de_tax_report_form
-msgid "Press the Update button in order to recompute the lines!"
-msgstr "Für eine Neuberechnung der Positionen klicken Sie auf Aktualisieren !"
+msgid ""
+"Press the <span class=\"text-uppercase\"><i class=\"fa fa-repeat\"/> "
+"Update</span> button in order to recompute the statement lines!"
+msgstr "Für eine Neuberechnung der Positionen klicken Sie auf <span class=\"text-uppercase\"><i class=\"fa fa-repeat\"/> "
+"Aktualisieren</span> !"
 
 #. module: l10n_de_tax_statement_zm
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__statement_id
@@ -159,12 +158,17 @@ msgid "Update"
 msgstr "Aktualisieren"
 
 #. module: l10n_de_tax_statement_zm
-#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__vat
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
 msgid "VAT"
 msgstr "USt-IdNr. (EU-Erwerber)"
 
 #. module: l10n_de_tax_statement_zm
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement_zm_line__vat
+msgid "Vat"
+msgstr "USt-IdNr. (EU-Erwerber)"
+
+#. module: l10n_de_tax_statement_zm
+#. odoo-python
 #: code:addons/l10n_de_tax_statement_zm/models/l10n_de_tax_statement_zm_line.py:0
 #, python-format
 msgid ""
@@ -195,7 +199,7 @@ msgstr ""
 #. module: l10n_de_tax_statement_zm
 #: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm.report_tax_statement_zm
 msgid "ZM"
-msgstr "ZM"
+msgstr ""
 
 #. module: l10n_de_tax_statement_zm
 #: model:ir.model.fields,field_description:l10n_de_tax_statement_zm.field_l10n_de_tax_statement__zm_line_ids
