@@ -68,34 +68,36 @@ class TestTaxStatementZM(TransactionCase):
         )
 
     def _create_test_invoice(self, products=True, services=True):
+        account_receivable = self.env["account.account"].create(
+            {
+                "account_type": "expense",
+                "code": "EXPTEST",
+                "name": "Test expense account",
+            }
+        )
         self.journal_1 = self.env["account.journal"].create(
             {
                 "name": "Journal 1",
                 "code": "Jou1",
                 "type": "sale",
+                "default_account_id": account_receivable.id,
             }
         )
         self.partner = self.env["res.partner"].create({"name": "Test partner"})
 
-        account_receivable = self.env["account.account"].create(
-            {
-                "user_type_id": self.env.ref("account.data_account_type_expenses").id,
-                "code": "EXPTEST",
-                "name": "Test expense account",
-            }
-        )
-
         invoice_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice"),
+            self.env["account.move"].with_context(
+                default_move_type="out_invoice",
+                default_journal_id=self.journal_1.id,
+            ),
         )
         invoice_form.partner_id = self.partner
-        invoice_form.journal_id = self.journal_1
+        self.assertEqual(self.journal_1, invoice_form.journal_id)
         invoice_form.invoice_date = fields.Date.today()
         if products:
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line 1"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 100.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_1)
@@ -103,7 +105,6 @@ class TestTaxStatementZM(TransactionCase):
             with invoice_form.invoice_line_ids.new() as line:
                 line.name = "Test line 2"
                 line.quantity = 1.0
-                line.account_id = account_receivable
                 line.price_unit = 50.0
                 line.tax_ids.clear()
                 line.tax_ids.add(self.tax_2)
@@ -114,6 +115,9 @@ class TestTaxStatementZM(TransactionCase):
             self.assertTrue(len(invoice.line_ids))
         else:
             self.assertFalse(len(invoice.line_ids))
+
+        for line in invoice.invoice_line_ids:
+            self.assertEqual(account_receivable, line.account_id)
 
         return invoice
 
@@ -191,7 +195,6 @@ class TestTaxStatementZM(TransactionCase):
             for tax_line in invoice_line.tax_ids:
                 for rep_line in tax_line.invoice_repartition_line_ids:
                     rep_line.tag_ids = self.tag_4
-        invoice._onchange_invoice_line_ids()
         invoice.action_post()
         self.statement_with_zm.statement_update()
 

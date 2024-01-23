@@ -17,18 +17,16 @@ class VatStatementZmLine(models.Model):
     )
     partner_id = fields.Many2one(
         "res.partner",
-        string="Partner",
         readonly=True,
         required=True,
     )
     vat = fields.Char(
-        string="VAT",
         readonly=True,
     )
     country_code = fields.Char(
         readonly=True,
     )
-    currency_id = fields.Many2one("res.currency", string="Currency", readonly=True)
+    currency_id = fields.Many2one("res.currency", readonly=True)
     amount_products = fields.Monetary(readonly=True)
     format_amount_products = fields.Char(compute="_compute_zm_amount_format")
     amount_services = fields.Monetary(readonly=True)
