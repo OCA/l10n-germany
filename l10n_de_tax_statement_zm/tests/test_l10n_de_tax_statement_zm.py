@@ -8,63 +8,62 @@ from odoo.tests.common import TransactionCase
 
 
 class TestTaxStatementZM(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
-        self.eur = self.env["res.currency"].search([("name", "=", "EUR")])
-        self.coa = self.env.ref("l10n_de_skr03.l10n_de_chart_template", False)
-        self.coa = self.coa or self.env.ref(
-            "l10n_generic_coa.configurable_chart_template"
-        )
-        self.company_parent = self.env["res.company"].create(
+        cls.eur = cls.env["res.currency"].search([("name", "=", "EUR")])
+        cls.coa = cls.env.ref("l10n_de_skr03.l10n_de_chart_template", False)
+        cls.coa = cls.coa or cls.env.ref("l10n_generic_coa.configurable_chart_template")
+        cls.company_parent = cls.env["res.company"].create(
             {
                 "name": "Parent Company",
-                "country_id": self.env.ref("base.de").id,
-                "currency_id": self.eur.id,
+                "country_id": cls.env.ref("base.de").id,
+                "currency_id": cls.eur.id,
             }
         )
-        self.env.user.company_id = self.company_parent
-        self.coa.try_loading()
-        self.env["l10n.de.tax.statement"].search([("state", "!=", "posted")]).unlink()
+        cls.env.user.company_id = cls.company_parent
+        cls.coa.try_loading()
+        cls.env["l10n.de.tax.statement"].search([("state", "!=", "posted")]).unlink()
 
-        self.tag_1 = self.env["account.account.tag"].create(
+        cls.tag_1 = cls.env["account.account.tag"].create(
             {
                 "name": "+81 base",
                 "applicability": "taxes",
-                "country_id": self.env.ref("base.de").id,
+                "country_id": cls.env.ref("base.de").id,
             }
         )
-        self.tag_2 = self.env["account.account.tag"].create(
+        cls.tag_2 = cls.env["account.account.tag"].create(
             {
                 "name": "+41 base",
                 "applicability": "taxes",
-                "country_id": self.env.ref("base.de").id,
+                "country_id": cls.env.ref("base.de").id,
             }
         )
-        self.tag_3 = self.env["account.account.tag"].create(
+        cls.tag_3 = cls.env["account.account.tag"].create(
             {
                 "name": "+81 base",
                 "applicability": "taxes",
-                "country_id": self.env.ref("base.de").id,
+                "country_id": cls.env.ref("base.de").id,
             }
         )
-        self.tag_4 = self.env["account.account.tag"].create(
+        cls.tag_4 = cls.env["account.account.tag"].create(
             {
                 "name": "+21 base",
                 "applicability": "taxes",
-                "country_id": self.env.ref("base.de").id,
+                "country_id": cls.env.ref("base.de").id,
             }
         )
 
-        self.tax_1 = self.env["account.tax"].create({"name": "Tax 1", "amount": 19})
-        self.tax_1.invoice_repartition_line_ids[0].tag_ids = self.tag_1
-        self.tax_1.invoice_repartition_line_ids[1].tag_ids = self.tag_2
+        cls.tax_1 = cls.env["account.tax"].create({"name": "Tax 1", "amount": 19})
+        cls.tax_1.invoice_repartition_line_ids[0].tag_ids = cls.tag_1
+        cls.tax_1.invoice_repartition_line_ids[1].tag_ids = cls.tag_2
 
-        self.tax_2 = self.env["account.tax"].create({"name": "Tax 2", "amount": 7})
-        self.tax_2.invoice_repartition_line_ids[0].tag_ids = self.tag_3
-        self.tax_2.invoice_repartition_line_ids[1].tag_ids = self.tag_4
+        cls.tax_2 = cls.env["account.tax"].create({"name": "Tax 2", "amount": 7})
+        cls.tax_2.invoice_repartition_line_ids[0].tag_ids = cls.tag_3
+        cls.tax_2.invoice_repartition_line_ids[1].tag_ids = cls.tag_4
 
-        self.statement_1 = self.env["l10n.de.tax.statement"].create(
+        cls.statement_1 = cls.env["l10n.de.tax.statement"].create(
             {"name": "Statement 1", "version": "2021"}
         )
 
