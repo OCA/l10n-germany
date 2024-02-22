@@ -204,7 +204,7 @@ class AccountMoveImport(models.TransientModel):
 
     def create_moves_from_pivot(self, pivot, post=False):  # noqa: C901
         _logger.debug("Final pivot: %s", pivot)
-        amo = self.env["account.move"]
+        amo = self.env["account.move"].with_context(skip_invoice_sync=True)
         company_id = self.env.company.id
         # Generate SPEED DICTS
         # account
