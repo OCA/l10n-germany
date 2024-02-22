@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-l10n_de_holidays>=15.0dev,<15.1dev',
+        'odoo-addon-l10n_de_skr04_mis_reports>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

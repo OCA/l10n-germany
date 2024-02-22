@@ -22,6 +22,7 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [l10n_de_holidays](l10n_de_holidays/) | 15.0.1.0.1 |  | Holidays for Germany
+[l10n_de_skr04_mis_reports](l10n_de_skr04_mis_reports/) | 15.0.1.0.0 |  | MIS Builder templates for the German P&L and Balance Sheets (SKR04)
 
 [//]: # (end addons)
 
