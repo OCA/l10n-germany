@@ -65,8 +65,9 @@ class DatevXmlGenerator(models.AbstractModel):
         self._check_invoices(invoices)
 
         root = etree.fromstring(
-            self.env['ir.ui.view']._render_template(
-                "datev_export_xml.export_invoice_document", {"docs": invoices, "company": self.env.company}
+            self.env["ir.ui.view"]._render_template(
+                "datev_export_xml.export_invoice_document",
+                {"docs": invoices, "company": self.env.company},
             ),
             parser=etree.XMLParser(remove_blank_text=True),
         )
@@ -84,7 +85,7 @@ class DatevXmlGenerator(models.AbstractModel):
     def generate_xml_invoice(self, invoice, check_xsd=True):
         doc_name = re.sub(r"[^a-zA-Z0-9_\-.()]", "", f"{invoice.name}.xml")
         root = etree.fromstring(
-            self.env['ir.ui.view']._render_template(
+            self.env["ir.ui.view"]._render_template(
                 "datev_export_xml.export_invoice", {"doc": invoice}
             ),
             parser=etree.XMLParser(remove_blank_text=True),

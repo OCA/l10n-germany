@@ -225,7 +225,9 @@ class TestDatevExport(TransactionCase):
                             "debit": 900.0,
                             "tax_ids": [(6, 0, tax.ids)],
                             "account_id": self.account_expense.id,
-                            "analytic_distribution": {self.analytic_account_office.id: 1},
+                            "analytic_distribution": {
+                                self.analytic_account_office.id: 1
+                            },
                         },
                     ),
                 ],
@@ -237,7 +239,9 @@ class TestDatevExport(TransactionCase):
 
     def create_refund(self, invoice, refund_date):
         # OUT Refund/Credit Note
-        refund = invoice._reverse_moves([{"invoice_date": refund_date, "invoice_date_due": refund_date}])
+        refund = invoice._reverse_moves(
+            [{"invoice_date": refund_date, "invoice_date_due": refund_date}]
+        )
         self.assertEqual(refund.state, "draft")
         refund.action_post()
         return refund
