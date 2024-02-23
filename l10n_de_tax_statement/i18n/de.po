@@ -1,0 +1,1377 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_tax_statement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-22 05:24+0000\n"
+"PO-Revision-Date: 2024-01-22 05:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
+msgid "&amp;nbsp; &amp;nbsp;"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
+msgid "&amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.actions.report,print_report_name:l10n_de_tax_statement.action_report_tax_statement_report
+msgid "(object.name)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... an Abnehmer mit USt-ID (41)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid "... neue Fahrzeuge an Abnehmer ohne UST-ID (44)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... neuer Fahrzeuge an Abnehmer ohne UST-ID (44)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... neuer Fahrzeuge außerh. eines Unternehmens § 2a UStG (49)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"... neuer Fahrzeuge gem. § 1b Abs. 2 u. 3 UStG von Lieferern o. Ust-ID z. "
+"allg. Steuersatz (94 / 96)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... zu anderen Steuersätzen (35 / 36)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... zu anderen Steuersätzen (95 / 98)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... zum Steuersatz v. 7% (93)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... zum Steuersatz von 19 % (81)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "... zum Steuersatz von 7% (86)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__version__2018
+msgid "2018"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__version__2019
+msgid "2019/2020"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__version__2021
+msgid "2021/2022"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Abziehbare Vorsteuerbeträge"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Abzug der festges. Sondervorauszahl. f. Dauerfristverlängerung, nur auszuf. "
+"i. d. letzten Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Add Invoice"
+msgstr "Rechnung hinzufügen"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid ""
+"Andere Leistung eines im Ausland ansässigen Untern. gem. § 13b Abs. 2 Nr. 1 "
+"u. 5 Buchst. a UStG (52 / 53)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Andere Leistungen gem. § 13b Abs. 2 Nr. 1, 2,4 b. 11 UStG (84 / 85)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid ""
+"Andere Leistungen gem. § 13b Abs. 2 Nr. 4, 5 Bst. b, Nr. 6 b. 9 u. 11 UStG "
+"(84 / 85)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Andere Steuerbeträge"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Anmeldung der Umsatzsteuer Vorauszahlung"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__base
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
+msgid "Base"
+msgstr "Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Berichtigung des Vorsteuerabzugs g. § 15 a UStG (64)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__code
+msgid "Code"
+msgstr "Zeile"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__company_id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__create_uid
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__create_uid
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__create_date
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__create_date
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__create_date
+msgid "Created on"
+msgstr "Angelegt am"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__currency_id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__currency_id
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement_filters
+msgid "Currency"
+msgstr "Währung"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__is_invoice_basis
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_company__l10n_de_tax_invoice_basis
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_res_config_settings__l10n_de_tax_invoice_basis
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.res_config_settings_view_form
+msgid "DE Tax Invoice Basis"
+msgstr "Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Date"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__date_posted
+msgid "Date Posted"
+msgstr "Versendet am"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__date_update
+msgid "Date Update"
+msgstr "Aktualisiert am"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement_filters
+msgid "Date posted"
+msgstr "Versendet am"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__date_range_id
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement_filters
+msgid "Date range"
+msgstr "Datumsbereich"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement_filters
+msgid "Date update"
+msgstr "Aktualisiert am"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__display_name
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__display_name
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__state__draft
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__move_line_ids
+msgid "Entry Lines"
+msgstr "Buchungszeilen"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Entst. Einfuhrumsatzst. g. § 15 Abs. 1 S. 1 Nr. 2 UStG (62)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Ergänzende Angaben zu Umsätzen"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#, python-format
+msgid "Erwerbe nach §§ 4b u. 25c UStG (91)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__state__final
+msgid "Final"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Finalize"
+msgstr "Abschließen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__format_base
+msgid "Format Base"
+msgstr "Steuermessbetrag"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__format_tax
+msgid "Format Tax"
+msgstr "Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__format_tax_total
+msgid "Format Tax Total"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__from_date
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "From Date"
+msgstr "Datum ab"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
+msgid "German VAT Declaration"
+msgstr "Deutsche Umsatzsteuer-Voranmeldung"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_l10n_de_tax_statement
+msgid "German Vat Statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_l10n_de_tax_statement_config
+msgid "German Vat Statement Configuration"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_l10n_de_tax_statement_line
+msgid "German Vat Statement Line"
+msgstr "Deutsche UstVA Einzelpositionsaufstellung"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.res_config_settings_view_form
+msgid ""
+"If this checkbox is ticked, you will enable the german Tax Invoice Basis."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid ""
+"If you confirm, it will be not possible to modify this Statement or reset it"
+" back to draft anymore. Do you confirm?"
+msgstr ""
+"Nach endgültiger Bestätigung ist es nicht mehr möglich diese UstVA "
+"Auswertung zurückzusetzen. Möchten Sie bestätigen und fortfahren ?"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"In Rechnungen unrichtig oder unberechtigt ausgewiesene Steuerbeträge gem. § "
+"14c UstG) sowie Steuerbetr. d. n. § 6a Abs. 4 S. 2, § 17 Abs. 1 S. 6, § 25 b"
+" Abs. 2 UStG o. v. e. Auslagerer o. Lagerh. n. § 13a Abs. 1 Nr. 6 UStG "
+"geschuldet werden (69)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Include Undeclared Invoices"
+msgstr ""
+"Ergänze bislang noch nicht erklärte, bei der Umsatzsteuervoranmeldung "
+"anzumeldende Rechnungen."
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_bank_statement_line__l10n_de_tax_statement_include
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move__l10n_de_tax_statement_include
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_line__l10n_de_tax_statement_include
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_payment__l10n_de_tax_statement_include
+msgid "Include in VAT Statement"
+msgstr "Zur UstVA hinzufügen"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Innergemeinschaftliche Erwerbe "
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#, python-format
+msgid ""
+"Innergemeinschaftliche Erwerbe Steuerfreie innergemeinschaftliche Erwerbe"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__is_group
+msgid "Is Group"
+msgstr "Ist Überschrift"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__is_readonly
+msgid "Is Readonly"
+msgstr "Ist Nur-Leseberechtigt"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__is_total
+msgid "Is Total"
+msgstr "Ist Summe"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model,name:l10n_de_tax_statement.model_account_move_line
+msgid "Journal Item"
+msgstr "Buchungszeile"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement____last_update
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config____last_update
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line____last_update
+msgid "Last Modified on"
+msgstr "Geändert am"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__write_uid
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__write_uid
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__write_uid
+msgid "Last Updated by"
+msgstr "Aktualisiert von"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__write_date
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__write_date
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__write_date
+msgid "Last Updated on"
+msgstr "Aktualisiert am"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Leistungsempfänger als Steuerschuldner (§ 13b UStG)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Lief. u. sonst. Leistg. einschl. unentg. Wertabg."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Lieferungen des ersten Abnehmers bei innergem. Dreiecksgeschäften gem. § 25b"
+" Abs. 2 UStG (42)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Lieferungen land- u. forstw. Betriebe nach § 24 UStG an Abnehmer mit Ust-ID "
+"(77)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid ""
+"Lieferungen sicherungsübereign. Gegenst. u. Umsätze d. u. d.  GrEStG fallen "
+"g. § 13b Abs. 2 Nr. 2 u. 3 (73 / 74)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#, python-format
+msgid ""
+"Lieferungen sicherungsübereign. Gegenst. u. Umsätze d. u. d.  GrEStG fallen "
+"g. § 13b Abs. 2 Nr. 3 (73 / 74)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid ""
+"Lieferungen v. Mobilfunkger., Tablet-Comp., Spielekons. u. int. Schaltkr. g."
+" §13b A. 2 Nr. 10 UStG (78 / 79)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__line_ids
+msgid "Lines"
+msgstr "Positionen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__name
+msgid "Name"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Nicht steuerb. sonst. Leist. gem. § 18b S. 1 Nr. 2 (21)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Past Undeclared Invoices"
+msgstr "Unangemeldete Rechnungen aus der Vergangenheit"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Post"
+msgstr "Versenden"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement.selection__l10n_de_tax_statement__state__posted
+msgid "Posted"
+msgstr "Versendet"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid ""
+"Press the <span class=\"text-uppercase\"><i class=\"fa fa-repeat\"/>\n"
+"                                     Update</span> button in order to recompute the statement lines!"
+msgstr ""
+"Klicken Sie auf <span class=\"text-uppercase\"><i class=\"fa fa-repeat\"/>\n"
+"                                     Aktualisieren</span>, um die UstVA Auswertung neu zu berechnen!"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move_line__l10n_de_tax_statement_id
+msgid "Related Move Statement"
+msgstr "Betroffene Buchung"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Remove Invoice"
+msgstr "Rechnung entfernen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__statement_id
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Statement"
+msgstr "Ust.-Voranmeldung"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__state
+msgid "Status"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuer inf. Wechsels d. Besteuerungsf. sow. Nachst. a. verst. Anzahlungen "
+"u.a. wg. Steuersatzänd. (65)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuerfr. Umsätze mit Vorsteuerabz. innerg. Lieferungen (§4 Nr. 1b) ..."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuerfreie Umsätze ohne Vorsteuerabzug Umsätze n. § 4 Nr. 8 bis 28 UStG "
+"(48)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Steuerfreie innergemeinschaftliche Erwerbe"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#, python-format
+msgid ""
+"Steuerpfl. Ums. f.d.d. Leistungsempf. die Steuer schuldet g. § 13b A. 5 S. 1"
+" i.V.m. Abs. 2 Nr. 10 UStG (68)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuerpfl. sonst. Leist. e. i. übr. Gemeinschaftsgeb. ans. Untern. gem. § "
+"13b Abs. 1 UStG (46 / 47)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuerpflichtige Umsätze (Lief. u. sonst. Leistg. einschl. unentg. Wertabg.)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Steuerpflichtige innergemeinschaftliche Erwerbe ... zum Steuersatz v. 19 % "
+"(89)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_21_base
+msgid "Tag 21 Base"
+msgstr "Kennzahl 21 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_35_base
+msgid "Tag 35 Base"
+msgstr "Kennzahl 35 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_36_tax
+msgid "Tag 36 Tax"
+msgstr "Kennzahl 36 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_41_base
+msgid "Tag 41 Base"
+msgstr "Kennzahl 41 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_42_base
+msgid "Tag 42 Base"
+msgstr "Kennzahl 42 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_43_base
+msgid "Tag 43 Base"
+msgstr "Kennzahl 43 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_44_base
+msgid "Tag 44 Base"
+msgstr "Kennzahl 44 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_45_base
+msgid "Tag 45 Base"
+msgstr "Kennzahl 45 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_46_base
+msgid "Tag 46 Base"
+msgstr "Kennzahl 46 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_47_tax
+msgid "Tag 47 Tax"
+msgstr "Kennzahl 47 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_48_base
+msgid "Tag 48 Base"
+msgstr "Kennzahl 48 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_49_base
+msgid "Tag 49 Base"
+msgstr "Kennzahl 49 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_52_base
+msgid "Tag 52 Base"
+msgstr "Kennzahl 52 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_53_tax
+msgid "Tag 53 Tax"
+msgstr "Kennzahl 53 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_59_tax
+msgid "Tag 59 Tax"
+msgstr "Kennzahl 59 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_60_base
+msgid "Tag 60 Base"
+msgstr "Kennzahl 60 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_61_tax
+msgid "Tag 61 Tax"
+msgstr "Kennzahl 61 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_62_tax
+msgid "Tag 62 Tax"
+msgstr "Kennzahl 62 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_63_tax
+msgid "Tag 63 Tax"
+msgstr "Kennzahl 63 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_64_tax
+msgid "Tag 64 Tax"
+msgstr "Kennzahl 64 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_65_tax
+msgid "Tag 65 Tax"
+msgstr "Kennzahl 65 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_66_tax
+msgid "Tag 66 Tax"
+msgstr "Kennzahl 66 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_67_tax
+msgid "Tag 67 Tax"
+msgstr "Kennzahl 67 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_68_base
+msgid "Tag 68 Base"
+msgstr "Kennzahl 68 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_69_tax
+msgid "Tag 69 Tax"
+msgstr "Kennzahl 69 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_73_base
+msgid "Tag 73 Base"
+msgstr "Kennzahl 73 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_74_tax
+msgid "Tag 74 Tax"
+msgstr "Kennzahl 74 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_76_base
+msgid "Tag 76 Base"
+msgstr "Kennzahl 76 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_77_base
+msgid "Tag 77 Base"
+msgstr "Kennzahl 77 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_78_base
+msgid "Tag 78 Base"
+msgstr "Kennzahl 78 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_79_tax
+msgid "Tag 79 Tax"
+msgstr "Kennzahl 79 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_80_tax
+msgid "Tag 80 Tax"
+msgstr "Kennzahl 80 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_81_base
+msgid "Tag 81 Base"
+msgstr "Kennzahl 81 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_81_tax
+msgid "Tag 81 Tax"
+msgstr "Kennzahl 81 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_84_base
+msgid "Tag 84 Base"
+msgstr "Kennzahl 84 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_85_tax
+msgid "Tag 85 Tax"
+msgstr "Kennzahl 85 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_86_base
+msgid "Tag 86 Base"
+msgstr "Kennzahl 86 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_86_tax
+msgid "Tag 86 Tax"
+msgstr "Kennzahl 86 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_89_base
+msgid "Tag 89 Base"
+msgstr "Kennzahl 89 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_89_tax
+msgid "Tag 89 Tax"
+msgstr "Kennzahl 89 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_91_base
+msgid "Tag 91 Base"
+msgstr "Kennzahl 91 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_93_base
+msgid "Tag 93 Base"
+msgstr "Kennzahl 93 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_93_tax
+msgid "Tag 93 Tax"
+msgstr "Kennzahl 93 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_94_base
+msgid "Tag 94 Base"
+msgstr "Kennzahl 94 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_95_base
+msgid "Tag 95 Base"
+msgstr "Kennzahl 95 Bemessungsgrundlage"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_96_tax
+msgid "Tag 96 Tax"
+msgstr "Kennzahl 96 Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_config__tag_98_tax
+msgid "Tag 98 Tax"
+msgstr "Kennzahl 98 Steuer"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid ""
+"Tags mapping not configured for Germany! Check the DE Tax Tags "
+"Configuration."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement_line__tax
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.report_tax_statement
+msgid "Tax"
+msgstr "Steuer"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__name
+msgid "Tax Statement"
+msgstr "Umsatzsteuer-Voranmeldung"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Tax Statement lines"
+msgstr "Steuerpositionen"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid ""
+"This tax code for Germany is not supported! Check the DE Tax Tags "
+"Configuration."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__to_date
+msgid "To Date"
+msgstr "Datum bis"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "To Draft"
+msgstr "Zurücksetzen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Umsatzsteuer"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Umsatzsteuer-Vorauszahlung"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Umsätze nach § 24 UStG, z.B. Sägewerke, Getränke u. alk. Flüssigk. (76 / 80)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Umsätze, die unter das GrEStG fallen gem. § 13b Abs. 2 Nr. 3 (73 / 74)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__unreported_move_ids
+msgid "Unreported Journal Entries"
+msgstr "Noch nicht angemeldete Buchungen"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__unreported_move_from_date
+msgid "Unreported Move From Date"
+msgstr "Unangemeldete Rechnungen ab"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "Update"
+msgstr "Aktualisieren"
+
+#. module: l10n_de_tax_statement
+#: model:ir.actions.act_window,name:l10n_de_tax_statement.action_account_tax_statement_de
+#: model:ir.ui.menu,name:l10n_de_tax_statement.menu_account_tax_statement_de
+msgid "Ust-Voranmeldung"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.actions.report,name:l10n_de_tax_statement.action_report_tax_statement_report
+msgid "UstVA-Report"
+msgstr "Ust-Voranmeldung"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement_line__currency_id
+msgid "Utility field to express amount currency"
+msgstr "Hilfsfeld, welches die Betragswährung ausweist"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__tax_total
+msgid "Verbl. Ust.-Vorauszahlung"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Verbleibender Betrag"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__version
+msgid "Version"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "View base lines"
+msgstr "Bemessungsgrundlagen anzeigen"
+
+#. module: l10n_de_tax_statement
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement.view_l10n_de_tax_report_form
+msgid "View tax lines"
+msgstr "Steuerbeträge anzeigen"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Vorsteuerabzug f. innergem. Lief. neuer Fahrzeuge außerh. e. Untern. g. §2a "
+"UStG sow. v. Kleinunt. i.S. d. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Vorsteuerbeträge a. d. innerg. Erwerb v. Gegenständen gem. § 15 Abs. 1 Satz "
+"1 Nr. 3 UStG (61)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Vorsteuerbeträge aus Leistungen i. S. des § 13b UStGi.V.m § 15 Abs. 1 Satz 1"
+" Nr. 4 UStG (67)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Vorsteuerbeträge aus Rechn. v.a. Unternehmen g. § 15 Abs. S. 1 Nr. 1 UStG a."
+" Leistungen i.S.d. § 13a Abs. 1 Nr. 6 UStG u. § 15 Abs. 1 S. 1 Nr. 5 UStG u."
+" a. innerg. Dreiecksgesch. g. § 25b A. 5 UStG (66)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Vorsteuerbeträge d. n. allg. Durchschnittssätzen berechnet sind gem. §§ 23 "
+"und 23a UStG (63)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_l10n_de_tax_statement__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,help:l10n_de_tax_statement.field_l10n_de_tax_statement__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Weitere steuerfr. Umsätze mit Vorsteuerabzug, z.B. Ausfuhrlief., Umsätze n. "
+"§ 4 Nr. 2-7 UStG (43)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid ""
+"You cannot delete a posted statement! Reset the statement to draft first."
+msgstr ""
+"Eine versendete Umsatzsteuer-Voranmeldung kann nicht gelöscht werden ! "
+"Zunächst sollten Sie auf Entwurf zurücksetzen."
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid "You cannot delete a statement set as final!"
+msgstr ""
+"Eine endgültig bestätige Ust.-Voranmeldung Auswertung kann nicht mehr "
+"gelöscht werden!"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:0
+#, python-format
+msgid ""
+"You cannot delete lines of a posted statement! Reset the statement to draft "
+"first."
+msgstr ""
+"Die Positionen einer gesendeten Steueranmeldung können nicht gelöscht "
+"werden! Die Voranmeldung sollte zuerst auf Entwurf zurückgesetzt werden."
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_line.py:0
+#, python-format
+msgid "You cannot delete lines of a statement set as final!"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid "You cannot modify a posted statement!"
+msgstr ""
+"Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr modifiziert werden!"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid ""
+"You cannot modify a posted statement! Reset the statement to draft first."
+msgstr ""
+"Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr modifiziert werden! "
+"Zuerst sollten Sie die Ust.-Voranmeldung zurücksetzen."
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid "You cannot modify a statement set as final!"
+msgstr ""
+"Eine gesendete Umsatzsteuervoranmeldung kann nicht mehr abgeändert werden!"
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement.py:0
+#, python-format
+msgid ""
+"You cannot post a statement if all the previous statements are not yet "
+"posted! Please Post all the other statements first."
+msgstr ""
+"Eine Umsatzsteuervoranmeldung kann nicht gesendet werden, wenn vorherige "
+"Erklärungen noch nicht gesendet wurden. Bitte versetzen Sie alle vorherigen "
+"UstVA Auswertungen in den Status 'gesendet'!"
+
+#. module: l10n_de_tax_statement
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_bank_statement_line__l10n_de_tax_statement_id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_move__l10n_de_tax_statement_id
+#: model:ir.model.fields,field_description:l10n_de_tax_statement.field_account_payment__l10n_de_tax_statement_id
+msgid "statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "von best. Gegenst. u. Anlagegold §§ 4b u. 25c UStG (91)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid "Übrige n. steuerb. Umsätze, Leistungsort ist nicht im Inland (45)"
+msgstr ""
+
+#. module: l10n_de_tax_statement
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2018.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2019.py:0
+#: code:addons/l10n_de_tax_statement/models/l10n_de_tax_statement_2021.py:0
+#, python-format
+msgid ""
+"Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer n. § 13b Abs. 5 UStG "
+"schuldet (60)"
+msgstr ""
