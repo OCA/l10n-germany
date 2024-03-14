@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 OpenBIG (<http://www.openbig.org>)
+     Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_de_tax_report_form" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,posted,final"
+                    />
+                    <button
+                        name="statement_update"
+                        string="Update"
+                        states="draft"
+                        type="object"
+                        icon="fa-repeat"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="post"
+                            string="Post"
+                            states="draft"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-arrow-right text-success"
+                        />
+                        <button
+                            name="reset"
+                            string="To Draft"
+                            states="posted"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-arrow-left text-success"
+                        />
+                        <button
+                            name="finalize"
+                            string="Finalize"
+                            states="posted"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-stop-circle-o text-success"
+                            confirm="If you confirm, it will be not possible to modify this Statement or reset it back to draft anymore. Do you confirm?"
+                        />
+                    </div>
+
+                    <group>
+                        <label for="name" />
+                        <div colspan="2">
+                            <h1>
+                                <field name="name" />
+                            </h1>
+                        </div>
+                        <group name="tax_report">
+                            <field name="version" />
+                            <field
+                                name="company_id"
+                                options="{'no_create': True}"
+                                groups="base.group_multi_company"
+                            />
+                            <field
+                                name="date_range_id"
+                                attrs="{'readonly': [('state','in',['posted','final'])]}"
+                            />
+                            <label for="from_date" string="Date" />
+                            <div class="o_row">
+                                <field
+                                    name="from_date"
+                                    widget="daterange"
+                                    nolabel="1"
+                                    class="oe_inline"
+                                    options="{'related_end_date': 'to_date'}"
+                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                />
+                                <i
+                                    class="fa fa-long-arrow-right mx-2"
+                                    aria-label="Arrow icon"
+                                    title="Arrow"
+                                />
+                                <field
+                                    name="to_date"
+                                    widget="daterange"
+                                    nolabel="1"
+                                    class="oe_inline"
+                                    options="{'related_start_date': 'from_date'}"
+                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                />
+                            </div>
+                        </group>
+                        <group name="extra_parameters">
+                            <field name="date_posted" />
+                            <field name="date_update" />
+                            <field name="currency_id" />
+                        </group>
+                    </group>
+                    <notebook name="notebook">
+                        <page name="statement" string="Statement">
+                            <group name="statement_lines" string="Tax Statement lines">
+                                <div
+                                    states="draft"
+                                    colspan="2"
+                                    class="text-info"
+                                >Press the <span class="text-uppercase"><i
+                                            class="fa fa-repeat"
+                                        />
+                                     Update</span> button in order to recompute the statement lines!</div>
+                            </group>
+                            <field name="line_ids">
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="code" />
+                                            <field name="name" />
+                                        </group>
+                                        <group>
+                                            <field name="base" />
+                                            <field name="tax" />
+                                        </group>
+                                    </group>
+                                </form>
+                                <tree
+                                    decoration-muted="is_group"
+                                    editable="bottom"
+                                    create="false"
+                                    delete="false"
+                                    limit="80"
+                                >
+                                    <field name="is_group" invisible="1" />
+                                    <field name="is_total" invisible="1" />
+                                    <field name="is_readonly" invisible="1" />
+                                    <field name="code" readonly="1" />
+                                    <field name="name" readonly="1" />
+                                    <field name="format_base" invisible="1" />
+                                    <field name="format_tax" invisible="1" />
+                                    <field
+                                        name="base"
+                                        attrs="{'invisible': [('format_base', '=', False)],'readonly': [('is_readonly', '=', True)]}"
+                                    />
+                                    <button
+                                        name="view_base_lines"
+                                        type="object"
+                                        string="View base lines"
+                                        icon="fa-search-plus"
+                                        attrs="{'invisible': ['|',('format_base', '=', False),('is_total', '=', True)]}"
+                                    />
+                                    <field
+                                        name="tax"
+                                        attrs="{'invisible': [('format_tax', '=', False)],'readonly': [('is_readonly', '=', True)]}"
+                                    />
+                                    <button
+                                        name="view_tax_lines"
+                                        type="object"
+                                        string="View tax lines"
+                                        icon="fa-search-plus"
+                                        attrs="{'invisible': ['|',('format_tax', '=', False),('is_total', '=', True)]}"
+                                    />
+                                </tree>
+                            </field>
+                            <group>
+                                <group>
+                                </group>
+                                <group>
+                                    <label for="tax_total" />
+                                    <field name="tax_total" nolabel="1" />
+                                </group>
+                            </group>
+                        </page>
+                        <page
+                            name="entry_lines"
+                            string="Past Undeclared Invoices"
+                            attrs="{'invisible':[('state','!=','draft')]}"
+                        >
+                            <group
+                                name="unreported_move_filter"
+                                string="Include Undeclared Invoices"
+                            >
+                                <group>
+                                    <field
+                                        name="unreported_move_from_date"
+                                        string="From Date"
+                                        attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                    />
+                                </group>
+                                <group>
+                                </group>
+                            </group>
+                            <field name="unreported_move_ids">
+                                <tree
+                                    editable="bottom"
+                                    create="false"
+                                    delete="false"
+                                    decoration-muted="l10n_de_tax_statement_include != True"
+                                >
+                                    <field name="date" readonly="1" />
+                                    <field name="name" readonly="1" />
+                                    <field name="journal_id" readonly="1" />
+                                    <field name="partner_id" readonly="1" />
+                                    <field name="amount_untaxed" readonly="1" />
+                                    <field name="amount_tax" readonly="1" />
+                                    <field
+                                        name="l10n_de_tax_statement_include"
+                                        invisible="1"
+                                    />
+                                    <button
+                                        name="l10n_de_add_move_in_statement"
+                                        icon="fa-play"
+                                        string="Add Invoice"
+                                        type="object"
+                                        attrs="{'invisible': [('l10n_de_tax_statement_include', '=', True)]}"
+                                    />
+                                    <button
+                                        name="l10n_de_unlink_move_from_statement"
+                                        icon="fa-remove"
+                                        string="Remove Invoice"
+                                        type="object"
+                                        attrs="{'invisible': [('l10n_de_tax_statement_include', '!=', True)]}"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                    <field name="activity_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="view_l10n_de_tax_report_tree" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-info="state=='draft'"
+                decoration-muted="state in ('final')"
+            >
+                <field name="name" />
+                <field name="from_date" />
+                <field name="to_date" />
+                <field name="tax_total" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_account_tax_statement_de" model="ir.actions.act_window">
+        <field name="name">Ust-Voranmeldung</field>
+        <field name="res_model">l10n.de.tax.statement</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_account_tax_statement_de"
+        parent="account.menu_finance_reports"
+        groups="account.group_account_user"
+        action="action_account_tax_statement_de"
+    />
+</odoo>
