@@ -280,14 +280,7 @@ msgid "Day"
 msgstr "Tag"
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -397,22 +390,14 @@ msgstr "Dateigröße"
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
-"Filtered Export of {} Documents\n"
-"Date Range: {}-{}\n"
-"Types: {}"
+"Filtered Export of %(count)s Documents\n"
+" Date Range: %(start)s-%(end)s\n"
+"Types: %(types)s"
 msgstr ""
-"Gefilterter Export von {} Dokumente\n"
-"Datumsbereich: {}-{}\n"
-"Typen: {}"
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_follower_ids
 msgid "Followers"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_channel_ids
-msgid "Followers (Channels)"
 msgstr ""
 
 #. module: datev_export_xml
@@ -436,14 +421,12 @@ msgid "General Settings"
 msgstr "Allgemeine Einstellungen"
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -465,7 +448,6 @@ msgstr "Falls markiert, benötigen neue Nachrichten Ihre Kenntnisnahme."
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_error
-#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Falls markiert, benötigen neue Nachrichten Ihre Kenntnisnahme."
 
@@ -536,14 +518,7 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -566,11 +541,9 @@ msgstr ""
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
-"Manually Doc Export of {} Documents \n"
-"Numbers: {}"
+"Manually Doc Export of %(count)s Documents \n"
+"Numbers: %(names)s"
 msgstr ""
-"Manueller Export von {} Documenten \n"
-"Nummern: {}"
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__manually_document_selection
@@ -631,6 +604,11 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__name
 msgid "Name"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: datev_export_xml
@@ -774,11 +752,6 @@ msgid "Running"
 msgstr "Laufend"
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
 msgid "Set Done"
 msgstr "Setze Fertig"
@@ -848,6 +821,12 @@ msgstr ""
 msgid "The zip file can be downloaded here after creation!"
 msgstr ""
 "Die ZIP-Datei kann nach erfolgreicher Erstellung hier heruntergeladen werden!"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_xml_generator.py:0
+#, python-format
+msgid "There are multiple taxes in the following invoices: %(invoices)s"
+msgstr ""
 
 #. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
@@ -991,6 +970,24 @@ msgstr "ZIP-Datei"
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_filename
 msgid "ZIP filename"
 msgstr "ZIP-Dateiname"
+
+#, python-format
+#~ msgid ""
+#~ "Filtered Export of {} Documents\n"
+#~ "Date Range: {}-{}\n"
+#~ "Types: {}"
+#~ msgstr ""
+#~ "Gefilterter Export von {} Dokumente\n"
+#~ "Datumsbereich: {}-{}\n"
+#~ "Typen: {}"
+
+#, python-format
+#~ msgid ""
+#~ "Manually Doc Export of {} Documents \n"
+#~ "Numbers: {}"
+#~ msgstr ""
+#~ "Manueller Export von {} Documenten \n"
+#~ "Nummern: {}"
 
 #~ msgid ""
 #~ "<span class=\"o_form_label\">Client Number</span>\n"
