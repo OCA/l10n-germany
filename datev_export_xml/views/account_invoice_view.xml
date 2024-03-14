@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_form" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <group name="accounting_info_group" position="inside">
+                <field
+                    name="datev_exported"
+                    groups="datev_export_xml.group_datev_export_status"
+                />
+            </group>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <filter name="late" position="after">
+                <filter
+                    name="not_datev_exported"
+                    string="To be exported to Datev"
+                    domain="['&amp;', ('datev_exported', '=', False), ('state', '!=', 'draft')]"
+                    groups="datev_export_xml.group_datev_export_status"
+                    help="Invoices that are not yet exported to Datev"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
