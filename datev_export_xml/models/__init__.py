@@ -5,6 +5,7 @@
 # @author Guenter Selbert <guenter.selbert@sewisoft.de>
 # @author Thorsten Vocks
 # @author Grzegorz Grzelak
+# @author Jan Sierpina <jan.sierpina@solvti.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 # isort: disable

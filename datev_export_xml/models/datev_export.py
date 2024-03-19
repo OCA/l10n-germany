@@ -1,3 +1,4 @@
+# Copyright (C) 2024 Solvti sp. z o.o. (https://solvti.pl)
 # Copyright (C) 2022-2023 initOS GmbH
 # Copyright (C) 2019 sewisoft (sewisoft.de)
 # Copyright (C) 2010-2023 big-consulting GmbH (www.openbig.de)

@@ -1,3 +1,4 @@
+# Copyright (C) 2024 Solvti sp. z o.o. (https://solvti.pl)
 # Copyright (C) 2022-2023 initOS GmbH
 # Copyright (C) 2019 sewisoft (sewisoft.de)
 # Copyright (C) 2010-2023 big-consulting GmbH (www.openbig.de)
@@ -63,9 +64,11 @@ class DatevXmlGenerator(models.AbstractModel):
     def generate_xml_document(self, invoices, check_xsd=True):
         self._check_invoices(invoices)
 
-        template = self.env.ref("datev_export_xml.export_invoice_document")
         root = etree.fromstring(
-            template._render({"docs": invoices, "company": self.env.company}),
+            self.env["ir.ui.view"]._render_template(
+                "datev_export_xml.export_invoice_document",
+                {"docs": invoices, "company": self.env.company},
+            ),
             parser=etree.XMLParser(remove_blank_text=True),
         )
 
@@ -81,9 +84,10 @@ class DatevXmlGenerator(models.AbstractModel):
     @api.model
     def generate_xml_invoice(self, invoice, check_xsd=True):
         doc_name = re.sub(r"[^a-zA-Z0-9_\-.()]", "", f"{invoice.name}.xml")
-        template = self.env.ref("datev_export_xml.export_invoice")
         root = etree.fromstring(
-            template._render({"doc": invoice}),
+            self.env["ir.ui.view"]._render_template(
+                "datev_export_xml.export_invoice", {"doc": invoice}
+            ),
             parser=etree.XMLParser(remove_blank_text=True),
         )
 
