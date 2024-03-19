@@ -1,3 +1,4 @@
+# Copyright (C) 2024 Solvti sp. z o.o. (https://solvti.pl)
 # Copyright (C) 2022-2023 initOS GmbH
 # Copyright (C) 2019 sewisoft (sewisoft.de)
 # Copyright (C) 2010-2023 big-consulting GmbH (www.openbig.de)
@@ -53,4 +54,4 @@ class DatevPdfGenerator(models.AbstractModel):
             ],
         )
         if report:
-            return report._render(invoice.ids)[0]
+            return self.env["ir.actions.report"]._render(report, invoice.ids)[0]

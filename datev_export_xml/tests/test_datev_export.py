@@ -20,10 +20,6 @@ class TestDatevExport(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.receivable = cls.env.ref("account.data_account_type_receivable")
-        cls.income = cls.env.ref("account.data_account_type_revenue")
-        cls.payable = cls.env.ref("account.data_account_type_payable")
-        cls.expense = cls.env.ref("account.data_account_type_expenses")
         cls.JournalObj = cls.env["account.journal"]
         cls.sale_journal = cls.JournalObj.search([("type", "=", "sale")])[0]
         cls.purchase_journal = cls.JournalObj.search([("type", "=", "purchase")])[0]
@@ -154,7 +150,7 @@ class TestDatevExport(TransactionCase):
                             "credit": 600.0,
                             "debit": 0.0,
                             "account_id": self.account_income.id,
-                            "analytic_account_id": self.analytic_account_it.id,
+                            "analytic_distribution": {self.analytic_account_it.id: 1},
                         },
                     )
                 ],
@@ -185,7 +181,7 @@ class TestDatevExport(TransactionCase):
                             "quantity": 5.0,
                             "price_unit": 120.00,
                             "account_id": self.account_income.id,
-                            "analytic_account_id": self.analytic_account_it.id,
+                            "analytic_distribution": {self.analytic_account_it.id: 1},
                             "tax_ids": [(6, 0, tax.ids)],
                         },
                     ),
@@ -229,7 +225,9 @@ class TestDatevExport(TransactionCase):
                             "debit": 900.0,
                             "tax_ids": [(6, 0, tax.ids)],
                             "account_id": self.account_expense.id,
-                            "analytic_account_id": self.analytic_account_office.id,
+                            "analytic_distribution": {
+                                self.analytic_account_office.id: 1
+                            },
                         },
                     ),
                 ],
@@ -241,7 +239,9 @@ class TestDatevExport(TransactionCase):
 
     def create_refund(self, invoice, refund_date):
         # OUT Refund/Credit Note
-        refund = invoice._reverse_moves([{"invoice_date": refund_date}])
+        refund = invoice._reverse_moves(
+            [{"invoice_date": refund_date, "invoice_date_due": refund_date}]
+        )
         self.assertEqual(refund.state, "draft")
         refund.action_post()
         return refund

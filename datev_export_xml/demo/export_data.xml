@@ -3,8 +3,6 @@
   <record id="base.main_company" model="res.company">
       <field name="datev_client_number">1234</field>
         <field name="datev_consultant_number">12345</field>
-        <!-- <field name="group_account_user" eval="True"/> -->
-        <!-- <field name="group_analytic_accounting" eval="True"/> -->
     </record>
 
     <!-- Company Datev Accounts -->
@@ -12,13 +10,13 @@
       <field name="name">Company Account Receivable</field>
       <field name="code">69999</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_receivable" />
+      <field name="account_type">asset_receivable</field>
     </record>
     <record id="account_datev_pay" model="account.account">
       <field name="name">Company Account Payable</field>
       <field name="code">99999</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_payable" />
+      <field name="account_type">liability_payable</field>
     </record>
 
     <record id="base.main_partner" model="res.partner">
@@ -31,52 +29,52 @@
       <field name="name">A-Customer Account DE</field>
       <field name="code">10001</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_receivable" />
+      <field name="account_type">asset_receivable</field>
     </record>
     <record id="account_datev_pay_DE" model="account.account">
       <field name="name">A-Vendor Account DE</field>
       <field name="code">70001</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_payable" />
+      <field name="account_type">liability_payable</field>
     </record>
     <!-- EU Accounts -->
     <record id="account_datev_rec_EU" model="account.account">
       <field name="name">A-Customer Account EU</field>
       <field name="code">10002</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_receivable" />
+      <field name="account_type">asset_receivable</field>
     </record>
     <record id="account_datev_pay_EU" model="account.account">
       <field name="name">A-Vendor Account EU</field>
       <field name="code">70002</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_payable" />
+      <field name="account_type">liability_payable</field>
     </record>
     <!-- Non-EU Accounts -->
     <record id="account_datev_rec_NonEU" model="account.account">
       <field name="name">A-Customer Account Non-EU</field>
       <field name="code">10003</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_receivable" />
+      <field name="account_type">asset_receivable</field>
     </record>
     <record id="account_datev_pay_NonEU" model="account.account">
       <field name="name">A-Vendor Account Non-EU</field>
       <field name="code">70003</field>
       <field name="reconcile" eval="True" />
-      <field name="user_type_id" ref="account.data_account_type_payable" />
+      <field name="account_type">liability_payable</field>
     </record>
     <!-- Accounts Income and Expense -->
     <record id="account_datev_income" model="account.account">
       <field name="name">A-Income</field>
       <field name="code">8401</field>
       <field name="reconcile" eval="False" />
-      <field name="user_type_id" ref="account.data_account_type_revenue" />
+      <field name="account_type">income</field>
     </record>
     <record id="account_datev_expense" model="account.account">
       <field name="name">A-Expense</field>
       <field name="code">3401</field>
       <field name="reconcile" eval="False" />
-      <field name="user_type_id" ref="account.data_account_type_expenses" />
+      <field name="account_type">expense</field>
     </record>
 
 
@@ -155,10 +153,12 @@
     <record id="analytic_account_datev_01" model="account.analytic.account">
       <field name="name">A-IT</field>
       <field name="code">990010</field>
+      <field name="plan_id" ref="analytic.analytic_plan_departments" />
     </record>
     <record id="analytic_account_datev_02" model="account.analytic.account">
       <field name="name">A-Office</field>
       <field name="code">990000</field>
+      <field name="plan_id" ref="analytic.analytic_plan_departments" />
     </record>
 
     <record id="product_datev_01" model="product.product">
