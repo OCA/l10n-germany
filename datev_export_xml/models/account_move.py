@@ -39,9 +39,13 @@ class AccountMove(models.Model):
         "If you need to export the invoices again, set this field to False.",
     )
 
-    def datev_format_total(self, value):
+    def datev_format_total(self, value, prec=2):
         self.ensure_one()
-        return f"-{value:.2f}" if self.move_type.endswith("_refund") else f"{value:.2f}"
+        return (
+            f"{-value:.{prec}f}"
+            if self.move_type.endswith("_refund")
+            else f"{value:.{prec}f}"
+        )
 
     def datev_sanitize(self, value, length=36):
         return re.sub(r"[^a-zA-Z0-9$%&\*\+\-/]", "-", value)[:length]
@@ -63,7 +67,7 @@ class AccountMove(models.Model):
             pickings = self.mapped("invoice_line_ids.purchase_order_id.picking_ids")
 
         if pickings:
-            return pickings.sorted("date DESC")[0].date.date()
+            return pickings.sorted("date", reverse=True)[0].date.date()
 
         _logger.info("Invoice date used as delivery date.")
         return self.invoice_date
