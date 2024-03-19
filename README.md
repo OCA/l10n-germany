@@ -30,7 +30,7 @@ addon | version | maintainers | summary
 [l10n_de_steuernummer](l10n_de_steuernummer/) | 14.0.1.0.0 |  | German SteuerNummer validation
 [l10n_de_tax_statement](l10n_de_tax_statement/) | 14.0.1.0.0 |  | German VAT Statement
 [l10n_de_tax_statement_zm](l10n_de_tax_statement_zm/) | 14.0.1.0.0 |  | German VAT Statement Extension
-[l10n_de_toponyms](l10n_de_toponyms/) | 14.0.1.0.0 |  | German Toponyms
+[l10n_de_toponyms](l10n_de_toponyms/) | 14.0.1.0.1 |  | German Toponyms
 
 [//]: # (end addons)
 
