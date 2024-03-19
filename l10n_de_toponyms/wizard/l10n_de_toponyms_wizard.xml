@@ -10,7 +10,10 @@
             <form position="attributes">
                 <attribute name="string">German cities configuration</attribute>
             </form>
-            <separator position="replace">
+            <separator position="attributes">
+                <attribute name="invisible">1</attribute>
+            </separator>
+            <separator position="after">
                 <group
                     col="2"
                     colspan="4"
