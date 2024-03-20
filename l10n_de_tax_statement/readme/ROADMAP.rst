@@ -1,0 +1,3 @@
+* Add checks to avoid errors in the report, e.g. no VAT code, tax-code not matching fiscal position, etc..
+* Re-formatting of tax base values from float format to integer. Currently in the official tax forms we need to enter integer format for some of the base tax values (f.e. instead of 250,52 € -> 251 €). The non writable tax calculation is based on the integer format. We propose to do that change manually in the www.elster.de tax declaration forms. It should be easy to adopt.
+* Report in .xml format in order to import the vat statement on www.elster.de portal in order to avoid manual transmission of the values.

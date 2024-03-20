@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 BIG-Consulting GmbH (<http://www.openbig.org>)
+     Copyright 2019 Onestein (<http://www.onestein.eu>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="l10n_de_tax_statement.report_tax_statement_filters">
+        <div class="de_tax_act_as_table de_tax_table" style="width: 1140px;">
+            <div class="de_tax_act_as_row labels">
+                <div class="de_tax_act_as_cell">Date range</div>
+                <div class="de_tax_act_as_cell">Currency</div>
+                <div class="de_tax_act_as_cell">Date posted</div>
+                <div class="de_tax_act_as_cell">Date update</div>
+            </div>
+            <div class="de_tax_act_as_row">
+                <div class="de_tax_act_as_cell">
+                    <span t-field="o.from_date" />
+                    <span t-field="o.to_date" />
+                </div>
+                <div class="de_tax_act_as_cell">
+                    <span t-field="o.currency_id" />
+                </div>
+                <div class="de_tax_act_as_cell">
+                    <span t-field="o.date_posted" />
+                </div>
+                <div class="de_tax_act_as_cell">
+                    <span t-field="o.date_update" />
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="l10n_de_tax_statement.report_tax_statement">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <!-- Defines global variables used by internal layout -->
+                    <t t-set="title">German VAT Declaration</t>
+                    <t t-set="company_name" t-value="o.company_id.name" />
+                    <div class="page de_tax">
+                        <!-- Display filters -->
+                        <t
+                            t-call="l10n_de_tax_statement.report_tax_statement_filters"
+                        />
+                        <div>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                        </div>
+                        <!-- Top header -->
+                        <div
+                            class="de_tax_act_as_table de_tax_table"
+                            style="width: 1140px;"
+                        >
+                            <div class="de_tax_act_as_row lines">
+                                <div
+                                    class="de_tax_act_as_cell left"
+                                    style="width: 900px;"
+                                > </div>
+                                <div class="de_tax_act_as_cell right">Base</div>
+                                <div class="de_tax_act_as_cell right">Tax</div>
+                            </div>
+                            <!-- Display lines -->
+                            <t t-foreach="o.line_ids" t-as="line">
+                                <div
+                                    t-if="line.is_group"
+                                    class="de_tax_act_as_row labels"
+                                >
+                                    <!--## line header-->
+                                    <div
+                                        class="de_tax_act_as_cell left"
+                                        style="width: 900px;"
+                                    ><span t-field="line.code" /> - <span
+                                            t-field="line.name"
+                                        /></div>
+                                    <div class="de_tax_act_as_cell right"> </div>
+                                    <div class="de_tax_act_as_cell right"> </div>
+                                </div>
+                                <div
+                                    t-if="not line.is_group"
+                                    class="de_tax_act_as_row lines"
+                                >
+                                    <!--## code, description, base, tax-->
+                                    <div
+                                        class="de_tax_act_as_cell left"
+                                        style="width: 900px;"
+                                    > &amp;nbsp; &amp;nbsp; <span
+                                            t-field="line.code"
+                                        /> - <span t-field="line.name" /></div>
+                                    <div class="de_tax_act_as_cell right">
+                                        <span t-field="line.format_base" />
+                                    </div>
+                                    <div class="de_tax_act_as_cell right">
+                                        <span t-field="line.format_tax" />
+                                    </div>
+                                </div>
+                            </t>
+                            <div class="de_tax_act_as_row lines">
+                                <!--## total tax-->
+                                <div
+                                    class="de_tax_act_as_cell left"
+                                    style="width: 900px;"
+                                > &amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung</div>
+                                <div class="de_tax_act_as_cell right"> </div>
+                                <div class="de_tax_act_as_cell right">
+                                    <span t-field="o.format_tax_total" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
