@@ -150,7 +150,7 @@ class TestDatevExport(TransactionCase):
                             "credit": 600.0,
                             "debit": 0.0,
                             "account_id": self.account_income.id,
-                            "analytic_distribution": {self.analytic_account_it.id: 1},
+                            "analytic_distribution": {self.analytic_account_it.id: 100},
                         },
                     )
                 ],
@@ -181,7 +181,7 @@ class TestDatevExport(TransactionCase):
                             "quantity": 5.0,
                             "price_unit": 120.00,
                             "account_id": self.account_income.id,
-                            "analytic_distribution": {self.analytic_account_it.id: 1},
+                            "analytic_distribution": {self.analytic_account_it.id: 100},
                             "tax_ids": [(6, 0, tax.ids)],
                         },
                     ),
