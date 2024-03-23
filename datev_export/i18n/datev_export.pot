@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* datev_export
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: datev_export
+#: model_terms:ir.ui.view,arch_db:datev_export.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Client Number</span>\n"
+"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export
+#: model_terms:ir.ui.view,arch_db:datev_export.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Consultant Number</span>\n"
+"                                <span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-specific.\" aria-label=\"Values set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model.fields,field_description:datev_export.field_res_company__datev_client_number
+#: model:ir.model.fields,field_description:datev_export.field_res_config_settings__datev_client_number
+msgid "Client Number"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model,name:datev_export.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model,name:datev_export.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model.fields,field_description:datev_export.field_res_company__datev_consultant_number
+#: model:ir.model.fields,field_description:datev_export.field_res_config_settings__datev_consultant_number
+msgid "Consultant Number"
+msgstr ""
+
+#. module: datev_export
+#: model_terms:ir.ui.view,arch_db:datev_export.res_config_settings_view_form
+msgid "DATEV Export"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model.fields,help:datev_export.field_res_company__datev_client_number
+#: model:ir.model.fields,help:datev_export.field_res_config_settings__datev_client_number
+#: model_terms:ir.ui.view,arch_db:datev_export.res_config_settings_view_form
+msgid "Number from 0 to 99999"
+msgstr ""
+
+#. module: datev_export
+#: model_terms:ir.ui.view,arch_db:datev_export.res_config_settings_view_form
+msgid "Number from 1000 to 9999999"
+msgstr ""
+
+#. module: datev_export
+#: model:ir.model.fields,help:datev_export.field_res_company__datev_consultant_number
+#: model:ir.model.fields,help:datev_export.field_res_config_settings__datev_consultant_number
+msgid "Number from 1000 to 99999999"
+msgstr ""

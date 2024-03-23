@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="export_comp_rule" model="ir.rule">
+        <field name="name">Export XML</field>
+        <field name="model_id" ref="model_datev_export_xml" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>

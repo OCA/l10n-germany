@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.datev.de/bedi/tps/invoice/v050" xmlns:de="http://xml.datev.de/DD/DE/bedi/tps/invoice/v050" targetNamespace="http://xml.datev.de/bedi/tps/invoice/v050" elementFormDefault="qualified">
+	<xsd:import namespace="http://xml.datev.de/DD/DE/bedi/tps/invoice/v050" schemaLocation="Belegverwaltung_online_types_v050.xsd"/>
+	<xsd:element name="invoice">
+		<xsd:annotation>
+			<xsd:documentation>: targetNamespace: Please note that the target namespace must be filled in, while schemaLocation and namespace details must not be filled in!</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute description: this attribute must always contain the entry "DATEV Import invoices".</xsd:documentation>
+				<xsd:documentation>xsd:attribute version: current version number; current 3.0</xsd:documentation>
+				<xsd:documentation>xsd:attribute generator_info: name of company which issued the electronic invoice data</xsd:documentation>
+				<xsd:documentation>xsd:attribute generating_system: name of software manufacturers or software with which the electronic invoice data was issued</xsd:documentation>
+				<xsd:documentation>xsd:attribute xml_data: information data's only for booking not for deduction of input tax</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element ref="invoice_info" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="accounting_info" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="delivery_period" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="invoice_party" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="invoice_recipient" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="delivery_party" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="delivery_recipient" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="supplier_party" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="supplier_issuer" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="payment_conditions" minOccurs="0" maxOccurs="10"/>
+				<xsd:element ref="additional_info_header" minOccurs="0" maxOccurs="1000"/>
+				<xsd:element ref="invoice_item_list" minOccurs="1" maxOccurs="5000"/>
+				<xsd:element ref="total_amount" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="additional_info_footer" minOccurs="0" maxOccurs="1000"/>
+			</xsd:sequence>
+			<xsd:attribute name="description" type="de:p2" use="required" fixed="DATEV Import invoices"/>
+			<xsd:attribute name="version" type="de:p3" use="required" fixed="5.0"/>
+			<xsd:attribute name="generator_info" type="de:p10009" use="required"/>
+			<xsd:attribute name="generating_system" type="de:p10009" use="optional"/>
+			<xsd:attribute name="xml_data" type="de:p36" use="required" fixed="Kopie nur zur Verbuchung berechtigt nicht zum Vorsteuerabzug"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="invoice_info">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute invoice_date: Date of invoice</xsd:documentation>
+				<xsd:documentation>xsd:attribute invoice_type: this attribute must contain the value of the invoice or credit note.</xsd:documentation>
+				<xsd:documentation>xsd:attribute delivery_date: Date of delivery and/or service</xsd:documentation>
+				<xsd:documentation>xsd:attribute invoice_id: invoice number, alphanumeric value</xsd:documentation>
+				<xsd:documentation>xsd:attribute drawee_no: invoice number to which the credit note relates</xsd:documentation>
+				<xsd:documentation>xsd:attribute order_id: order id, alphanumeric value</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="invoice_date" type="de:p10029" use="required"/>
+			<xsd:attribute name="invoice_type" type="de:p4" use="required"/>
+			<xsd:attribute name="delivery_date" type="de:p10029" use="required"/>
+			<xsd:attribute name="invoice_id" type="de:p10040" use="required"/>
+			<xsd:attribute name="drawee_no" type="de:p10040" use="optional"/>
+			<xsd:attribute name="order_id" type="de:p13" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="accounting_info">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>The following field contents are specifically for the DATEV-FIBU accounting record and have no image function</xsd:documentation>
+				<xsd:documentation>xsd:attribute cost_category_id: Cost centre identification in the accounting program</xsd:documentation>
+				<xsd:documentation>xsd:attribute cost_category_id2: Cost unit identification in the accounting program</xsd:documentation>
+				<xsd:documentation>xsd:attribute cost_amount: Number of cost amount(s), figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute account_no: impersonal account No. of goods inward account or revenue account</xsd:documentation>
+				<xsd:documentation>xsd:attribute exchange_rate: conversion rate yielded when converting foreign currency invoices into euros</xsd:documentation>
+				<xsd:documentation>xsd:attribute eu_tax:rate: EU tax rate for invoices from other EU countries</xsd:documentation>
+				<xsd:documentation>xsd:attribute bu_code: BU code (B=Adjustment code, U=Tax code)</xsd:documentation>
+				<xsd:documentation>xsd:attribute booking_text: text which appears in the booking line of the booking text. Attention: booking_text max length is changed in order for former changes! Please take only 30 digits, more digits would be cut!</xsd:documentation>
+				<xsd:documentation>xsd:attribut order_id: identification of the order number</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element ref="accounting_additional_info" minOccurs="0" maxOccurs="5"/>
+			</xsd:sequence>
+			<xsd:attribute name="cost_category_id" type="de:p10041" use="optional"/>
+			<xsd:attribute name="cost_category_id2" type="de:p10041" use="optional"/>
+			<xsd:attribute name="cost_amount" type="de:p37" use="optional"/>
+			<xsd:attribute name="account_no" type="de:p10028" use="optional"/>
+			<xsd:attribute name="exchange_rate" type="de:p14" use="optional"/>
+			<xsd:attribute name="eu_tax_rate" type="de:p6" use="optional"/>
+			<xsd:attribute name="bu_code" type="de:p10033" use="optional"/>
+			<xsd:attribute name="booking_text" type="de:p10036" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="accounting_additional_info">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>Attention: accounting_additional_info maxOccurs is changed in order for former changes! Please take only 1 accounting_additional_info, more would be skipped</xsd:documentation>
+				<xsd:documentation>The following field contents are specifically for the DATEV-FIBU accounting record and have no image function</xsd:documentation>
+				<xsd:documentation>xsd:type: Additional infos to the DATEV-Fibu accounting specifies the charakter</xsd:documentation>
+				<xsd:documentation>xsd:content: Additional infos to the DATEV-Fibu accounting specifies the content</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="type" type="de:p10003" use="required"/>
+			<xsd:attribute name="content" type="de:p10013" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="delivery_period">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute delivery_date_start: Beginning of delivery/service period</xsd:documentation>
+				<xsd:documentation>xsd:attribute delivery_date_end: End of delivery/service period </xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="delivery_date_start" type="de:p10029" use="required"/>
+			<xsd:attribute name="delivery_date_end" type="de:p10029" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="invoice_party" type="invoice_issuer"/>
+	<xsd:complexType name="invoice_issuer">
+		<xsd:complexContent>
+			<xsd:extension base="invoice_participant">
+				<xsd:sequence>
+					<xsd:element ref="booking_info_bp" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="invoice_participant">
+		<xsd:sequence>
+			<xsd:element ref="address" minOccurs="1" maxOccurs="1"/>
+			<xsd:element ref="account" minOccurs="0" maxOccurs="100"/>
+		</xsd:sequence>
+		<xsd:attribute name="vat_id" type="de:p10027" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute vat_id: Value added tax identification; either the VAT ID No. or the tax No. must be entered, or indeed both</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="tax_no" type="de:p10023" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute tax_no: Tax number; either the VAT ID No. or the tax No. must be entered, or indeed both</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:element name="booking_info_bp">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation> The following field content is specifically for the DATEV-FIBU accounting record and has no image function </xsd:documentation>
+				<xsd:documentation>xsd:attribute bp_account_no: account number of business partner from the accounting program; invoice receipt: invoice recipient’s creditor account number with; invoice issue:  invoice issuer’s debtor account number </xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="bp_account_no" type="de:p11" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="invoice_recipient" type="invoice_participant"/>
+	<xsd:element name="delivery_party" type="invoice_participant"/>
+	<xsd:element name="delivery_recipient" type="invoice_participant"/>
+	<xsd:element name="supplier_party" type="invoice_issuer"/>
+	<xsd:element name="supplier_issuer" type="invoice_participant"/>
+	<xsd:element name="address">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute name: Company/person’s name, max. 50 characters</xsd:documentation>
+				<xsd:documentation>xsd:attribute street: House number and street</xsd:documentation>
+				<xsd:documentation>xsd:attribute boxno: Box number</xsd:documentation>
+				<xsd:documentation>xsd:attribute zip: Post code, including international post codes</xsd:documentation>
+				<xsd:documentation>xsd:attribute city: Postal town/city</xsd:documentation>
+				<xsd:documentation>xsd:attribute country: international country designation</xsd:documentation>
+				<xsd:documentation>xsd:attribute phone: Telephone number</xsd:documentation>
+				<xsd:documentation>xsd:attribute fax: Fax number</xsd:documentation>
+				<xsd:documentation>xsd:attribute email: Email address</xsd:documentation>
+				<xsd:documentation>xsd:attribute gln: GLN number</xsd:documentation>
+				<xsd:documentation>xsd:attribute party_id: Original systems’ customer number (not always the same as the debtor/creditor No.)</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="name" type="de:p10012" use="required"/>
+			<xsd:attribute name="street" type="de:p10025" use="optional"/>
+			<xsd:attribute name="boxno" type="de:p10017" use="optional"/>
+			<xsd:attribute name="zip" type="de:p10018" use="required"/>
+			<xsd:attribute name="city" type="de:p10019" use="required"/>
+			<xsd:attribute name="country" type="de:p10014" use="optional"/>
+			<xsd:attribute name="phone" type="de:p10031" use="optional"/>
+			<xsd:attribute name="fax" type="de:p10031" use="optional"/>
+			<xsd:attribute name="email" type="de:p10032" use="optional"/>
+			<xsd:attribute name="gln" type="de:p5" use="optional"/>
+			<xsd:attribute name="party_id" type="de:p10011" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="account">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute bank_account: Bank account number </xsd:documentation>
+				<xsd:documentation>xsd:attribute bank_code: Bank sort code</xsd:documentation>
+				<xsd:documentation>xsd:attribute bank_name: Name of bank</xsd:documentation>
+				<xsd:documentation>xsd:attribute bank_country: Bank’s country identification</xsd:documentation>
+				<xsd:documentation>xsd:attribute iban: Bank’s IBAN</xsd:documentation>
+				<xsd:documentation>xsd:attribute swiftcode: Bank’s Swift code</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="bank_account" type="de:p10005" use="optional"/>
+			<xsd:attribute name="bank_code" type="de:p10007" use="optional"/>
+			<xsd:attribute name="bank_name" type="de:p10006" use="required"/>
+			<xsd:attribute name="bank_country" type="de:p10014" use="optional"/>
+			<xsd:attribute name="iban" type="de:p10010" use="optional"/>
+			<xsd:attribute name="swiftcode" type="de:p10030" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="payment_conditions">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute due_date: Invoice due date</xsd:documentation>
+				<xsd:documentation>xsd:attribute payment_conditions_text: a payment conditions text incorporated when generating the document copy</xsd:documentation>
+				<xsd:documentation>xsd:attribute time_of_payment: date of payment</xsd:documentation>
+				<xsd:documentation>xsd:attribute amount_of_payment: amount of payment: always include decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute time_of_part_payment: date of a part payment </xsd:documentation>
+				<xsd:documentation>xsd:attribute amount_of_payment: amount of payment: always include decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute payment_conditions_id: id of the payment-condition in the booking-programm by datev</xsd:documentation>
+				<xsd:documentation>xsd:attribue payment_dunning_block in the booking-programm by datev</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency code for the two above amounts</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element ref="bonus" minOccurs="0" maxOccurs="100"/>
+				<xsd:element ref="discount" minOccurs="0" maxOccurs="100"/>
+				<xsd:element ref="rebate" minOccurs="0" maxOccurs="100"/>
+			</xsd:sequence>
+			<xsd:attribute name="due_date" type="de:p10029" use="optional"/>
+			<xsd:attribute name="payment_conditions_text" type="de:p10016" use="required"/>
+			<xsd:attribute name="time_of_payment" type="de:p10029" use="optional"/>
+			<xsd:attribute name="amount_of_payment" type="de:p7" use="optional"/>
+			<xsd:attribute name="time_of_part_payment" type="de:p10029" use="optional"/>
+			<xsd:attribute name="amount_of_part_payment" type="de:p7" use="optional"/>
+			<xsd:attribute name="payment_conditions_id" type="de:p23" use="optional"/>
+			<xsd:attribute name="payment_dunning_block" type="de:p35" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="bonus">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute payment_date: Date by which the bonus percentages apply</xsd:documentation>
+				<xsd:documentation>xsd:attribute bonus_percentage: percentage of bonus to deduct, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute bonus_base_amount: amount from which the bonus deduction is calculated, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute bonus_tax: tax rate applicable to bonus amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute bonus_tax_amount: amount of tax paid on bonus, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute bonus_amount: amount of bonus, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency code for the above amounts</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="payment_date" type="de:p10029" use="optional"/>
+			<xsd:attribute name="bonus_percentage" type="de:p10020" use="optional"/>
+			<xsd:attribute name="bonus_base_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="bonus_tax" type="de:p10020" use="required"/>
+			<xsd:attribute name="bonus_tax_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="bonus_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="discount">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute payment_date: Date by which discount percentages apply</xsd:documentation>
+				<xsd:documentation>xsd:attribute discount_percentage: percentage discount to deduct, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute discount_base_amount: Amount from which the discount deduction is calculated, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute discount_tax: Tax rate applicable to discount amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute discount_tax_amount: Amount of tax on discount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute discount_amount: discount amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency code for the above amounts</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="payment_date" type="de:p10029" use="optional"/>
+			<xsd:attribute name="discount_percentage" type="de:p10020" use="optional"/>
+			<xsd:attribute name="discount_base_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="discount_tax" type="de:p10020" use="required"/>
+			<xsd:attribute name="discount_tax_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="discount_amount" type="de:p12" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="rebate">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute payment_date: Date by which the rebate percentages apply</xsd:documentation>
+				<xsd:documentation>xsd:attribute rebate_percentage: percentage rebate deduction, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute rebate_base_amount: Amount from which deduction of rebate is calculated, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute rebate_tax: Tax rate for rebate amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute rebate_tax_amount: Tax on rebate amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute rebate_amount: rebate amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency code for the above amounts</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="payment_date" type="de:p10029" use="optional"/>
+			<xsd:attribute name="rebate_percentage" type="de:p10020" use="optional"/>
+			<xsd:attribute name="rebate_base_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="rebate_tax" type="de:p10020" use="required"/>
+			<xsd:attribute name="rebate_tax_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="rebate_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="additional_info_header">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute type: additional field for unavailable information content: the attribute Type contains the missing attribute names (structuring names)  </xsd:documentation>
+				<xsd:documentation>xsd:attribute content: additional fields for unavailable information content; the attribute Content describes the missing attribute. It contains the value.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="type" type="de:p10008" use="required"/>
+			<xsd:attribute name="content" type="de:p10016" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="invoice_item_list">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute deliverynote_id: Delivery note number</xsd:documentation>
+				<xsd:documentation>xsd:attribute delivery_date: Date of delivery if several delivery notes/deliveries are included on a single invoice</xsd:documentation>
+				<xsd:documentation>xsd:attribute product_id: Product number</xsd:documentation>
+				<xsd:documentation>xsd:attribute description_short: Prodct description</xsd:documentation>
+				<xsd:documentation>xsd:attribute quantity: Quantity, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute order_unit: Quantity description, e.g., No. of items, litres</xsd:documentation>
+				<xsd:documentation>xsd:attribute net_product_price: Individual net product price to a max. of three decimal places, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute gross_product_price: Individual gross product price to a max. of two decimal places, figure given always includes decimal places</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:annotation>
+					<xsd:documentation>xsd:attribute price_line_amount: Line amount: comprises the individual product price times the quantity, figure given always includes decimal places</xsd:documentation>
+					<xsd:documentation>xsd:attribute accounting_info: Booking information at individual line level, such as the impersonal account number or information on cost centres</xsd:documentation>
+				</xsd:annotation>
+				<xsd:element ref="price_line_amount" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="accounting_info" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="additional_info_position" minOccurs="0" maxOccurs="1000"/>
+			</xsd:sequence>
+			<xsd:attribute name="deliverynote_id" type="de:p10009" use="optional"/>
+			<xsd:attribute name="delivery_date" type="de:p10029" use="optional"/>
+			<xsd:attribute name="product_id" type="de:p10009" use="optional"/>
+			<xsd:attribute name="description_short" type="de:p10009" use="required"/>
+			<xsd:attribute name="quantity" type="de:p8" use="required"/>
+			<xsd:attribute name="order_unit" type="de:p10009" use="optional"/>
+			<xsd:attribute name="net_product_price" type="de:p9" use="optional"/>
+			<xsd:attribute name="gross_product_price" type="de:p7" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="price_line_amount">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute net_price_line_amount: Net line amount to two decimal places, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute gross_price_line_amount: Gross line amount to two decimal places, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute tax_amount: Tax on line amount to two decimal places, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute tax: Tax rate on line amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency amount re the above amounts, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute cause_of_tax_exemption: exact reason why the product is tax-exempt</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="net_price_line_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="gross_price_line_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="tax_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="tax" type="de:p10020" use="required"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+			<xsd:attribute name="cause_of_tax_exemption" type="de:p10016" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="additional_info_position">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute type: additional field for unavailable information content: the attribute Type contains the missing attribute names (structuring names) </xsd:documentation>
+				<xsd:documentation>xsd:attribute content: additional field for unavailable information content: the attribute Content describes the missing attributes; it contains the value.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="type" type="de:p10008" use="required"/>
+			<xsd:attribute name="content" type="de:p10016" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="total_amount">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute net_total_amount: Net final invoice amount, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute total_deductions_from_amount: summary of any deductions, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute total_additions_to_amount: any additions, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute total_shipment_costs: summary of any shipment costs, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute total_gross_amount_excluding_third-party_collection: gross invoice amount excluding turnover collected on third-party account/for another company, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute total_gross_amount_including_third-party_collection: gross invoice amount including turnover collected on third-party account/for another company, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency code for the above amounts</xsd:documentation>
+			</xsd:annotation>
+			<xsd:sequence>
+				<xsd:element ref="tax_line" maxOccurs="1000"/>
+			</xsd:sequence>
+			<xsd:attribute name="net_total_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="total_amount_deductions" type="de:p7" use="optional"/>
+			<xsd:attribute name="total_amount_additions" type="de:p7" use="optional"/>
+			<xsd:attribute name="total_shipment_costs" type="de:p7" use="optional"/>
+			<xsd:attribute name="total_gross_amount_excluding_third-party_collection" type="de:p7" use="required"/>
+			<xsd:attribute name="total_gross_amount_including_third-party_collection" type="de:p7" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="tax_line">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute net_price_line_amount: Net amount of overall invoice per tax rate, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute gross_price_line_amount: Gross amount of overall invoice per tax rate, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute tax: Tax rate or rates applying to overall invoice, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute tax_amount: Tax amount for overall invoice per tax rate, figure given always includes decimal places</xsd:documentation>
+				<xsd:documentation>xsd:attribute currency: Currency amount for the above amounts, figure given always includes decimal places</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="net_price_line_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="gross_price_line_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="tax" type="de:p10020" use="required"/>
+			<xsd:attribute name="tax_amount" type="de:p7" use="optional"/>
+			<xsd:attribute name="currency" type="de:p1" use="optional"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="additional_info_footer">
+		<xsd:complexType>
+			<xsd:annotation>
+				<xsd:documentation>xsd:attribute type: additional field for unavailable information content: the attribute Type contains the missing attribute names (structuring names) </xsd:documentation>
+				<xsd:documentation>xsd:attribute content: additional field for unavailable information content: the attribute Content describes the missing attributes; it contains the value.</xsd:documentation>
+			</xsd:annotation>
+			<xsd:attribute name="type" type="de:p10008" use="required"/>
+			<xsd:attribute name="content" type="de:p10016" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
