@@ -29,6 +29,10 @@ class AccountMoveLine(models.Model):
             partner=self.move_id.partner_id,
         )
 
+    def datev_analytic_account(self):
+        self.ensure_one()
+        return self.analytic_line_ids[:1].account_id
+
 
 class AccountMove(models.Model):
     _inherit = "account.move"
