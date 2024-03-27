@@ -87,16 +87,13 @@
             />
 
             <invoice_party t-call="datev_export_xml.export_party">
-                <t t-if="doc.move_type in ['out_invoice', 'out_refund']">
-                    <t t-set="partner" t-value="doc.partner_id" />
-                    <t
-                        t-set="account"
-                        t-value="partner.property_account_receivable_id"
-                    />
-                </t>
-                <t t-else="">
-                    <t t-set="partner" t-value="doc.company_id.partner_id" />
-                </t>
+                <t
+                    t-set="partner"
+                    t-value="doc.partner_id"
+                    t-if="doc.move_type in ['out_invoice', 'out_refund']"
+                />
+                <t t-set="partner" t-value="doc.company_id.partner_id" t-else="" />
+                <t t-set="account" t-value="partner.property_account_receivable_id" />
             </invoice_party>
 
             <supplier_party t-call="datev_export_xml.export_party">
