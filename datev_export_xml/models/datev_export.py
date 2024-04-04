@@ -121,6 +121,9 @@ class DatevExport(models.Model):
         compute="_compute_datev_filesize",
     )
 
+    problematic_invoices_count = fields.Integer(
+        compute="_compute_problematic_invoices_count"
+    )
     invoice_ids = fields.Many2many(comodel_name="account.move", string="Invoices")
     invoices_count = fields.Integer(
         string="Invoices Count", compute="_compute_invoices_count", store=True
@@ -148,6 +151,13 @@ class DatevExport(models.Model):
     def _compute_datev_filesize(self):
         for r in self.with_context(bin_size=True):
             r.datev_filesize = r.datev_file
+
+    @api.depends("invoice_ids")
+    def _compute_problematic_invoices_count(self):
+        for r in self:
+            r.problematic_invoices_count = len(
+                r.invoice_ids.filtered("datev_validation")
+            )
 
     @api.depends("invoice_ids")
     def _compute_invoices_count(self):
@@ -250,6 +260,8 @@ class DatevExport(models.Model):
             self.write({"exception_info": msg, "state": "failed"})
             _logger.exception(e)
 
+        self._compute_problematic_invoices_count()
+
     @api.model
     def cron_run_pending_export(self):
         """
@@ -345,6 +357,16 @@ class DatevExport(models.Model):
             }
         )
 
+    def action_validate(self):
+        generator = self.env["datev.xml.generator"]
+        for invoice in self.invoice_ids:
+            try:
+                generator.generate_xml_invoice(invoice)
+            except UserError:
+                pass
+
+        self._compute_problematic_invoices_count()
+
     def action_done(self):
         self.filtered(lambda r: r.state in ["running", "failed"]).write(
             {
@@ -385,10 +407,21 @@ class DatevExport(models.Model):
                 )
             r.write({"state": "draft"})
 
+    def action_show_invalid_invoices_view(self):
+        tree_view = self.env.ref("datev_export_xml.view_move_datev_validation")
+        return {
+            "type": "ir.actions.act_window",
+            "view_mode": "tree,form",
+            "views": [[tree_view.id, "tree"], [False, "form"]],
+            "res_model": "account.move",
+            "target": "current",
+            "name": _("Problematic Invoices"),
+            "domain": [("id", "in", self.invoice_ids.filtered("datev_validation").ids)],
+        }
+
     def action_show_related_invoices_view(self):
         return {
             "type": "ir.actions.act_window",
-            "view_type": "form",
             "view_mode": "tree,kanban,form",
             "res_model": "account.move",
             "target": "current",
@@ -403,7 +436,7 @@ class DatevExport(models.Model):
         return res
 
     def write(self, vals):
-        super().write(vals)
+        res = super().write(vals)
         if any(
             r in vals
             for r in [
@@ -420,7 +453,7 @@ class DatevExport(models.Model):
                 super(DatevExport, r).write(
                     {"invoice_ids": [(6, 0, r.get_invoices().ids)]}
                 )
-        return True
+        return res
 
     @api.model
     def create(self, vals):
