@@ -3,7 +3,7 @@
     <template id="export_party">
         <address
             t-att-name="(partner.display_name or '')[:50]"
-            t-att-street="(partner.street or '')[:40]"
+            t-att-street="' '.join([partner.street or '', partner.street2 or ''])[:40]"
             t-att-zip="partner.zip or ''"
             t-att-city="partner.city or ''"
             t-att-country="partner.country_id.code or ''"
@@ -24,9 +24,15 @@
 
     <template id="export_invoice_line_item">
         <price_line_amount
+            t-if="prices['total_included']"
             t-att-currency="line.currency_id.name"
             t-att-gross_price_line_amount="doc.datev_format_total(prices['total_included'])"
             t-att-net_price_line_amount="doc.datev_format_total(prices['total_excluded'])"
+            t-att-tax="doc.datev_format_total(line.tax_ids.amount)"
+        />
+        <price_line_amount
+            t-else=""
+            t-att-currency="line.currency_id.name"
             t-att-tax="doc.datev_format_total(line.tax_ids.amount)"
         />
 
@@ -42,7 +48,7 @@
         <t t-set="prices" t-value="line.datev_price_information()" />
 
         <invoice_item_list
-            t-if="line.product_id"
+            t-if="line.product_id and prices['total_excluded']"
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-product_id="line.product_id.default_code"
             t-att-description_short="(line.name or line.product_id.name)[:40]"
@@ -51,10 +57,24 @@
             t-att-quantity="'%.02f' % line.quantity"
         />
         <invoice_item_list
+            t-if="line.product_id"
+            t-call="datev_export_xml.export_invoice_line_item"
+            t-att-product_id="line.product_id.default_code"
+            t-att-description_short="(line.name or line.product_id.name)[:40]"
+            t-att-order_unit="line.product_uom_id.name"
+            t-att-quantity="'%.02f' % line.quantity"
+        />
+        <invoice_item_list
+            t-elif="not line.display_type and prices['total_excluded']"
+            t-call="datev_export_xml.export_invoice_line_item"
+            t-att-description_short="(line.name or '')[:40]"
+            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
+            t-att-quantity="'%.02f' % line.quantity"
+        />
+        <invoice_item_list
             t-elif="not line.display_type"
             t-call="datev_export_xml.export_invoice_line_item"
-            t-att-description_short="line.name or ''"
-            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
+            t-att-description_short="(line.name or '')[:40]"
             t-att-quantity="'%.02f' % line.quantity"
         />
     </template>

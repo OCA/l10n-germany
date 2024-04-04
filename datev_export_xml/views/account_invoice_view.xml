@@ -13,6 +13,18 @@
         </field>
     </record>
 
+    <record id="view_move_datev_validation" model="ir.ui.view">
+        <field name="model">account.move</field>
+        <field name="mode">primary</field>
+        <field name="priority">800</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" decoration-bf="1" />
+                <field name="datev_validation" />
+            </tree>
+        </field>
+    </record>
+
     <record id="view_account_invoice_filter" model="ir.ui.view">
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_account_invoice_filter" />

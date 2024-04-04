@@ -86,6 +86,12 @@
                         confirm="Do you really want to set the export to draft?"
                     />
                     <button
+                        name="action_validate"
+                        type="object"
+                        string="Validate"
+                        attrs="{'invisible':  [('state', '=', 'done')]}"
+                    />
+                    <button
                         name="action_pending"
                         type="object"
                         string="Ready for Export"
@@ -145,6 +151,20 @@
                                     <field name="invoices_count" />
                                 </span>
                                 <span class="o_stat_text">Invoices</span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button oe_read_only"
+                            name="action_show_invalid_invoices_view"
+                            icon="fa-exclamation"
+                            type="object"
+                            attrs="{'invisible': [('problematic_invoices_count', '=', 0)]}"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="problematic_invoices_count" />
+                                </span>
+                                <span class="o_stat_text">Problems</span>
                             </div>
                         </button>
                     </div>
