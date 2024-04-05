@@ -23,16 +23,23 @@ class DatevXmlGenerator(models.AbstractModel):
     _description = "DATEV XML Generator"
 
     @api.model
-    def check_xml_file(self, doc_name, root, xsd=None):
+    def check_xml_file(self, doc_name, root, xsd=None, invoice=None):
         if not xsd:
             xsd = "Document_v050.xsd"
 
         schema = tools.file_open(xsd, subdir="addons/datev_export_xml/xsd_files")
         try:
+            if invoice:
+                invoice.datev_validation = False
+
             schema = etree.XMLSchema(etree.parse(schema))
             schema.assertValid(root)
         except (etree.DocumentInvalid, etree.XMLSyntaxError) as e:
             _logger.warning(etree.tostring(root))
+
+            if invoice:
+                invoice.datev_validation = str(e)
+
             raise UserError(
                 _(
                     "Wrong Data in XML file!\nTry to solve the problem with "
@@ -92,6 +99,7 @@ class DatevXmlGenerator(models.AbstractModel):
                 doc_name,
                 root,
                 "Belegverwaltung_online_invoice_v050.xsd",
+                invoice=invoice,
             )
 
         return doc_name, etree.tostring(root)
