@@ -38,6 +38,7 @@ class AccountMove(models.Model):
         help="When finishing a datev export the processed invoices are marked as exported.\n"
         "If you need to export the invoices again, set this field to False.",
     )
+    datev_validation = fields.Text()
 
     def datev_format_total(self, value, prec=2):
         self.ensure_one()
