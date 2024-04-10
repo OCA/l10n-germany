@@ -69,6 +69,11 @@ msgid "<span class=\"o_stat_text\">Invoices</span>"
 msgstr "<span class=\"o_stat_text\">Rechnungen</span>"
 
 #. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "<span class=\"o_stat_text\">Problems</span>"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:product.product,name:datev_export_xml.product_datev_01
 #: model:product.template,name:datev_export_xml.product_datev_01_product_template
 msgid "A-IT-Consulting"
@@ -271,6 +276,13 @@ msgstr "DATEV Standard Zeitperiode"
 #: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_export_state
 msgid "Datev Export State"
 msgstr "Datev Exportstatus"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_bank_statement_line__datev_validation
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__datev_validation
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_payment__datev_validation
+msgid "Datev Validation"
+msgstr ""
 
 #. module: datev_export_xml
 #: code:addons/datev_export_xml/models/res_company.py:0
@@ -715,6 +727,17 @@ msgid "Period:"
 msgstr "Periode:"
 
 #. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "Problematic Invoices"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__problematic_invoices_count
+msgid "Problematic Invoices Count"
+msgstr ""
+
+#. module: datev_export_xml
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
 msgid "Ready for Export"
 msgstr "Bereit zum Export"
@@ -874,6 +897,11 @@ msgid "Used to get default values for start and stop date at DATEV Export!"
 msgstr ""
 "Wird verwendet, um Standardwerte für Start- und Enddatum beim DATEV-Export "
 "abzurufen!"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Validate"
+msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_vendor_order_ref
