@@ -358,6 +358,12 @@ class DatevExport(models.Model):
         generator = self.env["datev.xml.generator"]
         for invoice in self.invoice_ids:
             try:
+                generator._check_invoices(invoice)
+            except ValueError as e:
+                invoice.datev_validation = str(e)
+                continue
+
+            try:
                 generator.generate_xml_invoice(invoice)
             except UserError:
                 continue
