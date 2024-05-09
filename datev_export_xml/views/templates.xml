@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="export_party">
+        <address
+            t-att-name="(partner.display_name or '')[:50]"
+            t-att-street="(partner.street or '')[:40]"
+            t-att-zip="partner.zip or ''"
+            t-att-city="partner.city or ''"
+            t-att-country="partner.country_id.code or ''"
+        />
+
+        <t t-foreach="partner.bank_ids" t-as="bank">
+            <account
+                t-if="bank.bank_id"
+                t-att-bank_name="bank.bank_id.name[:27]"
+                t-att-bank_country="bank.bank_id.country.code"
+                t-att-iban="(bank.acc_number or '').replace(' ', '')"
+                t-att-swiftcode="(bank.bank_id.bic or '').replace(' ', '')"
+            />
+        </t>
+
+        <booking_info_bp t-if="account" t-att-bp_account_no="account.code" />
+    </template>
+
+    <template id="export_invoice_line_item">
+        <price_line_amount
+            t-att-currency="line.currency_id.name"
+            t-att-gross_price_line_amount="doc.datev_format_total(prices['total_included'])"
+            t-att-net_price_line_amount="doc.datev_format_total(prices['total_excluded'])"
+            t-att-tax="doc.datev_format_total(line.tax_ids.amount)"
+        />
+
+        <accounting_info
+            t-att-account_no="line.account_id.code or ''"
+            t-att-cost_category_id="line.datev_analytic_account().code or ''"
+            t-att-booking_text="(line.name or line.product_id.name or '')[:60]"
+            t-att-bu_code="line.tax_ids.l10n_de_datev_code or '0'"
+        />
+    </template>
+
+    <template id="export_invoice_line">
+        <t t-set="prices" t-value="line.datev_price_information()" />
+
+        <invoice_item_list
+            t-if="line.product_id"
+            t-call="datev_export_xml.export_invoice_line_item"
+            t-att-product_id="line.product_id.default_code"
+            t-att-description_short="(line.name or line.product_id.name)[:40]"
+            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
+            t-att-order_unit="line.product_uom_id.name"
+            t-att-quantity="'%.02f' % line.quantity"
+        />
+        <invoice_item_list
+            t-elif="not line.display_type"
+            t-call="datev_export_xml.export_invoice_line_item"
+            t-att-description_short="line.name or ''"
+            t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
+            t-att-quantity="'%.02f' % line.quantity"
+        />
+    </template>
+
+    <template id="export_invoice">
+        <invoice
+            xml_data="Kopie nur zur Verbuchung berechtigt nicht zum Vorsteuerabzug"
+            xmlns="http://xml.datev.de/bedi/tps/invoice/v050"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://xml.datev.de/bedi/tps/invoice/v050 Belegverwaltung_online_invoice_v050.xsd"
+            version="5.0"
+            description="DATEV Import invoices"
+            generating_system="Odoo"
+            t-att-generator_info="doc.company_id.name"
+        >
+            <invoice_info
+                t-if="doc.datev_order_id()"
+                t-att-delivery_date="doc.datev_delivery_date()"
+                t-att-invoice_date="doc.invoice_date"
+                t-att-invoice_id="doc.datev_invoice_id()"
+                t-att-invoice_type="doc.datev_invoice_type()"
+                t-att-order_id="doc.datev_order_id()"
+            />
+            <invoice_info
+                t-else=""
+                t-att-delivery_date="doc.datev_delivery_date()"
+                t-att-invoice_date="doc.invoice_date"
+                t-att-invoice_id="doc.datev_invoice_id()"
+                t-att-invoice_type="doc.datev_invoice_type()"
+            />
+            <invoice_party t-call="datev_export_xml.export_party">
+                <t
+                    t-set="partner"
+                    t-value="doc.partner_id"
+                    t-if="doc.move_type in ['out_invoice', 'out_refund']"
+                />
+                <t t-set="partner" t-value="doc.company_id.partner_id" t-else="" />
+                <t t-set="account" t-value="partner.property_account_receivable_id" />
+            </invoice_party>
+
+            <supplier_party t-call="datev_export_xml.export_party">
+                <t t-if="doc.move_type in ['out_invoice', 'out_refund']">
+                    <t t-set="partner" t-value="doc.company_id.partner_id" />
+                </t>
+                <t t-else="">
+                    <t t-set="partner" t-value="doc.partner_id" />
+                    <t t-set="account" t-value="partner.property_account_payable_id" />
+                </t>
+            </supplier_party>
+
+            <payment_conditions
+                t-if="doc.invoice_payment_term_id"
+                t-att-due_date="doc.invoice_date_due"
+                t-att-payment_conditions_text="doc.invoice_payment_term_id.name"
+            />
+
+            <t t-foreach="doc.invoice_line_ids" t-as="line">
+                <t t-call="datev_export_xml.export_invoice_line" />
+            </t>
+
+            <total_amount
+                t-att-currency="doc.currency_id.name"
+                t-att-net_total_amount="doc.datev_format_total(doc.amount_untaxed)"
+                t-att-total_gross_amount_excluding_third-party_collection="doc.datev_format_total(doc.amount_total)"
+            >
+                <t t-foreach="doc.line_ids" t-as="line">
+                    <tax_line
+                        t-if="line.tax_line_id and line.tax_base_amount"
+                        t-att-tax="'%.02f' % line.tax_line_id.amount"
+                        t-att-currency="line.currency_id.name"
+                        t-att-net_price_line_amount="doc.datev_format_total(line.tax_base_amount)"
+                        t-att-tax_amount="doc.datev_format_total(line.price_total or abs(line.balance))"
+                    />
+                    <tax_line
+                        t-elif="line.tax_line_id"
+                        t-att-tax="'%.02f' % line.tax_line_id.amount"
+                        t-att-currency="line.currency_id.name"
+                        t-att-tax_amount="doc.datev_format_total(line.price_total or abs(line.balance))"
+                    />
+                </t>
+                <tax_line
+                    t-if="not doc.line_ids.tax_line_id"
+                    t-att-currency="doc.currency_id.name"
+                    tax="0.00"
+                />
+            </total_amount>
+        </invoice>
+    </template>
+
+    <template id="export_invoice_document">
+        <archive
+            xmlns="http://xml.datev.de/bedi/tps/document/v05.0"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            generatingSystem="Odoo"
+            version="5.0"
+            xsi:schemaLocation="http://xml.datev.de/bedi/tps/document/v05.0 document_v050.xsd"
+        >
+            <header>
+                <date t-esc="datetime.datetime.today().isoformat()" />
+                <description t-esc="company.name + ' Accounting'" />
+                <clientName t-esc="company.name" />
+            </header>
+            <content>
+                <document t-foreach="docs" t-as="doc">
+                    <description t-esc="doc.name" />
+                    <extension
+                        xsi:type="Invoice"
+                        t-att-datafile="doc.datev_filename('.xml')"
+                    >
+                        <property
+                            key="InvoiceType"
+                            value="Outgoing"
+                            t-if="doc.move_type in ['out_invoice', 'out_refund']"
+                        />
+                        <property key="InvoiceType" value="Incoming" t-else="" />
+                    </extension>
+                    <extension xsi:type="File" t-att-name="doc.datev_filename()" />
+                </document>
+            </content>
+        </archive>
+    </template>
+</odoo>
