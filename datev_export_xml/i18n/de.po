@@ -69,13 +69,11 @@ msgid "<span class=\"o_stat_text\">Invoices</span>"
 msgstr "<span class=\"o_stat_text\">Rechnungen</span>"
 
 #. module: datev_export_xml
-#: model:product.product,name:datev_export_xml.product_datev_01
 #: model:product.template,name:datev_export_xml.product_datev_01_product_template
 msgid "A-IT-Consulting"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:product.product,name:datev_export_xml.product_datev_02
 #: model:product.template,name:datev_export_xml.product_datev_02_product_template
 msgid "A-Office-Lease"
 msgstr ""
@@ -191,6 +189,7 @@ msgid "Customer Order Reference"
 msgstr "Kundenbestellreferenz"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__export_type__out
 #, python-format
@@ -198,6 +197,7 @@ msgid "Customers"
 msgstr "Kunden"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "DATEV Export file is ready to download!"
@@ -229,7 +229,6 @@ msgstr "DATEV XML Generator"
 #. module: datev_export_xml
 #: model:ir.actions.server,name:datev_export_xml.cron_create_datev_export_ir_actions_server
 #: model:ir.cron,cron_name:datev_export_xml.cron_create_datev_export
-#: model:ir.cron,name:datev_export_xml.cron_create_datev_export
 msgid "DATEV XML: Create Export File"
 msgstr "DATEV XML: Erstelle Exportdatei"
 
@@ -239,6 +238,7 @@ msgid "DATEV ZIP Generator"
 msgstr "DATEV ZIP Generator"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -249,6 +249,7 @@ msgstr ""
 "Bitte Zeitraum oder mindestens Startdatum auswählen."
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_zip_generator.py:0
 #, python-format
 msgid ""
@@ -273,6 +274,7 @@ msgid "Datev Export State"
 msgstr "Datev Exportstatus"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__day
 #, python-format
@@ -322,6 +324,7 @@ msgid "Document(s)"
 msgstr "Dokument(e)"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__done
 #, python-format
@@ -334,6 +337,7 @@ msgid "Download File"
 msgstr "Downloaddatei"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__draft
 #, python-format
@@ -347,6 +351,7 @@ msgid "Exception Info"
 msgstr "Ausnahmeinformation"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "Exception while creating DATEV-Export file!"
@@ -375,6 +380,7 @@ msgid "Exported to Datev"
 msgstr "Exportiert nach Datev"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__failed
 #, python-format
@@ -387,6 +393,7 @@ msgid "Filesize"
 msgstr "Dateigröße"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -442,7 +449,6 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_needaction
-#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Falls markiert, benötigen neue Nachrichten Ihre Kenntnisnahme."
 
@@ -469,6 +475,7 @@ msgid ""
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "Included Invoices"
@@ -496,12 +503,14 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "It's not allowed to set a running export to draft!"
 msgstr "Es ist nicht gestattet einen laufenden Export auf Entwurf zu setzen!"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "It's not allowed to set an already running export to pending!"
@@ -538,6 +547,7 @@ msgid "Main Attachment"
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -561,6 +571,7 @@ msgid "Manually Selected Documents"
 msgstr "Manuell Ausgewählte Dokumente"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "Manually set to Done by %s!"
@@ -582,6 +593,7 @@ msgid "Messages"
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -590,6 +602,7 @@ msgid ""
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__month
 #, python-format
@@ -604,11 +617,6 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__name
 msgid "Name"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: datev_export_xml
@@ -627,12 +635,14 @@ msgid "Next Activity Type"
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_zip_generator.py:0
 #, python-format
 msgid "No Invoices Selected!"
 msgstr "Keine Rechnungen ausgewählt!"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "No invoices/refunds for export!"
@@ -660,7 +670,7 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: datev_export_xml
@@ -669,11 +679,7 @@ msgid "Number of messages with delivery error"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_unread_counter
-msgid "Number of unread messages"
-msgstr ""
-
-#. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__odoo
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__odoo
@@ -687,6 +693,7 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__partner
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__partner
@@ -695,6 +702,7 @@ msgid "Partner Reference"
 msgstr "Partnerreferenz"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__payment
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__payment
@@ -703,6 +711,7 @@ msgid "Payment Reference"
 msgstr "Bezahlreferenz"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__pending
 #, python-format
@@ -745,6 +754,7 @@ msgid "Restart"
 msgstr "Neustarten"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__running
 #, python-format
@@ -806,6 +816,7 @@ msgstr ""
 "Aktivität auf Sie angewendet."
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
@@ -823,6 +834,7 @@ msgstr ""
 "Die ZIP-Datei kann nach erfolgreicher Erstellung hier heruntergeladen werden!"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_xml_generator.py:0
 #, python-format
 msgid "There are multiple taxes in the following invoices: %(invoices)s"
@@ -849,24 +861,6 @@ msgid "Type of the exception activity on record."
 msgstr ""
 
 #. module: datev_export_xml
-#: model:product.product,uom_name:datev_export_xml.product_datev_01
-#: model:product.product,uom_name:datev_export_xml.product_datev_02
-#: model:product.template,uom_name:datev_export_xml.product_datev_01_product_template
-#: model:product.template,uom_name:datev_export_xml.product_datev_02_product_template
-msgid "Units"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: datev_export_xml
 #: model:ir.model.fields,help:datev_export_xml.field_res_company__datev_default_period
 #: model:ir.model.fields,help:datev_export_xml.field_res_config_settings__datev_default_period
 #: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
@@ -882,6 +876,7 @@ msgid "Vendor Order Reference"
 msgstr "Lieferantenbestellreferenz"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__export_type__in
 #, python-format
@@ -899,6 +894,7 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__week
 #, python-format
@@ -920,6 +916,7 @@ msgstr ""
 "diesem Feld entfernt werden."
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_xml_generator.py:0
 #, python-format
 msgid ""
@@ -933,6 +930,7 @@ msgstr ""
 "\n"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/res_company.py:0
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__year
 #, python-format
@@ -940,6 +938,7 @@ msgid "Year"
 msgstr "Jahr"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "You can't export incoming and outgoing invoices at the same time"
@@ -948,12 +947,14 @@ msgstr ""
 "nicht möglich"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid "You need to choose an export type (Customer/Vendor)!"
 msgstr "Sie müssen einen Exporttypen auswählen (Debitoren/Kreditoren)!"
 
 #. module: datev_export_xml
+#. odoo-python
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
