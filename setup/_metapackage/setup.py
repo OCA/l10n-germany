@@ -8,6 +8,8 @@ setuptools.setup(
     description="Meta package for oca-l10n-germany Odoo addons",
     version=version,
     install_requires=[
+        'odoo-addon-datev_export>=16.0dev,<16.1dev',
+        'odoo-addon-datev_export_xml>=16.0dev,<16.1dev',
         'odoo-addon-datev_import_csv_dtvf>=16.0dev,<16.1dev',
     ],
     classifiers=[
