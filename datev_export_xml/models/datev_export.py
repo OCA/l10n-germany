@@ -14,6 +14,7 @@ import time
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import human_size
 
 _logger = logging.getLogger(__name__)
 
@@ -113,7 +114,6 @@ class DatevExport(models.Model):
     attachment_id = fields.Many2one(
         comodel_name="ir.attachment", string="Attachment", required=False, readonly=True
     )
-    datev_file = fields.Binary("ZIP file", readonly=True, related="attachment_id.datas")
     datev_filename = fields.Char(
         "ZIP filename", readonly=True, related="attachment_id.name"
     )
@@ -143,10 +143,10 @@ class DatevExport(models.Model):
         tracking=True,
     )
 
-    @api.depends("attachment_id", "attachment_id.datas")
+    @api.depends("attachment_id", "attachment_id.file_size")
     def _compute_datev_filesize(self):
-        for r in self.with_context(bin_size=True):
-            r.datev_filesize = r.datev_file
+        for r in self:
+            r.datev_filesize = human_size(r.attachment_id.file_size)
 
     @api.depends("invoice_ids")
     def _compute_invoices_count(self):
@@ -168,6 +168,14 @@ class DatevExport(models.Model):
                     "you want to export!"
                 )
             )
+
+    def datev_download(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/datev/xml/download/{self.id}",
+            "target": "self",
+        }
 
     def get_type_list(self):
         list_invoice_type = []
