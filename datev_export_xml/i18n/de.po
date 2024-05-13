@@ -1,0 +1,1077 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * datev_export_xml
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-16 06:01+0000\n"
+"PO-Revision-Date: 2023-09-04 16:37+0000\n"
+"Last-Translator: Thorsten Vocks <thorsten.vocks@big-consulting.net>\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid ""
+"<i class=\"fa fa-exclamation-triangle mr4\" aria-hidden=\"true\"/>\n"
+"                                Downloading large files may fail due to "
+"server settings!"
+msgstr ""
+"<i class=\"fa fa-exclamation-triangle mr4\" aria-hidden=\"true\"/>\n"
+"                                Herunterladen großer Dateien kann aufgrund "
+"der Servereinstellungen fehlschlagen!"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Customer Order Reference</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Default Period</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Export State</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid ""
+"<span class=\"o_form_label\">Vendor Order Reference</span>\n"
+"                        <span class=\"fa fa-lg fa-building-o\" title="
+"\"Values set here are company-specific.\" aria-label=\"Values set here are "
+"company-specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "<span class=\"o_stat_text\">Invoices</span>"
+msgstr "<span class=\"o_stat_text\">Rechnungen</span>"
+
+#. module: datev_export_xml
+#: model:product.product,name:datev_export_xml.product_datev_01
+#: model:product.template,name:datev_export_xml.product_datev_01_product_template
+msgid "A-IT-Consulting"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:product.product,name:datev_export_xml.product_datev_02
+#: model:product.template,name:datev_export_xml.product_datev_02_product_template
+msgid "A-Office-Lease"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_ids
+msgid "Activities"
+msgstr "Aktivitäten"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__attachment_id
+msgid "Attachment"
+msgstr "Anhang"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_attachment_count
+msgid "Attachment Count"
+msgstr "# Anhänge"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__check_xsd
+msgid "Check XSD"
+msgstr "Prüfe XSD"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__client_number
+msgid "Client Number"
+msgstr "Mandantennummer"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid "Close"
+msgstr "Schließen"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__company_id
+msgid "Company"
+msgstr "Unternehmen"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__consultant_number
+msgid "Consultant Number"
+msgstr "Beraternummer"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid "Controls which reference is being used on customer invoices/refunds"
+msgstr ""
+"Beeinflusst, welche Referenz für Kundenrechnungen- und gutschriften genutzt "
+"wird"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid "Controls which reference is being used on vendor bills/refunds"
+msgstr ""
+"Beeinflusst, welche Referenz für Lieferantenrechnungen- und gutschriften "
+"genutzt wird"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Create DATEV Export File"
+msgstr "Erstelle DATEV Exportdatei"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid "Create Export File"
+msgstr "Erstelle Exportdatei"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_customer_order_ref
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_customer_order_ref
+msgid "Customer Order Reference"
+msgstr "Kundenbestellreferenz"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__export_type__out
+#, python-format
+msgid "Customers"
+msgstr "Kunden"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "DATEV Export file is ready to download!"
+msgstr "Die DATEV Exportdatei ist bereit zum Download!"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_datev_pdf_generator
+msgid "DATEV PDF Generator"
+msgstr "DATEV PDF Generator"
+
+#. module: datev_export_xml
+#: model:ir.actions.act_window,name:datev_export_xml.action_datev_export
+#: model:ir.actions.server,name:datev_export_xml.action_invoice_datev_export
+#: model:ir.model,name:datev_export_xml.model_datev_export_xml
+#: model:ir.ui.menu,name:datev_export_xml.menu_datev_export_categ
+msgid "DATEV XML Export"
+msgstr "DATEV XML Export"
+
+#. module: datev_export_xml
+#: model:ir.actions.act_window,name:datev_export_xml.action_datev_export_wizard
+msgid "DATEV XML Export Wizard"
+msgstr "Datev XML Exportassistent"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_datev_xml_generator
+msgid "DATEV XML Generator"
+msgstr "DATEV XML Generator"
+
+#. module: datev_export_xml
+#: model:ir.actions.server,name:datev_export_xml.cron_create_datev_export_ir_actions_server
+#: model:ir.cron,cron_name:datev_export_xml.cron_create_datev_export
+#: model:ir.cron,name:datev_export_xml.cron_create_datev_export
+msgid "DATEV XML: Create Export File"
+msgstr "DATEV XML: Erstelle Exportdatei"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_datev_zip_generator
+msgid "DATEV ZIP Generator"
+msgstr "DATEV ZIP Generator"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"Data Insufficient!\n"
+"Please select Period or at least Start Date."
+msgstr ""
+"Daten unvollständig!\n"
+"Bitte Zeitraum oder mindestens Startdatum auswählen."
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_zip_generator.py:0
+#, python-format
+msgid ""
+"Data Insufficient!\n"
+"You have to fill the address for partner of invoice %s. The partner address "
+"has to have official company name!"
+msgstr ""
+"Daten unvollständig!\n"
+"Sie müssen die Adresse des Partners der Rechnung %s wählen. Die "
+"Partneradresse muss einen offiziellen Firmennamen besitzen!"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_default_period
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_default_period
+msgid "Datev Default Period"
+msgstr "DATEV Standard Zeitperiode"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_export_state
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_export_state
+msgid "Datev Export State"
+msgstr "Datev Exportstatus"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__day
+#, python-format
+msgid "Day"
+msgstr "Tag"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__display_name
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid ""
+"Do you really want to create the DATEV file again? The creation of the file "
+"will be done in background and may take some time! When the file is created "
+"or an exception occurs, an activity will be applied to you."
+msgstr ""
+"Möchten Sie die DATEV-Datei wirklich erneut erstellen? Die Erstellung der "
+"Datei erfolgt im Hintergrund und kann einige Zeit dauern! Wenn die Datei "
+"erstellt wurde oder eine Ausnahme auftrat, wird eine Aktivität auf Sie "
+"angewendet."
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Do you really want to restart the export?"
+msgstr "Möchten Sie den Export wirklich erneut starten?"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Do you really want to set the export manually to 'Done'?"
+msgstr "Möchten Sie den Export wirklich manuell auf 'Fertig' setzen?"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Do you really want to set the export to draft?"
+msgstr "Möchten Sie wirklich den Export auf Entwurf setzen?"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Document Types"
+msgstr "Dokumenttypen"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.datev_export_view_kanban
+msgid "Document(s)"
+msgstr "Dokument(e)"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__done
+#, python-format
+msgid "Done"
+msgstr "Fertig"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Download File"
+msgstr "Downloaddatei"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__draft
+#, python-format
+msgid "Draft"
+msgstr "Entwurf"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__exception_info
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Exception Info"
+msgstr "Ausnahmeinformation"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "Exception while creating DATEV-Export file!"
+msgstr "Ausnahme während der Erstellung der DATEV-Export Datei!"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__export_invoice
+msgid "Export Invoices"
+msgstr "Export Rechnungen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__export_refund
+msgid "Export Refunds"
+msgstr "Export Gutschriften"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__export_type
+msgid "Export Type"
+msgstr "Exporttyp"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_bank_statement_line__datev_exported
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__datev_exported
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_payment__datev_exported
+msgid "Exported to Datev"
+msgstr "Exportiert nach Datev"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__failed
+#, python-format
+msgid "Failed"
+msgstr "Fehlgeschlagen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_filesize
+msgid "Filesize"
+msgstr "Dateigröße"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"Filtered Export of {} Documents\n"
+"Date Range: {}-{}\n"
+"Types: {}"
+msgstr ""
+"Gefilterter Export von {} Dokumente\n"
+"Datumsbereich: {}-{}\n"
+"Typen: {}"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__date_start
+msgid "From Date"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "General Settings"
+msgstr "Allgemeine Einstellungen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__id
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_needaction
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Falls markiert, benötigen neue Nachrichten Ihre Kenntnisnahme."
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_error
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Falls markiert, benötigen neue Nachrichten Ihre Kenntnisnahme."
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_res_company__datev_export_state
+#: model:ir.model.fields,help:datev_export_xml.field_res_config_settings__datev_export_state
+msgid ""
+"If set, the invoices are marked as exported when finishing a Datev export."
+msgstr ""
+"Das Senden mancher Nachrichten ist fehlgeschlagen wenn dieses Fenster "
+"angekreuzt ist."
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid ""
+"If set, the invoices are marked as exported when finishing a Datev export.\n"
+"                            Only not yet exported invoices are suggested for "
+"next Datev export."
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "Included Invoices"
+msgstr "Enthaltene Rechnungen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__invoice_ids
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Invoices"
+msgstr "Rechnungen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__invoices_count
+msgid "Invoices Count"
+msgstr "Anzahl der Rechnungen"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_account_invoice_filter
+msgid "Invoices that are not yet exported to Datev"
+msgstr "Rechnungen, die noch nicht nach Datev exportiert wurden"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "It's not allowed to set a running export to draft!"
+msgstr "Es ist nicht gestattet einen laufenden Export auf Entwurf zu setzen!"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "It's not allowed to set an already running export to pending!"
+msgstr "Es ist nicht gestattet einen laufenden Export neu einzureihen!"
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model,name:datev_export_xml.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company____last_update
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"Manually Doc Export of {} Documents \n"
+"Numbers: {}"
+msgstr ""
+"Manueller Export von {} Documenten \n"
+"Nummern: {}"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__manually_document_selection
+msgid "Manually Document Selection"
+msgstr "Manuelle Dokumentenauswahl"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.datev_export_view_kanban
+msgid "Manually Export:"
+msgstr "Manueller Export:"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Manually Selected Documents"
+msgstr "Manuell Ausgewählte Dokumente"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "Manually set to Done by %s!"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:res.groups,name:datev_export_xml.group_datev_export_status
+msgid "Mark invoices as exported to Datev"
+msgstr "Rechnungen als 'nach Datev exportiert' markieren"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_has_error
+msgid "Message Delivery error"
+msgstr "Error beim Versenden der Nachricht"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"Missing Data\n"
+"Please choose which documents you want to export!"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__month
+#, python-format
+msgid "Month"
+msgstr "Monat"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__name
+msgid "Name"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_zip_generator.py:0
+#, python-format
+msgid "No Invoices Selected!"
+msgstr "Keine Rechnungen ausgewählt!"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "No invoices/refunds for export!"
+msgstr "Keine Rechnungen/Gutschrifen für Export!"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__client_number
+msgid "Number from 0 to 99999"
+msgstr "Zahlen von 0 bis 99999"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__consultant_number
+msgid "Number from 1000 to 99999999"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__odoo
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__odoo
+#, python-format
+msgid "Odoo Reference"
+msgstr "Odoo Referenz"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Partner"
+msgstr "Partner"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__partner
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__partner
+#, python-format
+msgid "Partner Reference"
+msgstr "Partnerreferenz"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_customer_order_ref__payment
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_vendor_order_ref__payment
+#, python-format
+msgid "Payment Reference"
+msgstr "Bezahlreferenz"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__pending
+#, python-format
+msgid "Pending"
+msgstr "Ausstehend"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.datev_export_view_kanban
+msgid "Period:"
+msgstr "Periode:"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Ready for Export"
+msgstr "Bereit zum Export"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Recreate DATEV Export File"
+msgstr "DATEV-Exportdatei erneut erstellen"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid "Recreate Export File"
+msgstr "Exportdatei erneut erstellen"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Refunds"
+msgstr "Gutschriften"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Restart"
+msgstr "Neustarten"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__state__running
+#, python-format
+msgid "Running"
+msgstr "Laufend"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Set Done"
+msgstr "Setze Fertig"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Set to draft"
+msgstr "Auf Entwurf setzen"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__state
+msgid "Status"
+msgstr "Status"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid ""
+"The creation of the file can take some time! Do you really want to create "
+"the DATEV file again?"
+msgstr ""
+"Die Erstellung der Datei kann einige Zeit in Anspruch nehmen! Möchten Sie "
+"die DATEV-Datei wirklich erneut erstellen?"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid ""
+"The creation of the file can take some time! Do you really want to proceed!"
+msgstr ""
+"Die Erstellung der Datei kann einige Zeit in Anspruch nehmen! Möchten Sie "
+"wirklich fortfahren?"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_popup_form
+msgid ""
+"The creation of the file will be done in background and may take some time! "
+"When the file is created or an exception occurs, an activity will be applied "
+"to you."
+msgstr ""
+"Die Erstellung der Datei erfolgt im Hintergrund und kann einige Zeit dauern! "
+"Wenn die Datei erstellt wurde oder eine Ausnahme auftritt, wird eine "
+"Aktivität auf Sie angewendet."
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"The numbers of invoices/refunds is limited to 4999 by DATEV! Please decrease "
+"the number of documents or deactivate Check XSD."
+msgstr ""
+"Die Anzahl der Rechnungen/Gutschriften ist durch DATEV begrenzt auf 4999! "
+"Bitte verringern Sie die Anzahl der Dokumente oder deaktivieren Sie Prüfe "
+"XSD."
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "The zip file can be downloaded here after creation!"
+msgstr ""
+"Die ZIP-Datei kann nach erfolgreicher Erstellung hier heruntergeladen werden!"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_datev_export_form
+msgid "Time Filters"
+msgstr "Filter Buchungszeitraum"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__date_stop
+msgid "To Date"
+msgstr "Datum bis"
+
+#. module: datev_export_xml
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.view_account_invoice_filter
+msgid "To be exported to Datev"
+msgstr "Nach Datev zu exportieren"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: datev_export_xml
+#: model:product.product,uom_name:datev_export_xml.product_datev_01
+#: model:product.product,uom_name:datev_export_xml.product_datev_02
+#: model:product.template,uom_name:datev_export_xml.product_datev_01_product_template
+#: model:product.template,uom_name:datev_export_xml.product_datev_02_product_template
+msgid "Units"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_res_company__datev_default_period
+#: model:ir.model.fields,help:datev_export_xml.field_res_config_settings__datev_default_period
+#: model_terms:ir.ui.view,arch_db:datev_export_xml.res_config_settings_view_form
+msgid "Used to get default values for start and stop date at DATEV Export!"
+msgstr ""
+"Wird verwendet, um Standardwerte für Start- und Enddatum beim DATEV-Export "
+"abzurufen!"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__datev_vendor_order_ref
+#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__datev_vendor_order_ref
+msgid "Vendor Order Reference"
+msgstr "Lieferantenbestellreferenz"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__datev_export_xml__export_type__in
+#, python-format
+msgid "Vendors"
+msgstr "Kreditoren"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__week
+#, python-format
+msgid "Week"
+msgstr "Woche"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,help:datev_export_xml.field_account_bank_statement_line__datev_exported
+#: model:ir.model.fields,help:datev_export_xml.field_account_move__datev_exported
+#: model:ir.model.fields,help:datev_export_xml.field_account_payment__datev_exported
+msgid ""
+"When finishing a datev export the processed invoices are marked as "
+"exported.\n"
+"If you need to export the invoices again, set this field to False."
+msgstr ""
+"Nach Fertigstellung eines Datev-Export werden die verarbeiteten Rechnungen "
+"als exportiert markiert.\n"
+"Wenn die Rechnungen erneut exportiert werden sollen, muss der Haken in "
+"diesem Feld entfernt werden."
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_xml_generator.py:0
+#, python-format
+msgid ""
+"Wrong Data in XML file!\n"
+"Try to solve the problem with '%s' according to message below:\n"
+"\n"
+msgstr ""
+"Fehlerhafte Daten in der XML-Datei!\n"
+"Bitte beheben Sie das Problem in '%s' entsprechend der nachfolgenden "
+"Information:\n"
+"\n"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/res_company.py:0
+#: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__year
+#, python-format
+msgid "Year"
+msgstr "Jahr"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "You can't export incoming and outgoing invoices at the same time"
+msgstr ""
+"Ein gleichzeitiger Export von eingehenden und ausgehenden Rechnungen ist "
+"nicht möglich"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid "You need to choose an export type (Customer/Vendor)!"
+msgstr "Sie müssen einen Exporttypen auswählen (Debitoren/Kreditoren)!"
+
+#. module: datev_export_xml
+#: code:addons/datev_export_xml/models/datev_export.py:0
+#, python-format
+msgid ""
+"You need to choose which documents types (Invoices/Refunds) you want to "
+"export!"
+msgstr "Sie müssen die Dokumententypen auswählen, die sie exportieren möchten!"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_file
+msgid "ZIP file"
+msgstr "ZIP-Datei"
+
+#. module: datev_export_xml
+#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__datev_filename
+msgid "ZIP filename"
+msgstr "ZIP-Dateiname"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Client Number</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Mandantennummer</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Consultant Number</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Beraternummer</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Customer Order Reference</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Kunden Bestellreferenz</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Default Period</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Standard Zeitperiode</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Export State</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Exportstatus</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Vendor Order Reference</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Values set here are company-specific.\" aria-label=\"Values set "
+#~ "here are company-specific.\" groups=\"base.group_multi_company\"/>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Lieferantenbestellreferenz</span>\n"
+#~ "                                <span class=\"fa fa-lg fa-building-o\" "
+#~ "title=\"Diese Werte sind unternehmensspezifisch.\" aria-label=\"Values "
+#~ "set here are company-specific.\" groups=\"base.group_multi_company\"/>"
+
+#~ msgid "DATEV Export"
+#~ msgstr "DATEV Export"
+
+#~ msgid ""
+#~ "If set, the invoices are marked as exported when finishing a Datev "
+#~ "export.\n"
+#~ "                                    Only not yet exported invoices are "
+#~ "suggested for next Datev export."
+#~ msgstr ""
+#~ "Wenn der Haken gesetzt ist, werden die Rechnungen nach Fertigstellen des "
+#~ "Datev-Exports als exportiert markiert.\n"
+#~ "                                    Nur bisher nicht exportierte "
+#~ "Rechnungen werden bei einem nächsten Datev-Export vorgeschlagen."
+
+#~ msgid "Number from 1000 to 9999999"
+#~ msgstr "Zahlen von 0 bis 9999999"
