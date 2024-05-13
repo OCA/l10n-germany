@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -83,11 +83,6 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_state
 msgid "Activity State"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__activity_type_icon
-msgid "Activity Type Icon"
 msgstr ""
 
 #. module: datev_export_xml
@@ -255,14 +250,10 @@ msgid "Day"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__display_name
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__display_name
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__display_name
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__display_name
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -346,9 +337,7 @@ msgid "Export Type"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_bank_statement_line__datev_exported
 #: model:ir.model.fields,field_description:datev_export_xml.field_account_move__datev_exported
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_payment__datev_exported
 msgid "Exported to Datev"
 msgstr ""
 
@@ -389,11 +378,6 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,help:datev_export_xml.field_datev_export_xml__activity_type_icon
-msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
-
-#. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__date_start
 msgid "From Date"
 msgstr ""
@@ -404,14 +388,10 @@ msgid "General Settings"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line__id
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__id
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator__id
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator__id
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company__id
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings__id
 msgid "ID"
 msgstr ""
 
@@ -492,7 +472,7 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.model,name:datev_export_xml.model_account_move
-msgid "Journal Entry"
+msgid "Journal Entries"
 msgstr ""
 
 #. module: datev_export_xml
@@ -501,14 +481,10 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_account_move_line____last_update
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml____last_update
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_pdf_generator____last_update
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_xml_generator____last_update
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_zip_generator____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_company____last_update
-#: model:ir.model.fields,field_description:datev_export_xml.field_res_config_settings____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -584,11 +560,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:datev_export_xml.selection__res_company__datev_default_period__month
 #, python-format
 msgid "Month"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__my_activity_date_deadline
-msgid "My Activity Deadline"
 msgstr ""
 
 #. module: datev_export_xml
@@ -880,9 +851,7 @@ msgid "Week"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,help:datev_export_xml.field_account_bank_statement_line__datev_exported
 #: model:ir.model.fields,help:datev_export_xml.field_account_move__datev_exported
-#: model:ir.model.fields,help:datev_export_xml.field_account_payment__datev_exported
 msgid ""
 "When finishing a datev export the processed invoices are marked as exported.\n"
 "If you need to export the invoices again, set this field to False."
