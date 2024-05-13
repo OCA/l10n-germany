@@ -114,7 +114,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        invisible="datev_file or not manually_document_selection"
+                        invisible="attachment_id or not manually_document_selection"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
                     <button
@@ -122,7 +122,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        invisible="not datev_file or not manually_document_selection"
+                        invisible="attachment_id or not manually_document_selection"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -201,33 +201,30 @@
                             <field name="check_xsd" readonly="state!='draft'" />
                         </group>
                         <group string="Download File" col="1">
-                            <field name="datev_filename" invisible="1" />
+                            <field name="attachment_id" invisible="1" />
                             <div>
-                                <span invisible="datev_file">
+                                <span invisible="not attachment_id">
                                     <strong>
                                         <big>
                                             The zip file can be downloaded here after creation!
                                         </big>
                                     </strong>
                                 </span>
-                                <span invisible="not datev_file">
-                                    <span>
+                                <span invisible="attachment_id">
+                                    <button
+                                        name="datev_download"
+                                        type="object"
+                                        class="btn oe_link oe_inline"
+                                    >
                                         <big>
-                                            <big>
-                                                <field
-                                                    name="datev_file"
-                                                    filename="datev_filename"
-                                                    nolabel="1"
-                                                    class="oe_inline"
-                                                />
-                                                <i class="ml8">
-                                                    <!-- prettier-ignore-start -->
-                                                    (<field name="datev_filesize" class="oe_inline" />)
-                                                    <!-- prettier-ignore-end -->
-                                                </i>
-                                            </big>
+                                            <field name="datev_filename" readonly="1" />
+                                            <i class="ml8">
+                                                <!-- prettier-ignore-start -->
+                                                (<field name="datev_filesize" />)
+                                                <!-- prettier-ignore-end -->
+                                            </i>
                                         </big>
-                                    </span>
+                                    </button>
                                 </span>
                             </div>
 
@@ -300,7 +297,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        invisible="datev_file or manually_document_selection"
+                        invisible="not attachment_id or manually_document_selection"
                         confirm="The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -309,7 +306,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        invisible="not datev_file or manually_document_selection"
+                        invisible="attachment_id or manually_document_selection"
                         confirm="Do you really want to create the DATEV file again? The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -319,7 +316,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        invisible="datev_file or not manually_document_selection"
+                        invisible="not attachment_id or not manually_document_selection"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
 
@@ -328,7 +325,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        invisible="not datev_file or not manually_document_selection"
+                        invisible="attachment_id or not manually_document_selection"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -365,9 +362,6 @@
                 <field name="manually_document_selection" invisible="True" />
                 <field name="date_start" />
                 <field name="date_stop" />
-                <field name="datev_file" filename="datev_filename" widget="binary" />
-                <field name="datev_filesize" />
-                <field name="datev_filename" invisible="1" />
                 <field name="invoices_count" />
                 <field name="state" />
             </list>
