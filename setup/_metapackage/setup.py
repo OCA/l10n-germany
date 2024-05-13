@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo13-addon-datev_export',
+        'odoo13-addon-datev_export_xml',
         'odoo13-addon-l10n_de_country_states',
         'odoo13-addon-l10n_de_holidays',
         'odoo13-addon-l10n_de_skr03_mis_reports',
