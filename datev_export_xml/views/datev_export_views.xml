@@ -118,7 +118,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible':  ['|', ('attachment_id', '!=', False), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
                     <button
@@ -126,7 +126,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible': ['|', ('attachment_id', '=', False), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -201,10 +201,10 @@
                             <field name="check_xsd" />
                         </group>
                         <group string="Download File" col="1">
-                            <field name="datev_filename" invisible="1" />
+                            <field name="attachment_id" invisible="1" />
                             <div>
                                 <span
-                                    attrs="{'invisible': [('datev_file', '!=', False)]}"
+                                    attrs="{'invisible': [('attachment_id', '!=', False)]}"
                                 >
                                     <strong>
                                         <big>
@@ -213,23 +213,21 @@
                                     </strong>
                                 </span>
                                 <span
-                                    attrs="{'invisible': [('datev_file', '=', False)]}"
+                                    attrs="{'invisible': [('attachment_id', '=', False)]}"
                                 >
-                                    <span>
+                                    <button
+                                        name="datev_download"
+                                        type="object"
+                                        class="btn oe_link oe_inline"
+                                    >
                                         <big>
-                                            <big>
-                                                <field
-                                                    name="datev_file"
-                                                    filename="datev_filename"
-                                                    nolabel="1"
-                                                />
-                                                <i class="ml8">(<field
-                                                        name="datev_filesize"
-                                                    />)
-                                                </i>
-                                            </big>
+                                            <field name="datev_filename" readonly="1" />
+                                            <i class="ml8">(<field
+                                                    name="datev_filesize"
+                                                />)
+                                            </i>
                                         </big>
-                                    </span>
+                                    </button>
                                 </span>
                             </div>
 
@@ -307,7 +305,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', True)]}"
+                        attrs="{'invisible':  ['|', ('attachment_id', '!=', False), ('manually_document_selection', '=', True)]}"
                         confirm="The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -316,7 +314,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', True)]}"
+                        attrs="{'invisible': ['|', ('attachment_id', '=', False), ('manually_document_selection', '=', True)]}"
                         confirm="Do you really want to create the DATEV file again? The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -326,7 +324,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible':  ['|', ('attachment_id', '!=', False), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
 
@@ -335,7 +333,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible': ['|', ('attachment_id', '=', False), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -373,9 +371,6 @@
                 <field name="manually_document_selection" invisible="True" />
                 <field name="date_start" />
                 <field name="date_stop" />
-                <field name="datev_file" filename="datev_filename" widget="binary" />
-                <field name="datev_filesize" />
-                <field name="datev_filename" invisible="1" />
                 <field name="invoices_count" />
                 <field name="state" />
             </tree>
