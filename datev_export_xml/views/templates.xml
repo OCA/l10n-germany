@@ -57,7 +57,7 @@
             t-att-quantity="'%.02f' % line.quantity"
         />
         <invoice_item_list
-            t-if="line.product_id"
+            t-elif="line.product_id"
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-product_id="line.product_id.default_code"
             t-att-description_short="(line.name or line.product_id.name)[:40]"
