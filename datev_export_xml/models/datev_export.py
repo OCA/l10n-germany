@@ -374,8 +374,8 @@ class DatevExport(models.Model):
 
             try:
                 generator.generate_xml_invoice(invoice)
-            except UserError:
-                pass
+            except UserError as e:
+                _logger.exception(e)
 
         self._compute_problematic_invoices_count()
 
