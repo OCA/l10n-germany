@@ -42,6 +42,12 @@
                 >
                     <field name="datev_export_state" />
                 </setting>
+                <setting
+                    company_dependent="1"
+                    help="The package size in MB before a new ZIP archive is created. The value should be between 20 MB and 400 MB"
+                >
+                    <field name="datev_package_limit" />
+                </setting>
             </block>
         </field>
     </record>

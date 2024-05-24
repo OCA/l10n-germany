@@ -32,3 +32,8 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.datev_customer_order_ref",
         readonly=False,
     )
+
+    datev_package_limit = fields.Integer(
+        related="company_id.datev_package_limit",
+        readonly=False,
+    )
