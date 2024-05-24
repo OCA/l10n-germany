@@ -13,7 +13,6 @@ import time
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools import human_size
 
 _logger = logging.getLogger(__name__)
 
@@ -110,23 +109,22 @@ class DatevExport(models.Model):
         readonly=True,
         states={"draft": [("readonly", False)]},
     )
-    attachment_id = fields.Many2one(
-        comodel_name="ir.attachment", string="Attachment", required=False, readonly=True
+    line_ids = fields.One2many(
+        "datev.export.xml.line",
+        "export_id",
+        "Lines",
     )
-    datev_filename = fields.Char(
-        "ZIP filename", readonly=True, related="attachment_id.name"
-    )
-    datev_filesize = fields.Char(
-        "Filesize",
-        compute="_compute_datev_filesize",
-    )
+    line_count = fields.Integer(compute="_compute_line_count")
 
     problematic_invoices_count = fields.Integer(
         compute="_compute_problematic_invoices_count"
     )
     invoice_ids = fields.Many2many(comodel_name="account.move", string="Invoices")
     invoices_count = fields.Integer(
-        string="Invoices Count", compute="_compute_invoices_count", store=True
+        string="Total Invoices", compute="_compute_invoices_count", store=True
+    )
+    invoices_exported_count = fields.Integer(
+        string="Exported Invoices", compute="_compute_invoices_count", store=True
     )
 
     manually_document_selection = fields.Boolean(default=False)
@@ -147,22 +145,23 @@ class DatevExport(models.Model):
         tracking=True,
     )
 
-    @api.depends("attachment_id", "attachment_id.file_size")
-    def _compute_datev_filesize(self):
-        for r in self:
-            r.datev_filesize = human_size(r.attachment_id.file_size)
+    @api.depends("line_ids")
+    def _compute_line_count(self):
+        for rec in self:
+            rec.line_count = len(rec.line_ids)
 
     @api.depends("invoice_ids")
     def _compute_problematic_invoices_count(self):
-        for r in self:
-            r.problematic_invoices_count = len(
-                r.invoice_ids.filtered("datev_validation")
+        for rec in self:
+            rec.problematic_invoices_count = len(
+                rec.invoice_ids.filtered("datev_validation")
             )
 
-    @api.depends("invoice_ids")
+    @api.depends("invoice_ids", "line_ids", "line_ids.invoice_ids")
     def _compute_invoices_count(self):
-        for r in self:
-            r.invoices_count = len(r.invoice_ids)
+        for rec in self:
+            rec.invoices_count = len(rec.invoice_ids)
+            rec.invoices_exported_count = len(rec.mapped("line_ids.invoice_ids"))
 
     @api.constrains("export_invoice", "export_refund", "export_type")
     def validate_types(self):
@@ -179,14 +178,6 @@ class DatevExport(models.Model):
                     "you want to export!"
                 )
             )
-
-    def datev_download(self):
-        self.ensure_one()
-        return {
-            "type": "ir.actions.act_url",
-            "url": f"/datev/xml/download/{self.id}",
-            "target": "self",
-        }
 
     def get_type_list(self):
         list_invoice_type = []
@@ -223,50 +214,67 @@ class DatevExport(models.Model):
             )
         return self.env["account.move"].search(search_clause)
 
+    def _get_zip(self):
+        generator = self.generate_zip(
+            self.invoice_ids - self.mapped("line_ids.invoice_ids"),
+            self.check_xsd,
+        )
+
+        for index, (zip_file, invoices) in enumerate(generator, 1):
+            if not self.manually_document_selection:
+                description = _(
+                    "Filtered Export of %(count)s Documents\n"
+                    "Date Range: %(start)s-%(stop)s\nTypes: %(types)s",
+                    count=len(invoices),
+                    start=self.date_start,
+                    stop=self.date_stop,
+                    types=", ".join(self.get_type_list()),
+                )
+            else:
+                description = _(
+                    "Manual Export of %(count)s Documents\n" "Numbers: %(names)s",
+                    count=len(invoices),
+                    names=", ".join(self.invoice_ids.mapped("name")),
+                )
+
+            attachment = self.env["ir.attachment"].create(
+                {
+                    "name": time.strftime(f"%Y-%m-%d_%H%M-{index}.zip"),
+                    "datas": zip_file,
+                    "res_model": "datev.export.xml",
+                    "res_id": self.id,
+                    "res_field": "attachment_id",
+                    "description": description,
+                }
+            )
+            self.line_ids.sudo().create(
+                {
+                    "export_id": self.id,
+                    "attachment_id": attachment.id,
+                    "invoice_ids": [(6, 0, invoices.ids)],
+                }
+            )
+
+            # Huge numbers of invoices can lead to cron timeouts. Commit after
+            # each package and continue. When the timeout hits the job is still
+            # in running and is set to pending in the cron (hanging job) and
+            # will continue with the next package
+            if self.env.context.get("datev_autocommit"):
+                # pylint: disable=invalid-commit
+                self.env.cr.commit()
+
     def get_zip(self):
-        self = self.with_context(bin_size=False)
+        self.ensure_one()
+
         try:
-            if self.attachment_id:
-                self.attachment_id.unlink()
-
             self.write({"state": "running", "exception_info": None})
-            with self.env.cr.savepoint():
-                zip_file = self.generate_zip(
-                    self.invoice_ids,
-                    self.check_xsd,
-                )
-                if not self.manually_document_selection:
-                    description = _(
-                        "Filtered Export of {} Documents\nDate Range: {}-{}\nTypes: {}"
-                    ).format(
-                        len(self.invoice_ids),
-                        self.date_start,
-                        self.date_stop,
-                        ", ".join(self.get_type_list()),
-                    )
-                else:
-                    description = _(
-                        "Manually Doc Export of {} Documents \nNumbers: {}"
-                    ).format(
-                        len(self.invoice_ids),
-                        ", ".join(self.invoice_ids.mapped("name")),
-                    )
-
-                attachment = self.env["ir.attachment"].create(
-                    {
-                        "name": time.strftime("%Y_%m_%d_%H_%M") + ".zip",
-                        "datas": zip_file,
-                        "res_model": "datev.export.xml",
-                        "res_id": self.id,
-                        "res_field": "attachment_id",
-                        "description": description,
-                    }
-                )
-                self.write({"attachment_id": attachment.id, "state": "done"})
+            self.with_context(bin_size=False)._get_zip()
+            if self.invoices_count == self.invoices_exported_count:
+                self.write({"state": "done"})
         except Exception as e:
+            _logger.exception(e)
             msg = e.name if hasattr(e, "name") else str(e)
             self.write({"exception_info": msg, "state": "failed"})
-            _logger.exception(e)
 
         self._compute_problematic_invoices_count()
 
@@ -281,14 +289,25 @@ class DatevExport(models.Model):
         )
         hanging_datev_exports.write({"state": "pending"})
         datev_export = self.search(
-            [("state", "=", "pending"), ("manually_document_selection", "=", False)],
+            [
+                ("state", "in", ("running", "pending")),
+                ("manually_document_selection", "=", False),
+            ],
+            # Favor hanging jobs
+            order="state DESC",
             limit=1,
         )
-        if datev_export:
-            datev_export.with_user(datev_export.create_uid.id).get_zip()
+
+        if not datev_export:
+            return
+
+        datev_export.with_user(datev_export.create_uid.id).with_context(
+            datev_autocommit=True
+        ).get_zip()
+
+        if datev_export.state == "done":
             datev_export._create_activity()
             datev_export.invoice_ids.write({"datev_exported": True})
-        return True
 
     def export_zip(self):
         self.ensure_one()
@@ -299,7 +318,6 @@ class DatevExport(models.Model):
         else:
             self.invoice_ids = [(6, 0, self.get_invoices().ids)]
             self.action_pending()
-        return True
 
     @api.model
     def export_zip_invoice(self, invoice_ids=None):
@@ -365,6 +383,9 @@ class DatevExport(models.Model):
             }
         )
 
+    def action_invalidate_lines(self):
+        self.line_ids.write({"invalidated": True})
+
     def action_validate(self):
         generator = self.env["datev.xml.generator"]
         for invoice in self.invoice_ids:
@@ -408,12 +429,12 @@ class DatevExport(models.Model):
             )
 
     def action_draft(self):
-        for r in self:
-            if r.state == "running":
-                raise ValidationError(
-                    _("It's not allowed to set a running export to draft!")
-                )
-            r.write({"state": "draft"})
+        if "running" in self.mapped("state"):
+            raise ValidationError(
+                _("It's not allowed to set a running export to draft!")
+            )
+
+        self.write({"state": "draft", "line_ids": [(5,)]})
 
     def action_show_invalid_invoices_view(self):
         tree_view = self.env.ref("datev_export_xml.view_move_datev_validation")
@@ -458,6 +479,7 @@ class DatevExport(models.Model):
             for r in self:
                 if r.manually_document_selection:
                     continue
+
                 super(DatevExport, r).write(
                     {"invoice_ids": [(6, 0, r.get_invoices().ids)]}
                 )

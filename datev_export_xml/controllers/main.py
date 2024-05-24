@@ -13,9 +13,9 @@ _logger = logging.getLogger(__name__)
 
 
 class DatevHome(Home):
-    @http.route("/datev/xml/download/<int:export_id>", type="http", auth="user")
-    def datev_xml_download_attachment(self, export_id):
-        export = request.env["datev.export.xml"].search([("id", "=", export_id)])
+    @http.route("/datev/xml/download/<int:line_id>", type="http", auth="user")
+    def datev_xml_download_attachment(self, line_id):
+        export = request.env["datev.export.xml.line"].search([("id", "=", line_id)])
 
         if not export.attachment_id:
             return request.not_found()
