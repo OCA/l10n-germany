@@ -10,7 +10,7 @@
 
 {
     "name": "Datev Export XML",
-    "version": "16.0.1.0.1",
+    "version": "16.0.1.1.1",
     "category": "Accounting",
     "license": "AGPL-3",
     "author": "Guenter Selbert, Thorsten Vocks, Maciej Wichowski, Daniela Scarpa, "

@@ -37,7 +37,7 @@
         />
 
         <accounting_info
-            t-att-account_no="line.account_id.code or ''"
+            t-att-account_no="(line.account_id.code or '').lstrip('0')"
             t-att-cost_category_id="line.datev_analytic_account().code or ''"
             t-att-booking_text="(line.name or line.product_id.name or '')[:60]"
             t-att-bu_code="line.tax_ids.l10n_de_datev_code or '0'"
