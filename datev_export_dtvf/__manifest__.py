@@ -15,6 +15,8 @@
         "datev_export",
     ],
     "data": [
+        "data/ir_cron.xml",
+        "data/mail_template.xml",
         "security/ir.model.access.csv",
         "views/account_account.xml",
         "views/datev_export_dtvf.xml",

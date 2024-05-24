@@ -393,6 +393,7 @@ ul.auto-toc {
 <li>Fill in the fields in the <cite>DATEV</cite> tab</li>
 <li>For accounts where you want to suppress automatic calculations (for ie taxes), set the according flag</li>
 </ol>
+<p>The module also contains an inactive cronjob and a mail template allowing you to send period DATEV export somewhere via email. It relies on finding exactly one date range for the previous month and one for the year of the previous month, otherwise you’ll see an error message in your log when running the cronjob. Note that the data transmitted via email is not encrypted.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>

@@ -1,0 +1,34 @@
+<odoo noupdate="1">
+    <record id="cron_export" model="ir.cron">
+        <field name="name">Monthly DATEV export via mail (dtvf)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="model_id" ref="model_datev_export_dtvf_export" />
+        <field name="active" eval="False" />
+        <field name="code">
+<![CDATA[
+relativedelta = dateutil.relativedelta.relativedelta
+last_month_start = datetime.date.today() - relativedelta(months=1, day=1)
+last_month_end = last_month_start + relativedelta(months=1, days=-1)
+year_start = last_month_start + relativedelta(month=1, day=1)
+year_end = year_start + relativedelta(years=1, days=-1)
+year_range = env['date.range'].search([('date_start', '=', year_start), ('date_end', '=', year_end)], limit=1)
+period_range = env['date.range'].search([('date_start', '=', last_month_start), ('date_end', '=', last_month_end)], limit=1)
+if year_range and period_range:
+    export = model.create({
+        'fiscalyear_id': year_range.id,
+        'period_ids': [(6, 0, period_range.ids)],
+        'name': ('Export %s-%02d') % (last_month_start.year, last_month_start.month),
+    })
+    export.action_generate()
+    env.ref('datev_export_dtvf.mail_template_cron_export').send_mail(
+        export.id,
+        email_values={'attachments': [(export.file_name, export.file_data)]},
+    )
+else:
+    raise UserError('No appropriate date ranges found for periodic export')
+]]>
+        </field>
+    </record>
+</odoo>

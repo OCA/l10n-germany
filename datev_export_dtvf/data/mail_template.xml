@@ -1,0 +1,16 @@
+<odoo noupdate="1">
+    <record id="mail_template_cron_export" model="mail.template">
+        <field name="name">DATEV export</field>
+        <field name="subject">{{object.name}}</field>
+        <field name="email_to">test@test.com</field>
+        <field name="model_id" ref="model_datev_export_dtvf_export" />
+        <field name="body_html" type="html">
+            <h1>Dear recipient,</h1>
+            <p>
+            please find attached the latest DATEV export from <t
+                    t-out="object.company_id.name"
+                />.
+            </p>
+        </field>
+    </record>
+</odoo>
