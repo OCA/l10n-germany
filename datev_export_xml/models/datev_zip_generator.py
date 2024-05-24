@@ -41,31 +41,47 @@ class DatevZipGenerator(models.AbstractModel):
 
     @api.model
     def generate_zip(self, invoices, check_xsd):
+        if not invoices:
+            return
+
         self.check_valid_data(invoices)
-        with io.BytesIO() as s, zipfile.ZipFile(s, mode="w") as zip_file:
-            xml_document_data = self.generate_xml_document(invoices, check_xsd)
-            zip_file.writestr(
-                xml_document_data[0],
-                xml_document_data[1],
-                zipfile.ZIP_DEFLATED,
-            )
 
-            for invoice in invoices.with_context(progress_iter=True):
-                # create xml file for invoice
-                xml_invoice_data = self.generate_xml_invoice(invoice, check_xsd)
-                zip_file.writestr(
-                    invoice.datev_filename(".xml"),
-                    xml_invoice_data[1],
-                    zipfile.ZIP_DEFLATED,
+        package_limit = self.env.company.datev_package_limit * 1024 * 1024
+        included = invoices.browse()
+
+        buf = io.BytesIO()
+        zip_file = zipfile.ZipFile(buf, mode="w", compression=zipfile.ZIP_DEFLATED)
+
+        for invoice in invoices.with_context(progress_iter=True):
+            # create xml file for invoice
+            xml_invoice_data = self.generate_xml_invoice(invoice, check_xsd)
+            zip_file.writestr(invoice.datev_filename(".xml"), xml_invoice_data[1])
+
+            # attach pdf file for vendor bills
+            attachment = self.generate_pdf(invoice)
+            if attachment:
+                zip_file.writestr(invoice.datev_filename(), attachment)
+
+            included |= invoice
+
+            # The file can grow slightly bigger than the limit
+            if buf.tell() > package_limit:
+                # Finalize the file
+                zip_file.writestr(*self.generate_xml_document(included, check_xsd))
+                zip_file.close()
+
+                yield base64.b64encode(buf.getvalue()), included
+
+                # Open next zip and increment
+                buf = io.BytesIO()
+                included = invoices.browse()
+                zip_file = zipfile.ZipFile(
+                    buf, mode="w", compression=zipfile.ZIP_DEFLATED
                 )
-                # attach pdf file for vendor bills
-                attachment = self.generate_pdf(invoice)
-                if attachment:
-                    zip_file.writestr(
-                        invoice.datev_filename(),
-                        attachment,
-                        zipfile.ZIP_DEFLATED,
-                    )
 
+        # Prozess the las chunk
+        if included:
+            zip_file.writestr(*self.generate_xml_document(included, check_xsd))
             zip_file.close()
-            return base64.b64encode(s.getvalue())
+
+            yield base64.b64encode(buf.getvalue()), included
