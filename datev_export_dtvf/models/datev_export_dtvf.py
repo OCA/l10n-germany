@@ -29,8 +29,8 @@ class DatevExportDtvfExport(models.Model):
         states={"draft": [("required", True), ("readonly", False)]},
         readonly=True,
     )
-    fiscalyear_start = fields.Date(related=["fiscalyear_id", "date_start"])
-    fiscalyear_end = fields.Date(related=["fiscalyear_id", "date_end"])
+    fiscalyear_start = fields.Date(related="fiscalyear_id.date_start")
+    fiscalyear_end = fields.Date(related="fiscalyear_id.date_end")
     period_ids = fields.Many2many(
         "date.range",
         string="Periods",

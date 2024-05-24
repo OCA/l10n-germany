@@ -3,7 +3,7 @@
 {
     "name": "DATEV",
     "summary": "Export Data for DATEV (dtvf)",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "development_status": "Beta",
     "category": "Accounting",
     "website": "https://github.com/OCA/l10n-germany",
