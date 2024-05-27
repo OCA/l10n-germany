@@ -101,9 +101,9 @@ class TestDatevExport(TransactionCase):
             doc_data = z.read(doc_file)
             inv_data = z.read(inv_file)
             # document.xml
-            doc_root = etree.fromstring(doc_data.decode("utf-8"))
+            doc_root = etree.fromstring(doc_data)
             # invoice.xml file
-            inv_root = etree.fromstring(inv_data.decode("utf-8"))
+            inv_root = etree.fromstring(inv_data)
             for i in inv_root:
                 invoice_xml.update(i.attrib)
 
