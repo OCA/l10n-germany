@@ -243,7 +243,6 @@ class DatevExport(models.Model):
                     "datas": zip_file,
                     "res_model": "datev.export.xml",
                     "res_id": self.id,
-                    "res_field": "attachment_id",
                     "description": description,
                 }
             )
