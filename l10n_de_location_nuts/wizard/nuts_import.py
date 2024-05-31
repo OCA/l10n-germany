@@ -2,57 +2,51 @@
 # Copyright 2015 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, models
+from odoo import models
 
 
 class NutsImport(models.TransientModel):
     _inherit = "nuts.import"
     _de_state_map = {
         # BADEN-WÜRTTEMBERG
-        "DE1": "l10n_de_country_states.res_country_state_BW",
+        "DE1": "base.state_de_bw",
         # BAYERN
-        "DE2": "l10n_de_country_states.res_country_state_BY",
+        "DE2": "base.state_de_by",
         # BERLIN
-        "DE3": "l10n_de_country_states.res_country_state_BE",
+        "DE3": "base.state_de_be",
         # BRANDENBURG
-        "DE4": "l10n_de_country_states.res_country_state_BB",
+        "DE4": "base.state_de_bb",
         # BREMEN
-        "DE5": "l10n_de_country_states.res_country_state_HB",
+        "DE5": "base.state_de_hb",
         # HAMBURG
-        "DE6": "l10n_de_country_states.res_country_state_HH",
+        "DE6": "base.state_de_hh",
         # HESSEN
-        "DE7": "l10n_de_country_states.res_country_state_HE",
+        "DE7": "base.state_de_he",
         # MECKLENBURG-VORPOMMERN
-        "DE8": "l10n_de_country_states.res_country_state_MV",
+        "DE8": "base.state_de_mv",
         # NIEDERSACHSEN
-        "DE9": "l10n_de_country_states.res_country_state_NI",
+        "DE9": "base.state_de_ni",
         # NORDRHEIN-WESTFALEN
-        "DEA": "l10n_de_country_states.res_country_state_NW",
+        "DEA": "base.state_de_nw",
         # RHEINLAND-PFALZ
-        "DEB": "l10n_de_country_states.res_country_state_RP",
+        "DEB": "base.state_de_rp",
         # SAARLAND
-        "DEC": "l10n_de_country_states.res_country_state_SL",
+        "DEC": "base.state_de_sl",
         # SACHSEN
-        "DED": "l10n_de_country_states.res_country_state_SN",
+        "DED": "base.state_de_sn",
         # SACHSEN-ANHALT
-        "DEE": "l10n_de_country_states.res_country_state_ST",
+        "DEE": "base.state_de_st",
         # SCHLESWIG-HOLSTEIN
-        "DEF": "l10n_de_country_states.res_country_state_SH",
+        "DEF": "base.state_de_sh",
         # THÜRINGEN
-        "DEG": "l10n_de_country_states.res_country_state_TH",
+        "DEG": "base.state_de_th",
         # EXTRA-REGIO NUTS 1
         "DEZ": False,
     }
 
-    @api.model
-    def state_mapping(self, data, node):
-        mapping = super(NutsImport, self).state_mapping(data, node)
-        level = data.get("level", 0)
-        code = data.get("code", "")
-        if self.current_country_id.code == "DE" and level == 2:
-            toponyms = self._de_state_map.get(code, False)
-            if toponyms:
-                state = self.env.ref(toponyms)
-                if state:
-                    mapping["state_id"] = state.id
-        return mapping
+    def _create_partner_nuts(self, nuts_data):
+        nuts_ids = super()._create_partner_nuts(nuts_data)
+        for nut in nuts_ids:
+            if self._de_state_map.get(nut.code, False):
+                nut.state_id = self.env.ref(self._de_state_map[nut.code])
+        return nuts_ids
