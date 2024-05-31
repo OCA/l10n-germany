@@ -65,7 +65,7 @@ class DatevZipGenerator(models.AbstractModel):
             included |= invoice
 
             # The file can grow slightly bigger than the limit
-            if buf.tell() > package_limit:
+            if buf.tell() > package_limit or len(included) >= 4500:
                 # Finalize the file
                 zip_file.writestr(*self.generate_xml_document(included, check_xsd))
                 zip_file.close()

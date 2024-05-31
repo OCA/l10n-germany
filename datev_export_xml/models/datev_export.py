@@ -416,13 +416,6 @@ class DatevExport(models.Model):
                 r.invoice_ids = [(6, 0, r.get_invoices().ids)]
             if r.invoices_count == 0:
                 raise ValidationError(_("No invoices/refunds for export!"))
-            if r.invoices_count > 4999 and r.check_xsd:
-                raise ValidationError(
-                    _(
-                        "The numbers of invoices/refunds is limited to 4999 by DATEV! "
-                        "Please decrease the number of documents or deactivate Check XSD."
-                    )
-                )
             if r.state == "running":
                 raise ValidationError(
                     _("It's not allowed to set an already running export to pending!")
