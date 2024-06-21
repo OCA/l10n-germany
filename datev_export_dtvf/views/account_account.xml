@@ -10,6 +10,7 @@
         <group position="after">
             <group name="datev_export_dtvf">
                 <field name="datev_export_nonautomatic" />
+                <field name="datev_code" />
             </group>
         </group>
     </field>

@@ -153,7 +153,7 @@ class DatevExportDtvfExport(models.Model):
                 self.company_id.datev_consultant_number,
                 self.company_id.datev_client_number,
                 this.fiscalyear_id.date_start.strftime("%Y%m%d"),
-                account_code_length + 1,
+                account_code_length,
                 None,
                 None,
                 user_initials,
@@ -320,7 +320,8 @@ class DatevExportDtvfExport(models.Model):
 
     def _get_data_account(self, account):
         yield {
-            "Konto": account.code[-account.company_id.datev_account_code_length :],
+            "Konto": account.datev_code
+            or account.code[-account.company_id.datev_account_code_length :],
             "Kontobeschriftung": account.name,
             "SprachId": self.env.user.lang.replace("_", "-"),
             "Kontenbeschriftung lang": account.name,

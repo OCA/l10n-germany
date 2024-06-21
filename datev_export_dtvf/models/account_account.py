@@ -12,3 +12,6 @@ class AccountAccount(models.Model):
         "with field 'BU-Schlussel' set to '40', which inhibits automatic calculations "
         "in DATEV.",
     )
+    datev_code = fields.Char(
+        help="In case your COA codes don't work for DATEV, fill in an alternative code here"
+    )
