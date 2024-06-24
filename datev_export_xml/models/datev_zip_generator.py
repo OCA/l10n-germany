@@ -48,6 +48,7 @@ class DatevZipGenerator(models.AbstractModel):
 
         package_limit = self.env.company.datev_package_limit * 1024 * 1024
         included = invoices.browse()
+        file_counter = 0
 
         buf = io.BytesIO()
         zip_file = zipfile.ZipFile(buf, mode="w", compression=zipfile.ZIP_DEFLATED)
@@ -56,16 +57,18 @@ class DatevZipGenerator(models.AbstractModel):
             # create xml file for invoice
             xml_invoice_data = self.generate_xml_invoice(invoice, check_xsd)
             zip_file.writestr(invoice.datev_filename(".xml"), xml_invoice_data[1])
+            file_counter += 1
 
             # attach pdf file for vendor bills
             attachment = self.generate_pdf(invoice)
             if attachment:
                 zip_file.writestr(invoice.datev_filename(), attachment)
+                file_counter += 1
 
             included |= invoice
 
             # The file can grow slightly bigger than the limit
-            if buf.tell() > package_limit or len(included) >= 4500:
+            if buf.tell() > package_limit or file_counter >= 4800:
                 # Finalize the file
                 zip_file.writestr(*self.generate_xml_document(included, check_xsd))
                 zip_file.close()
@@ -73,6 +76,7 @@ class DatevZipGenerator(models.AbstractModel):
                 yield base64.b64encode(buf.getvalue()), included
 
                 # Open next zip and increment
+                file_counter = 0
                 buf = io.BytesIO()
                 included = invoices.browse()
                 zip_file = zipfile.ZipFile(
