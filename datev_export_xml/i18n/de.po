@@ -398,9 +398,12 @@ msgstr "Dateigröße"
 #, python-format
 msgid ""
 "Filtered Export of %(count)s Documents\n"
-" Date Range: %(start)s-%(end)s\n"
+"Date Range: %(start)s-%(stop)s\n"
 "Types: %(types)s"
 msgstr ""
+"Gefilterter Export von %(count)s Dokumente\n"
+"Datumsbereich: %(start)s-%(stop)s\n"
+"Typen: %(types)s"
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_follower_ids
@@ -551,9 +554,11 @@ msgstr ""
 #: code:addons/datev_export_xml/models/datev_export.py:0
 #, python-format
 msgid ""
-"Manually Doc Export of %(count)s Documents \n"
+"Manual Export of %(count)s Documents\n"
 "Numbers: %(names)s"
 msgstr ""
+"Manueller Export von %(count)s Documenten \n"
+"Nummern: %(names)s"
 
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__manually_document_selection

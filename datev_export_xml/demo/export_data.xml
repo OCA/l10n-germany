@@ -260,6 +260,9 @@
     <record id="customer_child" model="res.partner">
       <field name="name">A-Customer Child</field>
       <field name="type">contact</field>
+      <field name="street">Straße 1</field>
+      <field name="zip">12345</field>
+      <field name="city">Berlin</field>
       <field name="parent_id" ref="customer_parent" />
       <field name="vat">BE0477472701</field>
       <field name="country_id" ref="base.de" />
