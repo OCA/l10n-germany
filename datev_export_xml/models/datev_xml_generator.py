@@ -83,7 +83,9 @@ class DatevXmlGenerator(models.AbstractModel):
                 "Document_v050.xsd",
             )
 
-        return "document.xml", etree.tostring(root)
+        return "document.xml", etree.tostring(
+            root, xml_declaration=True, encoding="UTF-8"
+        )
 
     @api.model
     def generate_xml_invoice(self, invoice, check_xsd=True):
@@ -102,4 +104,4 @@ class DatevXmlGenerator(models.AbstractModel):
                 invoice=invoice,
             )
 
-        return doc_name, etree.tostring(root)
+        return doc_name, etree.tostring(root, xml_declaration=True, encoding="UTF-8")

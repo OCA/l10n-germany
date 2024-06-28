@@ -87,30 +87,30 @@ class TestDatevExport(TransactionCase):
     def _check_filecontent(self, export):
         # check content only for single invoice
         # datev export based on unit test cases
-        if not export.attachment_id or not export.invoice_ids:
+        if not export.line_ids.attachment_id or not export.invoice_ids:
             return {}
 
         export.check_valid_data(export.invoice_ids)
         invoice = export.invoice_ids[0].name
         invoice = invoice.replace("/", "-")
-        zip_data = base64.b64decode(export.datev_file)
+        zip_data = base64.b64decode(export.line_ids.attachment_id.datas)
         fp = io.BytesIO()
         fp.write(zip_data)
         zipfile.is_zipfile(fp)
-        file_list = []
+        file_list = set()
         invoice_xml = {}
         with zipfile.ZipFile(fp, "r") as z:
             for zf in z.namelist():
-                file_list.append(zf)
+                file_list.add(zf)
 
             doc_file = "document.xml"
             inv_file = str(invoice + ".xml")
             doc_data = z.read(doc_file)
             inv_data = z.read(inv_file)
             # document.xml
-            doc_root = etree.fromstring(doc_data.decode("utf-8"))
+            doc_root = etree.fromstring(doc_data)
             # invoice.xml file
-            inv_root = etree.fromstring(inv_data.decode("utf-8"))
+            inv_root = etree.fromstring(inv_data)
             for i in inv_root:
                 invoice_xml.update(i.attrib)
 
@@ -376,7 +376,7 @@ class TestDatevExport(TransactionCase):
         start_date = refund.invoice_date
         end_date = refund.invoice_date_due
         datev_export = self.create_customer_datev_export(start_date, end_date)
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
@@ -397,13 +397,12 @@ class TestDatevExport(TransactionCase):
         self.assertEqual(datev_export.state, "pending")
         datev_export.with_user(datev_export.create_uid.id).get_zip()
         datev_export._create_activity()
-        datev_export._compute_datev_filesize()
-        self.assertTrue(datev_export.datev_filesize)
+        datev_export.line_ids._compute_filesize()
+        self.assertTrue(datev_export.line_ids.filesize)
         self.assertEqual(datev_export.state, "done")
 
-        self.assertTrue(datev_export.datev_file)
-        self.assertTrue(datev_export.attachment_id)
-        file_list = ["document.xml", inv_number + ".xml", inv_number + ".pdf"]
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
@@ -427,7 +426,7 @@ class TestDatevExport(TransactionCase):
         datev_export = self.create_vendor_datev_export(start_date, end_date)
 
         attachment = self.update_attachment(attachment, refund)
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
@@ -452,9 +451,8 @@ class TestDatevExport(TransactionCase):
         # self.DatevExportObj.refresh()
         self.assertEqual(datev_export.state, "done")
 
-        self.assertTrue(datev_export.datev_file)
-        self.assertTrue(datev_export.attachment_id)
-        file_list = ["document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"]
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"}
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
@@ -476,7 +474,7 @@ class TestDatevExport(TransactionCase):
         start_date = invoice.invoice_date
         end_date = invoice.invoice_date_due
         datev_export = self.create_customer_datev_export(start_date, end_date)
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
@@ -501,9 +499,8 @@ class TestDatevExport(TransactionCase):
         # self.DatevExportObj.refresh()
         self.assertEqual(datev_export.state, "done")
 
-        self.assertTrue(datev_export.datev_file)
-        self.assertTrue(datev_export.attachment_id)
-        file_list = ["document.xml", inv_number + ".xml", inv_number + ".pdf"]
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
@@ -527,7 +524,7 @@ class TestDatevExport(TransactionCase):
         datev_export = self.create_vendor_datev_export(start_date, end_date)
 
         attachment = self.update_attachment(attachment, invoice)
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
@@ -551,9 +548,8 @@ class TestDatevExport(TransactionCase):
         # self.DatevExportObj.refresh()
         self.assertEqual(datev_export.state, "done")
 
-        self.assertTrue(datev_export.datev_file)
-        self.assertTrue(datev_export.attachment_id)
-        file_list = ["document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"]
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"}
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
@@ -573,7 +569,7 @@ class TestDatevExport(TransactionCase):
         self.assertEqual(invoice.state, "posted")
 
         datev_export = self.create_customer_datev_export_manually(invoice)
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
@@ -596,9 +592,8 @@ class TestDatevExport(TransactionCase):
             {"datev_mode": "datev_export"}
         ).export_zip()
         self.assertEqual(datev_export.state, "done")
-        self.assertTrue(datev_export.datev_file)
-        self.assertTrue(datev_export.attachment_id)
-        file_list = ["document.xml", inv_number + ".xml", inv_number + ".pdf"]
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
@@ -752,7 +747,7 @@ class TestDatevExport(TransactionCase):
                 "export_type": "out",
             }
         )
-        self.assertEqual(datev_export.datev_file, False)
+        self.assertFalse(datev_export.line_ids.attachment_id)
         self.assertEqual(
             datev_export.client_number,
             self.env.company.datev_client_number,
