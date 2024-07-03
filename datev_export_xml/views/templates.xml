@@ -106,22 +106,34 @@
                 t-att-invoice_type="doc.datev_invoice_type()"
             />
 
-            <invoice_party t-call="datev_export_xml.export_party">
-                <t
-                    t-set="partner"
-                    t-value="doc.partner_id"
-                    t-if="doc.move_type in ['out_invoice', 'out_refund']"
-                />
-                <t t-set="partner" t-value="doc.company_id.partner_id" t-else="" />
+            <t
+                t-if="doc.move_type in ['out_invoice', 'out_refund']"
+                t-set="invoice_partner"
+                t-value="doc.partner_id"
+            />
+            <t t-set="invoice_partner" t-value="doc.company_id.partner_id" t-else="" />
+
+            <t
+                t-if="doc.move_type in ['out_invoice', 'out_refund']"
+                t-set="supplier_partner"
+                t-value="doc.company_id.partner_id"
+            />
+            <t t-set="supplier_partner" t-value="doc.partner_id" t-else="" />
+
+            <invoice_party
+                t-call="datev_export_xml.export_party"
+                t-att="doc.datev_party_attributes(invoice_partner)"
+            >
+                <t t-set="partner" t-value="invoice_partner" />
                 <t t-set="account" t-value="partner.property_account_receivable_id" />
             </invoice_party>
 
-            <supplier_party t-call="datev_export_xml.export_party">
-                <t t-if="doc.move_type in ['out_invoice', 'out_refund']">
-                    <t t-set="partner" t-value="doc.company_id.partner_id" />
-                </t>
-                <t t-else="">
-                    <t t-set="partner" t-value="doc.partner_id" />
+            <supplier_party
+                t-call="datev_export_xml.export_party"
+                t-att="doc.datev_party_attributes(supplier_partner)"
+            >
+                <t t-set="partner" t-value="supplier_partner" />
+                <t t-if="doc.move_type not in ['out_invoice', 'out_refund']">
                     <t t-set="account" t-value="partner.property_account_payable_id" />
                 </t>
             </supplier_party>
