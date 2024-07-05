@@ -241,7 +241,15 @@ class DatevExportDtvfExport(models.Model):
                 else "",
                 "Buchungstext": move_line.name,
                 "Belegdatum": move.date.strftime("%d%m"),
-                "Belegfeld 1": move.name,
+                "Belegfeld 1": move.name
+                if "sale_line_ids" not in move_line._fields
+                else (
+                    move.mapped(
+                        "line_ids.full_reconcile_id.reconciled_line_ids.sale_line_ids.order_id"
+                    )
+                    or move.mapped("line_ids.sale_line_ids.order_id")
+                )[:1].name
+                or move.name,
                 "Belegfeld 2": move_line2.name,
                 "KOST1 - Kostenstelle": move_line.analytic_account_id.code
                 or move_line.analytic_account_id.name
