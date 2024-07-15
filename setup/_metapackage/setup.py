@@ -11,6 +11,7 @@ setuptools.setup(
         'odoo-addon-datev_export>=16.0dev,<16.1dev',
         'odoo-addon-datev_export_xml>=16.0dev,<16.1dev',
         'odoo-addon-datev_import_csv_dtvf>=16.0dev,<16.1dev',
+        'odoo-addon-l10n_de_location_nuts>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
