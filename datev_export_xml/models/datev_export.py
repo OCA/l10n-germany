@@ -451,7 +451,7 @@ class DatevExport(models.Model):
         }
 
     def unlink(self):
-        attachments = self.mapped("attachment_id")
+        attachments = self.line_ids.mapped("attachment_id")
         res = super().unlink()
         attachments.exists().unlink()
         return res
