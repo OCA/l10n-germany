@@ -249,6 +249,14 @@ class DatevExportDtvfExport(models.Model):
                     )
                     or move.mapped("line_ids.sale_line_ids.order_id")
                 )[:1].name
+                if "purchase_line_id" not in move_line._fields
+                else (
+                    move.mapped(
+                        "line_ids.full_reconcile_id.reconciled_line_ids.purchase_line_id"
+                        ".order_id"
+                    )
+                    or move.mapped("line_ids.purchase_line_id.order_id")
+                )[:1].name
                 or move.name,
                 "Belegfeld 2": move_line2.name,
                 "KOST1 - Kostenstelle": move_line.analytic_account_id.code
