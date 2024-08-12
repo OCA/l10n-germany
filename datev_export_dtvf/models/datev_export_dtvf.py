@@ -243,14 +243,14 @@ class DatevExportDtvfExport(models.Model):
                 "Belegdatum": move.date.strftime("%d%m"),
                 "Belegfeld 1": move.name
                 if "sale_line_ids" not in move_line._fields
+                or "purchase_line_id" not in move_line._fields
                 else (
                     move.mapped(
                         "line_ids.full_reconcile_id.reconciled_line_ids.sale_line_ids.order_id"
                     )
                     or move.mapped("line_ids.sale_line_ids.order_id")
                 )[:1].name
-                if "purchase_line_id" not in move_line._fields
-                else (
+                or (
                     move.mapped(
                         "line_ids.full_reconcile_id.reconciled_line_ids.purchase_line_id"
                         ".order_id"
