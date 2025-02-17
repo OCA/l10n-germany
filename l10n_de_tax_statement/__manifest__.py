@@ -4,12 +4,12 @@
 
 {
     "name": "German VAT Statement",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Localization",
     "license": "AGPL-3",
     "author": "Onestein, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
-    "depends": ["account", "date_range", "l10n_de_skr03"],
+    "depends": ["account", "date_range", "l10n_de"],
     "data": [
         "security/ir.model.access.csv",
         "security/tax_statement_security_rule.xml",

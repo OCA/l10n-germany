@@ -11,4 +11,5 @@ class ResConfigSettings(models.TransientModel):
     l10n_de_tax_invoice_basis = fields.Boolean(
         string="DE Tax Invoice Basis",
         related="company_id.l10n_de_tax_invoice_basis",
+        readonly=False,
     )

@@ -16,7 +16,7 @@
                     <button
                         name="statement_update"
                         string="Update"
-                        states="draft"
+                        invisible="state!='draft'"
                         type="object"
                         icon="fa-repeat"
                     />
@@ -26,7 +26,7 @@
                         <button
                             name="post"
                             string="Post"
-                            states="draft"
+                            invisible="state!='draft'"
                             type="object"
                             class="oe_stat_button"
                             icon="fa-arrow-right text-success"
@@ -34,7 +34,7 @@
                         <button
                             name="reset"
                             string="Reset to Draft"
-                            states="posted"
+                            invisible="state!='posted'"
                             type="object"
                             class="oe_stat_button"
                             icon="fa-arrow-left text-success"
@@ -42,7 +42,7 @@
                         <button
                             name="finalize"
                             string="Finalize"
-                            states="posted"
+                            invisible="state!='posted'"
                             type="object"
                             class="oe_stat_button"
                             icon="fa-stop-circle-o text-success"
@@ -66,7 +66,7 @@
                             />
                             <field
                                 name="date_range_id"
-                                attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                readonly="state in ('posted', 'final')"
                             />
                             <label for="from_date" string="Date" />
                             <div class="o_row">
@@ -75,8 +75,8 @@
                                     widget="daterange"
                                     nolabel="1"
                                     class="oe_inline"
-                                    options="{'related_end_date': 'to_date'}"
-                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                    options="{'end_date_field': 'to_date'}"
+                                    readonly="state in ('posted', 'final')"
                                 />
                                 <i
                                     class="fa fa-long-arrow-right mx-2"
@@ -85,11 +85,9 @@
                                 />
                                 <field
                                     name="to_date"
-                                    widget="daterange"
+                                    readonly="state in ('posted', 'final')"
                                     nolabel="1"
                                     class="oe_inline"
-                                    options="{'related_start_date': 'from_date'}"
-                                    attrs="{'readonly': [('state','in',['posted','final'])]}"
                                 />
                             </div>
                         </group>
@@ -103,7 +101,7 @@
                         <page name="statement" string="Statement">
                             <group name="statement_lines" string="Tax Statement lines">
                                 <div
-                                    states="draft"
+                                    invisible="state!='draft'"
                                     colspan="2"
                                     class="text-info"
                                 >Press the <span class="text-uppercase"><i
@@ -140,25 +138,27 @@
                                     <field name="format_tax" invisible="1" />
                                     <field
                                         name="base"
-                                        attrs="{'invisible': [('format_base', '=', False)],'readonly': [('is_readonly', '=', True)]}"
+                                        invisible="not format_base"
+                                        readonly="is_readonly"
                                     />
                                     <button
                                         name="view_base_lines"
                                         type="object"
                                         string="View base lines"
                                         icon="fa-search-plus"
-                                        attrs="{'invisible': ['|',('format_base', '=', False),('is_total', '=', True)]}"
+                                        invisible="not format_base or is_total"
                                     />
                                     <field
                                         name="tax"
-                                        attrs="{'invisible': [('format_tax', '=', False)],'readonly': [('is_readonly', '=', True)]}"
+                                        invisible="not format_tax"
+                                        readonly="is_readonly"
                                     />
                                     <button
                                         name="view_tax_lines"
                                         type="object"
                                         string="View tax lines"
                                         icon="fa-search-plus"
-                                        attrs="{'invisible': ['|',('format_tax', '=', False),('is_total', '=', True)]}"
+                                        invisible="not format_tax or is_total"
                                     />
                                 </tree>
                             </field>
@@ -173,7 +173,7 @@
                         <page
                             name="entry_lines"
                             string="Past Undeclared Invoices"
-                            attrs="{'invisible':[('state','!=','draft')]}"
+                            invisible="state!='draft'"
                         >
                             <group
                                 name="unreported_move_filter"
@@ -183,7 +183,7 @@
                                     <field
                                         name="unreported_move_from_date"
                                         string="From Date"
-                                        attrs="{'readonly': [('state','in',['posted','final'])]}"
+                                        readonly="state in ('posted', 'final')"
                                     />
                                 </group>
                                 <group />
@@ -210,14 +210,14 @@
                                         icon="fa-play"
                                         string="Add Invoice"
                                         type="object"
-                                        attrs="{'invisible': [('l10n_de_tax_statement_include', '=', True)]}"
+                                        invisible="l10n_de_tax_statement_include"
                                     />
                                     <button
                                         name="l10n_de_unlink_move_from_statement"
                                         icon="fa-remove"
                                         string="Remove Invoice"
                                         type="object"
-                                        attrs="{'invisible': [('l10n_de_tax_statement_include', '!=', True)]}"
+                                        invisible="not l10n_de_tax_statement_include"
                                     />
                                 </tree>
                             </field>

@@ -1,5 +1,6 @@
 # Copyright 2019 BIG-Consulting GmbH(<http://www.openbig.org>)
 # Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 import datetime
@@ -8,122 +9,65 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import fields
 from odoo.exceptions import UserError
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, tagged
+from odoo.tools import mute_logger
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestVatStatement(TransactionCase):
+@tagged("-at_install", "post_install")
+class TestVatStatement(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
-        cls.eur = cls.env["res.currency"].search([("name", "=", "EUR")])
-        cls.coa = cls.env.ref("l10n_de_skr03.l10n_de_chart_template", False)
-        cls.coa = cls.coa or cls.env.ref("l10n_generic_coa.configurable_chart_template")
-        cls.company_parent = cls.env["res.company"].create(
+        cls.eur = cls.env.ref("base.EUR")
+        country_de = cls.env.ref("base.de")
+        cls.company = cls.env["res.company"].create(
             {
-                "name": "Parent Company",
-                "country_id": cls.env.ref("base.de").id,
+                "name": "Test company",
+                "country_id": country_de.id,
                 "currency_id": cls.eur.id,
             }
         )
-        cls.env.user.company_id = cls.company_parent
-        cls.coa.try_loading(install_demo=False)
+        cls.env.company = cls.company
+        template = cls.env["account.chart.template"]
+        template.try_loading("de_skr03", cls.company)
         cls.env["l10n.de.tax.statement"].search(
             [("state", "not in", ["posted", "final"])]
         ).unlink()
-
-        cls.tag_1 = cls.env["account.account.tag"].create(
+        cls.tax_1 = cls.env.ref(f"account.{cls.company.id}_tax_ust_19_skr03")
+        cls.tax_2 = cls.env.ref(f"account.{cls.company.id}_tax_ust_7_skr03")
+        cls.tax_3 = cls.env["account.tax"].create(
             {
-                "name": "+81 base",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
+                "name": "Tax 3",
+                "type_tax_use": "sale",
+                "amount": 25,
+                "company_id": cls.company.id,
             }
         )
-        cls.tag_2 = cls.env["account.account.tag"].create(
-            {
-                "name": "+81 tax",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
-            }
+        cls.tag_5 = cls.env["account.account.tag"].search(
+            [("name", "=", "+41"), ("country_id", "=", country_de.id)]
         )
-        cls.tag_3 = cls.env["account.account.tag"].create(
-            {
-                "name": "+86 base",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_4 = cls.env["account.account.tag"].create(
-            {
-                "name": "+86 tax",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_5 = cls.env["account.account.tag"].create(
-            {
-                "name": "+41",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_6 = cls.env["account.account.tag"].create(
-            {
-                "name": "+62",
-                "applicability": "taxes",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-
-        cls.tag_7 = cls.env["account.account.tag"].create(
-            {
-                "name": "46",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_8 = cls.env["account.account.tag"].create(
-            {
-                "name": "47",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_9 = cls.env["account.account.tag"].create(
-            {
-                "name": "84",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-        cls.tag_10 = cls.env["account.account.tag"].create(
-            {
-                "name": "85",
-                "country_id": cls.env.ref("base.de").id,
-            }
-        )
-
-        cls.tax_1 = cls.env["account.tax"].create({"name": "Tax 1", "amount": 19})
-        cls.tax_1.invoice_repartition_line_ids[0].tag_ids = cls.tag_1
-        cls.tax_1.invoice_repartition_line_ids[1].tag_ids = cls.tag_2
-
-        cls.tax_2 = cls.env["account.tax"].create({"name": "Tax 2", "amount": 7})
-        cls.tax_2.invoice_repartition_line_ids[0].tag_ids = cls.tag_3
-        cls.tax_2.invoice_repartition_line_ids[1].tag_ids = cls.tag_4
-
-        cls.tax_3 = cls.env["account.tax"].create({"name": "Tax 3", "amount": 25})
         cls.tax_3.invoice_repartition_line_ids[0].tag_ids = cls.tag_5
         cls.tax_3.invoice_repartition_line_ids[1].tag_ids = cls.tag_5
-
-        cls.tax_4 = cls.env["account.tax"].create({"name": "Tax 4", "amount": 5})
+        cls.tax_4 = cls.env["account.tax"].create(
+            {
+                "name": "Tax 4",
+                "type_tax_use": "sale",
+                "amount": 5,
+                "company_id": cls.company.id,
+            }
+        )
+        cls.tag_6 = cls.env["account.account.tag"].search(
+            [("name", "=", "+62"), ("country_id", "=", country_de.id)]
+        )
         cls.tax_4.invoice_repartition_line_ids[0].tag_ids = cls.tag_6
-
-        cls.tax_5 = cls.env["account.tax"].create({"name": "Tax 5", "amount": 19})
-        cls.tax_5.invoice_repartition_line_ids[0].tag_ids = cls.tag_7
-        cls.tax_5.invoice_repartition_line_ids[1].tag_ids = cls.tag_8
-
-        cls.tax_6 = cls.env["account.tax"].create({"name": "Tax 6", "amount": 7})
-        cls.tax_6.refund_repartition_line_ids[0].tag_ids = cls.tag_9
-        cls.tax_6.refund_repartition_line_ids[1].tag_ids = cls.tag_10
-
+        cls.tax_5 = cls.env.ref(
+            f"account.{cls.company.id}_tax_ust_19_13b_eu_ohne_vst_skr03"
+        )
+        cls.tax_6 = cls.env.ref(
+            f"account.{cls.company.id}_tax_ust_7_13b_bau_ohne_vst_skr03"
+        )
         cls.statement_1 = cls.env["l10n.de.tax.statement"].create(
             {"name": "Statement 1", "version": "2018"}
         )
@@ -134,6 +78,7 @@ class TestVatStatement(TransactionCase):
                 "account_type": "expense",
                 "code": "EXPTEST",
                 "name": "Test expense account",
+                "company_id": self.company.id,
             }
         )
         journal = self.env["account.journal"].create(
@@ -142,6 +87,7 @@ class TestVatStatement(TransactionCase):
                 "code": "Jou1",
                 "type": "sale",
                 "default_account_id": account_receivable.id,
+                "company_id": self.company.id,
             }
         )
         partner = self.env["res.partner"].create({"name": "Test partner"})
@@ -227,6 +173,7 @@ class TestVatStatement(TransactionCase):
 
         self.assertEqual(statement.tax_total, 0.0)
 
+    @mute_logger("odoo.models.unlink")
     def test_02_post_final(self):
         # in draft
         self.assertEqual(self.statement_1.state, "draft")
@@ -290,6 +237,7 @@ class TestVatStatement(TransactionCase):
         with self.assertRaises(UserError):
             self.statement_1.unlink()
 
+    @mute_logger("odoo.models.unlink")
     def test_06_unlink_working(self):
         self.statement_1.unlink()
 
@@ -397,8 +345,6 @@ class TestVatStatement(TransactionCase):
             {"name": "Statement 2", "version": "2018"}
         )
         statement2.statement_update()
-        with self.assertRaises(UserError):
-            statement2.post()
 
         self.assertEqual(self.statement_1.tax_total, 0.0)
         self.assertEqual(self.statement_1.format_tax_total, "0.00")
@@ -474,4 +420,4 @@ class TestVatStatement(TransactionCase):
         self.statement_1.post()
 
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
-        self.assertEqual(self.statement_1.tax_total, 0.0)
+        self.assertEqual(self.statement_1.tax_total, -22.5)

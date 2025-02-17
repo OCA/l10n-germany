@@ -144,16 +144,13 @@ class VatStatementLine(models.Model):
             and rep_line.repartition_type == tax_or_base
         ):
             # Workaround missing repartition tag
-            if rep_line.invoice_tax_id:
-                tax_id = rep_line.invoice_tax_id
-
-                siblings = tax_id.invoice_repartition_line_ids
-            elif rep_line.refund_tax_id:
-                tax_id = rep_line.refund_tax_id
-
-                siblings = tax_id.refund_repartition_line_ids
-            else:
+            if not rep_line.tax_id:
                 return self.env["account.account.tag"]
+
+            if "_refund" in line.move_type:
+                siblings = rep_line.tax_id.refund_repartition_line_ids
+            else:
+                siblings = rep_line.tax_id.invoice_repartition_line_ids
 
             for sibling in siblings.filtered_domain([("tag_ids", "!=", False)]):
                 for tag in sibling.tag_ids:

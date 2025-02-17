@@ -169,7 +169,9 @@ class VatStatement(models.Model):
         defaults.setdefault("name", self.env.company.name)
         return defaults
 
-    @api.depends("date_range_id")
+    @api.depends(
+        "date_range_id", "date_range_id.date_start", "date_range_id.date_end", "state"
+    )
     def _compute_date_range(self):
         for statement in self:
             if statement.date_range_id and statement.state == "draft":
@@ -288,17 +290,13 @@ class VatStatement(models.Model):
     def _match_no_tag(self, lines, move_line, tags_map):
         rep_line = move_line.tax_repartition_line_id
         if rep_line and not rep_line.tag_ids:
-            # Workaround missing repartition tag
-            if rep_line.invoice_tax_id:
-                tax_id = rep_line.invoice_tax_id
-
-                siblings = tax_id.invoice_repartition_line_ids
-            elif rep_line.refund_tax_id:
-                tax_id = rep_line.refund_tax_id
-
-                siblings = tax_id.refund_repartition_line_ids
-            else:
+            if not rep_line.tax_id:
                 return False, False
+
+            if "_refund" in move_line.move_type:
+                siblings = rep_line.tax_id.refund_repartition_line_ids
+            else:
+                siblings = rep_line.tax_id.invoice_repartition_line_ids
 
             for sibling in siblings.filtered_domain([("tag_ids", "!=", False)]):
                 for tag in sibling.tag_ids:
@@ -320,7 +318,6 @@ class VatStatement(models.Model):
                             return False, False
 
                         return line_code, column
-
         return False, False
 
     def _set_statement_lines(self, lines, move_lines):
@@ -465,7 +462,9 @@ class VatStatement(models.Model):
             else:
                 list_totals = _totals_2018()
 
-            total_lines = lines.filtered(lambda l: l.code in list_totals)
+            total_lines = lines.filtered(
+                lambda x, list_totals=list_totals: x.code in list_totals
+            )
             statement.tax_total = sum(line.tax for line in total_lines)
 
     def _get_all_statement_move_lines(self):
