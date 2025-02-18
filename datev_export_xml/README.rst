@@ -113,7 +113,7 @@ The duration of the file creation depends on the number of invoices /
 refunds for that you will create the zip file!
 
 Import into DATEV
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Requirements
 ------------

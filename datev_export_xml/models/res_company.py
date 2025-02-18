@@ -25,7 +25,8 @@ class ResCompany(models.Model):
     )
 
     datev_export_state = fields.Boolean(
-        help="If set, the invoices are marked as exported when finishing a Datev export.",
+        help="If set, the invoices are marked as exported when finishing a Datev "
+        "export.",
     )
 
     datev_vendor_order_ref = fields.Selection(

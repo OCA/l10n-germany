@@ -40,7 +40,8 @@ class AccountMove(models.Model):
     datev_exported = fields.Boolean(
         string="Exported to Datev",
         copy=False,
-        help="When finishing a datev export the processed invoices are marked as exported.\n"
+        help="When finishing a datev export the processed invoices are marked as "
+        "exported.\n"
         "If you need to export the invoices again, set this field to False.",
     )
     datev_validation = fields.Text()

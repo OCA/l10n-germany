@@ -58,41 +58,21 @@ class DatevExport(models.Model):
 
         return today - datetime.timedelta(days=1)
 
-    def name_get(self):
-        return [(r.id, f"{r.create_date} {r.create_uid.name}") for r in self]
+    @api.depends("create_date", "create_uid")
+    def _compute_display_name(self):
+        for item in self:
+            item.display_name = f"{item.create_date} {item.create_uid.name}"
 
     name = fields.Char()
     export_type = fields.Selection(
         [("out", _("Customers")), ("in", _("Vendors"))],
         default="out",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
     )
-    export_invoice = fields.Boolean(
-        "Export Invoices",
-        default=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
-    export_refund = fields.Boolean(
-        "Export Refunds",
-        default=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
-    date_start = fields.Date(
-        "From Date",
-        default=_default_start,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
-    date_stop = fields.Date(
-        "To Date",
-        default=_default_stop,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
+    export_invoice = fields.Boolean("Export Invoices", default=True)
+    export_refund = fields.Boolean("Export Refunds", default=True)
+    date_start = fields.Date("From Date", default=_default_start)
+    date_stop = fields.Date("To Date", default=_default_stop)
     company_id = fields.Many2one(
         "res.company",
         required=True,
@@ -103,13 +83,7 @@ class DatevExport(models.Model):
     consultant_number = fields.Char(
         related="company_id.datev_consultant_number", readonly=True
     )
-    check_xsd = fields.Boolean(
-        "Check XSD",
-        required=True,
-        default=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
-    )
+    check_xsd = fields.Boolean("Check XSD", required=True, default=True)
     attachment_id = fields.Many2one(
         comodel_name="ir.attachment", string="Attachment", required=False, readonly=True
     )
@@ -117,10 +91,7 @@ class DatevExport(models.Model):
     datev_filename = fields.Char(
         "ZIP filename", readonly=True, related="attachment_id.name"
     )
-    datev_filesize = fields.Char(
-        "Filesize",
-        compute="_compute_datev_filesize",
-    )
+    datev_filesize = fields.Char("Filesize", compute="_compute_datev_filesize")
 
     problematic_invoices_count = fields.Integer(
         compute="_compute_problematic_invoices_count"
@@ -237,7 +208,8 @@ class DatevExport(models.Model):
                     )
                 else:
                     description = _(
-                        "Manually Doc Export of %(count)s Documents \nNumbers: %(names)s",
+                        "Manually Doc Export of %(count)s Documents \nNumbers: "
+                        "%(names)s",
                         count=len(self.invoice_ids),
                         names=", ".join(self.invoice_ids.mapped("name")),
                     )
@@ -389,7 +361,8 @@ class DatevExport(models.Model):
                 raise ValidationError(
                     _(
                         "The numbers of invoices/refunds is limited to 4999 by DATEV! "
-                        "Please decrease the number of documents or deactivate Check XSD."
+                        "Please decrease the number of documents or deactivate Check "
+                        "XSD."
                     )
                 )
             if r.state == "running":
@@ -459,9 +432,10 @@ class DatevExport(models.Model):
                 )
         return res
 
-    @api.model
-    def create(self, vals):
-        r = super().create(vals)
-        if not r.manually_document_selection:
-            r.invoice_ids = [(6, 0, r.get_invoices().ids)]
-        return r
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        for item in res:
+            if not item.manually_document_selection:
+                item.invoice_ids = [(6, 0, item.get_invoices().ids)]
+        return res

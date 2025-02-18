@@ -9,13 +9,10 @@
 
 import base64
 import io
-import logging
 import zipfile
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
-
-_logger = logging.getLogger(__name__)
 
 
 class DatevZipGenerator(models.AbstractModel):

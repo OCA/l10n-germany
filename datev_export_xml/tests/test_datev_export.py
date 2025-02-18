@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 import base64
 import io
-import logging
 import zipfile
 from datetime import date, timedelta
 
@@ -11,12 +10,11 @@ from lxml import etree
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests.common import TransactionCase
 
-_logger = logging.getLogger(__name__)
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestDatevExport(TransactionCase):
+class TestDatevExport(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -105,6 +103,10 @@ class TestDatevExport(TransactionCase):
         cls.refund_date = cls.today - timedelta(days=55)
         cls.start_date = cls.today - timedelta(days=34)
         cls.end_date = cls.today - timedelta(days=32)
+        if "check_account_audit_trail" in cls.env["res.company"]._fields:
+            cls.env["res.company"].search([]).write(
+                {"check_account_audit_trail": False}
+            )
         cls.InvoiceObj.with_context(force_delete=True).search([]).unlink()
         cls.env.company.datev_default_period = "week"
 
