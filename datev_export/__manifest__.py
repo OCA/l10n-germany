@@ -9,7 +9,8 @@
     "license": "AGPL-3",
     "author": "Guenter Selbert, Thorsten Vocks, Maciej Wichowski, Daniela Scarpa, "
     "Maria Sparenberg, initOS GmbH, Jan Sierpina, Odoo Community Association (OCA)",
-    "summary": "Export invoices and refunds as xml and pdf files zipped in DATEV format.",
+    "summary": "Export invoices and refunds as xml and pdf files "
+    "zipped in DATEV format.",
     "website": "https://github.com/OCA/l10n-germany",
     "depends": [
         "account",
