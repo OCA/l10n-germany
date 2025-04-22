@@ -20,9 +20,40 @@ class TestDatevExport(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.company = cls.env.company
         cls.JournalObj = cls.env["account.journal"]
-        cls.sale_journal = cls.JournalObj.search([("type", "=", "sale")])[0]
-        cls.purchase_journal = cls.JournalObj.search([("type", "=", "purchase")])[0]
+        cls.sale_journal = cls.JournalObj.search(
+            [
+                ("type", "=", "sale"),
+                ("company_id", "=", cls.company.id),
+            ],
+            limit=1,
+        )
+        if not cls.sale_journal:
+            cls.sale_journal = cls.JournalObj.create(
+                {
+                    "name": "Test sale journal",
+                    "code": "sale",
+                    "type": "sale",
+                    "company_id": cls.company.id,
+                }
+            )
+        cls.purchase_journal = cls.JournalObj.search(
+            [
+                ("type", "=", "purchase"),
+                ("company_id", "=", cls.company.id),
+            ],
+            limit=1,
+        )
+        if not cls.purchase_journal:
+            cls.purchase_journal = cls.JournalObj.create(
+                {
+                    "name": "Test purchase journal",
+                    "code": "purchase",
+                    "type": "purchase",
+                    "company_id": cls.company.id,
+                }
+            )
         cls.AccountObj = cls.env["account.account"]
         cls.PartnerObj = cls.env["res.partner"]
         cls.AnalyticAccountObj = cls.env["account.analytic.account"]
