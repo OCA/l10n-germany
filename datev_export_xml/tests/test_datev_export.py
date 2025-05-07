@@ -835,7 +835,7 @@ class TestDatevExport(TransactionCase):
             (False, (2022, 6, 15), (2022, 6, 14), (2022, 6, 14)),
         ]
         for dates in checks:
-            today, start, stop = [date(*x) for x in dates[1:]]
+            today, start, stop = (date(*x) for x in dates[1:])
             self.env.company.datev_default_period = dates[0]
             self.assertEqual(self.DatevExportObj._default_start(today), start)
             self.assertEqual(self.DatevExportObj._default_stop(today), stop)
