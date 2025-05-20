@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -59,13 +59,63 @@ msgid "<span class=\"o_stat_text\">Problems</span>"
 msgstr ""
 
 #. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_rec_DE
+msgid "A-Customer Account DE"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_rec_EU
+msgid "A-Customer Account EU"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_rec_NonEU
+msgid "A-Customer Account Non-EU"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_expense
+msgid "A-Expense"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.analytic.account,name:datev_export_xml.analytic_account_datev_01
+msgid "A-IT"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:product.template,name:datev_export_xml.product_datev_01_product_template
 msgid "A-IT-Consulting"
 msgstr ""
 
 #. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_income
+msgid "A-Income"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.analytic.account,name:datev_export_xml.analytic_account_datev_02
+msgid "A-Office"
+msgstr ""
+
+#. module: datev_export_xml
 #: model:product.template,name:datev_export_xml.product_datev_02_product_template
 msgid "A-Office-Lease"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_pay_DE
+msgid "A-Vendor Account DE"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_pay_EU
+msgid "A-Vendor Account EU"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_pay_NonEU
+msgid "A-Vendor Account Non-EU"
 msgstr ""
 
 #. module: datev_export_xml
@@ -126,6 +176,16 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__company_id
 msgid "Company"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_pay
+msgid "Company Account Payable"
+msgstr ""
+
+#. module: datev_export_xml
+#: model:account.account,name:datev_export_xml.account_datev_rec
+msgid "Company Account Receivable"
 msgstr ""
 
 #. module: datev_export_xml
@@ -214,7 +274,6 @@ msgstr ""
 
 #. module: datev_export_xml
 #: model:ir.actions.server,name:datev_export_xml.cron_create_datev_export_ir_actions_server
-#: model:ir.cron,cron_name:datev_export_xml.cron_create_datev_export
 msgid "DATEV XML: Create Export File"
 msgstr ""
 
@@ -507,11 +566,6 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__write_uid
 msgid "Last Updated by"
 msgstr ""
@@ -519,11 +573,6 @@ msgstr ""
 #. module: datev_export_xml
 #: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__write_date
 msgid "Last Updated on"
-msgstr ""
-
-#. module: datev_export_xml
-#: model:ir.model.fields,field_description:datev_export_xml.field_datev_export_xml__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: datev_export_xml
