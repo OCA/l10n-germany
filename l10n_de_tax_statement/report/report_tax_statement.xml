@@ -55,7 +55,7 @@
                                 <div
                                     class="de_tax_act_as_cell left"
                                     style="width: 900px;"
-                                > </div>
+                                />
                                 <div class="de_tax_act_as_cell right">Base</div>
                                 <div class="de_tax_act_as_cell right">Tax</div>
                             </div>
@@ -70,10 +70,10 @@
                                         class="de_tax_act_as_cell left"
                                         style="width: 900px;"
                                     ><span t-field="line.code" /> - <span
-                                            t-field="line.name"
-                                        /></div>
-                                    <div class="de_tax_act_as_cell right"> </div>
-                                    <div class="de_tax_act_as_cell right"> </div>
+                                        t-field="line.name"
+                                    /></div>
+                                    <div class="de_tax_act_as_cell right" />
+                                    <div class="de_tax_act_as_cell right" />
                                 </div>
                                 <div
                                     t-if="not line.is_group"
@@ -84,8 +84,8 @@
                                         class="de_tax_act_as_cell left"
                                         style="width: 900px;"
                                     > &amp;nbsp; &amp;nbsp; <span
-                                            t-field="line.code"
-                                        /> - <span t-field="line.name" /></div>
+                                        t-field="line.code"
+                                    /> - <span t-field="line.name" /></div>
                                     <div class="de_tax_act_as_cell right">
                                         <span t-field="line.format_base" />
                                     </div>
@@ -100,7 +100,7 @@
                                     class="de_tax_act_as_cell left"
                                     style="width: 900px;"
                                 > &amp;nbsp; &amp;nbsp; Verbleibende Umsatzsteuer-Vorauszahlung</div>
-                                <div class="de_tax_act_as_cell right"> </div>
+                                <div class="de_tax_act_as_cell right" />
                                 <div class="de_tax_act_as_cell right">
                                     <span t-field="o.format_tax_total" />
                                 </div>

@@ -3,7 +3,6 @@
      Copyright 2019 Onestein (<http://www.onestein.eu>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="action_report_tax_statement_report" model="ir.actions.report">
         <field name="name">UstVA-Report</field>
         <field name="model">l10n.de.tax.statement</field>
@@ -15,5 +14,4 @@
         <field name="binding_type">report</field>
         <field name="paperformat_id" ref="paperformat_de_tax_statement" />
     </record>
-
 </odoo>

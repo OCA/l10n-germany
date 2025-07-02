@@ -156,8 +156,7 @@
                                 </tree>
                             </field>
                             <group>
-                                <group>
-                                </group>
+                                <group />
                                 <group>
                                     <label for="tax_total" />
                                     <field name="tax_total" nolabel="1" />
@@ -180,8 +179,7 @@
                                         attrs="{'readonly': [('state','in',['posted','final'])]}"
                                     />
                                 </group>
-                                <group>
-                                </group>
+                                <group />
                             </group>
                             <field name="unreported_move_ids">
                                 <tree
