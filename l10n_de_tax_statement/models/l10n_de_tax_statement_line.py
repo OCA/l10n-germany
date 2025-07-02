@@ -2,7 +2,7 @@
 # Copyright 2019-2020 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
@@ -65,8 +65,8 @@ class VatStatementLine(models.Model):
                 base_display = _base_display_2018()
                 tax_display = _tax_display_2018()
 
-            base = formatLang(self.env, line.base, monetary=True)
-            tax = formatLang(self.env, line.tax, monetary=True)
+            base = formatLang(self.env, line.base)
+            tax = formatLang(self.env, line.tax)
             line.format_base = False
             line.format_tax = False
             if line.code in base_display:
@@ -110,14 +110,14 @@ class VatStatementLine(models.Model):
         for line in self:
             if line.statement_id.state == "posted":
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot delete lines of a posted statement! "
                         "Reset the statement to draft first."
                     )
                 )
             if line.statement_id.state == "final":
                 raise UserError(
-                    _("You cannot delete lines of a statement set as final!")
+                    self.env._("You cannot delete lines of a statement set as final!")
                 )
 
     def view_tax_lines(self):

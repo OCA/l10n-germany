@@ -2,19 +2,21 @@
 # Copyright 2019 Onestein (<https://www.onestein.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _
+from odoo.tools.translate import LazyTranslate
+
+_lt = LazyTranslate(__name__, default_lang="en_US")
 
 
 def _tax_statement_dict_2019():
     return {
-        "17": {"code": "17", "name": _("Anmeldung der Umsatzsteuer Vorauszahlung")},
+        "17": {"code": "17", "name": _lt("Anmeldung der Umsatzsteuer Vorauszahlung")},
         "18": {
             "code": "18",
-            "name": _("Lief. u. sonst. Leistg. einschl. unentg. Wertabg."),
+            "name": _lt("Lief. u. sonst. Leistg. einschl. unentg. Wertabg."),
         },
         "19": {
             "code": "19",
-            "name": _(
+            "name": _lt(
                 "Steuerfr. Umsätze mit Vorsteuerabz. innerg. "
                 "Lieferungen (§4 Nr. 1b) ..."
             ),
@@ -22,24 +24,24 @@ def _tax_statement_dict_2019():
         "20": {
             "code": "20",
             "base": 0.0,
-            "name": _("... an Abnehmer mit USt-ID (41)"),
+            "name": _lt("... an Abnehmer mit USt-ID (41)"),
         },
         "21": {
             "code": "21",
             "base": 0.0,
-            "name": _("... neuer Fahrzeuge an Abnehmer ohne UST-ID (44)"),
+            "name": _lt("... neuer Fahrzeuge an Abnehmer ohne UST-ID (44)"),
         },
         "22": {
             "code": "22",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "... neuer Fahrzeuge außerh. eines Unternehmens " "§ 2a UStG (49)"
             ),
         },
         "23": {
             "code": "23",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "Weitere steuerfr. Umsätze mit Vorsteuerabzug, "
                 "z.B. Ausfuhrlief., Umsätze n. § 4 Nr. 2-7 UStG (43)"
             ),
@@ -47,14 +49,14 @@ def _tax_statement_dict_2019():
         "24": {
             "code": "24",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "Steuerfreie Umsätze ohne Vorsteuerabzug "
                 "Umsätze n. § 4 Nr. 8 bis 28 UStG (48)"
             ),
         },
         "25": {
             "code": "25",
-            "name": _(
+            "name": _lt(
                 "Steuerpflichtige Umsätze "
                 "(Lief. u. sonst. Leistg. einschl. unentg. Wertabg.)"
             ),
@@ -63,24 +65,24 @@ def _tax_statement_dict_2019():
             "code": "26",
             "base": 0.0,
             "tax": 0.0,
-            "name": _("... zum Steuersatz von 19 % (81)"),
+            "name": _lt("... zum Steuersatz von 19 % (81)"),
         },
         "27": {
             "code": "27",
             "base": 0.0,
             "tax": 0.0,
-            "name": _("... zum Steuersatz von 7% (86)"),
+            "name": _lt("... zum Steuersatz von 7% (86)"),
         },
         "28": {
             "code": "28",
             "base": 0.0,
             "tax": 0.0,
-            "name": _("... zu anderen Steuersätzen (35 / 36)"),
+            "name": _lt("... zu anderen Steuersätzen (35 / 36)"),
         },
         "29": {
             "code": "29",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "Lieferungen land- u. forstw. Betriebe "
                 "nach § 24 UStG an Abnehmer mit Ust-ID (77)"
             ),
@@ -89,14 +91,14 @@ def _tax_statement_dict_2019():
             "code": "30",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Umsätze nach § 24 UStG, "
                 "z.B. Sägewerke, Getränke u. alk. Flüssigk. (76 / 80)"
             ),
         },
         "31": {
             "code": "31",
-            "name": _(
+            "name": _lt(
                 "Innergemeinschaftliche Erwerbe "
                 "Steuerfreie innergemeinschaftliche Erwerbe"
             ),
@@ -104,13 +106,13 @@ def _tax_statement_dict_2019():
         "32": {
             "code": "32",
             "base": 0.0,
-            "name": _("Erwerbe nach §§ 4b u. 25c UStG (91)"),
+            "name": _lt("Erwerbe nach §§ 4b u. 25c UStG (91)"),
         },
         "33": {
             "code": "33",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Steuerpflichtige innergemeinschaftliche Erwerbe "
                 "... zum Steuersatz v. 19 % (89)"
             ),
@@ -119,28 +121,28 @@ def _tax_statement_dict_2019():
             "code": "34",
             "base": 0.0,
             "tax": 0.0,
-            "name": _("... zum Steuersatz v. 7% (93)"),
+            "name": _lt("... zum Steuersatz v. 7% (93)"),
         },
         "35": {
             "code": "35",
             "base": 0.0,
             "tax": 0.0,
-            "name": _("... zu anderen Steuersätzen (95 / 98)"),
+            "name": _lt("... zu anderen Steuersätzen (95 / 98)"),
         },
         "36": {
             "code": "36",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "... neuer Fahrzeuge gem. § 1b Abs. 2 u. 3 UStG "
                 "von Lieferern o. Ust-ID z. allg. Steuersatz (94 / 96)"
             ),
         },
-        "37": {"code": "37", "name": _("Ergänzende Angaben zu Umsätzen")},
+        "37": {"code": "37", "name": _lt("Ergänzende Angaben zu Umsätzen")},
         "38": {
             "code": "38",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "Lieferungen des ersten Abnehmers bei innergem. "
                 "Dreiecksgeschäften gem. § 25b Abs. 2 UStG (42)"
             ),
@@ -148,7 +150,7 @@ def _tax_statement_dict_2019():
         "39": {
             "code": "39",
             "base": 0.0,
-            "name": _(
+            "name": _lt(
                 "Übrige steuerpfl. Umsätze f.d.d. Lstg.empf. d. Steuer "
                 "n. § 13b Abs. 5 UStG schuldet (60)"
             ),
@@ -156,25 +158,25 @@ def _tax_statement_dict_2019():
         "40": {
             "code": "40",
             "base": 0.0,
-            "name": _("Nicht steuerb. sonst. Leist. gem. " "§ 18b S. 1 Nr. 2 (21)"),
+            "name": _lt("Nicht steuerb. sonst. Leist. gem. " "§ 18b S. 1 Nr. 2 (21)"),
         },
         "41": {
             "code": "41",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Übrige n. steuerb. Umsätze, Leistungsort " "ist nicht im Inland (45)"
             ),
         },
         "47": {
             "code": "47",
-            "name": _("Leistungsempfänger als Steuerschuldner " "(§ 13b UStG)"),
+            "name": _lt("Leistungsempfänger als Steuerschuldner " "(§ 13b UStG)"),
         },
         "48": {
             "code": "48",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Steuerpfl. sonst. Leist. e. i. übr. Gemeinschaftsgeb. "
                 "ans. Untern. gem. § 13b Abs. 1 UStG (46 / 47)"
             ),
@@ -183,7 +185,7 @@ def _tax_statement_dict_2019():
             "code": "49",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Lieferungen sicherungsübereign. Gegenst. u. Umsätze "
                 "d. u. d.  GrEStG fallen g. § 13b Abs. 2 "
                 "Nr. 3 (73 / 74)"
@@ -193,16 +195,16 @@ def _tax_statement_dict_2019():
             "code": "50",
             "base": 0.0,
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Andere Leistungen gem. § 13b Abs. 2 Nr. 1, 2," "4 b. 11 UStG (84 / 85)"
             ),
         },
-        "51": {"code": "51", "tax": 0.0, "name": _("Umsatzsteuer")},
-        "52": {"code": "52", "name": _("Abziehbare Vorsteuerbeträge")},
+        "51": {"code": "51", "tax": 0.0, "name": _lt("Umsatzsteuer")},
+        "52": {"code": "52", "name": _lt("Abziehbare Vorsteuerbeträge")},
         "53": {
             "code": "53",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Vorsteuerbeträge aus Rechn. v.a. Unternehmen g. § 15 "
                 "Abs. S. 1 Nr. 1 UStG a. Leistungen i.S.d. § 13a "
                 "Abs. 1 Nr. 6 UStG u. § 15 Abs. 1 S. 1 Nr. 5 UStG "
@@ -212,7 +214,7 @@ def _tax_statement_dict_2019():
         "54": {
             "code": "54",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Vorsteuerbeträge a. d. innerg. Erwerb v. Gegenständen "
                 "gem. § 15 Abs. 1 Satz 1 Nr. 3 UStG (61)"
             ),
@@ -220,12 +222,14 @@ def _tax_statement_dict_2019():
         "55": {
             "code": "55",
             "tax": 0.0,
-            "name": _("Entst. Einfuhrumsatzst. g. § 15 Abs. 1 S. 1 Nr. 2 " "UStG (62)"),
+            "name": _lt(
+                "Entst. Einfuhrumsatzst. g. § 15 Abs. 1 S. 1 Nr. 2 " "UStG (62)"
+            ),
         },
         "56": {
             "code": "56",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Vorsteuerbeträge aus Leistungen i. S. des § 13b UStG"
                 "i.V.m § 15 Abs. 1 Satz 1 Nr. 4 UStG (67)"
             ),
@@ -233,7 +237,7 @@ def _tax_statement_dict_2019():
         "57": {
             "code": "57",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Vorsteuerbeträge d. n. allg. Durchschnittssätzen "
                 "berechnet sind gem. §§ 23 und 23a UStG (63)"
             ),
@@ -241,23 +245,23 @@ def _tax_statement_dict_2019():
         "58": {
             "code": "58",
             "tax": 0.0,
-            "name": _("Berichtigung des Vorsteuerabzugs g. § 15 a UStG (64)"),
+            "name": _lt("Berichtigung des Vorsteuerabzugs g. § 15 a UStG (64)"),
         },
         "59": {
             "code": "59",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Vorsteuerabzug f. innergem. Lief. neuer Fahrzeuge "
                 "außerh. e. Untern. g. §2a UStG sow. v. Kleinunt. i.S. "
                 "d. § 19 Abs. 1 i.V.m. § 15a Abs. 4a UStG (59)"
             ),
         },
-        "60": {"code": "60", "tax": 0.0, "name": _("Verbleibender Betrag")},
-        "61": {"code": "61", "name": _("Andere Steuerbeträge")},
+        "60": {"code": "60", "tax": 0.0, "name": _lt("Verbleibender Betrag")},
+        "61": {"code": "61", "name": _lt("Andere Steuerbeträge")},
         "62": {
             "code": "62",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Steuer inf. Wechsels d. Besteuerungsf. sow. Nachst. "
                 "a. verst. Anzahlungen u.a. wg. Steuersatzänd. (65)"
             ),
@@ -265,7 +269,7 @@ def _tax_statement_dict_2019():
         "63": {
             "code": "63",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "In Rechnungen unrichtig oder unberechtigt ausgewiesene "
                 "Steuerbeträge gem. § 14c UstG) sowie Steuerbetr. d. n. "
                 "§ 6a Abs. 4 S. 2, § 17 Abs. 1 S. 6, § 25 b Abs. 2 UStG "
@@ -273,11 +277,11 @@ def _tax_statement_dict_2019():
                 "UStG geschuldet werden (69)"
             ),
         },
-        "64": {"code": "64", "tax": 0.0, "name": _("Umsatzsteuer-Vorauszahlung")},
+        "64": {"code": "64", "tax": 0.0, "name": _lt("Umsatzsteuer-Vorauszahlung")},
         "65": {
             "code": "65",
             "tax": 0.0,
-            "name": _(
+            "name": _lt(
                 "Abzug der festges. Sondervorauszahl. f. "
                 "Dauerfristverlängerung, nur auszuf. i. d. letzten "
                 "Voranmeldung d. Besteuerungszeitr., i.d.R. Dez. (39)"

@@ -7,7 +7,7 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 
@@ -157,7 +157,7 @@ class VatStatement(models.Model):
     @api.depends("tax_total")
     def _compute_amount_format_tax_total(self):
         for statement in self:
-            tax = formatLang(self.env, statement.tax_total, monetary=True)
+            tax = formatLang(self.env, statement.tax_total)
             statement.format_tax_total = tax
 
     @api.model
@@ -233,7 +233,7 @@ class VatStatement(models.Model):
         )
         if not de_tags:
             raise UserError(
-                _(
+                self.env._(
                     "Tags mapping not configured for Germany! "
                     "Check the DE Tax Tags Configuration."
                 )
@@ -254,7 +254,7 @@ class VatStatement(models.Model):
         self.ensure_one()
 
         if self.state in ["posted", "final"]:
-            raise UserError(_("You cannot modify a posted statement!"))
+            raise UserError(self.env._("You cannot modify a posted statement!"))
 
         # clean old lines
         self.line_ids.unlink()
@@ -337,7 +337,7 @@ class VatStatement(models.Model):
                     line_code = self.map_tax_code_line_code(code)
                     if not line_code:
                         raise UserError(
-                            _(
+                            self.env._(
                                 "This tax code for Germany is not supported! "
                                 "Check the DE Tax Tags Configuration."
                             )
@@ -372,7 +372,7 @@ class VatStatement(models.Model):
 
         if prev_open_statements:
             raise UserError(
-                _(
+                self.env._(
                     "You cannot post a statement if all the previous "
                     "statements are not yet posted! "
                     "Please Post all the other statements first."
@@ -424,13 +424,15 @@ class VatStatement(models.Model):
     def write(self, values):
         for statement in self:
             if statement.state == "final":
-                raise UserError(_("You cannot modify a statement set as final!"))
+                raise UserError(
+                    self.env._("You cannot modify a statement set as final!")
+                )
             if "state" not in values or values["state"] != "draft":
                 if statement.state == "posted":
                     for val in values:
                         if val not in self._modifiable_values_when_posted():
                             raise UserError(
-                                _(
+                                self.env._(
                                     "You cannot modify a posted statement! "
                                     "Reset the statement to draft first."
                                 )
@@ -442,13 +444,15 @@ class VatStatement(models.Model):
         for statement in self:
             if statement.state == "posted":
                 raise UserError(
-                    _(
+                    self.env._(
                         "You cannot delete a posted statement! "
                         "Reset the statement to draft first."
                     )
                 )
             if statement.state == "final":
-                raise UserError(_("You cannot delete a statement set as final!"))
+                raise UserError(
+                    self.env._("You cannot delete a statement set as final!")
+                )
 
     @api.depends("line_ids.tax")
     def _compute_tax_total(self):

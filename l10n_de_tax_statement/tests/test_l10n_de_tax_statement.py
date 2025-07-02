@@ -7,7 +7,7 @@ import datetime
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.exceptions import UserError
 from odoo.tests import Form, tagged
 from odoo.tools import mute_logger
@@ -78,7 +78,7 @@ class TestVatStatement(BaseCommon):
                 "account_type": "expense",
                 "code": "EXPTEST",
                 "name": "Test expense account",
-                "company_id": self.company.id,
+                "company_ids": [Command.link(self.company.id)],
             }
         )
         journal = self.env["account.journal"].create(
