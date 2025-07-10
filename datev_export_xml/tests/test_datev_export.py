@@ -1126,3 +1126,117 @@ class TestDatevExport(TransactionCase):
             0,
             "Should have 0 problematic invoices",
         )
+
+    def test_unlink_draft_export(self):
+        """Test that deleting a DATEV export in draft state works correctly."""
+        # Create a simple invoice
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 19%",
+                "amount": 19.0,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+            }
+        )
+
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": self.customer_de.id,
+                "user_id": self.env.user.id,
+                "invoice_date": self.start_date,
+                "invoice_date_due": self.end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.consulting.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "account_id": self.account_income.id,
+                            "analytic_account_id": self.analytic_account_it.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice.action_post()
+
+        # Create export in draft state (no attachments yet)
+        datev_export = self.create_customer_datev_export_manually(invoice)
+
+        # Verify it's in draft state and has no line_ids with attachments
+        self.assertEqual(datev_export.state, "draft")
+        self.assertEqual(len(datev_export.line_ids), 0)
+
+        # Delete should work without errors
+        export_id = datev_export.id
+        datev_export.unlink()
+
+        # Verify the export is deleted
+        deleted_exports = self.DatevExportObj.search([("id", "=", export_id)])
+        self.assertEqual(len(deleted_exports), 0, "Export should be deleted")
+
+    def test_unlink_export_with_attachments(self):
+        """Test that deleting a DATEV export with attachments cleans up properly."""
+        # Create a simple invoice
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 19%",
+                "amount": 19.0,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+            }
+        )
+
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": self.customer_de.id,
+                "user_id": self.env.user.id,
+                "invoice_date": self.start_date,
+                "invoice_date_due": self.end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.consulting.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "account_id": self.account_income.id,
+                            "analytic_account_id": self.analytic_account_it.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice.action_post()
+
+        # Create export and generate ZIP file
+        datev_export = self.create_customer_datev_export_manually(invoice)
+        datev_export.action_pending()
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+
+        # Verify it has line_ids with attachments
+        self.assertTrue(len(datev_export.line_ids) > 0)
+        attachment_ids = datev_export.line_ids.mapped("attachment_id").ids
+        self.assertTrue(len(attachment_ids) > 0)
+
+        # Delete the export
+        export_id = datev_export.id
+        datev_export.unlink()
+
+        # Verify both export and attachments are deleted
+        deleted_exports = self.DatevExportObj.search([("id", "=", export_id)])
+        self.assertEqual(len(deleted_exports), 0, "Export should be deleted")
+
+        deleted_attachments = self.AttachmentObj.search([("id", "in", attachment_ids)])
+        self.assertEqual(len(deleted_attachments), 0, "Attachments should be deleted")
