@@ -17,4 +17,4 @@ from . import (
     res_config_settings,
 )
 
-from . import datev_export  # isort:skip
+from . import datev_export, datev_export_line  # isort:skip

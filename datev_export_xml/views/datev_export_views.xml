@@ -118,7 +118,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible':  ['|', ('line_count', '>', 0), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
                     <button
@@ -126,7 +126,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible': ['|', ('line_count', '>', 0), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -148,6 +148,7 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
+                                    <field name="invoices_exported_count" /> /
                                     <field name="invoices_count" />
                                 </span>
                                 <span class="o_stat_text">Invoices</span>
@@ -183,8 +184,7 @@
                             <field name="date_stop" />
                             <!-- <field name="period_id"/> -->
                         </group>
-                    </group>
-                    <group>
+
                         <group string="General Settings">
                             <field
                                 name="client_number"
@@ -200,47 +200,6 @@
                             />
                             <field name="check_xsd" />
                         </group>
-                        <group string="Download File" col="1">
-                            <field name="datev_filename" invisible="1" />
-                            <div>
-                                <span
-                                    attrs="{'invisible': [('datev_file', '!=', False)]}"
-                                >
-                                    <strong>
-                                        <big>
-                                            The zip file can be downloaded here after creation!
-                                        </big>
-                                    </strong>
-                                </span>
-                                <span
-                                    attrs="{'invisible': [('datev_file', '=', False)]}"
-                                >
-                                    <span>
-                                        <big>
-                                            <big>
-                                                <field
-                                                    name="datev_file"
-                                                    filename="datev_filename"
-                                                    nolabel="1"
-                                                />
-                                                <i class="ml8">(<field
-                                                        name="datev_filesize"
-                                                    />)
-                                                </i>
-                                            </big>
-                                        </big>
-                                    </span>
-                                </span>
-                            </div>
-
-                            <div class="oe_grey">
-                                <i
-                                    class="fa fa-exclamation-triangle mr4"
-                                    aria-hidden="true"
-                                />
-                                Downloading large files may fail due to server settings!
-                            </div>
-                        </group>
                     </group>
 
                     <group
@@ -255,6 +214,39 @@
                             class="alert alert-danger"
                             role="alert"
                         />
+                    </group>
+
+                    <group string="Generated Files" col="1">
+                        <field name="line_count" invisible="1" />
+                        <span attrs="{'invisible': [('line_count', '>', 0)]}">
+                            <strong
+                            >The zip files can be downloaded here after creation!</strong>
+                        </span>
+
+                        <field
+                            name="line_ids"
+                            nolabel="1"
+                            options="{'no_open': True, 'no_create': True}"
+                            attrs="{'invisible': [('line_count', '=', 0)]}"
+                        >
+                            <tree editable="bottom">
+                                <field name="filename" />
+                                <field name="filesize" />
+                                <field name="invoices_count" />
+                                <button
+                                    name="action_datev_download"
+                                    string="Download"
+                                    type="object"
+                                    class="btn btn-primary"
+                                />
+                                <button
+                                    name="action_open_invoices"
+                                    string="Show Invoices"
+                                    type="object"
+                                    class="btn btn-primary"
+                                />
+                            </tree>
+                        </field>
                     </group>
 
                     <group
@@ -307,7 +299,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', True)]}"
+                        attrs="{'invisible':  ['|', ('line_count', '>', 0), ('manually_document_selection', '=', True)]}"
                         confirm="The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -316,7 +308,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', True)]}"
+                        attrs="{'invisible': ['|', ('line_count', '=', 0), ('manually_document_selection', '=', True)]}"
                         confirm="Do you really want to create the DATEV file again? The creation of the file will be done in background and may take some time! When the file is created or an exception occurs, an activity will be applied to you."
                     />
 
@@ -326,7 +318,7 @@
                         name="export_zip"
                         type="object"
                         class="oe_highlight"
-                        attrs="{'invisible':  ['|', ('datev_file', '!=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible':  ['|', ('line_count', '>', 0), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to proceed!"
                     />
 
@@ -335,7 +327,7 @@
                         name="export_zip"
                         type="object"
                         class=""
-                        attrs="{'invisible': ['|', ('datev_file', '=', False), ('manually_document_selection', '=', False)]}"
+                        attrs="{'invisible': ['|', ('line_count', '=', 0), ('manually_document_selection', '=', False)]}"
                         confirm="The creation of the file can take some time! Do you really want to create the DATEV file again?"
                     />
 
@@ -373,9 +365,6 @@
                 <field name="manually_document_selection" invisible="True" />
                 <field name="date_start" />
                 <field name="date_stop" />
-                <field name="datev_file" filename="datev_filename" widget="binary" />
-                <field name="datev_filesize" />
-                <field name="datev_filename" invisible="1" />
                 <field name="invoices_count" />
                 <field name="state" />
             </tree>

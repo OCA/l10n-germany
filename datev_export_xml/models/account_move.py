@@ -79,6 +79,12 @@ class AccountMove(models.Model):
             return "Rechnung"
         return "Gutschrift/Rechnungskorrektur"
 
+    def datev_party_attributes(self, partner):
+        result = {}
+        if partner.vat:
+            result["vat_id"] = partner.vat
+        return result
+
     def datev_invoice_id(self):
         self.ensure_one()
         return self.datev_sanitize(self.name or "")
