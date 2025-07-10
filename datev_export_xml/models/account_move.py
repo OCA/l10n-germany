@@ -43,9 +43,9 @@ class AccountMove(models.Model):
     def datev_format_total(self, value, prec=2):
         self.ensure_one()
         return (
-            f"{-value:.{prec}f}"
+            f"{-value: .{prec}f}"
             if self.move_type.endswith("_refund")
-            else f"{value:.{prec}f}"
+            else f"{value: .{prec}f}"
         )
 
     def datev_sanitize(self, value, length=36):

@@ -832,3 +832,111 @@ class TestDatevExport(TransactionCase):
 
         export.action_done()
         self.assertEqual(export.state, "done")
+
+    def test_skip_zero_amount_lines(self):
+        """Test that invoice lines with zero amount (e.g., 100% discount)
+        are skipped in export."""
+        # Create tax for testing
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 19%",
+                "amount": 19.0,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+            }
+        )
+
+        # Create invoice with mixed lines: normal line and zero amount line (100% discount)
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": self.customer_de.id,
+                "user_id": self.env.user.id,
+                "invoice_date": self.start_date,
+                "invoice_date_due": self.end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    # Normal line with amount
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.consulting.id,
+                            "quantity": 1.0,
+                            "price_unit": 100.00,
+                            "discount": 0.0,  # No discount
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "account_id": self.account_income.id,
+                            "analytic_account_id": self.analytic_account_it.id,
+                        },
+                    ),
+                    # Zero amount line with 100% discount
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.lease.id,
+                            "quantity": 1.0,
+                            "price_unit": 50.00,
+                            "discount": 100.0,  # 100% discount = zero amount
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "account_id": self.account_income.id,
+                            "analytic_account_id": self.analytic_account_it.id,
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice.action_post()
+
+        # Verify the invoice has 2 lines but only 1 should have non-zero amount
+        self.assertEqual(len(invoice.invoice_line_ids.filtered("product_id")), 2)
+
+        # Check that one line has zero amount due to 100% discount
+        zero_line = invoice.invoice_line_ids.filtered(lambda l: l.discount == 100.0)
+        self.assertEqual(len(zero_line), 1)
+        price_info = zero_line.datev_price_information()
+        self.assertEqual(price_info["total_excluded"], 0.0)
+
+        # Create export
+        datev_export = self.create_customer_datev_export_manually(invoice)
+        datev_export.action_pending()
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+
+        # Parse the invoice XML directly from the ZIP file to count invoice_item_list elements
+        if not datev_export.line_ids.attachment_id:
+            self.fail("No attachment found in export")
+
+        zip_data = base64.b64decode(datev_export.line_ids.attachment_id.datas)
+        fp = io.BytesIO()
+        fp.write(zip_data)
+
+        with zipfile.ZipFile(fp, "r") as z:
+            inv_file = invoice.name.replace("/", "-") + ".xml"
+            inv_xml_content = z.read(inv_file)
+            inv_root = etree.fromstring(inv_xml_content)
+
+            # Count invoice_item_list elements (should be 1, not 2)
+            # Handle namespace properly for XPath
+            nsmap = inv_root.nsmap
+            if None in nsmap:
+                # Remove the default namespace to avoid XPath issues
+                nsmap = {k: v for k, v in nsmap.items() if k is not None}
+                nsmap["ns"] = inv_root.nsmap[None]
+                invoice_items = inv_root.xpath(
+                    "//ns:invoice_item_list", namespaces=nsmap
+                )
+            else:
+                invoice_items = inv_root.xpath("//invoice_item_list")
+            self.assertEqual(
+                len(invoice_items), 1, "Only non-zero amount lines should be exported"
+            )
+
+            # Verify the exported line is the one without discount
+            exported_item = invoice_items[0]
+            self.assertEqual(
+                exported_item.get("product_id"),
+                self.consulting.default_code,
+                "The exported line should be the consulting product (no discount)",
+            )
