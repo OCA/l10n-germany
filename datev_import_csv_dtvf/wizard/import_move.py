@@ -8,7 +8,7 @@ import logging
 from datetime import date as datelib
 from datetime import datetime
 
-import chardet
+import magic
 
 from odoo import fields, models
 from odoo.exceptions import UserError
@@ -151,7 +151,11 @@ class AccountMoveImport(models.TransientModel):
             "analytic_account_1",
             "analytic_account_2",
         ]
-        content = file_bytes.decode(chardet.detect(file_bytes)["encoding"])
+        
+        # Use python-magic to detect the file encoding
+        encoding = magic.from_buffer(file_bytes, mime=True).split('charset=')[1]
+        content = file_bytes.decode(encoding)
+        
         try:
             dialect = csv.Sniffer().sniff(content, delimiters=";,")
         except csv.Error:
