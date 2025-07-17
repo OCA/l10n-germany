@@ -88,7 +88,7 @@
             version="5.0"
             description="DATEV Import invoices"
             generating_system="Odoo"
-            t-att-generator_info="doc.company_id.name"
+            t-att-generator_info="doc.company_id.name[:40]"
         >
             <invoice_info
                 t-if="doc.datev_order_id()"
@@ -175,7 +175,7 @@
             <header>
                 <date t-esc="datetime.datetime.today().isoformat()" />
                 <description t-esc="company.name + ' Accounting'" />
-                <clientName t-esc="company.name" />
+                <clientName t-esc="company.name[:36]" />
             </header>
             <content>
                 <document t-foreach="docs" t-as="doc">
