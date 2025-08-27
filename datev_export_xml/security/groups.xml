@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
+    <record id="group_datev_export_user" model="res.groups">
+        <field name="name">DATEV Export User</field>
+        <field name="category_id" ref="base.module_category_accounting" />
+        <field name="comment">Billing users can create and manage DATEV exports</field>
+    </record>
+
     <record id="group_datev_export_status" model="res.groups">
         <field name="name">Mark invoices as exported to Datev</field>
         <field name="category_id" ref="base.module_category_hidden" />
