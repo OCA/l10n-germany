@@ -208,6 +208,12 @@ msgid "Whit Monday"
 msgstr ""
 
 #. module: l10n_de_holidays
+#: code:addons/l10n_de_holidays/wizards/hr_holidays_public_generator_de.py:0
+#, python-format
+msgid "World Children's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
 #: model:ir.model.fields,field_description:l10n_de_holidays.field_hr_holidays_public_generator__year
 msgid "Year"
 msgstr ""
