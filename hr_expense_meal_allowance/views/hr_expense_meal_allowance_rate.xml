@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_expense_meal_allowance_rate_form" model="ir.ui.view">
+        <field name="name">hr.expense.meal.allowance.form.view</field>
+        <field name="model">hr.expense.meal.allowance.rate</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="currency_id" invisible="1" />
+                            <field name="city_name" />
+                            <field name="country_id" />
+                            <field name="expire_on" />
+                            <field name="daily_rate_24h" />
+                            <field name="daily_rate_8h" />
+                        </group>
+                        <group>
+                            <field name="percentage_for_breakfast" widget="percent" />
+                            <field name="percentage_for_lunch" widget="percent" />
+                            <field name="percentage_for_dinner" widget="percent" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="hr_expense_meal_allowance_rate_list" model="ir.ui.view">
+        <field name="name">hr.expense.meal.allowance.list.view</field>
+        <field name="model">hr.expense.meal.allowance.rate</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="currency_id" invisible="1" />
+                <field name="city_name" />
+                <field name="country_id" />
+                <field name="expire_on" />
+                <field name="daily_rate_24h" />
+                <field name="daily_rate_8h" />
+                <field name="percentage_for_breakfast" />
+                <field name="percentage_for_lunch" />
+                <field name="percentage_for_dinner" />
+            </list>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_hr_expense_meal_allowance_rate">
+        <field name="name">Meal Allowance Rate</field>
+        <field name="res_model">hr.expense.meal.allowance.rate</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="hr_expense_meal_allowance_search_form_view" model="ir.ui.view">
+        <field name="name">hr_expense_meal_allowance.rate.search</field>
+        <field name="model">hr.expense.meal.allowance.rate</field>
+        <field name="arch" type="xml">
+            <search string="Rates">
+                <field name="country_id" />
+                <field name="city_name" />
+                <filter
+                    name="expire_on"
+                    date="expire_on"
+                    start_year="-1"
+                    end_year="1"
+                />
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_hr_meal_allowance_rate"
+        name="Meal Allowance Rate"
+        parent="hr_expense.menu_hr_expense_configuration"
+        action="action_hr_expense_meal_allowance_rate"
+        groups="hr_expense.group_hr_expense_manager"
+    />
+</odoo>
