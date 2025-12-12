@@ -6,7 +6,7 @@
     "category": "Human Resources/Expenses",
     "license": "AGPL-3",
     "summary": "Automatic calculation of expenses",
-    "version": "18.0.1.1.1",
+    "version": "18.0.1.1.2",
     "depends": ["sale_expense"],
     "maintainers": ["CRogos"],
     "data": [
