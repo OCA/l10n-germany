@@ -50,6 +50,13 @@ Contributors
 
 Do not contact contributors directly about support or help with technical issues.
 
+Other credits
+~~~~~~~~~~~~~
+
+The development of this module has been financially supported by:
+
+- Agent ERP GmbH
+
 Maintainer
 ----------
 
