@@ -4,7 +4,7 @@
 {
     "name": "L10n DIN5008 Move Name",
     "summary": """Add Account move name on the name of the move""",
-    "version": "17.0.1.1.0",
+    "version": "19.0.1.0.0",
     "license": "AGPL-3",
     "author": "Dixmit,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
