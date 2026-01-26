@@ -229,7 +229,7 @@
                             options="{'no_open': True, 'no_create': True}"
                             invisible="not line_count"
                         >
-                            <tree editable="bottom">
+                            <list editable="bottom">
                                 <field name="filename" />
                                 <field name="filesize" />
                                 <field name="invoices_count" />
@@ -245,7 +245,7 @@
                                     type="object"
                                     class="btn btn-primary"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
 

@@ -431,12 +431,6 @@ class DatevExport(models.Model):
             "domain": [("id", "in", self.invoice_ids.ids)],
         }
 
-    def unlink(self):
-        attachments = self.mapped("attachment_id")
-        res = super().unlink()
-        attachments.exists().unlink()
-        return res
-
     def write(self, vals):
         res = super().write(vals)
         if any(

@@ -39,7 +39,7 @@ class DatevExportPackage(models.Model):
     def action_open_invoices(self):
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "tree,kanban,form",
+            "view_mode": "list,kanban,form",
             "res_model": "account.move",
             "target": "current",
             "name": _("Included Invoices"),

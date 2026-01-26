@@ -11,6 +11,10 @@ _logger = logging.getLogger(__name__)
 def migrate(cr, version):
     env = api.Environment(cr, SUPERUSER_ID, {})
 
+    if env["datev.export.xml.line"].search([], limit=1):
+        # the user migrates from a db that had #160 already applied
+        return
+
     query = """
         SELECT id, attachment_id FROM datev_export_xml
         WHERE attachment_id IS NOT NULL
@@ -19,16 +23,13 @@ def migrate(cr, version):
 
     for export_id, attachment_id in env.cr.fetchall():
         export = env["datev.export.xml"].browse(export_id)
-        attachment = env["ir.attachment"].browse(attachment_id)
 
         _logger.info(f"Migrating attachment of {export}")
 
-        line = export.line_ids.create(
+        export.line_ids.create(
             {
                 "attachment_id": attachment_id,
                 "export_id": export_id,
                 "invoice_ids": [(6, 0, export.invoice_ids.ids)],
             }
         )
-
-        attachment.write({"res_model": line._name, "res_id": line.id})
