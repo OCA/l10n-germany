@@ -5,13 +5,14 @@ import base64
 import io
 import zipfile
 from datetime import date, timedelta
+from unittest import mock
 
 from lxml import etree
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
 
-from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.base.tests.common import BaseCommon, HttpCase
 
 
 class TestDatevExport(BaseCommon):
@@ -149,7 +150,7 @@ class TestDatevExport(BaseCommon):
                 ),
             }
 
-    def create_out_invoice(self, customer, start_date, end_date):
+    def create_out_invoice(self, customer, start_date=None, end_date=None):
         # OUT Invoice
         tax = self.env["account.tax"].create(
             {
@@ -163,8 +164,8 @@ class TestDatevExport(BaseCommon):
             {
                 "partner_id": customer.id,
                 "user_id": self.env.user.id,
-                "invoice_date": start_date,
-                "invoice_date_due": end_date,
+                "invoice_date": start_date or self.start_date,
+                "invoice_date_due": end_date or self.end_date,
                 "company_id": self.env.company.id,
                 "currency_id": self.env.company.currency_id.id,
                 "move_type": "out_invoice",
@@ -224,7 +225,7 @@ class TestDatevExport(BaseCommon):
         invoice.action_post()
         return invoice
 
-    def create_in_invoice(self, vendor, start_date, end_date):
+    def create_in_invoice(self, vendor, start_date=None, end_date=None):
         # IN Invoice
         tax = self.env["account.tax"].create(
             {
@@ -238,8 +239,8 @@ class TestDatevExport(BaseCommon):
             {
                 "partner_id": vendor.id,
                 "user_id": self.env.user.id,
-                "invoice_date": start_date,
-                "invoice_date_due": end_date,
+                "invoice_date": start_date or self.start_date,
+                "invoice_date_due": end_date or self.end_date,
                 "company_id": self.env.company.id,
                 "currency_id": self.env.company.currency_id.id,
                 "move_type": "in_invoice",
@@ -290,15 +291,15 @@ class TestDatevExport(BaseCommon):
         )
         return datev_export
 
-    def create_vendor_datev_export(self, start_date, end_date):
+    def create_vendor_datev_export(self, start_date=None, end_date=None):
         datev_export = self.DatevExportObj.create(
             {
                 "export_type": "in",
                 "export_invoice": True,
                 "export_refund": True,
                 "check_xsd": True,
-                "date_start": start_date,
-                "date_stop": end_date,
+                "date_start": start_date or self.start_date,
+                "date_stop": end_date or self.end_date,
             }
         )
         return datev_export
@@ -862,3 +863,47 @@ class TestDatevExport(BaseCommon):
 
         export.action_done()
         self.assertEqual(export.state, "done")
+
+    def test_validation(self):
+        invoice = self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+        new_tax = invoice.invoice_line_ids[:1].tax_ids.copy()
+        invoice.button_cancel()
+        invoice.button_draft()
+        invoice.invoice_line_ids[:1].tax_ids += new_tax
+        invoice.action_post()
+
+        export.action_validate()
+
+        self.assertIn("multiple taxes", invoice.datev_validation)
+
+        action = export.action_show_invalid_invoices_view()
+        self.assertIn(invoice, self.InvoiceObj.search(action["domain"]))
+
+    def test_cron(self):
+        self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+
+        export.action_pending()
+
+        with mock.patch.object(self.env.cr, "commit"):
+            export.cron_run_pending_export()
+
+        self.assertEqual(export.state, "done")
+
+        action1 = export.action_show_related_invoices_view()
+        action2 = export.line_ids.action_open_invoices()
+        self.assertEqual(
+            self.InvoiceObj.search(action1["domain"]),
+            self.InvoiceObj.search(action2["domain"]),
+        )
+
+
+class TestController(TestDatevExport, HttpCase):
+    def test_export_controller(self):
+        self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+        export._get_zip()
+        self.authenticate("admin", "admin")
+        result = self.url_open(export.line_ids.action_datev_download()["url"])
+        self.assertEqual(result.headers["Content-Type"], "application/zip")
