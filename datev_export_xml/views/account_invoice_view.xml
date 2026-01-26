@@ -18,10 +18,10 @@
         <field name="mode">primary</field>
         <field name="priority">800</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" decoration-bf="1" />
                 <field name="datev_validation" />
-            </tree>
+            </list>
         </field>
     </record>
 

@@ -4,6 +4,7 @@
 from lxml import etree
 
 from odoo.exceptions import UserError
+from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -12,5 +13,8 @@ class TestGenerator(BaseCommon):
     def test_xml_generator(self):
         """Only test failing because other cases or covered in full tests"""
         root = etree.fromstring("<invalid/>")
-        with self.assertRaises(UserError):
+        with (
+            self.assertRaises(UserError),
+            mute_logger("odoo.addons.datev_export_xml.models.datev_xml_generator"),
+        ):
             self.env["datev.xml.generator"].check_xml_file("inv.xml", root)

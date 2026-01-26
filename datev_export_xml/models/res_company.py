@@ -7,7 +7,7 @@
 # @author Grzegorz Grzelak
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class ResCompany(models.Model):
@@ -15,10 +15,10 @@ class ResCompany(models.Model):
 
     datev_default_period = fields.Selection(
         [
-            ("day", _("Day")),
-            ("week", _("Week")),
-            ("month", _("Month")),
-            ("year", _("Year")),
+            ("day", "Day"),
+            ("week", "Week"),
+            ("month", "Month"),
+            ("year", "Year"),
         ],
         help="Used to get default values for start and stop date at DATEV Export!",
         default="week",
@@ -31,9 +31,9 @@ class ResCompany(models.Model):
 
     datev_vendor_order_ref = fields.Selection(
         [
-            ("odoo", _("Odoo Reference")),
-            ("partner", _("Partner Reference")),
-            ("payment", _("Payment Reference")),
+            ("odoo", "Odoo Reference"),
+            ("partner", "Partner Reference"),
+            ("payment", "Payment Reference"),
         ],
         "Vendor Order Reference",
         default="odoo",
@@ -42,9 +42,9 @@ class ResCompany(models.Model):
 
     datev_customer_order_ref = fields.Selection(
         [
-            ("odoo", _("Odoo Reference")),
-            ("partner", _("Partner Reference")),
-            ("payment", _("Payment Reference")),
+            ("odoo", "Odoo Reference"),
+            ("partner", "Partner Reference"),
+            ("payment", "Payment Reference"),
         ],
         "Customer Order Reference",
         default="odoo",

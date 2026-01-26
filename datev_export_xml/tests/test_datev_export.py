@@ -103,11 +103,9 @@ class TestDatevExport(BaseCommon):
         cls.refund_date = cls.today - timedelta(days=55)
         cls.start_date = cls.today - timedelta(days=34)
         cls.end_date = cls.today - timedelta(days=32)
-        if "check_account_audit_trail" in cls.env["res.company"]._fields:
-            cls.env["res.company"].search([]).write(
-                {"check_account_audit_trail": False}
-            )
-        cls.InvoiceObj.with_context(force_delete=True).search([]).unlink()
+        cls.InvoiceObj.with_context(force_delete=True).search(
+            [("company_id", "=", cls.company.id)]
+        ).unlink()
         cls.env.company.datev_default_period = "week"
 
     def _check_filecontent(self, export):
@@ -742,7 +740,6 @@ class TestDatevExport(BaseCommon):
 
     def test_13_out_invoice_with_tax(self):
         # OUT Invoice with tax
-        self.InvoiceObj.with_context(force_delete=True).search([]).unlink()
         self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
         tax = self.env["account.tax"].create(
             {

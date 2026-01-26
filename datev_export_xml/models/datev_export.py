@@ -65,7 +65,7 @@ class DatevExport(models.Model):
 
     name = fields.Char()
     export_type = fields.Selection(
-        [("out", _("Customers")), ("in", _("Vendors"))],
+        [("out", "Customers"), ("in", "Vendors")],
         default="out",
         required=True,
     )
@@ -104,11 +104,11 @@ class DatevExport(models.Model):
 
     state = fields.Selection(
         [
-            ("draft", _("Draft")),
-            ("pending", _("Pending")),
-            ("running", _("Running")),
-            ("done", _("Done")),
-            ("failed", _("Failed")),
+            ("draft", "Draft"),
+            ("pending", "Pending"),
+            ("running", "Running"),
+            ("done", "Done"),
+            ("failed", "Failed"),
         ],
         string="Status",
         default="draft",
@@ -388,8 +388,8 @@ class DatevExport(models.Model):
         tree_view = self.env.ref("datev_export_xml.view_move_datev_validation")
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "tree,form",
-            "views": [[tree_view.id, "tree"], [False, "form"]],
+            "view_mode": "list,form",
+            "views": [[tree_view.id, "list"], [False, "form"]],
             "res_model": "account.move",
             "target": "current",
             "name": _("Problematic Invoices"),
@@ -399,7 +399,7 @@ class DatevExport(models.Model):
     def action_show_related_invoices_view(self):
         return {
             "type": "ir.actions.act_window",
-            "view_mode": "tree,kanban,form",
+            "view_mode": "list,kanban,form",
             "res_model": "account.move",
             "target": "current",
             "name": _("Included Invoices"),

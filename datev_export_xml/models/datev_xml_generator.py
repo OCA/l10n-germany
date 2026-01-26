@@ -47,7 +47,7 @@ class DatevXmlGenerator(models.AbstractModel):
                     "'%s' according to message below:\n\n"
                 )
                 % doc_name
-                + tools.ustr(e)
+                + str(e)
             ) from e
         return True
 
