@@ -10,7 +10,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 -->
 <odoo>
-
     <record id="datev_export_view_kanban" model="ir.ui.view">
         <field name="name">datev.export.xml.kanban</field>
         <field name="model">datev.export.xml</field>
@@ -34,7 +33,6 @@
                                         <field name="create_uid" />
                                     </strong>
                                 </div>
-
                             </div>
                             <div class="o_kanban_record_bottom">
                                 <span
@@ -52,9 +50,7 @@
                                 </span>
                             </div>
                             <div class="o_kanban_record_bottom mb4">
-                                <div class="oe_kanban_bottom_left text-muted">
-
-                                </div>
+                                <div class="oe_kanban_bottom_left text-muted" />
                                 <div class="oe_kanban_bottom_right">
                                     <field
                                         name="state"
@@ -224,8 +220,8 @@
                                                     nolabel="1"
                                                 />
                                                 <i class="ml8">(<field
-                                                        name="datev_filesize"
-                                                    />)
+                                                    name="datev_filesize"
+                                                />)
                                                 </i>
                                             </big>
                                         </big>
@@ -235,9 +231,9 @@
 
                             <div class="oe_grey">
                                 <i
-                                    class="fa fa-exclamation-triangle mr4"
-                                    aria-hidden="true"
-                                />
+                                class="fa fa-exclamation-triangle mr4"
+                                aria-hidden="true"
+                            />
                                 Downloading large files may fail due to server settings!
                             </div>
                         </group>
@@ -276,7 +272,6 @@
                             </tree>
                         </field>
                     </group>
-
                 </sheet>
                 <div class="oe_chatter">
                     <field name="message_follower_ids" widget="mail_followers" />
@@ -366,7 +361,6 @@
                 decoration-danger="state == 'failed'"
                 decoration-success="state == 'running'"
             >
-
                 <field name="create_date" />
                 <field name="create_uid" />
                 <field name="export_type" />
@@ -381,7 +375,6 @@
             </tree>
         </field>
     </record>
-
 
     <record id="action_datev_export" model="ir.actions.act_window">
         <field name="name">DATEV XML Export</field>
@@ -416,5 +409,4 @@
         <field name="binding_model_id" ref="account.model_account_move" />
         <field name="groups_id" eval="[(4, ref('account.group_account_manager'))]" />
     </record>
-
 </odoo>
