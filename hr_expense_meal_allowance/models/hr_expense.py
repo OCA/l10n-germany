@@ -49,6 +49,17 @@ class HrExpense(models.Model):
                 record.number_of_days = len(record.meal_allowance_ids) - 2
                 record.number_of_travel_days = 2
 
+    @api.depends("is_meal_allowance", "meal_allowance_rate_id")
+    def _compute_currency_id(self):
+        res = super()._compute_currency_id()
+        for expense in self:
+            if expense.is_meal_allowance and expense.state in {"draft", "reported"}:
+                expense.currency_id = (
+                    expense.meal_allowance_rate_id.currency_id
+                    or expense.company_currency_id
+                )
+        return res
+
     @api.onchange("travel_begin", "travel_end", "customer_id")
     def _update_meal_lines(self):
         for record in self:
@@ -118,13 +129,8 @@ class HrExpense(models.Model):
         for expense in self.filtered(lambda x: x.is_meal_allowance):
             price = sum(map(lambda x: x.expense_for_day, expense.meal_allowance_ids))
             expense.total_amount_currency = price
-
-            currency = expense.meal_allowance_rate_id.currency_id
-            if len(currency) > 1:
-                raise UserError(
-                    self.env._("Multiple currencies found in meal allowance lines.")
-                )
-            expense.currency_id = currency
+            if expense.meal_allowance_rate_id.currency_id:
+                expense.currency_id = expense.meal_allowance_rate_id.currency_id
             expense._inverse_total_amount_currency()
 
         return res
