@@ -1,0 +1,2 @@
+- Christopher Rogos (glueckkanja AG)
+- Niels Göttsch \<<niels@ziemlichoptimal.de>\>
