@@ -36,9 +36,9 @@
                 <field name="expire_on" />
                 <field name="daily_rate_24h" />
                 <field name="daily_rate_8h" />
-                <field name="percentage_for_breakfast" />
-                <field name="percentage_for_lunch" />
-                <field name="percentage_for_dinner" />
+                <field name="percentage_for_breakfast" string="Breakfast %" />
+                <field name="percentage_for_lunch" string="Lunch %" />
+                <field name="percentage_for_dinner" string="Dinner %" />
             </list>
         </field>
     </record>

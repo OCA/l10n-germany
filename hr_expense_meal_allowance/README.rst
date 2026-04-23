@@ -1,5 +1,5 @@
 =========================
-Hr Expense Meal Allowance
+HR Expense Meal Allowance
 =========================
 
 .. 
@@ -69,6 +69,12 @@ Authors
 
 * IFE Gesellschaft für Forschung und Entwicklung
 * glueckkanja AG
+
+Contributors
+------------
+
+- Christopher Rogos (glueckkanja AG)
+- Niels Göttsch <niels@ziemlichoptimal.de>
 
 Maintainers
 -----------

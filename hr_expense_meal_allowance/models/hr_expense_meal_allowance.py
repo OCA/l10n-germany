@@ -4,6 +4,7 @@ import pytz
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import format_date
 
 
 class HrExpenseMealAllowance(models.Model):
@@ -31,15 +32,17 @@ class HrExpenseMealAllowance(models.Model):
     hr_expense_id = fields.Many2one("hr.expense", string="Expense", readonly=True)
 
     employee_id = fields.Many2one(related="hr_expense_id.employee_id")
+    company_id = fields.Many2one(related="hr_expense_id.company_id")
     is_editable = fields.Boolean(
         related="hr_expense_id.is_editable",
     )
 
+    @api.depends_context("lang")
     @api.depends("date")
     def _compute_date(self):
         for record in self:
             if record.date:
-                record.day = self.env._(record.date.strftime("%A"))
+                record.day = format_date(record.env, record.date, date_format="EEEE")
             else:
                 record.day = ""
 

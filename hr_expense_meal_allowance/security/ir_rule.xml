@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="ir_rule_hr_expense_meal_allowance" model="ir.rule">
-        <field name="name">Manager Expense</field>
-        <field name="model_id" ref="model_hr_expense" />
+    <record id="ir_rule_hr_expense_meal_allowance_multicompany" model="ir.rule">
+        <field name="name">Meal Allowance multi-company</field>
+        <field name="model_id" ref="model_hr_expense_meal_allowance" />
         <field
             name="domain_force"
-        >[('employee_id.user_id', '=', user.id), ('state', '!=', 'draft')]</field>
-        <field
-            name="groups"
-            eval="[
-                (4, ref('account.group_account_user')),
-                (4, ref('hr_expense.group_hr_expense_user'))]"
-        />
-        <field name="perm_create" eval="False" />
-        <field name="perm_write" eval="False" />
-        <field name="perm_unlink" eval="False" />
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
     </record>
 </odoo>

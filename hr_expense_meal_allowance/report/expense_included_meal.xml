@@ -5,7 +5,7 @@
             <t t-foreach="docs" t-as="o">
                 <t t-set="lang" t-value="o.env.company.partner_id.lang" />
                 <t t-set="o" t-value="o.with_context(lang=lang)" />
-                <t t-call="web.external_layout">
+                <t t-call="web.external_layout" t-lang="lang">
                     <div class="row">
                         <div class="col-6">
                             <t t-set="information_block" />
@@ -62,7 +62,7 @@
                                     t-if="o.number_of_travel_days"
                                     name="number_of_travel_days"
                                 >
-                                    <strong>Number Of Travel Days</strong>
+                                    <strong>Travel Days</strong>
                                     <div
                                         class="m-0"
                                         t-field="o.number_of_travel_days"
@@ -73,7 +73,7 @@
                                     t-if="o.number_of_travel_days"
                                     name="number_of_days"
                                 >
-                                    <strong>Number Of Whole Days</strong>
+                                    <strong>Whole Days</strong>
                                     <div class="m-0" t-field="o.number_of_days">1</div>
                                 </div>
                             </div>
