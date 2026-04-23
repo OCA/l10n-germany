@@ -1,5 +1,5 @@
 {
-    "name": "Hr Expense Meal Allowance",
+    "name": "HR Expense Meal Allowance",
     "author": "IFE Gesellschaft für Forschung und Entwicklung, "
     "glueckkanja AG, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
@@ -17,6 +17,7 @@
         "views/hr_expense.xml",
         "views/product_product.xml",
         "security/ir.model.access.csv",
+        "security/ir_rule.xml",
         "report/expense_included_meal_report.xml",
         "report/expense_included_meal.xml",
     ],

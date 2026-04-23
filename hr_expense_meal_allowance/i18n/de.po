@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0+e\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-26 16:06+0000\n"
-"PO-Revision-Date: 2025-11-26 16:06+0000\n"
+"POT-Creation-Date: 2026-04-24 10:34+0000\n"
+"PO-Revision-Date: 2026-04-24 10:34+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,10 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "2025-01-03"
-msgstr ""
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "2025-01-05"
-msgstr ""
+#. odoo-python
+#: code:addons/hr_expense_meal_allowance/models/hr_expense_meal_allowance_rate.py:0
+msgid " (valid until %(expire_on)s)"
+msgstr " (gültig bis %(expire_on)s)"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -47,18 +43,13 @@ msgstr "<span>Abendessen inbegriffen?</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<span>Expenses For This Day</span>"
-msgstr "<span>Spesen für diesen Tag</span>"
+msgid "<span>Amount</span>"
+msgstr "<span>Betrag</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
 msgid "<span>Lunch Included?</span>"
 msgstr "<span>Mittagessen inbegriffen?</span>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<span>Meal Allowance</span>"
-msgstr "<span>Verpflegungsmehraufwand</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -72,16 +63,6 @@ msgstr "<strong>Mitarbeiter</strong>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Number Of Travel Days</strong>"
-msgstr "<strong>Anzahl der Reisetage</strong>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Number Of Whole Days</strong>"
-msgstr "<strong>Anzahl der vollen Tage</strong>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
 msgid "<strong>Total:</strong>"
 msgstr "<strong>Gesamt:</strong>"
 
@@ -92,18 +73,33 @@ msgstr "<strong>Reisebeginn</strong>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Travel Days</strong>"
+msgstr "<strong>Reisetage</strong>"
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
 msgid "<strong>Travel End</strong>"
 msgstr "<strong>Reiseende</strong>"
 
 #. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Whole Days</strong>"
+msgstr "<strong>Ganze Tage</strong>"
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_tr_ankara
+msgid "Ankara"
+msgstr "Ankara"
+
+#. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_gr_athens
 msgid "Athens"
-msgstr ""
+msgstr "Athen"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_atlanta
 msgid "Atlanta"
-msgstr ""
+msgstr "Atlanta"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -122,8 +118,9 @@ msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_beijing
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_beijing_2026
 msgid "Beijing"
-msgstr ""
+msgstr "Peking"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_boston
@@ -136,29 +133,34 @@ msgid "Brasilia"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Breakfast %"
+msgstr "Frühstück %"
+
+#. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__breakfast_rate
 msgid "Breakfast Rate"
-msgstr ""
+msgstr "Frühstücksrate"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__breakfast_included
 msgid "Breakfast included?"
-msgstr ""
+msgstr "Frühstück beinhaltet?"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ro_bucharest
 msgid "Bucharest"
-msgstr ""
+msgstr "Bukarest"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_calcutta
 msgid "Calcutta"
-msgstr ""
+msgstr "Kalkutta"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_es_canary_islands
 msgid "Canary Islands"
-msgstr ""
+msgstr "Kanarische Inseln"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_au_canberra
@@ -168,12 +170,12 @@ msgstr ""
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_canton
 msgid "Canton"
-msgstr ""
+msgstr "Kanton"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_za_cape_town
 msgid "Cape Town"
-msgstr ""
+msgstr "Kapstadt"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_chengu
@@ -193,12 +195,17 @@ msgstr ""
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__city_name
 msgid "City Name"
+msgstr "Stadt"
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__company_id
+msgid "Company"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__country_id
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__create_uid
@@ -242,6 +249,11 @@ msgstr "Datum"
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__day
 msgid "Day"
 msgstr "Tag"
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Dinner %"
+msgstr "Abendessen %"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__dinner_rate
@@ -288,7 +300,7 @@ msgstr "Verpflegungsmehraufwand für ein Datum."
 #. module: hr_expense_meal_allowance
 #: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_sheet
 msgid "Expense Report"
-msgstr "Spesenreport"
+msgstr "Spesenabrechnung"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_meal_allowance_rate
@@ -302,8 +314,13 @@ msgstr "Spesenreport"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__expense_for_day
-msgid "Expenses for This Day"
-msgstr "Ausgaben für diesen Tag"
+msgid "Amount"
+msgstr "Betrag"
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__expire_on
+msgid "Expire On"
+msgstr "Gültig Bis"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_gdansk
@@ -312,11 +329,13 @@ msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ch_geneve
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ch_geneve_2026
 msgid "Geneva"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_hong_kong
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_hong_kong_2026
 msgid "Hong Kong"
 msgstr ""
 
@@ -350,11 +369,6 @@ msgstr "Ist Verpflegungsmehraufwand"
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pk_islamabad
 msgid "Islamabad"
-msgstr ""
-
-#. module: hr_expense_meal_allowance
-#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_tr_istanbul
-msgid "Istanbul"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
@@ -395,9 +409,14 @@ msgid "Los Angeles"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Lunch %"
+msgstr "Mittag %"
+
+#. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__lunch_rate
 msgid "Lunch Rate"
-msgstr ""
+msgstr "Mittagessensatz"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__lunch_included
@@ -412,6 +431,8 @@ msgstr ""
 #. module: hr_expense_meal_allowance
 #: model:ir.actions.act_window,name:hr_expense_meal_allowance.action_hr_expense_meal_allowance
 #: model:ir.ui.menu,name:hr_expense_meal_allowance.expense_included_meal_menu
+#: model:product.template,name:hr_expense_meal_allowance.product_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
 msgid "Meal Allowance"
 msgstr "Verpflegungsmehraufwand"
 
@@ -442,12 +463,6 @@ msgid "Moscow"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
-#. odoo-python
-#: code:addons/hr_expense_meal_allowance/models/hr_expense.py:0
-msgid "Multiple currencies found in meal allowance lines."
-msgstr "Mehrere Währungen in Verpflegungsmehraufwand-Zeilen gefunden."
-
-#. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_mumbai
 msgid "Mumbai"
 msgstr ""
@@ -461,16 +476,6 @@ msgstr ""
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_new_york_city
 msgid "New York City"
 msgstr ""
-
-#. module: hr_expense_meal_allowance
-#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_days
-msgid "Number Of Days"
-msgstr "Anzahl ganze Tage"
-
-#. module: hr_expense_meal_allowance
-#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_travel_days
-msgid "Number Of Travel Days"
-msgstr "Anzahl An-/Abreise Tage"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ca_ottawa
@@ -520,6 +525,11 @@ msgid "Rate"
 msgstr "Satz"
 
 #. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_search_form_view
+msgid "Rates"
+msgstr "Sätze"
+
+#. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_br_rio_de_jeneiro
 msgid "Rio de Janeiro"
 msgstr ""
@@ -532,7 +542,7 @@ msgstr ""
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_it_rome
 msgid "Rome"
-msgstr ""
+msgstr "Rom"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_san_francisco
@@ -546,6 +556,7 @@ msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_shanghai
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_shanghai_2026
 msgid "Shanghai"
 msgstr ""
 
@@ -575,6 +586,11 @@ msgid "Travel Begin"
 msgstr "Reisebeginn"
 
 #. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_travel_days
+msgid "Travel Days"
+msgstr "Reisetage"
+
+#. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__travel_end
 msgid "Travel End"
 msgstr "Reiseende"
@@ -595,11 +611,6 @@ msgid "Vancouver"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
-#: model:product.template,name:hr_expense_meal_allowance.product_meal_allowance
-msgid "Verpflegungsmehraufwand"
-msgstr ""
-
-#. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_warsaw
 msgid "Warsaw"
 msgstr ""
@@ -608,6 +619,11 @@ msgstr ""
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_washington_dc
 msgid "Washington D.C."
 msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_days
+msgid "Whole Days"
+msgstr "Ganze Tage"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_wroclaw

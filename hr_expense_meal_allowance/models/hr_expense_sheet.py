@@ -12,9 +12,7 @@ class HrExpenseSheet(models.Model):
                 lambda expense: expense.is_meal_allowance
                 and not expense.message_attachment_count
             ):
-                lang = (
-                    self.employee_id.lang or self.employee_id.company_id.partner_id.lang
-                )
+                lang = self.employee_id.company_id.partner_id.lang
                 self.env["ir.actions.report"].with_context(lang=lang)._render_qweb_pdf(
                     "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance",
                     expense.id,
