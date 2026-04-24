@@ -1,7 +1,7 @@
 # Copyright 2025 Maik Derstappen (https://derico.de)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -9,7 +9,6 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     is_labor_cost_product = fields.Boolean(
-        string="Is Labor Cost Product",
         help="Indicates whether this product is a labor product.",
     )
 
@@ -18,5 +17,5 @@ class ProductTemplate(models.Model):
         for record in self:
             if record.is_labor_cost_product and record.type in ("consu", "combo"):
                 raise ValidationError(
-                    "Labor cost products cannot be of type 'Goods' or 'Combo'."
+                    _("Labor cost products cannot be of type 'Goods' or 'Combo'.")
                 )

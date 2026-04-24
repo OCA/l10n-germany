@@ -16,27 +16,27 @@
                 <p class="mb-0">
                     In the invoice amount of
                     <span
-                        t-field="o.amount_total"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                    />
+                    t-field="o.amount_total"
+                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                />
                     are
                     <span
-                        t-field="o.l10n_de_labor_cost_gross"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                    />
+                    t-field="o.l10n_de_labor_cost_gross"
+                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                />
                     Labor costs (gross) included.
                     <br />
                     Labor costs included (net):
                     <span
-                        t-field="o.l10n_de_labor_cost_net"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                    />
+                    t-field="o.l10n_de_labor_cost_net"
+                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                />
                     <br />
                     Sales tax included:
                     <span
-                        t-field="o.l10n_de_labor_cost_tax"
-                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'
-                    />
+                    t-field="o.l10n_de_labor_cost_tax"
+                    t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                />
                 </p>
             </div>
         </xpath>

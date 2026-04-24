@@ -23,13 +23,17 @@ class AccountMove(models.Model):
         help="Total gross amount of labor cost lines (net + tax)",
     )
 
-    @api.depends("invoice_line_ids.tax_ids", "invoice_line_ids.price_subtotal", "invoice_line_ids.price_total")
+    @api.depends(
+        "invoice_line_ids.tax_ids",
+        "invoice_line_ids.price_subtotal",
+        "invoice_line_ids.price_total",
+    )
     def _compute_labor_cost_values(self):
         for move in self:
             labor_lines = move.invoice_line_ids.filtered(
                 lambda line: line.product_id.is_labor_cost_product
             )
-            
+
             move.l10n_de_labor_cost_net = sum(labor_lines.mapped("price_subtotal"))
             move.l10n_de_labor_cost_tax = sum(
                 line.price_total - line.price_subtotal for line in labor_lines
