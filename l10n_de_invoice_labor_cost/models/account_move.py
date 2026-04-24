@@ -1,0 +1,37 @@
+# Copyright 2025 Maik Derstappen (https://derico.de)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    l10n_de_labor_cost_net = fields.Monetary(
+        string="Labor Cost (Net)",
+        compute="_compute_labor_cost_values",
+        help="Total net amount of labor cost lines",
+    )
+    l10n_de_labor_cost_tax = fields.Monetary(
+        string="Labor Cost (Tax)",
+        compute="_compute_labor_cost_values",
+        help="Total tax amount on labor cost lines",
+    )
+    l10n_de_labor_cost_gross = fields.Monetary(
+        string="Labor Cost (Gross)",
+        compute="_compute_labor_cost_values",
+        help="Total gross amount of labor cost lines (net + tax)",
+    )
+
+    @api.depends("invoice_line_ids.tax_ids", "invoice_line_ids.price_subtotal", "invoice_line_ids.price_total")
+    def _compute_labor_cost_values(self):
+        for move in self:
+            labor_lines = move.invoice_line_ids.filtered(
+                lambda line: line.product_id.is_labor_cost_product
+            )
+            
+            move.l10n_de_labor_cost_net = sum(labor_lines.mapped("price_subtotal"))
+            move.l10n_de_labor_cost_tax = sum(
+                line.price_total - line.price_subtotal for line in labor_lines
+            )
+            move.l10n_de_labor_cost_gross = sum(labor_lines.mapped("price_total"))
