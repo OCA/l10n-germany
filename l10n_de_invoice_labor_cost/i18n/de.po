@@ -53,6 +53,12 @@ msgstr ""
 "                    Darin enthaltene Lohnkosten (netto):"
 
 #. module: l10n_de_invoice_labor_cost
+#. odoo-python
+#: code:addons/l10n_de_invoice_labor_cost/models/product_template.py:0
+msgid "Labor cost products cannot be of type 'Goods' or 'Combo'."
+msgstr "Haushaltsnahe Dienstleistungen können nicht vom Typ „Güter“ oder „Kombi“ sein."
+
+#. module: l10n_de_invoice_labor_cost
 #: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
 msgid "Note according to §35a EStG:"
 msgstr "Hinweis gem. §35a EStG:"
