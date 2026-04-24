@@ -201,7 +201,7 @@ Credits
 Authors
 -------
 
-* Derico
+* Ole Jancke
 
 Contributors
 ------------

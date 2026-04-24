@@ -7,7 +7,7 @@
     "version": "18.0.1.0.0",
     "category": "Localization",
     "license": "AGPL-3",
-    "author": "Derico, Odoo Community Association (OCA)",
+    "author": "Ole Jancke, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/l10n-germany",
     "depends": ["account"],
     "data": [
