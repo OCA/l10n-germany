@@ -21,7 +21,8 @@ class ProductTemplate(models.Model):
 
     @api.constrains("is_labor_cost_product", "type")
     def _check_labor_cost_product_type(self):
-        self._check_is_labor_cost_product()
+        for record in self:
+            record._check_is_labor_cost_product()
 
     @api.onchange("is_labor_cost_product", "type")
     def _onchange_check_labor_cost_product_type(self):
