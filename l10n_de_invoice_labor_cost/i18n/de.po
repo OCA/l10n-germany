@@ -1,0 +1,68 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_invoice_labor_cost
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 10:02+0000\n"
+"PO-Revision-Date: 2026-04-24 10:02+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
+msgid ""
+"<br/>\n"
+"                    Sales tax included:"
+msgstr ""
+"<br/>\n"
+"                    Darin enthaltene Umsatzsteuer:"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
+msgid "In the invoice amount of"
+msgstr "Im Rechnungsbetrag von"
+
+#. module: l10n_de_invoice_labor_cost
+#: model:ir.model.fields,help:l10n_de_invoice_labor_cost.field_product_product__is_labor_cost_product
+#: model:ir.model.fields,help:l10n_de_invoice_labor_cost.field_product_template__is_labor_cost_product
+msgid "Indicates whether this product is a labor product."
+msgstr "Gibt an, ob dieses Produkt eine haushaltsnahe Dienstleistung ist."
+
+#. module: l10n_de_invoice_labor_cost
+#: model:ir.model.fields,field_description:l10n_de_invoice_labor_cost.field_product_product__is_labor_cost_product
+#: model:ir.model.fields,field_description:l10n_de_invoice_labor_cost.field_product_template__is_labor_cost_product
+msgid "Is Labor Cost Product"
+msgstr "Ist haushaltsnahe Dienstleistung"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
+msgid ""
+"Labor costs (gross) included.\n"
+"                    <br/>\n"
+"                    Labor costs included (net):"
+msgstr ""
+"Lohnkosten (brutto) enthalten.\n"
+"                    <br/>\n"
+"                    Darin enthaltene Lohnkosten (netto):"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
+msgid "Note according to §35a EStG:"
+msgstr "Hinweis gem. §35a EStG:"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.report_invoice_labor_cost
+msgid "are"
+msgstr "sind"
+
+#. module: l10n_de_invoice_labor_cost
+#: model_terms:ir.ui.view,arch_db:l10n_de_invoice_labor_cost.product_template_form_view
+msgid "§35a Labor Cost"
+msgstr "§35a haushaltsnahe Dienstleistungen"

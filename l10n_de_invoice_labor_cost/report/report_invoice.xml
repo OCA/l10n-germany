@@ -12,27 +12,27 @@
                 class="mt-3 mb-3 p-2 border rounded"
                 style="border-color: #dee2e6 !important;"
             >
-                <p class="fw-bold mb-1">Hinweis gem. §35a EStG:</p>
+                <p class="fw-bold mb-1">Note according to §35a EStG:</p>
                 <p class="mb-0">
-                    Im Rechnungsbetrag von
+                    In the invoice amount of
                     <span
                         t-field="o.amount_total"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
                     />
-                    sind
+                    are
                     <span
                         t-field="o.l10n_de_labor_cost_gross"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
                     />
-                    Lohnkosten (brutto) enthalten.
+                    Labor costs (gross) included.
                     <br />
-                    Darin enthaltene Arbeitskosten (netto):
+                    Labor costs included (net):
                     <span
                         t-field="o.l10n_de_labor_cost_net"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
                     />
                     <br />
-                    Darin enthaltene Umsatzsteuer:
+                    Sales tax included:
                     <span
                         t-field="o.l10n_de_labor_cost_tax"
                         t-options='{"widget": "monetary", "display_currency": o.currency_id}'
