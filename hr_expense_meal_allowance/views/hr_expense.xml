@@ -41,14 +41,14 @@
                                 <field name="breakfast_included" />
                                 <field name="lunch_included" />
                                 <field name="dinner_included" />
-                                <field name="currency_id" invisible="True" />
+                                <field name="currency_id" column_invisible="True" />
                                 <field name="expense_for_day" widget='monetary' />
                             </list>
                         </field>
                     </page>
                 </notebook>
             </xpath>
-            <xpath expr="//header/button[@name='action_view_sheet']" position="after">
+            <xpath expr="//header/button[@name='action_submit'][1]" position="before">
                 <button
                     invisible="not is_meal_allowance"
                     name="action_print"
@@ -64,7 +64,10 @@
             >
                 <attribute name="readonly" add="is_meal_allowance" separator="or" />
             </xpath>
-            <xpath expr="//field[@name='total_amount_currency']" position="attributes">
+            <xpath
+                expr="//field[@name='total_amount_currency' and hasclass('oe_inline')]"
+                position="attributes"
+            >
                 <attribute name="readonly" add="is_meal_allowance" separator="or" />
             </xpath>
             <xpath expr="//div/field[@name='currency_id']" position="attributes">

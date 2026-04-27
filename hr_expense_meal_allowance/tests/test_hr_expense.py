@@ -9,6 +9,7 @@ class HrExpense(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.tz = "Europe/Berlin"
         cls.country = cls.env.ref("base.de")
         cls.product = cls.env.ref(
             "hr_expense_meal_allowance.product_meal_allowance"
@@ -29,6 +30,11 @@ class HrExpense(BaseCommon):
                 "city_name": "Berlin",
                 "currency_id": cls.env.ref("base.EUR").id,
                 "expire_on": datetime(2023, 12, 31).date(),
+                "daily_rate_8h": 50,
+                "daily_rate_24h": 100,
+                "percentage_for_breakfast": 0.2,
+                "percentage_for_lunch": 0.4,
+                "percentage_for_dinner": 0.4,
             }
         )
         cls.rate_before = cls.env["hr.expense.meal.allowance.rate"].create(
@@ -72,3 +78,76 @@ class HrExpense(BaseCommon):
 
         # assert
         self.assertEqual(f.meal_allowance_rate_id, self.rate)
+
+    def test_update_meal_lines(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 11, 1, 18, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+
+        # assert
+        meal_lines = expense.meal_allowance_ids
+        self.assertEqual(len(meal_lines), 3)
+        self.assertEqual(meal_lines[0].date, datetime(2023, 10, 30).date())
+        self.assertEqual(meal_lines[1].date, datetime(2023, 10, 31).date())
+        self.assertEqual(meal_lines[2].date, datetime(2023, 11, 1).date())
+
+        self.assertEqual(meal_lines[0].expense_for_day, 50)
+        self.assertEqual(meal_lines[1].expense_for_day, 100)
+        self.assertEqual(meal_lines[2].expense_for_day, 50)
+
+        # act
+        meal_lines[0].breakfast_included = True
+        meal_lines[1].lunch_included = True
+        meal_lines[2].lunch_included = True
+
+        # assert
+        self.assertEqual(meal_lines[0].expense_for_day, 30)
+        self.assertEqual(meal_lines[1].expense_for_day, 60)
+        self.assertEqual(meal_lines[2].expense_for_day, 10)
+
+    def test_total_amount_currency_less_8h(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 10, 30, 16, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+        # assert
+        self.assertEqual(expense.total_amount_currency, 0)
+
+    def test_total_amount_currency_more_8h(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 10, 30, 16, 1, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+        # assert
+        self.assertEqual(expense.total_amount_currency, 50)

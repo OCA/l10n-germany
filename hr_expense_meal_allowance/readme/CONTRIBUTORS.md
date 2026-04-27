@@ -1,2 +1,2 @@
-- Christopher Rogos (glueckkanja AG)
+- Christopher Rogos \<<crogos@gmail.com>\> (glueckkanja AG)
 - Niels Göttsch \<<niels@ziemlichoptimal.de>\>
