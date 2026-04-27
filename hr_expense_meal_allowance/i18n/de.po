@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-24 10:34+0000\n"
-"PO-Revision-Date: 2026-04-24 10:34+0000\n"
+"POT-Creation-Date: 2026-06-04 11:49+0000\n"
+"PO-Revision-Date: 2026-06-04 11:49+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -19,12 +19,22 @@ msgstr ""
 #. odoo-python
 #: code:addons/hr_expense_meal_allowance/models/hr_expense_meal_allowance_rate.py:0
 msgid " (valid until %(expire_on)s)"
-msgstr " (gültig bis %(expire_on)s)"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Amount</span>"
+msgstr "<span>Betrag</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
 msgid "<span>Breakfast Included?</span>"
 msgstr "<span>Frühstück inbegriffen?</span>"
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Customer:</span>"
+msgstr "<span>Kunde:</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -42,9 +52,9 @@ msgid "<span>Dinner Included?</span>"
 msgstr "<span>Abendessen inbegriffen?</span>"
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<span>Amount</span>"
-msgstr "<span>Betrag</span>"
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Employee:</span>"
+msgstr "<span>Mitarbeiter:</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -52,14 +62,24 @@ msgid "<span>Lunch Included?</span>"
 msgstr "<span>Mittagessen inbegriffen?</span>"
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Customer</strong>"
-msgstr "<strong>Kunde</strong>"
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Travel Begin:</span>"
+msgstr "<span>Reisebeginn:</span>"
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Employee</strong>"
-msgstr "<strong>Mitarbeiter</strong>"
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Travel Days:</span>"
+msgstr "<span>Reisetage:</span>"
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Travel End:</span>"
+msgstr "<span>Reiseende:</span>"
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
+msgid "<span>Whole Days:</span>"
+msgstr "<span>Ganze Tage:</span>"
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
@@ -67,29 +87,14 @@ msgid "<strong>Total:</strong>"
 msgstr "<strong>Gesamt:</strong>"
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Travel Begin</strong>"
-msgstr "<strong>Reisebeginn</strong>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Travel Days</strong>"
-msgstr "<strong>Reisetage</strong>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Travel End</strong>"
-msgstr "<strong>Reiseende</strong>"
-
-#. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
-msgid "<strong>Whole Days</strong>"
-msgstr "<strong>Ganze Tage</strong>"
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__expense_for_day
+msgid "Amount"
+msgstr "Betrag"
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_tr_ankara
 msgid "Ankara"
-msgstr "Ankara"
+msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_gr_athens
@@ -99,10 +104,10 @@ msgstr "Athen"
 #. module: hr_expense_meal_allowance
 #: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_atlanta
 msgid "Atlanta"
-msgstr "Atlanta"
+msgstr ""
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
 msgid "Azure Interior"
 msgstr ""
 
@@ -266,6 +271,7 @@ msgid "Dinner included?"
 msgstr "Abendessen inbegriffen?"
 
 #. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__display_name
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__display_name
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__display_name
 msgid "Display Name"
@@ -298,24 +304,9 @@ msgid "Expense Meal Allowances for a date."
 msgstr "Verpflegungsmehraufwand für ein Datum."
 
 #. module: hr_expense_meal_allowance
-#: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_sheet
-msgid "Expense Report"
-msgstr "Spesenabrechnung"
-
-#. module: hr_expense_meal_allowance
 #: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_meal_allowance_rate
 msgid "Expense meal allowances rate for a city or country."
 msgstr "Verpflegungsmehraufwandssatz für eine Stadt oder ein Land."
-
-#. module: hr_expense_meal_allowance
-#: model:ir.actions.report,name:hr_expense_meal_allowance.action_report_hr_expense_meal_allowance
-msgid "Expenses Report"
-msgstr "Spesenreport"
-
-#. module: hr_expense_meal_allowance
-#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__expense_for_day
-msgid "Amount"
-msgstr "Betrag"
 
 #. module: hr_expense_meal_allowance
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__expire_on
@@ -345,6 +336,7 @@ msgid "Houston"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__id
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__id
 #: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__id
 msgid "ID"
@@ -453,7 +445,7 @@ msgid "Milan"
 msgstr ""
 
 #. module: hr_expense_meal_allowance
-#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_travel_information
 msgid "Mitchell Admin"
 msgstr ""
 
@@ -512,7 +504,7 @@ msgstr "Prozentsatz für Mittagessen"
 #: code:addons/hr_expense_meal_allowance/models/hr_expense.py:0
 #: code:addons/hr_expense_meal_allowance/models/hr_expense_meal_allowance.py:0
 msgid "Please set a timezone in user settings"
-msgstr "Bitte legen Sie eine Zeitzone in den Benutzereinstellungen fest"
+msgstr ""
 
 #. module: hr_expense_meal_allowance
 #: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_sheet_view_form_extended

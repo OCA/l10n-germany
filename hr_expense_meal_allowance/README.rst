@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =========================
 HR Expense Meal Allowance
 =========================
@@ -13,17 +17,17 @@ HR Expense Meal Allowance
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github
-    :target: https://github.com/OCA/l10n-germany/tree/18.0/hr_expense_meal_allowance
+    :target: https://github.com/OCA/l10n-germany/tree/19.0/hr_expense_meal_allowance
     :alt: OCA/l10n-germany
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/l10n-germany-18-0/l10n-germany-18-0-hr_expense_meal_allowance
+    :target: https://translation.odoo-community.org/projects/l10n-germany-19-0/l10n-germany-19-0-hr_expense_meal_allowance
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-germany&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/l10n-germany&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -41,10 +45,10 @@ The rates are imported by a csv file. When a rate changes for a certain
 country, create a new csv line and set the expire_on date on the
 existing line. |image3|
 
-.. |meal allowance rates| image:: https://raw.githubusercontent.com/OCA/l10n-germany/18.0/hr_expense_meal_allowance/static/description/expense_1.png
-.. |image1| image:: https://raw.githubusercontent.com/OCA/l10n-germany/18.0/hr_expense_meal_allowance/static/description/expense_2.png
-.. |image2| image:: https://raw.githubusercontent.com/OCA/l10n-germany/18.0/hr_expense_meal_allowance/static/description/product_tag.png
-.. |image3| image:: https://raw.githubusercontent.com/OCA/l10n-germany/18.0/hr_expense_meal_allowance/static/description/settings_rates.png
+.. |meal allowance rates| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/hr_expense_meal_allowance/static/description/expense_1.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/hr_expense_meal_allowance/static/description/expense_2.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/hr_expense_meal_allowance/static/description/product_tag.png
+.. |image3| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/hr_expense_meal_allowance/static/description/settings_rates.png
 
 **Table of contents**
 
@@ -57,7 +61,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/l10n-germany/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/l10n-germany/issues/new?body=module:%20hr_expense_meal_allowance%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/l10n-germany/issues/new?body=module:%20hr_expense_meal_allowance%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -73,8 +77,9 @@ Authors
 Contributors
 ------------
 
-- Christopher Rogos (glueckkanja AG)
-- Niels Göttsch <niels@ziemlichoptimal.de>
+-  Christopher Rogos <crogos@gmail.com> (glueckkanja AG)
+-  Niels Göttsch <niels@ziemlichoptimal.de>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
 
 Maintainers
 -----------
@@ -97,6 +102,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-CRogos| 
 
-This module is part of the `OCA/l10n-germany <https://github.com/OCA/l10n-germany/tree/18.0/hr_expense_meal_allowance>`_ project on GitHub.
+This module is part of the `OCA/l10n-germany <https://github.com/OCA/l10n-germany/tree/19.0/hr_expense_meal_allowance>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

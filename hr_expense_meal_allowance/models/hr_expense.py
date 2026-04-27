@@ -57,7 +57,7 @@ class HrExpense(models.Model):
     def _compute_currency_id(self):
         res = super()._compute_currency_id()
         for expense in self:
-            if expense.is_meal_allowance and expense.state in {"draft", "reported"}:
+            if expense.is_meal_allowance and expense.state in {"draft", "submitted"}:
                 expense.currency_id = (
                     expense.meal_allowance_rate_id.currency_id
                     or expense.company_currency_id
@@ -140,11 +140,15 @@ class HrExpense(models.Model):
         return res
 
     @api.onchange("customer_id", "travel_end")
-    def _onchange_customer(self):
+    def _onchange_recalculate_meal_allowance_rate_id(self):
         for record in self:
             rates = []
 
-            if record.customer_id.city and record.customer_id.country_id:
+            if (
+                record.customer_id.city
+                and record.customer_id.country_id
+                and record.travel_end
+            ):
                 rates = self.env["hr.expense.meal.allowance.rate"].search(
                     [
                         ("country_id", "=", record.customer_id.country_id.id),
@@ -155,7 +159,7 @@ class HrExpense(models.Model):
                     ],
                 )
 
-            if not rates and record.customer_id.country_id:
+            if not rates and record.customer_id.country_id and record.travel_end:
                 rates = self.env["hr.expense.meal.allowance.rate"].search(
                     [
                         ("country_id", "=", record.customer_id.country_id.id),
@@ -172,13 +176,30 @@ class HrExpense(models.Model):
 
             record.meal_allowance_rate_id = rates[0] if rates else False
 
-    def action_print(self):
-        self.ensure_one()
-        lang = self.employee_id.company_id.partner_id.lang
-        return (
-            self.env.ref(
-                "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance"
+    def action_post(self):
+        for expense in self.filtered(
+            lambda expense: expense.is_meal_allowance and not expense.nb_attachment
+        ):
+            lang = (
+                expense.employee_id.lang
+                or expense.employee_id.company_id.partner_id.lang
             )
-            .with_context(lang=lang)
-            .report_action(self)
-        )
+            content, _content_type = (
+                self.env["ir.actions.report"]
+                .with_context(lang=lang)
+                ._render_qweb_pdf(
+                    "hr_expense.action_report_hr_expense",
+                    expense.id,
+                )
+            )
+            expense.attachment_ids |= self.env["ir.attachment"].create(
+                {
+                    "name": f"{expense.name}.pdf".replace("/", "_"),
+                    "type": "binary",
+                    "mimetype": "application/pdf",
+                    "raw": content,
+                    "res_model": expense._name,
+                    "res_id": expense.id,
+                }
+            )
+        return super().action_post()
