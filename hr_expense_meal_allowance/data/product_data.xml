@@ -9,7 +9,6 @@
         <field name="default_code">VMA</field>
         <field name="can_be_expensed">True</field>
         <field name="expense_policy">cost</field>
-        <field name="taxes_id" eval="[]" />
         <field
             name="product_tag_ids"
             eval="[Command.link(ref('product_tag_meal_allowance'))]"
