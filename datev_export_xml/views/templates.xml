@@ -65,14 +65,14 @@
             t-att-quantity="'%.02f' % line.quantity"
         />
         <invoice_item_list
-            t-elif="not line.display_type and prices['total_excluded']"
+            t-elif="prices['total_excluded']"
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-description_short="(line.name or '')[:40]"
             t-att-net_product_price="doc.datev_format_total(prices['total_excluded'], 3)"
             t-att-quantity="'%.02f' % line.quantity"
         />
         <invoice_item_list
-            t-elif="not line.display_type"
+            t-else=""
             t-call="datev_export_xml.export_invoice_line_item"
             t-att-description_short="(line.name or '')[:40]"
             t-att-quantity="'%.02f' % line.quantity"
@@ -144,7 +144,10 @@
                 t-att-payment_conditions_text="doc.invoice_payment_term_id.name"
             />
 
-            <t t-foreach="doc.invoice_line_ids" t-as="line">
+            <t
+                t-foreach="doc.invoice_line_ids.filtered(lambda l: l.display_type == 'product')"
+                t-as="line"
+            >
                 <t t-call="datev_export_xml.export_invoice_line" />
             </t>
 
