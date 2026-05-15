@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+datev_api.access_datev_api_service,access_datev_api_service,datev_api.model_datev_api_service,base.group_user,1,0,0,0

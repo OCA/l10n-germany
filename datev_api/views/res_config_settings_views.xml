@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="views_res_config_settings_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="datev_export.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block id="datev_export" position="inside">
+                <setting string="DATEV API">
+                    <div class="text-muted mt16">
+                        Authentication for the DATEV API.
+                    </div>
+
+                    <div invisible="not datev_api_refresh_token_expire">
+                        <span class="text-muted">Current token expires at:</span>
+                        <field
+                            name="datev_api_refresh_token_expire"
+                            nolabel="1"
+                            class="oe_inline"
+                        />
+                    </div>
+
+                    <div class="content-group">
+                        <div class="mt16 row">
+                            <label
+                                for="datev_api"
+                                string="API"
+                                class="col-3 col-lg-3 o_light_label"
+                            />
+                            <field name="datev_api" nolabel="1" />
+                        </div>
+
+                        <div class="mt16 row">
+                            <label
+                                for="datev_api_client_id"
+                                string="Client ID"
+                                class="col-3 col-lg-3 o_light_label"
+                            />
+                            <field name="datev_api_client_id" nolabel="1" />
+                        </div>
+
+                        <div class="mt16 row">
+                            <label
+                                for="datev_api_client_secret"
+                                string="Client Secret"
+                                class="col-3 col-lg-3 o_light_label"
+                            />
+                            <field
+                                name="datev_api_client_secret"
+                                nolabel="1"
+                                password="True"
+                            />
+                        </div>
+
+                        <div class="mt16 row">
+                            <field
+                                name="datev_api_long_term"
+                                nolabel="1"
+                                class="col-3 col-lg-3 o_light_label oe_inline"
+                            />
+                            <label
+                                for="datev_api_long_term"
+                                string="Long Term Access"
+                                class="o_light_label oe_inline"
+                            />
+                            <span>
+                                Enable long term access. This requires a DATEV
+                                consultant and client number
+                            </span>
+                        </div>
+
+                        <div
+                            class="mt16 row"
+                            invisible="not datev_api_refresh_token_expire"
+                        >
+                            <span class="text-muted">Available services:</span>
+                            <field
+                                name="datev_api_service_ids"
+                                widget="many2many_tags"
+                            />
+                        </div>
+
+                        <div class="mt16 row">
+                            <button
+                                type="object"
+                                name="action_datev_api_authorization"
+                                string="Authenticate"
+                                invisible="datev_api_refresh_token_expire"
+                            />
+                            <button
+                                type="object"
+                                name="action_datev_api_authorization"
+                                string="Reauthenticate"
+                                invisible="not datev_api_refresh_token_expire"
+                            />
+                            <button
+                                type="object"
+                                name="action_datev_api_revoke"
+                                string="Revoke"
+                                invisible="not datev_api_refresh_token_expire"
+                            />
+                        </div>
+                    </div>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
