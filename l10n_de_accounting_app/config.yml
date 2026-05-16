@@ -1,0 +1,140 @@
+title: OCA Accounting Add-ons — German Odoo Setup
+
+intro:
+  - "A curated catalogue of the Odoo Community Association (OCA) modules we use to run a
+    complete German accounting workflow on Odoo: dunning, bank statement import, DATEV
+    exchange with the tax adviser, VAT return preparation, SEPA payments, and DIN 5008
+    compliant PDFs."
+  - The list is organised by accounting function rather than by repository, so each
+    section answers a single question — *"which module handles X?"* — and gives the OCA
+    repo it lives in, with a short note on why we picked it (and where there are
+    trade-offs between alternatives, what to weigh).
+  - Everything listed here is either installed or qualified as the default choice for
+    the corresponding need.
+  - "Reference: OCA's own *must-have accounting modules* list at
+    <https://www.odoo-community.org/list-of-must-have-oca-accounting-modules>."
+  - Each repository linked below lives under <https://github.com/OCA>. Module names are
+    given without a version pin — use the branch matching your Odoo version.
+
+app:
+  name: l10n_de_accounting_app
+  string: German Accounting
+  groups: account.group_account_manager
+
+sections:
+  - name: Invoice Import/Export EDI
+    source: Odoo standard
+    description: null
+    addons:
+      - name: account_edi_ubl_cii
+        label: UBL/CII e-invoicing
+        description:
+          Replaces the older OCA account_invoice_facturx, which is no longer needed.
+
+  - name: Followup (Mahnwesen)
+    repo: credit-control
+    description: Two alternatives — pick by the feature you need.
+    addons:
+      - name: account_invoice_overdue_reminder
+        label: Overdue Invoice Reminders
+        description: "Advantage: handles credit notes."
+      - name: account_credit_control
+        label: Credit Control (Mahngebühren)
+        description: "Advantage: supports dunning fees (Mahngebühren)."
+
+  - name: Reporting
+    repo: l10n-germany
+    description: null
+    addons:
+      - name: l10n_de_mis_reports
+        label: German MIS Reports (P&L, Balance Sheet, SKR03/04)
+        description: Profit/Loss, Balance Sheet, SKR03, SKR04.
+
+  - name: Bank Import
+    repo: bank-statement-import
+    description: More connectors are available in the same repository.
+    addons:
+      - name: account_statement_import_sheet_file
+        label: CSV/Excel Bank Statement Import
+        description: CSV / Excel bank statement import.
+      - name: account_statement_import_camt54
+        label: CAMT.054 Bank Statement Import
+        description: CAMT.054 schema.
+      - name: account_statement_import_online_paypal
+        label: PayPal Online Statement Import
+        description: PayPal online statement fetching.
+      - name: account_statement_import_online_ponto
+        label: Ponto Online Statement Import
+        description: Ponto API, fetches statements automatically.
+      - name: account_statement_import_online_stripe
+        label: Stripe Online Statement Import
+        description: Stripe API, fetches statements automatically.
+
+  - name: DATEV
+    repo: l10n-germany
+    description: |-
+      **Workflow choice:**
+
+      - Tax adviser does **not** need PDFs → use `datev_export_dtvf` for everything.
+      - Tax adviser needs PDFs → use `datev_export_xml` (upload to DATEV Unternehmen Online) + `datev_export_dtvf` for the remaining journals.
+    addons:
+      - name: datev_export_dtvf
+        label: DATEV DTVF Export
+        description: Exports all accounting entries in DTVF format. No PDF attachments.
+      - name: datev_export_xml
+        label: DATEV XML Export (with PDF)
+        description:
+          Exports bills/invoices with PDF attachment for upload to DATEV Unternehmen
+          Online.
+      - name: datev_import_csv_dtvf
+        label: DATEV CSV/DTVF Import
+        description:
+          Imports accounting entries from DATEV. Mainly used for payroll postings
+          (Lohnsteuer).
+
+  - name: VAT Report (USt-VA) + ZM
+    repo: l10n-germany
+    description: null
+    addons:
+      - name: l10n_de_tax_statement
+        label: German VAT Statement (USt-VA)
+        description: Produces a report for manual entry into ELSTER (no API connection).
+      - name: l10n_de_tax_statement_zm
+        label: Zusammenfassende Meldung (ZM)
+        description: Extension for the Zusammenfassende Meldung (intra-community).
+
+  - name: Payment
+    repo: bank-payment
+    description: null
+    addons:
+      - name: account_payment_mode
+        label: Payment Modes
+        description: Payment modes.
+      - name: account_payment_order
+        label: Payment Orders
+        description:
+          Group outgoing payments into one order containing multiple vendor payments,
+          for easy SEPA Credit XML generation.
+      - name: account_banking_sepa_credit_transfer
+        label: SEPA Credit Transfer
+        description: Required to create SEPA Credit files for vendor payments.
+      - name: account_banking_sepa_direct_debit
+        label: SEPA Direct Debit
+        description: Required for SEPA direct debit (Bankeinzug).
+
+  - name: PDF Report
+    repo: l10n-germany
+    description: null
+    addons:
+      - name: l10n_din5008_move_name
+        label: DIN 5008 Move Name in PDF
+        description: Adds the invoice number to the PDF subject line per DIN 5008.
+
+  - name: Nice to Have
+    repo: account-financial-tools
+    description: null
+    addons:
+      - name: account_move_name_sequence
+        label: Custom Sequences per Journal
+        description:
+          Assign an own number sequence to each journal instead of the shared default.

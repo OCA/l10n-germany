@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res_config_settings_view_form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="{{ app.string | e }}" string="{{ app.string | e }}" name="{{ app.name | e }}" groups="{{ app.groups | e }}">
+                    <div class="row mt16 mr16 mb16 ml16">
+                        {% for paragraph in intro %}
+                        <div class="col-12 mb-2">
+                            {{ paragraph | md_to_html }}
+                        </div>
+		        {% endfor %}
+                    </div>
+                    {% for section in sections %}
+                    <block id="{{ section.block_id | e }}" title="{{ section.name | e }}">
+                        {% if section.description %}
+                        <div class="col-12 text-muted mb-2">
+                            {{ section.description | md_to_html }}
+                        </div>
+                        {% endif %}
+                        {% for addon in section.addons %}
+                        <setting id="module_{{ addon.name | e }}" help="{{ addon.description | e }}">
+                            <field name="module_{{ addon.name | e }}" />
+                            <div class="text-muted">
+                                {% if section.repo %}
+                                Repository:
+                                <a href="{{ section.repo_url | e }}" target="_blank" rel="noopener noreferrer">{{ section.repo_label | e }}</a>
+                                {% elif section.source %}
+                                Source: {{ section.source | e }}
+                                {% endif %}
+                            </div>
+                        </setting>
+                        {% endfor %}
+                    </block>
+                    {% endfor %}
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

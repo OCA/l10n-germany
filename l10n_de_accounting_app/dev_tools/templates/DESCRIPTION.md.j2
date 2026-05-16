@@ -1,0 +1,27 @@
+# {{ title }}
+
+{% for paragraph in intro %}
+{{ paragraph }}
+
+{% endfor %}
+---
+
+{% for section in sections %}
+## {{ section.name }}
+
+{% if section.repo %}
+From [{{ section.repo_label }}]({{ section.repo_url }}):
+
+{% elif section.source %}
+Source: {{ section.source }}.
+
+{% endif %}
+{% if section.description %}
+{{ section.description }}
+
+{% endif %}
+{% for addon in section.addons %}
+- **{{ addon.name }}** — {{ addon.description }}
+{% endfor %}
+
+{% endfor %}
