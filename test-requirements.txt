@@ -1,0 +1,1 @@
+odoo-addon-hr_expense_meal_allowance @ git+https://github.com/OCA/l10n-germany.git@refs/pull/223/head#subdirectory=hr_expense_meal_allowance
