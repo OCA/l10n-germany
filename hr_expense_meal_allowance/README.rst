@@ -79,6 +79,7 @@ Contributors
 
 -  Christopher Rogos <crogos@gmail.com> (glueckkanja AG)
 -  Niels Göttsch <niels@ziemlichoptimal.de>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
 
 Maintainers
 -----------

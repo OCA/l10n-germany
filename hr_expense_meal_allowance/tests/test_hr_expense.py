@@ -1,5 +1,7 @@
 from datetime import datetime
+from unittest.mock import patch
 
+from odoo.exceptions import UserError
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -151,3 +153,126 @@ class HrExpense(BaseCommon):
         expense._update_meal_lines()
         # assert
         self.assertEqual(expense.total_amount_currency, 50)
+
+    def test_number_of_travel_days_single_line(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "employee_id": self.employee.id,
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense.meal_allowance_ids = [(0, 0, {"date": datetime(2023, 10, 30).date()})]
+        expense._compute_number_of_travel_days()
+        self.assertEqual(expense.number_of_days, 0)
+        self.assertEqual(expense.number_of_travel_days, 1)
+
+    def test_update_meal_lines_sets_expense_date(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 11, 1, 18, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+        self.assertEqual(expense.date, datetime(2023, 11, 1).date())
+
+    def test_update_meal_lines_removes_old_lines(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 11, 1, 18, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+        self.assertEqual(len(expense.meal_allowance_ids), 3)
+        expense.travel_end = datetime(2023, 10, 31, 18, 0, 0)
+        expense._update_meal_lines()
+        self.assertEqual(len(expense.meal_allowance_ids), 2)
+
+    def test_onchange_rate_fallback_country_only(self):
+        customer = self.env["res.partner"].create(
+            {
+                "name": "No City Customer",
+                "country_id": self.country.id,
+            }
+        )
+        with Form(self.env["hr.expense"]) as f:
+            f.product_id = self.product
+            f.employee_id = self.employee
+            f.travel_begin = datetime(2023, 10, 30, 8, 0, 0)
+            f.travel_end = datetime(2023, 10, 31, 18, 0, 0)
+            f.customer_id = customer
+
+        self.assertTrue(f.meal_allowance_rate_id)
+
+    @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
+    def test_action_post_generates_report(self, mock_render):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 10, 30, 20, 0, 0),
+            }
+        )
+        expense._update_meal_lines()
+        expense.flush_model()
+        expense.is_meal_allowance = True
+        expense.nb_attachment = 0
+        expense.action_submit()
+        expense.action_approve()
+        expense.action_post()
+        self.assertTrue(mock_render.called)
+
+    def test_action_print_returns_report(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense.is_meal_allowance = True
+        action = expense.action_print()
+        self.assertIsInstance(action, dict)
+        self.assertIn("type", action)
+        self.assertIn(action["type"], {"ir.actions.report", "ir.actions.act_window"})
+
+    def test_update_meal_lines_missing_timezone(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": datetime(2023, 10, 30, 8, 0, 0),
+                "travel_end": datetime(2023, 10, 31, 18, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense.is_meal_allowance = True
+        with (
+            patch.object(
+                type(expense.employee_id.user_id), "tz", new_callable=lambda: False
+            ),
+            patch.object(type(self.env.user), "tz", new_callable=lambda: False),
+        ):
+            with self.assertRaises(UserError):
+                expense._update_meal_lines()
