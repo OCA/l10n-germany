@@ -11,16 +11,19 @@ class AccountMove(models.Model):
         string="Labor Cost (Net)",
         compute="_compute_labor_cost_values",
         help="Total net amount of labor cost lines",
+        store=True,
     )
     l10n_de_labor_cost_tax = fields.Monetary(
         string="Labor Cost (Tax)",
         compute="_compute_labor_cost_values",
         help="Total tax amount on labor cost lines",
+        store=True,
     )
     l10n_de_labor_cost_total = fields.Monetary(
         string="Labor Cost (Gross)",
         compute="_compute_labor_cost_values",
         help="Total gross amount of labor cost lines (net + tax)",
+        store=True,
     )
 
     @api.depends(
@@ -31,7 +34,7 @@ class AccountMove(models.Model):
     )
     def _compute_labor_cost_values(self):
         for move in self:
-            if move.move_type not in  ["out_invoice", "out_refund"]:
+            if move.move_type not in ["out_invoice", "out_refund"]:
                 move.l10n_de_labor_cost_tax = 0
                 move.l10n_de_labor_cost_untaxed = 0
                 move.l10n_de_labor_cost_total = 0
@@ -45,4 +48,4 @@ class AccountMove(models.Model):
                 cost_total += line.price_total
             move.l10n_de_labor_cost_untaxed = cost_untaxed
             move.l10n_de_labor_cost_total = cost_total
-            move.l10n_de_labor_cost_tax = costs_total - cost_untaxed
+            move.l10n_de_labor_cost_tax = cost_total - cost_untaxed

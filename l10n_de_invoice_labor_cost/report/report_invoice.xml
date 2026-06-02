@@ -8,7 +8,7 @@
     >
         <xpath expr="//div[@id='payment_term']" position="after">
             <div
-                t-if="o.l10n_de_labor_cost_gross > 0"
+                t-if="o.l10n_de_labor_cost_total > 0"
                 class="mt-3 mb-3 p-2 border rounded"
                 style="border-color: #dee2e6 !important;"
             >
@@ -21,14 +21,14 @@
                 />
                     are
                     <span
-                    t-field="o.l10n_de_labor_cost_gross"
+                    t-field="o.l10n_de_labor_cost_total"
                     t-options='{"widget": "monetary", "display_currency": o.currency_id}'
                 />
                     Labor costs (gross) included.
                     <br />
                     Labor costs included (net):
                     <span
-                    t-field="o.l10n_de_labor_cost_net"
+                    t-field="o.l10n_de_labor_cost_untaxed"
                     t-options='{"widget": "monetary", "display_currency": o.currency_id}'
                 />
                     <br />

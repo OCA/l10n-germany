@@ -82,11 +82,13 @@ class TestLaborCostProduct(BaseCommon):
         )
         invoice._compute_labor_cost_values()
 
-        self.assertEqual(invoice.l10n_de_labor_cost_net, 100.0)
+        self.assertEqual(invoice.l10n_de_labor_cost_untaxed, 100.0)
         self.assertGreaterEqual(
-            invoice.l10n_de_labor_cost_gross, invoice.l10n_de_labor_cost_net
+            invoice.l10n_de_labor_cost_total, invoice.l10n_de_labor_cost_untaxed
         )
-        expected_tax = invoice.l10n_de_labor_cost_gross - invoice.l10n_de_labor_cost_net
+        expected_tax = (
+            invoice.l10n_de_labor_cost_total - invoice.l10n_de_labor_cost_untaxed
+        )
         self.assertEqual(invoice.l10n_de_labor_cost_tax, expected_tax)
 
     def test_04_invoice_mixed_products(self):
@@ -119,8 +121,8 @@ class TestLaborCostProduct(BaseCommon):
         )
         invoice._compute_labor_cost_values()
 
-        self.assertEqual(invoice.l10n_de_labor_cost_net, 100.0)
-        self.assertGreaterEqual(invoice.l10n_de_labor_cost_gross, 100.0)
+        self.assertEqual(invoice.l10n_de_labor_cost_untaxed, 100.0)
+        self.assertGreaterEqual(invoice.l10n_de_labor_cost_total, 100.0)
 
     def test_05_invoice_no_labor_cost(self):
         """Test invoice without labor cost products."""
@@ -142,9 +144,9 @@ class TestLaborCostProduct(BaseCommon):
             }
         )
         invoice._compute_labor_cost_values()
-        self.assertEqual(invoice.l10n_de_labor_cost_net, 0.0)
+        self.assertEqual(invoice.l10n_de_labor_cost_untaxed, 0.0)
         self.assertEqual(invoice.l10n_de_labor_cost_tax, 0.0)
-        self.assertEqual(invoice.l10n_de_labor_cost_gross, 0.0)
+        self.assertEqual(invoice.l10n_de_labor_cost_total, 0.0)
 
     def test_06_invoice_multiple_labor_lines(self):
         """Test invoice with multiple labor cost lines."""
@@ -177,5 +179,5 @@ class TestLaborCostProduct(BaseCommon):
 
         invoice._compute_labor_cost_values()
 
-        self.assertEqual(invoice.l10n_de_labor_cost_net, 250.0)
-        self.assertGreaterEqual(invoice.l10n_de_labor_cost_gross, 250.0)
+        self.assertEqual(invoice.l10n_de_labor_cost_untaxed, 250.0)
+        self.assertGreaterEqual(invoice.l10n_de_labor_cost_total, 250.0)
