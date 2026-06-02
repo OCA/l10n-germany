@@ -17,7 +17,7 @@ class AccountMove(models.Model):
         compute="_compute_labor_cost_values",
         help="Total tax amount on labor cost lines",
     )
-    l10n_de_labor_cost_gross = fields.Monetary(
+    l10n_de_labor_cost_total = fields.Monetary(
         string="Labor Cost (Gross)",
         compute="_compute_labor_cost_values",
         help="Total gross amount of labor cost lines (net + tax)",
