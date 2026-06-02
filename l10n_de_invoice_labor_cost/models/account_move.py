@@ -27,9 +27,15 @@ class AccountMove(models.Model):
         "invoice_line_ids.tax_ids",
         "invoice_line_ids.price_subtotal",
         "invoice_line_ids.price_total",
+        "move_type",
     )
     def _compute_labor_cost_values(self):
         for move in self:
+            if move.move_type not in  ["out_invoice", "out_refund"]:
+                move.l10n_de_labor_cost_tax = 0
+                move.l10n_de_labor_cost_untaxed = 0
+                move.l10n_de_labor_cost_total = 0
+                continue
             cost_untaxed = 0
             cost_total = 0
             for line in move.invoice_line_ids:
