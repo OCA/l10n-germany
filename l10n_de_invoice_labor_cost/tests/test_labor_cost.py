@@ -181,3 +181,38 @@ class TestLaborCostProduct(BaseCommon):
 
         self.assertEqual(invoice.l10n_de_labor_cost_untaxed, 250.0)
         self.assertGreaterEqual(invoice.l10n_de_labor_cost_total, 250.0)
+
+    def test_07_posted_move_labor_cost_persists_after_product_flag_change(self):
+        """Ensure labor costs on a posted move remain when product flag changes."""
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner.id,
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.labor_product.id,
+                            "quantity": 1,
+                            "price_unit": 100.0,
+                        },
+                    ),
+                ],
+            }
+        )
+
+        invoice._compute_labor_cost_values()
+        invoice.action_post()
+
+        pre_untaxed = invoice.l10n_de_labor_cost_untaxed
+        pre_tax = invoice.l10n_de_labor_cost_tax
+        pre_total = invoice.l10n_de_labor_cost_total
+
+        self.labor_product.is_labor_cost_product = False
+
+        invoice = self.env["account.move"].browse(invoice.id)
+
+        self.assertEqual(invoice.l10n_de_labor_cost_untaxed, pre_untaxed)
+        self.assertEqual(invoice.l10n_de_labor_cost_tax, pre_tax)
+        self.assertEqual(invoice.l10n_de_labor_cost_total, pre_total)
