@@ -7,7 +7,7 @@ from odoo import api, fields, models
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    l10n_de_labor_cost_net = fields.Monetary(
+    l10n_de_labor_cost_untaxed = fields.Monetary(
         string="Labor Cost (Net)",
         compute="_compute_labor_cost_values",
         help="Total net amount of labor cost lines",
