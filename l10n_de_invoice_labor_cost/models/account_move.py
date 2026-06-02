@@ -30,12 +30,13 @@ class AccountMove(models.Model):
     )
     def _compute_labor_cost_values(self):
         for move in self:
-            labor_lines = move.invoice_line_ids.filtered(
-                lambda line: line.product_id.is_labor_cost_product
-            )
-
-            move.l10n_de_labor_cost_net = sum(labor_lines.mapped("price_subtotal"))
-            move.l10n_de_labor_cost_tax = sum(
-                line.price_total - line.price_subtotal for line in labor_lines
-            )
-            move.l10n_de_labor_cost_gross = sum(labor_lines.mapped("price_total"))
+            cost_untaxed = 0
+            cost_total = 0
+            for line in move.invoice_line_ids:
+                if not line.product_id.is_labor_cost_product:
+                    continue
+                cost_untaxed += line.price_subtotal
+                cost_total += line.price_total
+            move.l10n_de_labor_cost_untaxed = cost_untaxed
+            move.l10n_de_labor_cost_total = cost_total
+            move.l10n_de_labor_cost_tax = costs_total - cost_untaxed
