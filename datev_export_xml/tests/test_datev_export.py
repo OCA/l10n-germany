@@ -324,7 +324,7 @@ class TestDatevExport(BaseCommon):
     def update_attachment(self, attachment, invoice):
         attachment.write(
             {
-                "res_model": "account.invoice",
+                "res_model": "account.move",
                 "res_id": invoice.id,
             }
         )
