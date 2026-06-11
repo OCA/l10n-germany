@@ -130,8 +130,10 @@ class TestDatevExport(BaseCommon):
 
             doc_file = "document.xml"
             inv_file = str(invoice + ".xml")
+            pdf_file = str(invoice + ".pdf")
             doc_data = z.read(doc_file)
             inv_data = z.read(inv_file)
+            pdf_data = z.read(pdf_file)
             # document.xml
             doc_root = etree.fromstring(doc_data)
             # invoice.xml file
@@ -142,6 +144,7 @@ class TestDatevExport(BaseCommon):
             return {
                 "file_list": file_list,
                 "zip_file": z,
+                "pdf": pdf_data,
                 "document": lambda xpath: doc_root.find(
                     xpath, namespaces=doc_root.nsmap
                 ),
@@ -324,7 +327,7 @@ class TestDatevExport(BaseCommon):
     def update_attachment(self, attachment, invoice):
         attachment.write(
             {
-                "res_model": "account.invoice",
+                "res_model": "account.move",
                 "res_id": invoice.id,
             }
         )
@@ -485,6 +488,7 @@ class TestDatevExport(BaseCommon):
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
+        self.assertEqual(res["pdf"], base64.b64decode(attachment.datas))
         # check document.xml
         self._run_test_document(res["document"], invoice)
 
@@ -582,6 +586,7 @@ class TestDatevExport(BaseCommon):
         res = self._check_filecontent(datev_export)
         # check list of files
         self.assertEqual(res["file_list"], file_list)
+        self.assertEqual(res["pdf"], base64.b64decode(attachment.datas))
         # check document.xml
         self._run_test_document(res["document"], invoice)
 
