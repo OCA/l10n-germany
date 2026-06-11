@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="din5008_report_invoice_document_inherit_salesperson"
+        inherit_id="l10n_din5008.report_invoice_document"
+    >
+        <xpath expr="//tr[@t-if='o.invoice_date_due']" position="after">
+            <t t-if="o.is_sale_document(include_receipts=True)">
+                <tr t-if="o.invoice_user_id">
+                    <td>Salesperson</td>
+                    <td>
+                        <t t-out="o.invoice_user_id.name" />
+                    </td>
+                </tr>
+                <tr t-if="o.invoice_user_id.phone">
+                    <td>Phone</td>
+                    <td>
+                        <a t-att-href="'tel:%s' % o.invoice_user_id.phone">
+                            <t t-out="o.invoice_user_id.phone" />
+                        </a>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>
