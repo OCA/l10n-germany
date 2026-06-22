@@ -28,7 +28,7 @@ Germany Company Types
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Data module to add german company types.
+Data module to add German company/legal types to partners.
 
 **Table of contents**
 
@@ -52,6 +52,7 @@ Authors
 ~~~~~~~
 
 * Coop IT Easy SC
+* humanilog
 
 Contributors
 ~~~~~~~~~~~~
@@ -59,6 +60,10 @@ Contributors
 * `Coop IT Easy SC <https://coopiteasy.be>`_:
 
   * Simon Hick
+
+* `humanilog <https://www.humanilog.org>`_:
+
+  * Ahmad Ghadban
 
 Maintainers
 ~~~~~~~~~~~
@@ -76,10 +81,13 @@ promote its widespread use.
 .. |maintainer-mihien| image:: https://github.com/mihien.png?size=40px
     :target: https://github.com/mihien
     :alt: mihien
+.. |maintainer-humanilog| image:: https://github.com/humanilog.png?size=40px
+    :target: https://github.com/humanilog
+    :alt: humanilog
 
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-mihien| 
+|maintainer-mihien| |maintainer-humanilog| 
 
 This module is part of the `OCA/l10n-germany <https://github.com/OCA/l10n-germany/tree/16.0/l10n_de_partner_company_type>`_ project on GitHub.
 

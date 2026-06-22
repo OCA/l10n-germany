@@ -1,1 +1,1 @@
-Data module to add german company types.
+Data module to add German company/legal types to partners.

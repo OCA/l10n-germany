@@ -1,14 +1,70 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
-    <record id="ag" model="res.partner.company.type">
-        <field name="name">Aktiengesellschaft</field>
-        <field name="shortcut">AG</field>
+    <record id="einzelunternehmen" model="res.partner.company.type">
+        <field name="name">Einzelunternehmen</field>
+        <field name="shortcut">Einzelunternehmen</field>
         <field name="country_ids" eval="[(4, ref('base.de'))]" />
     </record>
 
-    <record id="eg" model="res.partner.company.type">
-        <field name="name">Eingetragene Genossenschaft</field>
-        <field name="shortcut">eG</field>
+    <record id="ek" model="res.partner.company.type">
+        <field name="name">Eingetragener Kaufmann / Eingetragene Kauffrau</field>
+        <field name="shortcut">e.K.</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gbr" model="res.partner.company.type">
+        <field name="name">Gesellschaft bürgerlichen Rechts</field>
+        <field name="shortcut">GbR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="egbr" model="res.partner.company.type">
+        <field name="name">Eingetragene Gesellschaft bürgerlichen Rechts</field>
+        <field name="shortcut">eGbR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ohg" model="res.partner.company.type">
+        <field name="name">Offene Handelsgesellschaft</field>
+        <field name="shortcut">OHG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="kg" model="res.partner.company.type">
+        <field name="name">Kommanditgesellschaft</field>
+        <field name="shortcut">KG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gmbh_co_kg" model="res.partner.company.type">
+        <field name="name">Gesellschaft mit beschränkter Haftung &amp; Co. KG</field>
+        <field name="shortcut">GmbH &amp; Co. KG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ag_co_kg" model="res.partner.company.type">
+        <field name="name">Aktiengesellschaft &amp; Co. KG</field>
+        <field name="shortcut">AG &amp; Co. KG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ug_co_kg" model="res.partner.company.type">
+        <field
+            name="name"
+        >Unternehmergesellschaft (haftungsbeschränkt) &amp; Co. KG</field>
+        <field name="shortcut">UG (haftungsbeschränkt) &amp; Co. KG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="se_co_kg" model="res.partner.company.type">
+        <field name="name">Europäische Gesellschaft &amp; Co. KG</field>
+        <field name="shortcut">SE &amp; Co. KG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gmbh_co_ohg" model="res.partner.company.type">
+        <field name="name">Gesellschaft mit beschränkter Haftung &amp; Co. OHG</field>
+        <field name="shortcut">GmbH &amp; Co. OHG</field>
         <field name="country_ids" eval="[(4, ref('base.de'))]" />
     </record>
 
@@ -18,9 +74,133 @@
         <field name="country_ids" eval="[(4, ref('base.de'))]" />
     </record>
 
+    <record id="ug" model="res.partner.company.type">
+        <field name="name">Unternehmergesellschaft (haftungsbeschränkt)</field>
+        <field name="shortcut">UG (haftungsbeschränkt)</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ggmbh" model="res.partner.company.type">
+        <field name="name">Gemeinnützige Gesellschaft mit beschränkter Haftung</field>
+        <field name="shortcut">gGmbH</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gug" model="res.partner.company.type">
+        <field
+            name="name"
+        >Gemeinnützige Unternehmergesellschaft (haftungsbeschränkt)</field>
+        <field name="shortcut">gUG (haftungsbeschränkt)</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ag" model="res.partner.company.type">
+        <field name="name">Aktiengesellschaft</field>
+        <field name="shortcut">AG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gag" model="res.partner.company.type">
+        <field name="name">Gemeinnützige Aktiengesellschaft</field>
+        <field name="shortcut">gAG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="kgaa" model="res.partner.company.type">
+        <field name="name">Kommanditgesellschaft auf Aktien</field>
+        <field name="shortcut">KGaA</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="gmbh_co_kgaa" model="res.partner.company.type">
+        <field name="name">Gesellschaft mit beschränkter Haftung &amp; Co. KGaA</field>
+        <field name="shortcut">GmbH &amp; Co. KGaA</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="se" model="res.partner.company.type">
+        <field name="name">Europäische Gesellschaft</field>
+        <field name="shortcut">SE</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="eg" model="res.partner.company.type">
+        <field name="name">Eingetragene Genossenschaft</field>
+        <field name="shortcut">eG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="sce" model="res.partner.company.type">
+        <field name="name">Europäische Genossenschaft</field>
+        <field name="shortcut">SCE</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ev" model="res.partner.company.type">
+        <field name="name">Eingetragener Verein</field>
+        <field name="shortcut">e.V.</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="nev" model="res.partner.company.type">
+        <field name="name">Nicht eingetragener Verein</field>
+        <field name="shortcut">n.e.V.</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="partg" model="res.partner.company.type">
+        <field name="name">Partnerschaftsgesellschaft</field>
+        <field name="shortcut">PartG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="partg_mbb" model="res.partner.company.type">
+        <field
+            name="name"
+        >Partnerschaftsgesellschaft mit beschränkter Berufshaftung</field>
+        <field name="shortcut">PartG mbB</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
     <record id="sdpr" model="res.partner.company.type">
         <field name="name">Stiftung des privaten Rechts</field>
         <field name="shortcut">SdpR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="sdoer" model="res.partner.company.type">
+        <field name="name">Stiftung des öffentlichen Rechts</field>
+        <field name="shortcut">SdöR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="koer" model="res.partner.company.type">
+        <field name="name">Körperschaft des öffentlichen Rechts</field>
+        <field name="shortcut">KdöR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="aoer" model="res.partner.company.type">
+        <field name="name">Anstalt des öffentlichen Rechts</field>
+        <field name="shortcut">AöR</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="ewiv" model="res.partner.company.type">
+        <field name="name">Europäische wirtschaftliche Interessenvereinigung</field>
+        <field name="shortcut">EWIV</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="vvag" model="res.partner.company.type">
+        <field name="name">Versicherungsverein auf Gegenseitigkeit</field>
+        <field name="shortcut">VVaG</field>
+        <field name="country_ids" eval="[(4, ref('base.de'))]" />
+    </record>
+
+    <record id="stille_gesellschaft" model="res.partner.company.type">
+        <field name="name">Stille Gesellschaft</field>
+        <field name="shortcut">Stille Gesellschaft</field>
         <field name="country_ids" eval="[(4, ref('base.de'))]" />
     </record>
 </odoo>
