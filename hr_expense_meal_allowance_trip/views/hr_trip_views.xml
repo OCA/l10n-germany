@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 glueckkanja AG
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0.html). -->
+<odoo>
+    <record id="hr_trip_view_form" model="ir.ui.view">
+        <field name="name">hr.trip.view.form.meal.allowance</field>
+        <field name="model">hr.trip</field>
+        <field name="inherit_id" ref="hr_expense_trip.hr_trip_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state']" position="before">
+                <button
+                    name="action_create_meal_allowance"
+                    type="object"
+                    string="Create Meal Allowance"
+                    class="btn-secondary"
+                    invisible="not is_meal_allowance_available"
+                />
+            </xpath>
+            <xpath expr="//field[@name='can_create_bill']" position="after">
+                <field name="is_meal_allowance_available" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record id="hr_expense_view_form_trip" model="ir.ui.view">
+        <field name="name">hr.expense.view.form.trip</field>
+        <field name="model">hr.expense</field>
+        <field name="inherit_id" ref="hr_expense_trip.hr_expense_view_form_trip" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='trip_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'default_start_date': travel_begin, 'default_end_date': travel_end, 'default_partner_id': customer_id, 'default_employee_id': employee_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
