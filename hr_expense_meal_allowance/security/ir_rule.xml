@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="ir_rule_hr_expense_meal_allowance_multicompany" model="ir.rule">
+        <field name="name">Meal Allowance multi-company</field>
+        <field name="model_id" ref="model_hr_expense_meal_allowance" />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+    </record>
+</odoo>

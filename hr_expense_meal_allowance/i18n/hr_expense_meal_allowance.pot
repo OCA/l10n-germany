@@ -1,0 +1,641 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* hr_expense_meal_allowance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 10:44+0000\n"
+"PO-Revision-Date: 2026-04-24 10:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_expense_meal_allowance
+#. odoo-python
+#: code:addons/hr_expense_meal_allowance/models/hr_expense_meal_allowance_rate.py:0
+msgid " (valid until %(expire_on)s)"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Breakfast Included?</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Date</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Day</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Dinner Included?</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Expenses For This Day</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<span>Lunch Included?</span>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Customer</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Employee</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Total:</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Travel Begin</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Travel Days</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Travel End</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "<strong>Whole Days</strong>"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_tr_ankara
+msgid "Ankara"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_gr_athens
+msgid "Athens"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_atlanta
+msgid "Atlanta"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "Azure Interior"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_bangalore
+msgid "Bangalore"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_es_barcelona
+msgid "Barcelona"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_beijing
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_beijing_2026
+msgid "Beijing"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_boston
+msgid "Boston"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_br_brasilia
+msgid "Brasilia"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Breakfast %"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__breakfast_rate
+msgid "Breakfast Rate"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__breakfast_included
+msgid "Breakfast included?"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ro_bucharest
+msgid "Bucharest"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_calcutta
+msgid "Calcutta"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_es_canary_islands
+msgid "Canary Islands"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_au_canberra
+msgid "Canberra"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_canton
+msgid "Canton"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_za_cape_town
+msgid "Cape Town"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_chengu
+msgid "Chengdu"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_chennai
+msgid "Chennai"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_chicago
+msgid "Chicago"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__city_name
+msgid "City Name"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__company_id
+msgid "Company"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__country_id
+msgid "Country"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__create_uid
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__create_date
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__currency_id
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__customer_id
+msgid "Customer"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__daily_rate_24h
+msgid "Daily Rate - 24h"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__daily_rate_8h
+msgid "Daily Rate - 8h"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__date
+msgid "Date"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__day
+msgid "Day"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Dinner %"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__dinner_rate
+msgid "Dinner Rate"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__dinner_included
+msgid "Dinner included?"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__display_name
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_sa_djidda
+msgid "Djidda"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__employee_id
+msgid "Employee"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__hr_expense_id
+msgid "Expense"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:product.tag,name:hr_expense_meal_allowance.product_tag_meal_allowance
+msgid "Expense / Meal Allowance"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_meal_allowance
+msgid "Expense Meal Allowances for a date."
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_sheet
+msgid "Expense Report"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model,name:hr_expense_meal_allowance.model_hr_expense_meal_allowance_rate
+msgid "Expense meal allowances rate for a city or country."
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.actions.report,name:hr_expense_meal_allowance.action_report_hr_expense_meal_allowance
+msgid "Expenses Report"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__expense_for_day
+msgid "Expenses for This Day"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__expire_on
+msgid "Expire On"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_gdansk
+msgid "Gdansk"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ch_geneve
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ch_geneve_2026
+msgid "Geneva"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_hong_kong
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_hong_kong_2026
+msgid "Hong Kong"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_houston
+msgid "Houston"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__id
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__id
+msgid "ID"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__meal_allowance_ids
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_sheet_view_form_extended
+msgid "Included Meals"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__is_editable
+msgid "Is Editable By Current User"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__is_meal_allowance
+msgid "Is Meal Allowance"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pk_islamabad
+msgid "Islamabad"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_tr_izmir
+msgid "Izmir"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_za_johannisbourg
+msgid "Johannisburg"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_krakow
+msgid "Krakow"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__write_uid
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__write_date
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_uk_london
+msgid "London"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_los_angeles
+msgid "Los Angeles"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_rate_list
+msgid "Lunch %"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__lunch_rate
+msgid "Lunch Rate"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance__lunch_included
+msgid "Lunch included?"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_es_madrid
+msgid "Madrid"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.actions.act_window,name:hr_expense_meal_allowance.action_hr_expense_meal_allowance
+#: model:ir.ui.menu,name:hr_expense_meal_allowance.expense_included_meal_menu
+#: model:product.template,name:hr_expense_meal_allowance.product_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "Meal Allowance"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.actions.act_window,name:hr_expense_meal_allowance.action_hr_expense_meal_allowance_rate
+#: model:ir.ui.menu,name:hr_expense_meal_allowance.menu_hr_meal_allowance_rate
+msgid "Meal Allowance Rate"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_miami
+msgid "Miami"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_it_milan
+msgid "Milan"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.report_expense_meal_allowance
+msgid "Mitchell Admin"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ru_moscow
+msgid "Moscow"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_mumbai
+msgid "Mumbai"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_in_new_delhi
+msgid "New Delhi"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_new_york_city
+msgid "New York City"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ca_ottawa
+msgid "Ottawa"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_es_palma_de_mallorca
+msgid "Palma de Mallorca"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_fr_paris
+msgid "Paris"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__percentage_for_breakfast
+msgid "Percentage for Breakfast"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__percentage_for_dinner
+msgid "Percentage for Dinner"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense_meal_allowance_rate__percentage_for_lunch
+msgid "Percentage for Lunch"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#. odoo-python
+#: code:addons/hr_expense_meal_allowance/models/hr_expense.py:0
+#: code:addons/hr_expense_meal_allowance/models/hr_expense_meal_allowance.py:0
+msgid "Please set a timezone in user settings"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_sheet_view_form_extended
+msgid "Print Expenses"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__meal_allowance_rate_id
+msgid "Rate"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_meal_allowance_search_form_view
+msgid "Rates"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_br_rio_de_jeneiro
+msgid "Rio de Janeiro"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_sa_riyadh
+msgid "Riyadh"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_it_rome
+msgid "Rome"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_san_francisco
+msgid "San Francisco"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_br_sao_paulo
+msgid "Sao Paulo"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_shanghai
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_cn_shanghai_2026
+msgid "Shanghai"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ru_st_petersburg
+msgid "St. Petersburg"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_au_sydney
+msgid "Sydney"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_jp_tokyo
+msgid "Tokyo"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ca_toronto
+msgid "Toronto"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__travel_begin
+msgid "Travel Begin"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_travel_days
+msgid "Travel Days"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__travel_end
+msgid "Travel End"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model_terms:ir.ui.view,arch_db:hr_expense_meal_allowance.hr_expense_sheet_view_form_extended
+msgid "Travel Information"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,help:hr_expense_meal_allowance.field_hr_expense_meal_allowance__currency_id
+msgid "Utility field to express amount currency"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ca_vancouver
+msgid "Vancouver"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_warsaw
+msgid "Warsaw"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_us_washington_dc
+msgid "Washington D.C."
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:ir.model.fields,field_description:hr_expense_meal_allowance.field_hr_expense__number_of_days
+msgid "Whole Days"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_pl_wroclaw
+msgid "Wroclaw"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_ru_yekatarinburg
+msgid "Yekatarinburg"
+msgstr ""
+
+#. module: hr_expense_meal_allowance
+#: model:hr.expense.meal.allowance.rate,city_name:hr_expense_meal_allowance.rate_base_fr_dep_92_94
+msgid "departments 92-94"
+msgstr ""

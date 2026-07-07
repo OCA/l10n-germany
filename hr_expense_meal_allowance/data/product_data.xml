@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_tag_meal_allowance" model="product.tag">
+        <field name="name">Expense / Meal Allowance</field>
+    </record>
+    <record id="product_meal_allowance" model="product.template">
+        <field name="name">Meal Allowance</field>
+        <field name="type">service</field>
+        <field name="default_code">VMA</field>
+        <field name="can_be_expensed">True</field>
+        <field name="expense_policy">cost</field>
+        <field name="taxes_id" eval="[]" />
+        <field
+            name="product_tag_ids"
+            eval="[Command.link(ref('product_tag_meal_allowance'))]"
+        />
+    </record>
+</odoo>

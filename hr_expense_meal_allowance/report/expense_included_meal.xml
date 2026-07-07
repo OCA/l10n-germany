@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_expense_meal_allowance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.env.company.partner_id.lang" />
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <t t-call="web.external_layout" t-lang="lang">
+                    <div class="row">
+                        <div class="col-6">
+                            <t t-set="information_block" />
+                        </div>
+                        <div class="offset-col-6 col-6" name="address">
+                            <t t-set="address">
+                                <address
+                                    class="mb-0"
+                                    t-field="o.employee_id.address_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'
+                                />
+                            </t>
+                        </div>
+                    </div>
+                    <div class="clearfix expense_main">
+                        <div class="page mb-4">
+                            <t t-set="layout_document_title">
+                                <span t-field="o.name">Meal Allowance</span>
+                            </t>
+                            <div class="oe_structure" id="oe_structure_informations" />
+                            <div id="informations" class="row mb-4">
+                                <div
+                                    class="col"
+                                    t-if="o.employee_id"
+                                    name="employee_id"
+                                >
+                                    <strong>Employee</strong>
+                                    <div t-field="o.employee_id">Mitchell Admin</div>
+                                </div>
+                                <div class="col" t-if="o.customer_id" name="due_date">
+                                    <strong>Customer</strong>
+                                    <div t-field="o.customer_id">Azure Interior</div>
+                                </div>
+                                <div
+                                    class="col"
+                                    t-if="o.travel_begin"
+                                    name="travel_begin"
+                                >
+                                    <strong>Travel Begin</strong>
+                                    <div
+                                        class="m-0"
+                                        t-field="o.travel_begin"
+                                    >2025-01-03</div>
+                                </div>
+                                <div class="col" t-if="o.travel_end" name="travel_end">
+                                    <strong>Travel End</strong>
+                                    <div
+                                        class="m-0"
+                                        t-field="o.travel_end"
+                                    >2025-01-05</div>
+                                </div>
+                                <div
+                                    class="col"
+                                    t-if="o.number_of_travel_days"
+                                    name="number_of_travel_days"
+                                >
+                                    <strong>Travel Days</strong>
+                                    <div
+                                        class="m-0"
+                                        t-field="o.number_of_travel_days"
+                                    >2</div>
+                                </div>
+                                <div
+                                    class="col"
+                                    t-if="o.number_of_travel_days"
+                                    name="number_of_days"
+                                >
+                                    <strong>Whole Days</strong>
+                                    <div class="m-0" t-field="o.number_of_days">1</div>
+                                </div>
+                            </div>
+                            <div
+                                class="oe_structure"
+                                id="oe_structure_expense_line_table"
+                            />
+                            <div t-field="o.description" />
+                            <table
+                                class="o_has_total_table table o_main_table table-borderless"
+                                name="expense_line_table"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th name="th_date" class="text-start">
+                                            <span>Date</span>
+                                        </th>
+                                        <th name="th_day" class="text-start">
+                                            <span>Day</span>
+                                        </th>
+                                        <th
+                                            name="th_breakfast_included"
+                                            class="text-start"
+                                        >
+                                            <span>Breakfast Included?</span>
+                                        </th>
+                                        <th name="th_lunch_included" class="text-start">
+                                            <span>Lunch Included?</span>
+                                        </th>
+                                        <th
+                                            name="th_dinner_included"
+                                            class="text-start"
+                                        >
+                                            <span>Dinner Included?</span>
+                                        </th>
+                                        <th
+                                            name="th_expense_for_day"
+                                            class="text-start"
+                                        >
+                                            <span>Expenses For This Day</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="meal_allowance_tbody">
+                                    <t t-set="lines" t-value="o.meal_allowance_ids" />
+
+                                    <t t-foreach="lines" t-as="line">
+                                        <tr>
+                                            <td name="date" class="text-start">
+                                                <span
+                                                    t-field="line.date"
+                                                    t-options='{"widget": "date"}'
+                                                />
+                                            </td>
+                                            <td class="text-start">
+                                                <span t-field="line.day" />
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.breakfast_included">
+                                                    <span>
+                                                        <i class="fa fa-check" />
+                                                    </span>
+                                                </t>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.lunch_included">
+                                                    <span>
+                                                        <i class="fa fa-check" />
+                                                    </span>
+                                                </t>
+                                            </td>
+                                            <td class="text-center">
+                                                <t t-if="line.dinner_included">
+                                                    <span>
+                                                        <i class="fa fa-check" />
+                                                    </span>
+                                                </t>
+                                            </td>
+                                            <td class="text-end">
+                                                <span
+                                                    class="mb-2"
+                                                    t-field="line.expense_for_day"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <div
+                                id="right-elements"
+                                t-attf-class="col-5 d-inline-block float-end"
+                            >
+                                <div id="total" class="avoid-page-break-inside">
+                                    <table
+                                        class="o_total_table table table-borderless mb-0"
+                                    >
+                                        <tr class="is-subtotal">
+                                            <td class="text-start">
+                                                <strong>Total:</strong>
+                                            </td>
+                                            <td class="text-end">
+                                                <span
+                                                    t-field="o.total_amount_currency"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

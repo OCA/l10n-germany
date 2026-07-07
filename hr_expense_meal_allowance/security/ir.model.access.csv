@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_hr_expense_meal_allowance,hr.expense.meal.allowance,hr_expense_meal_allowance.model_hr_expense_meal_allowance,base.group_user,1,1,1,1
+access_user_hr_expense_meal_allowance_rate,hr.expense.meal.allowance.rate,hr_expense_meal_allowance.model_hr_expense_meal_allowance_rate,base.group_user,1,0,0,0
+access_user_hr_expense_meal_allowance_rate_manager,hr.expense.meal.allowance.rate,hr_expense_meal_allowance.model_hr_expense_meal_allowance_rate,hr_expense.group_hr_expense_manager,1,1,1,1

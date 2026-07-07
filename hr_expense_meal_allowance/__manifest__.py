@@ -1,0 +1,25 @@
+{
+    "name": "HR Expense Meal Allowance",
+    "author": "IFE Gesellschaft für Forschung und Entwicklung, "
+    "glueckkanja AG, Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/l10n-germany",
+    "category": "Human Resources/Expenses",
+    "license": "AGPL-3",
+    "summary": "Automatic calculation of expenses",
+    "version": "18.0.1.1.2",
+    "depends": ["sale_expense"],
+    "maintainers": ["CRogos"],
+    "data": [
+        "data/product_data.xml",
+        "data/hr.expense.meal.allowance.rate.csv",
+        "views/hr_expense_meal_allowance_rate.xml",
+        "views/hr_expense_meal_allowance.xml",
+        "views/hr_expense.xml",
+        "security/ir.model.access.csv",
+        "security/ir_rule.xml",
+        "report/expense_included_meal_report.xml",
+        "report/expense_included_meal.xml",
+    ],
+    "installable": True,
+    "application": False,
+}
