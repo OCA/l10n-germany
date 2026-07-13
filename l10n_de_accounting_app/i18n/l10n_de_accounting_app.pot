@@ -1,0 +1,413 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_accounting_app
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+". Module names are given without a version pin — use the branch matching "
+"your Odoo version."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "<strong>Workflow choice:</strong>"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"A curated catalogue of the Odoo Community Association (OCA) modules we use "
+"to run a complete German accounting workflow on Odoo: dunning, bank "
+"statement import, DATEV exchange with the tax adviser, VAT return "
+"preparation, SEPA payments, and DIN 5008 compliant PDFs."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Adds the invoice number to the PDF subject line per DIN 5008."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Advantage: handles credit notes."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Advantage: supports dunning fees (Mahngebühren)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Assign an own number sequence to each journal instead of the shared default."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Bank Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_statement_import_camt54
+msgid "CAMT.054 Bank Statement Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "CAMT.054 schema."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "CSV / Excel bank statement import."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_statement_import_sheet_file
+msgid "CSV/Excel Bank Statement Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model,name:l10n_de_accounting_app.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_credit_control
+msgid "Credit Control (Mahngebühren)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_move_name_sequence
+msgid "Custom Sequences per Journal"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "DATEV"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_datev_import_csv_dtvf
+msgid "DATEV CSV/DTVF Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_datev_export_dtvf
+msgid "DATEV DTVF Export"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_datev_export_xml
+msgid "DATEV XML Export (with PDF)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_l10n_din5008_move_name
+msgid "DIN 5008 Move Name in PDF"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Each repository linked below lives under"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Everything listed here is either installed or qualified as the default "
+"choice for the corresponding need."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Exports all accounting entries in DTVF format. No PDF attachments."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Exports bills/invoices with PDF attachment for upload to DATEV Unternehmen "
+"Online."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Extension for the Zusammenfassende Meldung (intra-community)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Followup (Mahnwesen)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "German Accounting"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_l10n_de_mis_reports
+msgid "German MIS Reports (P&L, Balance Sheet, SKR03/04)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_l10n_de_tax_statement
+msgid "German VAT Statement (USt-VA)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Group outgoing payments into one order containing multiple vendor payments, "
+"for easy SEPA Credit XML generation."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Imports accounting entries from DATEV. Mainly used for payroll postings "
+"(Lohnsteuer)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Invoice Import/Export EDI"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#. odoo-python
+#: code:addons/l10n_de_accounting_app/models/res_config_settings.py:0
+msgid "Module Not Available"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "More connectors are available in the same repository."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Nice to Have"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "OCA/account-financial-tools"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "OCA/bank-payment"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "OCA/bank-statement-import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "OCA/credit-control"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "OCA/l10n-germany"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_invoice_overdue_reminder
+msgid "Overdue Invoice Reminders"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "PDF Report"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_statement_import_online_paypal
+msgid "PayPal Online Statement Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "PayPal online statement fetching."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Payment"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_payment_mode
+msgid "Payment Modes"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_payment_order
+msgid "Payment Orders"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Payment modes."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Ponto API, fetches statements automatically."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_statement_import_online_ponto
+msgid "Ponto Online Statement Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Produces a report for manual entry into ELSTER (no API connection)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Profit/Loss, Balance Sheet, SKR03, SKR04."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Reference: OCA's own <em>must-have accounting modules</em> list at"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Replaces the older OCA account_invoice_facturx, which is no longer needed."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Reporting"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Repository:"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Required for SEPA direct debit (Bankeinzug)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Required to create SEPA Credit files for vendor payments."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_banking_sepa_credit_transfer
+msgid "SEPA Credit Transfer"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_banking_sepa_direct_debit
+msgid "SEPA Direct Debit"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Source: Odoo standard"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Stripe API, fetches statements automatically."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_statement_import_online_stripe
+msgid "Stripe Online Statement Import"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Tax adviser does <strong>not</strong> need PDFs → use "
+"<code>datev_export_dtvf</code> for everything."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"Tax adviser needs PDFs → use <code>datev_export_xml</code> (upload to DATEV "
+"Unternehmen Online) + <code>datev_export_dtvf</code> for the remaining "
+"journals."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"The list is organised by accounting function rather than by repository, so "
+"each section answers a single question — <em>\"which module handles "
+"X?\"</em> — and gives the OCA repo it lives in, with a short note on why we "
+"picked it (and where there are trade-offs between alternatives, what to "
+"weigh)."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#. odoo-python
+#: code:addons/l10n_de_accounting_app/models/res_config_settings.py:0
+msgid ""
+"These modules are not available and cannot be installed:\n"
+"\n"
+"%(names)s\n"
+"\n"
+"Add the matching OCA repository to your addons path and update the apps list (Apps → Update Apps List), then try again."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Two alternatives — pick by the feature you need."
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_account_edi_ubl_cii
+msgid "UBL/CII e-invoicing"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "VAT Report (USt-VA) + ZM"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_l10n_de_tax_statement_zm
+msgid "Zusammenfassende Meldung (ZM)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "https://github.com/OCA"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"https://www.odoo-community.org/list-of-must-have-oca-accounting-modules"
+msgstr ""
