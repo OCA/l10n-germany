@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-l10n-germany"
-version = "18.0.20260707.0"
+version = "18.0.20260713.0"
 dependencies = [
     "odoo-addon-datev_export==18.0.*",
     "odoo-addon-datev_export_dtvf==18.0.*",
@@ -9,6 +9,7 @@ dependencies = [
     "odoo-addon-hr_expense_meal_allowance==18.0.*",
     "odoo-addon-l10n_de_location_nuts==18.0.*",
     "odoo-addon-l10n_de_mis_reports==18.0.*",
+    "odoo-addon-l10n_de_partner_company_type==18.0.*",
     "odoo-addon-l10n_de_tax_statement==18.0.*",
     "odoo-addon-l10n_de_tax_statement_zm==18.0.*",
     "odoo-addon-l10n_din5008_company_header_country_invisible==18.0.*",
