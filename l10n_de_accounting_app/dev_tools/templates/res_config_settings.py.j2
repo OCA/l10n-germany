@@ -1,0 +1,45 @@
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import _, api, fields, models
+
+_MODULE_FIELDS = [
+    {% for field in module_fields %}
+    "{{ field }}",
+    {% endfor %}
+]
+
+
+class ResConfigSettings(models.TransientModel):
+    _inherit = "res.config.settings"
+    {% for section in sections %}
+
+    # {{ section.name }}
+    {% for addon in section.addons %}
+    module_{{ addon.name }} = fields.Boolean(
+        string="{{ addon.label | py_str }}",
+    )
+    {% endfor %}
+    {% endfor %}
+
+    @api.onchange(*_MODULE_FIELDS)
+    def _onchange_check_module_available(self):
+        """Warn and untick a selected module that is not in the addons path."""
+        modules = self.env["ir.module.module"].sudo()
+        missing = []
+        for field_name in _MODULE_FIELDS:
+            if not self[field_name]:
+                continue
+            module_name = field_name[len("module_") :]
+            if not modules.search_count([("name", "=", module_name)]):
+                missing.append(module_name)
+                self[field_name] = False
+        if not missing:
+            return None
+        message = _(
+            "These modules are not available and cannot be installed:\n\n"
+            "%(names)s\n\n"
+            "Add the matching OCA repository to your addons path and update "
+            "the apps list (Apps → Update Apps List), then try again.",
+            names="\n".join(f"- {name}" for name in missing),
+        )
+        return {"warning": {"title": _("Module Not Available"), "message": message}}

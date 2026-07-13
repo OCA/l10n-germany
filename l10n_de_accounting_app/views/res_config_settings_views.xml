@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res_config_settings_view_form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app
+                    data-string="German Accounting"
+                    string="German Accounting"
+                    name="l10n_de_accounting_app"
+                    groups="account.group_account_manager"
+                >
+                    <div class="row mt16 mr16 mb16 ml16">
+                        <div class="col-12 mb-2">
+                            A curated catalogue of the Odoo Community Association (OCA) modules we use to run a complete German accounting workflow on Odoo: dunning, bank statement import, DATEV exchange with the tax adviser, VAT return preparation, SEPA payments, and DIN 5008 compliant PDFs.
+                        </div>
+                        <div class="col-12 mb-2">
+                            The list is organised by accounting function rather than by repository, so each section answers a single question — <em
+                        >"which module handles X?"</em> — and gives the OCA repo it lives in, with a short note on why we picked it (and where there are trade-offs between alternatives, what to weigh).
+                        </div>
+                        <div class="col-12 mb-2">
+                            Everything listed here is either installed or qualified as the default choice for the corresponding need.
+                        </div>
+                        <div class="col-12 mb-2">
+                            Reference: OCA's own <em
+                        >must-have accounting modules</em> list at <a
+                            href="https://www.odoo-community.org/list-of-must-have-oca-accounting-modules"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >https://www.odoo-community.org/list-of-must-have-oca-accounting-modules</a>.
+                        </div>
+                        <div class="col-12 mb-2">
+                            Each repository linked below lives under <a
+                            href="https://github.com/OCA"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >https://github.com/OCA</a>. Module names are given without a version pin — use the branch matching your Odoo version.
+                        </div>
+                    </div>
+                    <block
+                        id="l10n_de_accounting_app_invoice_import_export_edi"
+                        title="Invoice Import/Export EDI"
+                    >
+                        <setting
+                            id="module_account_edi_ubl_cii"
+                            help="Replaces the older OCA account_invoice_facturx, which is no longer needed."
+                        >
+                            <field name="module_account_edi_ubl_cii" />
+                            <div class="text-muted">
+                                Source: Odoo standard
+                            </div>
+                        </setting>
+                    </block>
+                    <block
+                        id="l10n_de_accounting_app_followup_mahnwesen"
+                        title="Followup (Mahnwesen)"
+                    >
+                        <div class="col-12 text-muted mb-2">
+                            Two alternatives — pick by the feature you need.
+                        </div>
+                        <setting
+                            id="module_account_invoice_overdue_reminder"
+                            help="Advantage: handles credit notes."
+                        >
+                            <field name="module_account_invoice_overdue_reminder" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/credit-control"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/credit-control</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_credit_control"
+                            help="Advantage: supports dunning fees (Mahngebühren)."
+                        >
+                            <field name="module_account_credit_control" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/credit-control"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/credit-control</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block id="l10n_de_accounting_app_reporting" title="Reporting">
+                        <setting
+                            id="module_l10n_de_mis_reports"
+                            help="Profit/Loss, Balance Sheet, SKR03, SKR04."
+                        >
+                            <field name="module_l10n_de_mis_reports" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block id="l10n_de_accounting_app_bank_import" title="Bank Import">
+                        <div class="col-12 text-muted mb-2">
+                            More connectors are available in the same repository.
+                        </div>
+                        <setting
+                            id="module_account_statement_import_sheet_file"
+                            help="CSV / Excel bank statement import."
+                        >
+                            <field name="module_account_statement_import_sheet_file" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-statement-import"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-statement-import</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_statement_import_camt54"
+                            help="CAMT.054 schema."
+                        >
+                            <field name="module_account_statement_import_camt54" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-statement-import"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-statement-import</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_statement_import_online_paypal"
+                            help="PayPal online statement fetching."
+                        >
+                            <field
+                                name="module_account_statement_import_online_paypal"
+                            />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-statement-import"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-statement-import</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_statement_import_online_ponto"
+                            help="Ponto API, fetches statements automatically."
+                        >
+                            <field
+                                name="module_account_statement_import_online_ponto"
+                            />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-statement-import"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-statement-import</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_statement_import_online_stripe"
+                            help="Stripe API, fetches statements automatically."
+                        >
+                            <field
+                                name="module_account_statement_import_online_stripe"
+                            />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-statement-import"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-statement-import</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block id="l10n_de_accounting_app_datev" title="DATEV">
+                        <div class="col-12 text-muted mb-2">
+                            <strong>Workflow choice:</strong>
+                            <ul class="mb-0">
+                                <li>Tax adviser does <strong
+                                >not</strong> need PDFs → use <code
+                                >datev_export_dtvf</code> for everything.</li>
+                                <li>Tax adviser needs PDFs → use <code
+                                >datev_export_xml</code> (upload to DATEV Unternehmen Online) + <code
+                                >datev_export_dtvf</code> for the remaining journals.</li>
+                            </ul>
+                        </div>
+                        <setting
+                            id="module_datev_export_dtvf"
+                            help="Exports all accounting entries in DTVF format. No PDF attachments."
+                        >
+                            <field name="module_datev_export_dtvf" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_datev_export_xml"
+                            help="Exports bills/invoices with PDF attachment for upload to DATEV Unternehmen Online."
+                        >
+                            <field name="module_datev_export_xml" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_datev_import_csv_dtvf"
+                            help="Imports accounting entries from DATEV. Mainly used for payroll postings (Lohnsteuer)."
+                        >
+                            <field name="module_datev_import_csv_dtvf" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block
+                        id="l10n_de_accounting_app_vat_report_ust_va_zm"
+                        title="VAT Report (USt-VA) + ZM"
+                    >
+                        <setting
+                            id="module_l10n_de_tax_statement"
+                            help="Produces a report for manual entry into ELSTER (no API connection)."
+                        >
+                            <field name="module_l10n_de_tax_statement" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_l10n_de_tax_statement_zm"
+                            help="Extension for the Zusammenfassende Meldung (intra-community)."
+                        >
+                            <field name="module_l10n_de_tax_statement_zm" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block id="l10n_de_accounting_app_payment" title="Payment">
+                        <setting id="module_account_payment_mode" help="Payment modes.">
+                            <field name="module_account_payment_mode" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-payment"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-payment</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_payment_order"
+                            help="Group outgoing payments into one order containing multiple vendor payments, for easy SEPA Credit XML generation."
+                        >
+                            <field name="module_account_payment_order" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-payment"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-payment</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_banking_sepa_credit_transfer"
+                            help="Required to create SEPA Credit files for vendor payments."
+                        >
+                            <field name="module_account_banking_sepa_credit_transfer" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-payment"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-payment</a>
+                            </div>
+                        </setting>
+                        <setting
+                            id="module_account_banking_sepa_direct_debit"
+                            help="Required for SEPA direct debit (Bankeinzug)."
+                        >
+                            <field name="module_account_banking_sepa_direct_debit" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/bank-payment"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/bank-payment</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block id="l10n_de_accounting_app_pdf_report" title="PDF Report">
+                        <setting
+                            id="module_l10n_din5008_move_name"
+                            help="Adds the invoice number to the PDF subject line per DIN 5008."
+                        >
+                            <field name="module_l10n_din5008_move_name" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                    </block>
+                    <block
+                        id="l10n_de_accounting_app_nice_to_have"
+                        title="Nice to Have"
+                    >
+                        <setting
+                            id="module_account_move_name_sequence"
+                            help="Assign an own number sequence to each journal instead of the shared default."
+                        >
+                            <field name="module_account_move_name_sequence" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/account-financial-tools"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/account-financial-tools</a>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>
