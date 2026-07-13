@@ -1,0 +1,4 @@
+- [Coop IT Easy SC](https://coopiteasy.be):
+  - Simon Hick
+- [humanilog](https://www.humanilog.org):
+  - Ahmad Ghadban
