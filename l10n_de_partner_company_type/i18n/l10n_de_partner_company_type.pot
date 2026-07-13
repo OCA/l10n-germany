@@ -1,0 +1,336 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_partner_company_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ag
+msgid "AG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ag_co_kg
+msgid "AG & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ag
+msgid "Aktiengesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ag_co_kg
+msgid "Aktiengesellschaft & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.aoer
+msgid "Anstalt des öffentlichen Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.aoer
+msgid "AöR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ewiv
+msgid "EWIV"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.eg
+msgid "Eingetragene Genossenschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.egbr
+msgid "Eingetragene Gesellschaft bürgerlichen Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ek
+msgid "Eingetragener Kaufmann / Eingetragene Kauffrau"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ev
+msgid "Eingetragener Verein"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.einzelunternehmen
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.einzelunternehmen
+msgid "Einzelunternehmen"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.sce
+msgid "Europäische Genossenschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.se
+msgid "Europäische Gesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.se_co_kg
+msgid "Europäische Gesellschaft & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ewiv
+msgid "Europäische wirtschaftliche Interessenvereinigung"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gbr
+msgid "GbR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gag
+msgid "Gemeinnützige Aktiengesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ggmbh
+msgid "Gemeinnützige Gesellschaft mit beschränkter Haftung"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gug
+msgid "Gemeinnützige Unternehmergesellschaft (haftungsbeschränkt)"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gbr
+msgid "Gesellschaft bürgerlichen Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gmbh
+msgid "Gesellschaft mit beschränkter Haftung"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gmbh_co_kg
+msgid "Gesellschaft mit beschränkter Haftung & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gmbh_co_kgaa
+msgid "Gesellschaft mit beschränkter Haftung & Co. KGaA"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.gmbh_co_ohg
+msgid "Gesellschaft mit beschränkter Haftung & Co. OHG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gmbh
+msgid "GmbH"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gmbh_co_kg
+msgid "GmbH & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gmbh_co_kgaa
+msgid "GmbH & Co. KGaA"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gmbh_co_ohg
+msgid "GmbH & Co. OHG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.kg
+msgid "KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.kgaa
+msgid "KGaA"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.koer
+msgid "KdöR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.kg
+msgid "Kommanditgesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.kgaa
+msgid "Kommanditgesellschaft auf Aktien"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.koer
+msgid "Körperschaft des öffentlichen Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.nev
+msgid "Nicht eingetragener Verein"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ohg
+msgid "OHG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ohg
+msgid "Offene Handelsgesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.partg
+msgid "PartG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.partg_mbb
+msgid "PartG mbB"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.partg
+msgid "Partnerschaftsgesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.partg_mbb
+msgid "Partnerschaftsgesellschaft mit beschränkter Berufshaftung"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.sce
+msgid "SCE"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.se
+msgid "SE"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.se_co_kg
+msgid "SE & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.sdpr
+msgid "SdpR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.sdoer
+msgid "SdöR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.sdpr
+msgid "Stiftung des privaten Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.sdoer
+msgid "Stiftung des öffentlichen Rechts"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.stille_gesellschaft
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.stille_gesellschaft
+msgid "Stille Gesellschaft"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ug
+msgid "UG (haftungsbeschränkt)"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ug_co_kg
+msgid "UG (haftungsbeschränkt) & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ug
+msgid "Unternehmergesellschaft (haftungsbeschränkt)"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.ug_co_kg
+msgid "Unternehmergesellschaft (haftungsbeschränkt) & Co. KG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.vvag
+msgid "VVaG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,name:l10n_de_partner_company_type.vvag
+msgid "Versicherungsverein auf Gegenseitigkeit"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ek
+msgid "e.K."
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ev
+msgid "e.V."
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.eg
+msgid "eG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.egbr
+msgid "eGbR"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gag
+msgid "gAG"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.ggmbh
+msgid "gGmbH"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.gug
+msgid "gUG (haftungsbeschränkt)"
+msgstr ""
+
+#. module: l10n_de_partner_company_type
+#: model:res.partner.company.type,shortcut:l10n_de_partner_company_type.nev
+msgid "n.e.V."
+msgstr ""
