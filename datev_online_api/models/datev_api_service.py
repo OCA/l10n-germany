@@ -6,7 +6,7 @@ from odoo import api, fields, models
 
 class DatevAPIService(models.Model):
     _name = "datev.api.service"
-    _description = "Service within the DATEV API"
+    _description = "Service within the DATEV Online API"
 
     name = fields.Char(required=True)
     scopes = fields.Char()
