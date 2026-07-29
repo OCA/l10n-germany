@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="l10n_din5008_sale.report_saleorder_document"
+        priority="100"
+    >
+        <xpath expr="//t[@t-set='din5008_document_title']/span" position="after">
+            <span t-if="doc and doc._name == 'sale.order'">
+                <t t-out="doc.name" />
+            </span>
+        </xpath>
+    </template>
+</odoo>
