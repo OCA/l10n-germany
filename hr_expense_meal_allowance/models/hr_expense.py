@@ -222,30 +222,57 @@ class HrExpense(models.Model):
 
             record.meal_allowance_rate_id = rates[0] if rates else False
 
-    def action_post(self):
-        for expense in self.filtered(
-            lambda expense: expense.is_meal_allowance and not expense.nb_attachment
-        ):
-            lang = (
-                expense.employee_id.lang
-                or expense.employee_id.company_id.partner_id.lang
-            )
-            content, _content_type = (
+    def _do_approve(self, check=True):
+        """Override to auto-generate the meal allowance PDF on approval."""
+        expenses_to_process = self.filtered(lambda e: e.state in ("submitted", "draft"))
+        res = super()._do_approve(check=check)
+        expenses_to_process.filtered(
+            lambda e: e.state == "approved"
+        )._generate_expense_pdf_attachment()
+
+        return res
+
+    def _generate_expense_pdf_attachment(self):
+        """Render the meal allowance report as PDF and attach it once per expense."""
+        # sudo is required: core forbids adding attachments to an approved
+        # expense, and this runs post-approval. The existence check must also
+        # run as sudo so it sees the previously generated attachment
+        # regardless of the current user's access to it. It must be a real
+        # search (not nb_attachment, whose compute has no depends and stays
+        # stale for the whole transaction) so a second invocation in the same
+        # transaction cannot create a duplicate.
+        attachment_model = self.env["ir.attachment"].sudo()
+        for expense in self.filtered("is_meal_allowance"):
+            attachment_name = f"{expense.name}.pdf".replace("/", "_")
+            if attachment_model.search_count(
+                [
+                    ("res_model", "=", "hr.expense"),
+                    ("res_id", "=", expense.id),
+                    ("name", "=", attachment_name),
+                ],
+                limit=1,
+            ):
+                continue
+            # report_pdf_no_attachment: if the report action has a
+            # "Save as Attachment Prefix" configured (e.g. set on the record
+            # in the database), _render_qweb_pdf would itself create an
+            # attachment during the render, duplicating the one created
+            # below. Suppress that; this method is the only writer.
+            pdf_content, _mime = (
                 self.env["ir.actions.report"]
-                .with_context(lang=lang)
+                .sudo()
+                .with_context(report_pdf_no_attachment=True)
                 ._render_qweb_pdf(
-                    "hr_expense.action_report_hr_expense",
-                    expense.id,
+                    "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance",
+                    [expense.id],
                 )
             )
-            expense.attachment_ids |= self.env["ir.attachment"].create(
+            attachment_model.create(
                 {
-                    "name": f"{expense.name}.pdf".replace("/", "_"),
-                    "type": "binary",
-                    "mimetype": "application/pdf",
-                    "raw": content,
-                    "res_model": expense._name,
+                    "name": attachment_name,
+                    "raw": pdf_content,
+                    "res_model": "hr.expense",
                     "res_id": expense.id,
+                    "mimetype": "application/pdf",
                 }
             )
-        return super().action_post()

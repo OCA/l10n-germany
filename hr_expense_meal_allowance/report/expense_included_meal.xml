@@ -58,101 +58,140 @@
     </template>
     <template id="report_expense_meal_allowance" inherit_id="hr_expense.report_expense">
         <xpath expr="//div[hasclass('page', 'o_content_pdf')]" position="after">
-            <div class="page" t-if="o.is_meal_allowance">
-                <div class="oe_structure" id="oe_structure_meal_allowance_section" />
-                <p style="page-break-after:always;" />
-                <h2 style="display: inline-block;">
-                    <span t-field="o.name">Meal Allowance</span>
-                </h2>
-                <div t-field="o.description" />
-                <t
-                    t-call="hr_expense_meal_allowance.report_expense_travel_information"
-                />
-                <div class="oe_structure" id="oe_structure_meal_allowance_days" />
-                <table
-                    class="o_has_total_table table o_main_table table-borderless"
-                    name="expense_line_table"
-                >
-                    <thead>
-                        <tr>
-                            <th name="th_date" class="text-start">
-                                <span>Date</span>
-                            </th>
-                            <th name="th_day" class="text-start">
-                                <span>Day</span>
-                            </th>
-                            <th name="th_breakfast_included" class="text-start">
-                                <span>Breakfast Included?</span>
-                            </th>
-                            <th name="th_lunch_included" class="text-start">
-                                <span>Lunch Included?</span>
-                            </th>
-                            <th name="th_dinner_included" class="text-start">
-                                <span>Dinner Included?</span>
-                            </th>
-                            <th name="th_expense_for_day" class="text-end">
-                                <span>Amount</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="meal_allowance_tbody">
-                        <t t-set="lines" t-value="o.meal_allowance_ids" />
-
-                        <t t-foreach="lines" t-as="line">
-                            <tr>
-                                <td name="date" class="text-start">
-                                    <span
-                                        t-field="line.date"
-                                        t-options='{"widget": "date"}'
-                                    />
-                                </td>
-                                <td class="text-start">
-                                    <span t-field="line.day" />
-                                </td>
-                                <td class="text-center">
-                                    <t t-if="line.breakfast_included">
-                                        <span>
-                                            <i class="fa fa-check" />
-                                        </span>
-                                    </t>
-                                </td>
-                                <td class="text-center">
-                                    <t t-if="line.lunch_included">
-                                        <span>
-                                            <i class="fa fa-check" />
-                                        </span>
-                                    </t>
-                                </td>
-                                <td class="text-center">
-                                    <t t-if="line.dinner_included">
-                                        <span>
-                                            <i class="fa fa-check" />
-                                        </span>
-                                    </t>
-                                </td>
-                                <td class="text-end">
-                                    <span class="mb-2" t-field="line.expense_for_day" />
-                                </td>
-                            </tr>
-                        </t>
-                    </tbody>
-                </table>
-
-                <div id="right-elements" t-attf-class="col-5 d-inline-block float-end">
-                    <div id="total" class="avoid-page-break-inside">
-                        <table class="o_total_table table table-borderless mb-0">
-                            <tr class="is-subtotal">
-                                <td class="text-start">
-                                    <strong>Total:</strong>
-                                </td>
-                                <td class="text-end">
-                                    <span t-field="o.total_amount_currency" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+            <t t-call="hr_expense_meal_allowance.document_expense_meal_allowance" />
         </xpath>
     </template>
+    <template id="report_meal_allowance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page o_content_pdf">
+                        <div
+                            class="oe_structure"
+                            id="oe_structure_report_meal_allowance"
+                        />
+                        <t
+                            t-call="hr_expense_meal_allowance.document_expense_meal_allowance"
+                        />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="document_expense_meal_allowance">
+        <div class="page" t-if="o.is_meal_allowance">
+            <div class="oe_structure" id="oe_structure_meal_allowance_section" />
+            <p style="page-break-after:always;" />
+            <h2 style="display: inline-block;">
+                <span t-field="o.name">Meal Allowance</span>
+            </h2>
+            <div t-field="o.description" />
+            <t t-call="hr_expense_meal_allowance.report_expense_travel_information" />
+            <div class="oe_structure" id="oe_structure_meal_allowance_days" />
+            <table
+                class="o_has_total_table table o_main_table table-borderless"
+                name="expense_line_table"
+            >
+                <thead>
+                    <tr>
+                        <th name="th_date" class="text-start">
+                            <span>Date</span>
+                        </th>
+                        <th name="th_day" class="text-start">
+                            <span>Day</span>
+                        </th>
+                        <th name="th_breakfast_included" class="text-start">
+                            <span>Breakfast Included?</span>
+                        </th>
+                        <th name="th_lunch_included" class="text-start">
+                            <span>Lunch Included?</span>
+                        </th>
+                        <th name="th_dinner_included" class="text-start">
+                            <span>Dinner Included?</span>
+                        </th>
+                        <th name="th_expense_for_day" class="text-end">
+                            <span>Amount</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="meal_allowance_tbody">
+                    <t t-set="lines" t-value="o.meal_allowance_ids" />
+
+                    <t t-foreach="lines" t-as="line">
+                        <tr>
+                            <td name="date" class="text-start">
+                                <span
+                                    t-field="line.date"
+                                    t-options='{"widget": "date"}'
+                                />
+                            </td>
+                            <td class="text-start">
+                                <span t-field="line.day" />
+                            </td>
+                            <td class="text-center">
+                                <t t-if="line.breakfast_included">
+                                    <span>
+                                        <i class="fa fa-check" />
+                                    </span>
+                                </t>
+                            </td>
+                            <td class="text-center">
+                                <t t-if="line.lunch_included">
+                                    <span>
+                                        <i class="fa fa-check" />
+                                    </span>
+                                </t>
+                            </td>
+                            <td class="text-center">
+                                <t t-if="line.dinner_included">
+                                    <span>
+                                        <i class="fa fa-check" />
+                                    </span>
+                                </t>
+                            </td>
+                            <td class="text-end">
+                                <span class="mb-2" t-field="line.expense_for_day" />
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+
+            <div id="right-elements" t-attf-class="col-5 d-inline-block float-end">
+                <div id="total" class="avoid-page-break-inside">
+                    <table class="o_total_table table table-borderless mb-0">
+                        <tr class="is-subtotal">
+                            <td class="text-start">
+                                <strong>Total:</strong>
+                            </td>
+                            <td class="text-end">
+                                <span t-field="o.total_amount_currency" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+    <record id="action_report_hr_expense_meal_allowance" model="ir.actions.report">
+        <field name="name">Meal allowance Report</field>
+        <field name="model">hr.expense</field>
+        <field name="report_type">qweb-pdf</field>
+        <field
+            name="report_name"
+        >hr_expense_meal_allowance.report_meal_allowance</field>
+        <field
+            name="report_file"
+        >hr_expense_meal_allowance.report_meal_allowance</field>
+        <field
+            name="print_report_name"
+        >'Meal Allowance - %s - %s' % (object.employee_id.name, (object.name).replace('/', ''))</field>
+        <!-- Explicitly empty: the module attaches the PDF itself on approval.
+             A "Save as Attachment Prefix" configured here (e.g. manually in a
+             database) would make every render save a duplicate attachment.
+             Declaring the fields forces them back on every module upgrade. -->
+        <field name="attachment" eval="False" />
+        <field name="attachment_use" eval="False" />
+        <field name="binding_type">report</field>
+    </record>
 </odoo>

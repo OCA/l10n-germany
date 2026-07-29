@@ -438,12 +438,10 @@ class HrExpense(BaseCommon):
 
         self.assertTrue(f.meal_allowance_rate_id)
 
-    @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
-    def test_action_post_generates_report(self, mock_render):
-        mock_render.return_value = (b"PDF content", "application/pdf")
+    def _create_meal_expense(self, name="Test"):
         expense = self.env["hr.expense"].create(
             {
-                "name": "Test",
+                "name": name,
                 "product_id": self.product.id,
                 "employee_id": self.employee.id,
                 "meal_allowance_rate_id": self.rate.id,
@@ -463,11 +461,76 @@ class HrExpense(BaseCommon):
         expense._update_meal_lines()
         expense.flush_model()
         expense.is_meal_allowance = True
-        expense.nb_attachment = 0
+        return expense
+
+    def _get_expense_attachments(self, expense):
+        return (
+            self.env["ir.attachment"]
+            .sudo()
+            .search(
+                [
+                    ("res_model", "=", "hr.expense"),
+                    ("res_id", "=", expense.id),
+                ]
+            )
+        )
+
+    @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
+    def test_do_approve_generates_report(self, mock_render):
+        mock_render.return_value = (b"PDF content", "application/pdf")
+        expense = self._create_meal_expense()
         expense.action_submit()
         expense.action_approve()
         expense.action_post()
-        self.assertTrue(mock_render.called)
+        # Count only renders of the meal allowance report: other installed
+        # modules may render additional reports (e.g. the vendor bill PDF)
+        # during posting, which must not fail this test.
+        meal_report_calls = [
+            call
+            for call in mock_render.call_args_list
+            if "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance"
+            in call.args
+        ]
+        self.assertEqual(len(meal_report_calls), 1)
+        attachments = self._get_expense_attachments(expense)
+        self.assertEqual(len(attachments), 1)
+        self.assertEqual(attachments.name, "Test.pdf")
+
+    @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
+    def test_do_approve_twice_single_pdf(self, mock_render):
+        mock_render.return_value = (b"PDF content", "application/pdf")
+        expense = self._create_meal_expense()
+        # Read nb_attachment before any attachment exists: the compute has no
+        # depends, so the zero stays in the transaction cache. The dedup must
+        # not rely on it, or a second generation in the same transaction (e.g.
+        # approval chained with posting) attaches a duplicate PDF.
+        self.assertEqual(expense.nb_attachment, 0)
+        expense.action_submit()
+        if expense.state != "approved":
+            expense.action_approve()
+        expense._generate_expense_pdf_attachment()
+        self.assertEqual(len(self._get_expense_attachments(expense)), 1)
+
+    @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
+    def test_do_approve_generates_report_with_receipt(self, mock_render):
+        mock_render.return_value = (b"PDF content", "application/pdf")
+        expense = self._create_meal_expense()
+        receipt = self.env["ir.attachment"].create(
+            {
+                "name": "receipt.png",
+                "raw": b"receipt",
+                "res_model": "hr.expense",
+                "res_id": expense.id,
+                "mimetype": "image/png",
+            }
+        )
+        expense.action_submit()
+        if expense.state != "approved":
+            expense.action_approve()
+        attachments = self._get_expense_attachments(expense)
+        self.assertEqual(len(attachments), 2)
+        self.assertIn("Test.pdf", attachments.mapped("name"))
+        self.assertIn(receipt, attachments)
 
     def test_update_meal_lines_missing_timezone(self):
         expense = self.env["hr.expense"].create(
