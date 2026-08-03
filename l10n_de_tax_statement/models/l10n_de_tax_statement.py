@@ -30,6 +30,12 @@ from .l10n_de_tax_statement_2021 import (
     _tax_statement_dict_2021,
     _totals_2021,
 )
+from .l10n_de_tax_statement_2026 import (
+    _finalize_lines_2026,
+    _map_tax_code_line_code_2026,
+    _tax_statement_dict_2026,
+    _totals_2026,
+)
 
 
 class VatStatement(models.Model):
@@ -45,7 +51,13 @@ class VatStatement(models.Model):
         readonly=False,
     )
     version = fields.Selection(
-        [("2018", "2018"), ("2019", "2019/2020"), ("2021", "2021/2022")], required=True
+        [
+            ("2018", "2018"),
+            ("2019", "2019/2020"),
+            ("2021", "2021/2022"),
+            ("2026", "2026"),
+        ],
+        required=True,
     )
     state = fields.Selection(
         [("draft", "Draft"), ("posted", "Posted"), ("final", "Final")],
@@ -178,7 +190,9 @@ class VatStatement(models.Model):
     def _prepare_lines(self):
         self.ensure_one()
 
-        if self.version == "2021":
+        if self.version == "2026":
+            lines = _tax_statement_dict_2026()
+        elif self.version == "2021":
             lines = _tax_statement_dict_2021()
         elif self.version == "2019":
             lines = _tax_statement_dict_2019()
@@ -189,7 +203,9 @@ class VatStatement(models.Model):
 
     def _finalize_lines(self, lines):
         self.ensure_one()
-        if self.version == "2021":
+        if self.version == "2026":
+            lines = _finalize_lines_2026(lines)
+        elif self.version == "2021":
             lines = _finalize_lines_2021(lines)
         elif self.version == "2019":
             lines = _finalize_lines_2019(lines)
@@ -416,7 +432,9 @@ class VatStatement(models.Model):
         for statement in self:
             lines = statement.line_ids
 
-            if statement.version == "2021":
+            if statement.version == "2026":
+                list_totals = _totals_2026()
+            elif statement.version == "2021":
                 list_totals = _totals_2021()
             elif statement.version == "2019":
                 list_totals = _totals_2019()
@@ -440,7 +458,9 @@ class VatStatement(models.Model):
 
     def map_tax_code_line_code(self, code):
         self.ensure_one()
-        if self.version == "2021":
+        if self.version == "2026":
+            map_tax_line_code = _map_tax_code_line_code_2026()
+        elif self.version == "2021":
             map_tax_line_code = _map_tax_code_line_code_2021()
         elif self.version == "2019":
             map_tax_line_code = _map_tax_code_line_code_2019()

@@ -412,6 +412,55 @@ class TestVatStatement(BaseCommon):
         self.assertEqual(len(self.statement_1.line_ids.ids), 45)
         self.assertEqual(self.statement_1.tax_total, -22.5)
 
+    def test_19_2026_version(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice()
+        self.invoice_1.action_post()
+        self.statement_1.version = "2026"
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 40)
+
+        _13 = self.statement_1.line_ids.filtered(lambda r: r.code == "13")
+        _14 = self.statement_1.line_ids.filtered(lambda r: r.code == "14")
+        _37 = self.statement_1.line_ids.filtered(lambda r: r.code == "37")
+        _50 = self.statement_1.line_ids.filtered(lambda r: r.code == "50")
+
+        self.assertEqual(len(_13), 1)
+        self.assertEqual(len(_14), 1)
+        self.assertEqual(_13.format_base, "100.00")
+        self.assertEqual(_13.format_tax, "19.00")
+        self.assertEqual(_14.format_base, "50.00")
+        self.assertEqual(_14.format_tax, "3.50")
+        self.assertEqual(_50.format_tax, "22.50")
+
+        self.assertEqual(self.statement_1.tax_total, 22.5)
+        self.assertEqual(self.statement_1.format_tax_total, "22.50")
+
+    def test_20_2026_version_additional(self):
+        self.assertEqual(len(self.statement_1.line_ids.ids), 0)
+        self.assertEqual(self.statement_1.tax_total, 0.0)
+
+        self._create_test_invoice(additional=True)
+        self.invoice_1.action_post()
+        self.statement_1.version = "2026"
+        self.statement_1.statement_update()
+        self.statement_1.post()
+
+        self.assertEqual(len(self.statement_1.line_ids.ids), 40)
+
+        _30 = self.statement_1.line_ids.filtered(lambda r: r.code == "30")
+        _32 = self.statement_1.line_ids.filtered(lambda r: r.code == "32")
+        _40 = self.statement_1.line_ids.filtered(lambda r: r.code == "40")
+
+        self.assertEqual(len(_30), 1)
+        self.assertEqual(len(_32), 1)
+        self.assertEqual(len(_40), 1)
+        self.assertNotEqual(self.statement_1.tax_total, 0.0)
+
     def test_bill_dates(self):
         bill_form = self._create_move_form("in_invoice", [(100.0, self.tax_vst_19)])
         bill_form.invoice_date = "2026-04-12"

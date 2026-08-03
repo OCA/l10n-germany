@@ -3,16 +3,17 @@ To create a statement you need to:
 1.  Verify that you have enough permits. You need to belong to the *Show
     Full Accounting Features* group.
 2.  Go to the menu: Invoicing -\> Reporting \> German Tax Statement
-3.  Create a statement, providing a name and specifying start date and
-    end date
+3.  Create a statement, providing a name, specifying the tax form
+    version (2018, 2019, 2021, or 2026) and start/end date
 4.  Press the Update button to calculate the report: the report lines
     will be displayed in the tab Statement
 5.  Eventually you have to manually enter the tax base amounts of lines
-    '20', '21', '22', '23', '24','26', '27', '28', '29', '30','32',
-    '33', '34', '35', '36','38', '39', '40', '41', '42','48', '49',
-    '50', '51', '52','64', '65', '67') if you want to change the values
-    from float format to integer (in Edit mode, click on the amount of
-    the line to be able to change the value).
+    (v2026: '13', '14', '15', '16', '17', '18', '19', '20', '21',
+    '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32',
+    '33', '34', '35', '36', '46', '47', '49', '51', '52')
+    if you want to change the values from float format to integer
+    (in Edit mode, click on the amount of the line to be able to
+    change the value).
 6.  Press the Post button to set the status of the statement to Posted;
     the statements set to this state cannot be modified
 
