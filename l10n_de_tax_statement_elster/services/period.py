@@ -3,6 +3,7 @@
 
 import calendar
 
+from odoo import _
 from odoo.exceptions import UserError
 
 PERIOD_MONTHLY = {
@@ -35,7 +36,7 @@ def get_elster_period(from_date, to_date):
     Raises UserError for invalid periods.
     """
     if not from_date or not to_date:
-        raise UserError("Der Voranmeldungszeitraum ist nicht vollständig angegeben.")
+        raise UserError(_("Der Voranmeldungszeitraum ist nicht vollständig angegeben."))
 
     y = from_date.year
     if y != to_date.year:

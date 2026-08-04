@@ -7,7 +7,7 @@ from odoo import http
 from odoo.exceptions import UserError
 from odoo.http import content_disposition, request
 
-from odoo.addons.l10n_de_tax_statement_elster.services.elster_export import (
+from ..services.elster_export import (
     generate_elster_xml,
     generate_export_filename,
 )
