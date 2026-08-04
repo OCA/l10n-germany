@@ -461,6 +461,31 @@ class TestVatStatement(BaseCommon):
         self.assertEqual(len(_40), 1)
         self.assertNotEqual(self.statement_1.tax_total, 0.0)
 
+    def test_21_2026_display_functions(self):
+        """Test 2026 display/group/editable functions are correct."""
+        self._create_test_invoice()
+        self.invoice_1.action_post()
+        self.statement_1.version = "2026"
+        self.statement_1.statement_update()
+
+        # Check group display is empty (2026 has no group headers)
+        line_13 = self.statement_1.line_ids.filtered(lambda r: r.code == "13")
+        line_37 = self.statement_1.line_ids.filtered(lambda r: r.code == "37")
+        self.assertFalse(line_13.is_group)
+        self.assertTrue(line_37.is_total)
+
+        # Check editable lines in draft
+        editable_line = self.statement_1.line_ids.filtered(lambda r: r.code == "17")
+        self.assertFalse(editable_line.is_readonly)
+
+        # Check total lines are readonly
+        total_line = self.statement_1.line_ids.filtered(lambda r: r.code == "50")
+        self.assertTrue(total_line.is_readonly)
+
+        # Check base/tax format display
+        self.assertTrue(line_13.format_base)
+        self.assertTrue(line_13.format_tax)
+
     def test_bill_dates(self):
         bill_form = self._create_move_form("in_invoice", [(100.0, self.tax_vst_19)])
         bill_form.invoice_date = "2026-04-12"
