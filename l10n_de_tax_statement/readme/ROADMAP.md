@@ -9,3 +9,5 @@
 - Report in .xml format in order to import the vat statement on
   www.elster.de portal in order to avoid manual transmission of the
   values.
+- Add support for newer tax form versions as they are published by
+  the German tax authorities (BMF/ELSTER).

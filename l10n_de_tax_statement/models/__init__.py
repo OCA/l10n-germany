@@ -5,3 +5,4 @@ from . import l10n_de_tax_statement_line
 from . import account_move
 from . import account_move_line
 from . import l10n_de_tax_statement_config
+from . import l10n_de_tax_statement_2026
