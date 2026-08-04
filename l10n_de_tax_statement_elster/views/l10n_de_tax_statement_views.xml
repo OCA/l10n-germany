@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_de_tax_report_form" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement</field>
+        <field name="inherit_id"
+               ref="l10n_de_tax_statement.view_l10n_de_tax_report_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='statement_update']"
+                   position="after">
+                <button
+                    name="action_generate_elster_xml"
+                    string="ELSTER XML herunterladen"
+                    type="object"
+                    icon="fa-download"
+                    invisible="state=='draft'"
+                    confirm="Die XML-Datei wird zum manuellen Import in Mein ELSTER erzeugt. Fortfahren?"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
