@@ -1,4 +1,3 @@
-# Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 """UStVA 2026 constants for ELSTER export."""
