@@ -17,6 +17,7 @@ _MODULE_FIELDS = [
     "module_datev_import_csv_dtvf",
     "module_l10n_de_tax_statement",
     "module_l10n_de_tax_statement_zm",
+    "module_hr_expense_meal_allowance",
     "module_account_payment_mode",
     "module_account_payment_order",
     "module_account_banking_sepa_credit_transfer",
@@ -81,6 +82,11 @@ class ResConfigSettings(models.TransientModel):
     )
     module_l10n_de_tax_statement_zm = fields.Boolean(
         string="Zusammenfassende Meldung (ZM)",
+    )
+
+    # Expense accounting (travel/meal)
+    module_hr_expense_meal_allowance = fields.Boolean(
+        string="Meal Allowance Expenses",
     )
 
     # Payment

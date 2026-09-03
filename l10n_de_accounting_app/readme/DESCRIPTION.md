@@ -65,6 +65,12 @@ From [OCA/l10n-germany](https://github.com/OCA/l10n-germany):
 - **l10n_de_tax_statement** — Produces a report for manual entry into ELSTER (no API connection).
 - **l10n_de_tax_statement_zm** — Extension for the Zusammenfassende Meldung (intra-community).
 
+## Expense accounting (travel/meal)
+
+From [OCA/l10n-germany](https://github.com/OCA/l10n-germany):
+
+- **hr_expense_meal_allowance** — For handling meal allowances as expenses with the German standard allowance rates per country and city.
+
 ## Payment
 
 From [OCA/bank-payment](https://github.com/OCA/bank-payment):
