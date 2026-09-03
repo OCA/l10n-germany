@@ -134,6 +134,11 @@ msgstr ""
 
 #. module: l10n_de_accounting_app
 #: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid "Expense accounting (travel/meal)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
 msgid "Exports all accounting entries in DTVF format. No PDF attachments."
 msgstr ""
 
@@ -152,6 +157,13 @@ msgstr ""
 #. module: l10n_de_accounting_app
 #: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
 msgid "Followup (Mahnwesen)"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
+msgid ""
+"For handling meal allowances as expenses with the German standard allowance "
+"rates per country and city."
 msgstr ""
 
 #. module: l10n_de_accounting_app
@@ -186,6 +198,11 @@ msgstr ""
 #. module: l10n_de_accounting_app
 #: model_terms:ir.ui.view,arch_db:l10n_de_accounting_app.res_config_settings_view_form
 msgid "Invoice Import/Export EDI"
+msgstr ""
+
+#. module: l10n_de_accounting_app
+#: model:ir.model.fields,field_description:l10n_de_accounting_app.field_res_config_settings__module_hr_expense_meal_allowance
+msgid "Meal Allowance Expenses"
 msgstr ""
 
 #. module: l10n_de_accounting_app
