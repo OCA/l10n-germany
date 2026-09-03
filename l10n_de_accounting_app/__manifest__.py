@@ -4,7 +4,7 @@
 {
     "name": "L10n DE Accounting App",
     "summary": "German Odoo accounting setup based on OCA modules",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "category": "Accounting/Localizations",
     "license": "AGPL-3",
     "author": "MT Software, Odoo Community Association (OCA)",
