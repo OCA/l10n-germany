@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [l10n_de_tax_statement_zm](l10n_de_tax_statement_zm/) | 18.0.2.0.0 |  | German VAT Statement Extension
 [l10n_din5008_company_header_country_invisible](l10n_din5008_company_header_country_invisible/) | 18.0.1.0.1 |  | Do not display the companies country on the header of the address block
 [l10n_din5008_move_name](l10n_din5008_move_name/) | 18.0.1.0.0 |  | Add Account move name on the name of the move
+[l10n_din5008_sale_move_name](l10n_din5008_sale_move_name/) | 18.0.1.0.0 |  | Add the sale order name on the title of the DIN5008 report
 
 [//]: # (end addons)
 
