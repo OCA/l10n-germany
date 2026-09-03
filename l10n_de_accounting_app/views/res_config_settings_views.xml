@@ -275,6 +275,25 @@
                             </div>
                         </setting>
                     </block>
+                    <block
+                        id="l10n_de_accounting_app_expense_accounting_travel_meal"
+                        title="Expense accounting (travel/meal)"
+                    >
+                        <setting
+                            id="module_hr_expense_meal_allowance"
+                            help="For handling meal allowances as expenses with the German standard allowance rates per country and city."
+                        >
+                            <field name="module_hr_expense_meal_allowance" />
+                            <div class="text-muted">
+                                Repository:
+                                <a
+                                href="https://github.com/OCA/l10n-germany"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >OCA/l10n-germany</a>
+                            </div>
+                        </setting>
+                    </block>
                     <block id="l10n_de_accounting_app_payment" title="Payment">
                         <setting id="module_account_payment_mode" help="Payment modes.">
                             <field name="module_account_payment_mode" />

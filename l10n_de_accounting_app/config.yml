@@ -103,6 +103,16 @@ sections:
         label: Zusammenfassende Meldung (ZM)
         description: Extension for the Zusammenfassende Meldung (intra-community).
 
+  - name: Expense accounting (travel/meal)
+    repo: l10n-germany
+    description: null
+    addons:
+      - name: hr_expense_meal_allowance
+        label: Meal Allowance Expenses
+        description:
+          For handling meal allowances as expenses with the German standard allowance
+          rates per country and city.
+
   - name: Payment
     repo: bank-payment
     description: null
