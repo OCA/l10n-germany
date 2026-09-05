@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="external_layout_din5008"
+        inherit_id="l10n_din5008.external_layout_din5008"
+        priority="100"
+    >
+        <xpath expr="//span[@t-field='o.name']" position="replace">
+            <t t-elif="'name' in o">
+                <t t-if="o._name == 'stock.picking'">
+                    <span t-out="o.picking_type_id._get_code_report_name()" />
+                </t>
+                <span t-field="o.name" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
