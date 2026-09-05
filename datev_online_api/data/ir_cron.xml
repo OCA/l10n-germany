@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+    <record id="cron_datev" model="ir.cron">
+        <field name="name">DATEV: Regular tasks</field>
+        <field name="model_id" ref="base.model_res_company" />
+        <field name="active" eval="True" />
+        <field name="interval_number">2</field>
+        <field name="interval_type">hours</field>
+        <field name="state">code</field>
+        <field name="code">model.cron_datev_tasks()</field>
+    </record>
+</odoo>
