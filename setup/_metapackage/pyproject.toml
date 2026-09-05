@@ -1,12 +1,13 @@
 [project]
 name = "odoo-addons-oca-l10n-germany"
-version = "19.0.20260610.0"
+version = "19.0.20260905.0"
 dependencies = [
     "odoo-addon-datev_export==19.0.*",
     "odoo-addon-datev_export_dtvf==19.0.*",
     "odoo-addon-datev_import_csv_dtvf==19.0.*",
     "odoo-addon-l10n_din5008_company_header_country_invisible==19.0.*",
     "odoo-addon-l10n_din5008_move_name==19.0.*",
+    "odoo-addon-l10n_din5008_move_salesperson==19.0.*",
     "odoo-addon-l10n_din5008_partner_ref==19.0.*",
 ]
 classifiers=[
