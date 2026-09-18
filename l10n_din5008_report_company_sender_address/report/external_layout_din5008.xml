@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="external_layout_din5008_inherit_report_company_sender_address"
+        inherit_id="l10n_din5008.external_layout_din5008"
+    >
+        <xpath expr="//div[hasclass('colored_address')]" position="attributes">
+            <attribute
+                name="t-att-style"
+                add="'font-size: ' + str(company.l10n_din5008_sender_font_factor or 1) + 'em;'"
+            />
+        </xpath>
+        <xpath expr="//t[@t-if='company.street']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='company.street2']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='company.zip']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='company.city']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='company.country_id']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='company.name']" position="after">
+            <t t-set="separator">
+                <t t-if="company.l10n_din5008_address_separator == 'pipe'">|</t>
+                <t t-elif="company.l10n_din5008_address_separator == 'dot'">•</t>
+            </t>
+            <t t-if="company.street">
+                <span t-out="separator" />
+                <span t-field="company.street" />
+            </t>
+            <t t-if="company.street2">
+                <span t-out="separator" />
+                <span t-field="company.street2" />
+            </t>
+            <t
+                t-if="company.l10n_din5008_country_indicator == 'code' and company.country_id"
+            >
+                <span t-out="separator" />
+                <span
+                    t-out="company.country_id.code + ('-' + company.zip if company.zip else '')"
+                />
+            </t>
+            <t t-if="company.zip and company.l10n_din5008_country_indicator != 'code'">
+                <span t-out="separator" />
+                <span t-field="company.zip" />
+            </t>
+            <t t-if="company.city">
+                <span t-if="not company.zip" t-out="separator" />
+                <span t-field="company.city" />
+            </t>
+            <t
+                t-if="company.l10n_din5008_country_indicator == 'name'
+                    and company.country_id"
+            >
+                <span t-out="separator" />
+                <span t-field="company.country_id.name" />
+            </t>
+        </xpath>
+    </template>
+</odoo>

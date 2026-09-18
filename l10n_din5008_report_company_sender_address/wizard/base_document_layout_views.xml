@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="view_base_document_layout_inherit_report_company_sender_address"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >base.document.layout.inherit.report.company.sender.address</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='logo']" position="after">
+                <div
+                    class="o_form_label o_wrap_label"
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                >
+                    Company sender address
+                </div>
+                <div
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                >
+                    <div class="row">
+                        <div class="col-5">
+                            <field
+                                name="l10n_din5008_address_separator"
+                                nolabel="1"
+                                required="1"
+                            />
+                        </div>
+                        <div class="col-7">
+                            <label for="l10n_din5008_address_separator" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <field
+                                name="l10n_din5008_country_indicator"
+                                nolabel="1"
+                                required="1"
+                            />
+                        </div>
+                        <div class="col-7">
+                            <label for="l10n_din5008_country_indicator" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <field
+                                name="l10n_din5008_sender_font_factor"
+                                nolabel="1"
+                                required="1"
+                            />
+                        </div>
+                        <div class="col-7">
+                            <label for="l10n_din5008_sender_font_factor" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
