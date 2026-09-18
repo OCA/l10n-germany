@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="view_base_document_layout_inherit_report_margin_bottom"
+        model="ir.ui.view"
+    >
+        <field name="name">base.document.layout.inherit.report.margin.bottom</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_details']" position="before">
+                <label
+                    for="l10n_din5008_margin_bottom"
+                    string="Margin bottom"
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                />
+                <div
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                >
+                    <div class="row">
+                        <div class="col-3">
+                            <field
+                                name="l10n_din5008_margin_bottom"
+                                nolabel="1"
+                                required="1"
+                            />
+                        </div>
+                        <div class="col-9">
+                            <span>(mm)</span>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

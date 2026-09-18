@@ -1,0 +1,6 @@
+# Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT(<https://www.nico-solutions.de>)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from . import test_res_company
+from . import test_base_document_layout
+from . import test_ir_action_report
