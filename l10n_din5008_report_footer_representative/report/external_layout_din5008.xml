@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT(<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="external_layout_din5008_inherit_representative"
+        inherit_id="l10n_din5008.external_layout_din5008"
+    >
+        <xpath expr="//li[span[@t-field='company.vat']]" position="before">
+            <t t-if="company.representatives and company.din_5008_show_representatives">
+                <t t-set="representatives" t-value="company.get_representatives()" />
+                <t
+                    t-set="roles"
+                    t-value="[representative['role'] for representative in representatives]"
+                />
+                <t t-if="representatives">
+                    <t t-set="common_role" t-value="roles[0]" />
+                    <t t-if="len(representatives) == 1">
+                        <li>
+                            <span t-out="common_role" />:
+                            <span t-out="representatives[0]['partner']" />
+                        </li>
+                    </t>
+                    <t t-else="">
+                        <li>
+                            <span t-if="len(set(roles)) == 1">
+                                <span t-out="common_role" />:
+                            </span>
+                            <span t-else="">
+                                Representatives:
+                            </span>
+                        </li>
+                        <t t-foreach="representatives" t-as="representative">
+                            <li>
+                                - <span t-out="representative['partner']" />
+                                <t t-if="len(set(roles)) > 1">
+                                    (<span t-out="representative['role']" />)
+                                </t>
+                            </li>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

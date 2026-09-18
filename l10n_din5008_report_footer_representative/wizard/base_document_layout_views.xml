@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_base_document_layout_inherit_representative" model="ir.ui.view">
+        <field name="name">base.document.layout.inherit.representative</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='report_footer']" position="after">
+                <field
+                    name="din_5008_show_representatives"
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                />
+            </xpath>
+            <xpath expr="//footer" position="before">
+                <notebook
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d or not din_5008_show_representatives"
+                >
+                    <page
+                        string="Representatives and Roles"
+                        name="representatives_roles_page"
+                    >
+                        <field name="representatives">
+                            <list>
+                                <field
+                                    name="partner_id"
+                                    string="Representative"
+                                    options="{'no_create': True}"
+                                />
+                                <field name="representative_role_id" string="Role" />
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
