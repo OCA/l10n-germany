@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_base_document_layout_inherit_report_marks" model="ir.ui.view">
+        <field name="name">base.document.layout.inherit.report.marks</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_details']" position="before">
+                <div
+                    class="o_form_label o_wrap_label"
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                >
+                    Show Marker
+                </div>
+                <div
+                    style="display: flex; flex-direction: column; margin-top: 5px;"
+                    invisible="external_report_layout_id != %(l10n_din5008.external_layout_din5008)d"
+                >
+                    <div>
+                        <field name="l10n_din5008_fold_marker" nolabel="1" />
+                        <label for="l10n_din5008_fold_marker" string="Fold marker" />
+                    </div>
+                    <div>
+                        <field name="l10n_din5008_hole_marker" nolabel="1" />
+                        <label
+                            for="l10n_din5008_hole_marker"
+                            string="Punch/Hole marker"
+                        />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

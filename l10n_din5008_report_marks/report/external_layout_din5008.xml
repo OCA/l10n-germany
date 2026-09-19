@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="external_layout_din5008_inherit_report_marks"
+        inherit_id="l10n_din5008.external_layout_din5008"
+    >
+        <!-- Marks are rendered here for HTML output and preview only.
+        For PDF output, the marks are added by the Python PDF overlay. -->
+        <xpath expr="//table[hasclass('din_company_info')]" position="before">
+            <t
+                t-set="din_type"
+                t-value="'a' if company.paperformat_id == env.ref('l10n_din5008.paperformat_euro_din_a', raise_if_not_found=False)
+                    else 'b' if company.paperformat_id == env.ref('l10n_din5008.paperformat_euro_din', raise_if_not_found=False)
+                    else False"
+            />
+            <div
+                t-if="report_type != 'pdf' and din_type and (company.l10n_din5008_fold_marker or company.l10n_din5008_hole_marker)"
+                t-attf-class="din5008_marks din5008_din_#{din_type}"
+            >
+                <span
+                    t-if="company.l10n_din5008_hole_marker"
+                    class="din5008_mark din5008_hole"
+                />
+                <t t-if="company.l10n_din5008_fold_marker">
+                    <span class="din5008_mark din5008_fold din5008_fold_1" />
+                    <span class="din5008_mark din5008_fold din5008_fold_2" />
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>

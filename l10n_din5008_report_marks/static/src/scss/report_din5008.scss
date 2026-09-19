@@ -1,0 +1,45 @@
+.din5008_marks {
+    display: block;
+    height: 0;
+    margin: 0;
+    padding: 0;
+}
+.din5008_mark {
+    position: absolute;
+    left: 0;
+    display: block;
+    height: 0.2mm;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #000;
+    z-index: 99999;
+}
+.din5008_fold {
+    width: 5mm;
+}
+.din5008_hole {
+    width: 8mm;
+}
+.din5008_din_a {
+    .din5008_fold_1 {
+        top: 87mm;
+    }
+    .din5008_hole {
+        top: 148.5mm;
+    }
+    .din5008_fold_2 {
+        top: 192mm;
+    }
+}
+.din5008_din_b {
+    .din5008_fold_1 {
+        top: 105mm;
+    }
+    .din5008_hole {
+        top: 148.5mm;
+    }
+    .din5008_fold_2 {
+        top: 210mm;
+    }
+}
