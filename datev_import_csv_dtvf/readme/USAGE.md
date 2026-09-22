@@ -7,7 +7,6 @@
     (move lines start is line 3)
 3.  Check the description in order to check if your use case is
     supported
-4.  Take care of the limitation to import account moves with taxes
 
 ## DATEV Import
 
@@ -19,25 +18,54 @@
     "Western (Windows-1252)"), if it is the original file from your tax
     advisor
 5.  Optionally you may activate "Post Journal Entry" in order to
-    immidiately confirm the created Journal Entry
+    immediately confirm the created Journal Entry
 6.  Select the mandatory journal (f.e. "Payroll Account Moves"), usually
     the journal type will be "Miscellaneous"
-7.  Enter optionally the "Force Date" field ((will be the field "Date"
+7.  Enter optionally the "Force Date" field (will be the field "Date"
     in your Journal Entry)
 8.  Enter the mandatory field "Reference" (will be the field "Reference"
     in your Journal Entry)
 9.  Enter optionally the field "Force Label" (will be the field "Name"
     in your Journal Items)
-10. Finally click on "Run Import"
+10. Optionally enable "Apply Account Default Taxes" to automatically
+    generate tax lines (see below)
+11. Finally click on "Run Import"
 
 ![image](../static/description/datev_import_csv_wizard.png)
 
-If everyting works fine, you should now see your created Journal Entry
-in draft (execept you activated "Post Journal Entry")
+If everything works fine, you should now see your created Journal Entry
+in draft (except you activated "Post Journal Entry")
+
+## Tax handling (Automatikkonten)
+
+When importing DATEV files that contain bookings on accounts with
+default taxes (Automatikkonten), you can enable the "Apply Account
+Default Taxes" checkbox in the import wizard. This will:
+
+1.  Look up the default taxes configured on each account in Odoo
+    (Accounting > Configuration > Chart of Accounts > Default Taxes)
+2.  Treat the imported amounts as **gross** (tax-included)
+3.  Automatically split the gross amount into net + tax using Odoo's
+    tax engine
+4.  Generate the corresponding tax lines on the journal entry
+
+**Example:** A CSV row with 119.00 EUR on account 4400 (configured with
+19% input VAT) will create:
+
+- 100.00 EUR debit on account 4400 (net amount, with tax reference)
+- 19.00 EUR debit on the input VAT account (auto-generated tax line)
+- 119.00 EUR credit on the contra account (gross amount, unchanged)
+
+**Prerequisites:** Ensure that the relevant accounts in Odoo have their
+default taxes ("Default Taxes" / "Standardsteuern") configured correctly
+before running the import.
+
+Accounts without default taxes are imported as before (gross amount,
+no tax split).
 
 ## Typical issue
 
-If accounts doesen't exist in Odoo the wizard may interrupt and show you
+If accounts don't exist in Odoo the wizard may interrupt and show you
 potential missing accounts.
 
 ![image](../static/description/datev_import_csv_wizard_error.png)

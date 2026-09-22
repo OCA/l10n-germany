@@ -14,9 +14,14 @@
                     <field name="force_move_ref" required="1" />
                     <field name="force_move_line_name" />
                     <field name="date_format" invisible="1" />
+                    <field name="apply_account_taxes" />
                 </group>
-                <div class="bg-warning">
+                <div class="bg-warning" invisible="apply_account_taxes">
                     Note this import does not handle taxes!
+                </div>
+                <div class="bg-info" invisible="not apply_account_taxes">
+                    Taxes will be applied from account defaults (Automatikkonten).
+                    Imported amounts are treated as gross (tax-included).
                 </div>
                 <div>
                     <h2>Information about the DATEV CSV format</h2>

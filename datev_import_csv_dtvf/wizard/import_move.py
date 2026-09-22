@@ -47,6 +47,12 @@ class AccountMoveImport(models.TransientModel):
         required=True,
         help='Date format is applicable only on Generic csv file ex "%d%m%Y"',
     )
+    apply_account_taxes = fields.Boolean(
+        string="Apply Account Default Taxes",
+        help="If enabled, taxes configured on accounts (Automatikkonten) will be "
+        "applied automatically. The imported amounts are treated as gross "
+        "(tax-included) and will be split into net amount + tax lines.",
+    )
 
     def run_import(self):
         self.ensure_one()
@@ -204,9 +210,72 @@ class AccountMoveImport(models.TransientModel):
                 res.append(vals)
         return res
 
+    def _enrich_pivot_with_taxes(self, pivot, acc_tax_dict):
+        """Compute net amounts from gross using Odoo's tax pipeline with round_globally.
+
+        Uses _prepare_base_line_for_taxes_computation + _add_tax_details_in_base_lines
+        + _round_base_lines_tax_details so that rounding redistribution across lines
+        sharing the same tax is handled by Odoo's standard mechanism.
+        """
+        AccountTax = self.env["account.tax"]
+        company = self.env.company
+
+        # Collect base lines for both account and contra_account sides
+        base_line_map = []  # list of (pivot_line, side, taxes, gross)
+        for l in pivot:  # noqa: E741
+            gross = l["debit"] or l["credit"]
+            if not gross:
+                continue
+            acc_taxes = acc_tax_dict.get(l.get("account_id"))
+            if acc_taxes:
+                base_line_map.append((l, "account", acc_taxes, gross))
+            contra_taxes = acc_tax_dict.get(l.get("contra_account_id"))
+            if contra_taxes:
+                base_line_map.append((l, "contra", contra_taxes, gross))
+
+        if not base_line_map:
+            return
+
+        # Build Odoo base lines with special_mode='total_included'
+        base_lines = []
+        for _pivot_line, _side, taxes, gross in base_line_map:
+            bl = AccountTax._prepare_base_line_for_taxes_computation(
+                None,
+                tax_ids=taxes,
+                price_unit=gross,
+                quantity=1.0,
+                special_mode="total_included",
+                currency_id=company.currency_id,
+            )
+            base_lines.append(bl)
+
+        # Compute tax details and apply round_globally redistribution
+        AccountTax._add_tax_details_in_base_lines(base_lines, company)
+        AccountTax._round_base_lines_tax_details(base_lines, company)
+
+        # Write rounded net amounts back to pivot lines.
+        # delta_total_excluded contains the round_globally adjustment.
+        for (pivot_line, side, taxes, _gross), bl in zip(
+            base_line_map, base_lines, strict=False
+        ):
+            td = bl["tax_details"]
+            net = td["total_excluded"] + td.get("delta_total_excluded", 0.0)
+            if side == "account":
+                pivot_line["tax_ids"] = taxes.ids
+                pivot_line["net_amount"] = net
+            else:
+                pivot_line["contra_tax_ids"] = taxes.ids
+                pivot_line["contra_net_amount"] = net
+
+        _logger.debug(
+            "Tax enrichment: %d lines enriched via round_globally pipeline",
+            len(base_line_map),
+        )
+
     def create_moves_from_pivot(self, pivot, post=False):  # noqa: C901
         _logger.debug("Final pivot: %s", pivot)
-        amo = self.env["account.move"].with_context(skip_invoice_sync=True)
+        ctx = {} if self.apply_account_taxes else {"skip_invoice_sync": True}
+        amo = self.env["account.move"].with_context(**ctx)
         company_id = self.env.company.id
         # Generate SPEED DICTS
         # account
@@ -240,6 +309,20 @@ class AccountMoveImport(models.TransientModel):
                 Domain("company_id", "=", company_id), ["code", "name"]
             )
         }
+        # account default taxes (for Automatikkonten)
+        acc_tax_dict = {}
+        if self.apply_account_taxes:
+            for account in self.env["account.account"].search(
+                Domain.AND(
+                    [
+                        Domain("company_ids", "any", Domain("id", "=", company_id)),
+                        Domain("active", "=", True),
+                        Domain("tax_ids", "!=", False),
+                    ]
+                )
+            ):
+                acc_tax_dict[account.id] = account.tax_ids
+            _logger.debug("Loaded %d accounts with default taxes", len(acc_tax_dict))
         key2label = {
             "account": self.env._("account codes"),
             "contra_account": self.env._("contra account codes"),
@@ -330,6 +413,9 @@ class AccountMoveImport(models.TransientModel):
                     "analytic_account_2",
                 )
             # test that they don't have both a value
+        # ENRICH WITH TAX DATA
+        if self.apply_account_taxes:
+            self._enrich_pivot_with_taxes(pivot, acc_tax_dict)
         # LIST OF ERRORS
         msg = ""
         for key, label in key2label.items():
@@ -408,8 +494,13 @@ class AccountMoveImport(models.TransientModel):
             )
         rmoves = self.env["account.move"]
         for move in moves:
-            rmoves += amo.create(move)
-        _logger.info(f"Account moves IDs {rmoves.ids} created via file import")
+            created = amo.create(move)
+            rmoves += created
+        _logger.info(
+            "Created %d account move(s) (IDs %s) via file import",
+            len(rmoves),
+            rmoves.ids,
+        )
         if post:
             rmoves._post()
         return rmoves
@@ -424,15 +515,15 @@ class AccountMoveImport(models.TransientModel):
 
     def _prepare_move_line_01(self, pivot_line, sequence, indicator):
         vals = {}
+        has_taxes = pivot_line.get("tax_ids")
         if indicator == "S":
-            vals.update(
-                {
-                    "credit": 0.0,
-                    "debit": pivot_line["debit"],
-                }
-            )
+            amount = pivot_line["net_amount"] if has_taxes else pivot_line["debit"]
+            vals.update({"credit": 0.0, "debit": amount})
         if indicator == "H":
-            vals.update({"credit": pivot_line["credit"], "debit": 0})
+            amount = pivot_line["net_amount"] if has_taxes else pivot_line["credit"]
+            vals.update({"credit": amount, "debit": 0})
+        if has_taxes:
+            vals["tax_ids"] = [(6, 0, pivot_line["tax_ids"])]
         vals.update(
             {
                 "name": pivot_line["name"],
@@ -460,20 +551,23 @@ class AccountMoveImport(models.TransientModel):
 
     def _prepare_move_line_02(self, pivot_line, sequence, indicator):
         vals = {}
+        has_contra_taxes = pivot_line.get("contra_tax_ids")
         if indicator == "S":
-            vals.update(
-                {
-                    "credit": pivot_line["debit"],
-                    "debit": 0,
-                }
+            amount = (
+                pivot_line["contra_net_amount"]
+                if has_contra_taxes
+                else pivot_line["debit"]
             )
+            vals.update({"credit": amount, "debit": 0})
         if indicator == "H":
-            vals.update(
-                {
-                    "credit": 0,
-                    "debit": pivot_line["credit"],
-                }
+            amount = (
+                pivot_line["contra_net_amount"]
+                if has_contra_taxes
+                else pivot_line["credit"]
             )
+            vals.update({"credit": 0, "debit": amount})
+        if has_contra_taxes:
+            vals["tax_ids"] = [(6, 0, pivot_line["contra_tax_ids"])]
         vals.update(
             {
                 "name": pivot_line["name"],

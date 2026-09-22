@@ -275,8 +275,28 @@ msgid ""
 msgstr ""
 
 #. module: datev_import_csv_dtvf
+#: model:ir.model.fields,field_description:datev_import_csv_dtvf.field_account_move_import__apply_account_taxes
+msgid "Apply Account Default Taxes"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model:ir.model.fields,help:datev_import_csv_dtvf.field_account_move_import__apply_account_taxes
+msgid ""
+"If enabled, taxes configured on accounts (Automatikkonten) will be applied "
+"automatically. The imported amounts are treated as gross (tax-included) and "
+"will be split into net amount + tax lines."
+msgstr ""
+
+#. module: datev_import_csv_dtvf
 #: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
 msgid "Note this import does not handle taxes!"
+msgstr ""
+
+#. module: datev_import_csv_dtvf
+#: model_terms:ir.ui.view,arch_db:datev_import_csv_dtvf.account_move_import_form
+msgid ""
+"Taxes will be applied from account defaults (Automatikkonten). Imported "
+"amounts are treated as gross (tax-included)."
 msgstr ""
 
 #. module: datev_import_csv_dtvf
