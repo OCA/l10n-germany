@@ -3,6 +3,7 @@ from unittest.mock import patch
 
 import pytz
 
+from odoo import models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Command, Form
 
@@ -28,6 +29,12 @@ class HrExpense(BaseCommon):
 
         cls.employee = cls.env.ref("hr.employee_admin")
         cls.employee_tz = pytz.timezone(cls.employee.tz)
+        cls.meal_report_xmlid = (
+            "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance"
+        )
+        cls.meal_report = cls.env.ref(cls.meal_report_xmlid)
+        # Mirrors the report's print_report_name expression.
+        cls.meal_report_pdf_name = f"Meal Allowance - {cls.employee.name} - Test.pdf"
 
         cls.rate = cls.env["hr.expense.meal.allowance.rate"].create(
             {
@@ -463,6 +470,16 @@ class HrExpense(BaseCommon):
         expense.is_meal_allowance = True
         return expense
 
+    def _is_meal_report_ref(self, report_ref):
+        """Match a report reference however ir.actions.report accepts it:
+        xmlid, database id or record. A recordset must not be compared to a
+        string with ``==``, Odoo warns about it and never matches."""
+        if isinstance(report_ref, models.BaseModel):
+            return report_ref.ids == self.meal_report.ids
+        if isinstance(report_ref, int):
+            return report_ref == self.meal_report.id
+        return report_ref == self.meal_report_xmlid
+
     def _get_expense_attachments(self, expense):
         return (
             self.env["ir.attachment"]
@@ -480,36 +497,59 @@ class HrExpense(BaseCommon):
         mock_render.return_value = (b"PDF content", "application/pdf")
         expense = self._create_meal_expense()
         expense.action_submit()
-        expense.action_approve()
-        expense.action_post()
+        if expense.state != "approved":
+            expense.action_approve()
         # Count only renders of the meal allowance report: other installed
-        # modules may render additional reports (e.g. the vendor bill PDF)
-        # during posting, which must not fail this test.
+        # modules may render additional reports during approval, which must
+        # not fail this test.
         meal_report_calls = [
             call
             for call in mock_render.call_args_list
-            if "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance"
-            in call.args
+            if self._is_meal_report_ref(call.args[0])
         ]
         self.assertEqual(len(meal_report_calls), 1)
         attachments = self._get_expense_attachments(expense)
         self.assertEqual(len(attachments), 1)
-        self.assertEqual(attachments.name, "Test.pdf")
+        self.assertEqual(attachments.name, self.meal_report_pdf_name)
 
     @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
-    def test_do_approve_twice_single_pdf(self, mock_render):
+    def test_reset_approval_removes_report_and_reapprove_regenerates(self, mock_render):
         mock_render.return_value = (b"PDF content", "application/pdf")
         expense = self._create_meal_expense()
-        # Read nb_attachment before any attachment exists: the compute has no
-        # depends, so the zero stays in the transaction cache. The dedup must
-        # not rely on it, or a second generation in the same transaction (e.g.
-        # approval chained with posting) attaches a duplicate PDF.
-        self.assertEqual(expense.nb_attachment, 0)
+        receipt = self.env["ir.attachment"].create(
+            {
+                "name": "receipt.png",
+                "raw": b"receipt",
+                "res_model": "hr.expense",
+                "res_id": expense.id,
+                "mimetype": "image/png",
+            }
+        )
         expense.action_submit()
         if expense.state != "approved":
             expense.action_approve()
-        expense._generate_expense_pdf_attachment()
-        self.assertEqual(len(self._get_expense_attachments(expense)), 1)
+        self.assertEqual(len(self._get_expense_attachments(expense)), 2)
+
+        expense.action_reset()
+        self.assertEqual(expense.state, "draft")
+        attachments = self._get_expense_attachments(expense)
+        self.assertEqual(attachments, receipt, "Only the report must be removed")
+
+        expense.action_submit()
+        if expense.state != "approved":
+            expense.action_approve()
+        attachments = self._get_expense_attachments(expense)
+        self.assertEqual(len(attachments), 2)
+        self.assertEqual(
+            len(attachments.filtered(lambda a: a.name == self.meal_report_pdf_name)),
+            1,
+        )
+        meal_report_calls = [
+            call
+            for call in mock_render.call_args_list
+            if self._is_meal_report_ref(call.args[0])
+        ]
+        self.assertEqual(len(meal_report_calls), 2)
 
     @patch("odoo.addons.base.models.ir_actions_report.IrActionsReport._render_qweb_pdf")
     def test_do_approve_generates_report_with_receipt(self, mock_render):
@@ -529,7 +569,7 @@ class HrExpense(BaseCommon):
             expense.action_approve()
         attachments = self._get_expense_attachments(expense)
         self.assertEqual(len(attachments), 2)
-        self.assertIn("Test.pdf", attachments.mapped("name"))
+        self.assertIn(self.meal_report_pdf_name, attachments.mapped("name"))
         self.assertIn(receipt, attachments)
 
     def test_update_meal_lines_missing_timezone(self):

@@ -24,7 +24,7 @@
                         <span>Whole Days:</span>
                     </div>
                     <div class="col-9 text-muted">
-                        <span t-field="o.number_of_travel_days">1</span>
+                        <span t-field="o.number_of_days">1</span>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,10 @@
     </template>
     <template id="report_expense_meal_allowance" inherit_id="hr_expense.report_expense">
         <xpath expr="//div[hasclass('page', 'o_content_pdf')]" position="after">
-            <t t-call="hr_expense_meal_allowance.document_expense_meal_allowance" />
+            <t t-if="o.is_meal_allowance">
+                <p style="page-break-after:always;" />
+                <t t-call="hr_expense_meal_allowance.document_expense_meal_allowance" />
+            </t>
         </xpath>
     </template>
     <template id="report_meal_allowance">
@@ -81,7 +84,6 @@
     <template id="document_expense_meal_allowance">
         <div class="page" t-if="o.is_meal_allowance">
             <div class="oe_structure" id="oe_structure_meal_allowance_section" />
-            <p style="page-break-after:always;" />
             <h2 style="display: inline-block;">
                 <span t-field="o.name">Meal Allowance</span>
             </h2>
