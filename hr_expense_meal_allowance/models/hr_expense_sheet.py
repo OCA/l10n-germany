@@ -6,13 +6,14 @@ class HrExpenseSheet(models.Model):
 
     def _do_create_moves(self):
         for sheet in self:
+            lang = sheet.employee_id.company_id.partner_id.lang
             for expense in sheet.expense_line_ids.filtered(
                 lambda expense: expense.is_meal_allowance
                 and not expense.message_attachment_count
             ):
-                lang = self.employee_id.company_id.partner_id.lang
                 self.env["ir.actions.report"].with_context(lang=lang)._render_qweb_pdf(
                     "hr_expense_meal_allowance.action_report_hr_expense_meal_allowance",
                     expense.id,
+                    None,
                 )
         return super()._do_create_moves()

@@ -1,6 +1,10 @@
 from datetime import datetime
+from unittest.mock import patch
 
-from odoo.tests import Form
+import pytz
+
+from odoo.exceptions import UserError, ValidationError
+from odoo.tests import Command, Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -22,12 +26,15 @@ class HrExpense(BaseCommon):
         )
 
         cls.employee = cls.env.ref("hr.employee_admin")
+        cls.employee_tz = pytz.timezone(cls.employee.tz)
 
         cls.rate = cls.env["hr.expense.meal.allowance.rate"].create(
             {
                 "country_id": cls.country.id,
                 "city_name": "Berlin",
                 "currency_id": cls.env.ref("base.EUR").id,
+                "daily_rate_8h": 50,
+                "daily_rate_24h": 100,
                 "expire_on": datetime(2023, 12, 31).date(),
             }
         )
@@ -66,9 +73,423 @@ class HrExpense(BaseCommon):
         with Form(self.env["hr.expense"]) as f:
             f.product_id = self.product
             f.employee_id = self.employee
-            f.travel_begin = datetime(2023, 10, 30, 8, 0, 0)
-            f.travel_end = datetime(2023, 10, 31, 18, 0, 0)
+            f.travel_begin = (
+                self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None)
+            )
+            f.travel_end = (
+                self.employee_tz.localize(datetime(2023, 10, 31, 18, 0, 0))
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None)
+            )
             f.customer_id = self.customer
 
         # assert
         self.assertEqual(f.meal_allowance_rate_id, self.rate)
+
+    def test_update_meal_lines_end_midnight(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 1, 0, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 5, 12, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+
+        self.assertEqual(expense.number_of_days, 4)
+        self.assertEqual(expense.number_of_travel_days, 1)
+
+    def test_update_meal_lines_start_midnight(self):
+        """Test that meal lines are created correctly based on travel dates."""
+
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 1, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 5, 0, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+
+        self.assertEqual(expense.number_of_days, 3)
+        self.assertEqual(expense.number_of_travel_days, 1)
+
+    def test_update_meal_lines_full_day(self):
+        """Test that meal lines are created correctly based on travel dates."""
+
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 1, 0, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 2, 0, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+
+        self.assertEqual(expense.number_of_days, 1)
+        self.assertEqual(expense.number_of_travel_days, 0)
+
+    def test_update_meal_lines(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": self.employee_tz.localize(
+                    datetime(2023, 10, 30, 8, 0, 0)
+                )
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None),
+                "travel_end": self.employee_tz.localize(datetime(2023, 11, 1, 18, 0, 0))
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+
+        # assert
+        meal_lines = expense.meal_allowance_ids
+        self.assertEqual(len(meal_lines), 3)
+        self.assertEqual(meal_lines[0].date, datetime(2023, 10, 30).date())
+        self.assertEqual(meal_lines[1].date, datetime(2023, 10, 31).date())
+        self.assertEqual(meal_lines[2].date, datetime(2023, 11, 1).date())
+
+        self.assertEqual(meal_lines[0].expense_for_day, 50)
+        self.assertEqual(meal_lines[1].expense_for_day, 100)
+        self.assertEqual(meal_lines[2].expense_for_day, 50)
+
+        self.assertEqual(expense.number_of_days, 1)
+        self.assertEqual(expense.number_of_travel_days, 2)
+
+        # act
+        meal_lines[0].breakfast_included = True
+        meal_lines[1].lunch_included = True
+        meal_lines[2].lunch_included = True
+
+        # assert
+        self.assertEqual(meal_lines[0].expense_for_day, 30)
+        self.assertEqual(meal_lines[1].expense_for_day, 60)
+        self.assertEqual(meal_lines[2].expense_for_day, 10)
+
+    def test_total_amount_currency_less_8h(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": self.employee_tz.localize(
+                    datetime(2023, 10, 30, 8, 0, 0)
+                )
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None),
+                "travel_end": self.employee_tz.localize(
+                    datetime(2023, 10, 30, 16, 0, 0)
+                )
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+        # assert
+        self.assertEqual(expense.total_amount_currency, 0)
+
+    def test_total_amount_currency_more_8h(self):
+        """Test that meal lines are created correctly based on travel dates."""
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 16, 1, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        # act
+        expense._update_meal_lines()
+        # assert
+        self.assertEqual(expense.total_amount_currency, 50)
+
+    def test_travel_end_must_be_after_travel_begin(self):
+        start = (
+            self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
+        with self.assertRaises(ValidationError):
+            self.env["hr.expense"].create(
+                {
+                    "name": "Invalid Trip",
+                    "product_id": self.product.id,
+                    "employee_id": self.employee.id,
+                    "meal_allowance_rate_id": self.rate.id,
+                    "company_id": self.company.id,
+                    "travel_begin": start,
+                    "travel_end": start,
+                }
+            )
+
+    def test_total_amount_currency_recomputed_after_meal_change(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 11, 1, 18, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+        initial_amount = expense.total_amount_currency
+
+        expense.meal_allowance_ids[0].breakfast_included = True
+        self.assertLess(expense.total_amount_currency, initial_amount)
+
+    def test_number_of_travel_days_single_line(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "employee_id": self.employee.id,
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 20, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+            }
+        )
+        expense.meal_allowance_ids = [
+            Command.create({"date": datetime(2023, 10, 30).date()})
+        ]
+        expense._compute_number_of_travel_days()
+        self.assertEqual(expense.number_of_days, 0)
+        self.assertEqual(expense.number_of_travel_days, 1)
+
+    def test_number_of_travel_days_zero_duration_midnight(self):
+        start = (
+            self.employee_tz.localize(datetime(2023, 10, 30, 0, 0, 0))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
+
+        with self.assertRaises(ValidationError):
+            self.env["hr.expense"].create(
+                {
+                    "name": "Zero Duration",
+                    "product_id": self.product.id,
+                    "employee_id": self.employee.id,
+                    "meal_allowance_rate_id": self.rate.id,
+                    "company_id": self.company.id,
+                    "travel_begin": start,
+                    "travel_end": start,
+                }
+            )
+
+    def test_update_meal_lines_sets_expense_date(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 11, 1, 18, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+        self.assertEqual(expense.date, datetime(2023, 11, 1).date())
+
+    def test_update_meal_lines_removes_old_lines(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 11, 1, 18, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense._update_meal_lines()
+        self.assertEqual(len(expense.meal_allowance_ids), 3)
+        expense.travel_end = (
+            self.employee_tz.localize(datetime(2023, 10, 31, 18, 0, 0))
+            .astimezone(pytz.utc)
+            .replace(tzinfo=None)
+        )
+        expense._update_meal_lines()
+        self.assertEqual(len(expense.meal_allowance_ids), 2)
+
+    def test_onchange_rate_fallback_country_only(self):
+        customer = self.env["res.partner"].create(
+            {
+                "name": "No City Customer",
+                "country_id": self.country.id,
+            }
+        )
+        with Form(self.env["hr.expense"]) as f:
+            f.product_id = self.product
+            f.employee_id = self.employee
+            f.travel_begin = (
+                self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None)
+            )
+            f.travel_end = (
+                self.employee_tz.localize(datetime(2023, 10, 31, 18, 0, 0))
+                .astimezone(pytz.utc)
+                .replace(tzinfo=None)
+            )
+            f.customer_id = customer
+
+        self.assertTrue(f.meal_allowance_rate_id)
+
+    def test_expense_for_day_uses_employee_timezone(self):
+        """Day rates follow the employee timezone, not the one of the current user."""
+        # An employee without a linked user still has its own timezone. Auckland
+        # is a day ahead of Brussels for these dates, so using the wrong timezone
+        # shifts which days count as travel days.
+        self.env.user.tz = "Europe/Brussels"
+        employee = self.env["hr.employee"].create(
+            {"name": "Employee Without User", "tz": "Pacific/Auckland"}
+        )
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test Expense",
+                "product_id": self.product.id,
+                "employee_id": employee.id,
+                "travel_begin": datetime(2023, 10, 30, 19, 0, 0),
+                "travel_end": datetime(2023, 11, 1, 5, 0, 0),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+
+        # act
+        expense._update_meal_lines()
+
+        # assert: both days are travel days at the 8h rate
+        meal_lines = expense.meal_allowance_ids
+        self.assertEqual(len(meal_lines), 2)
+        self.assertEqual(meal_lines[0].date, datetime(2023, 10, 31).date())
+        self.assertEqual(meal_lines[1].date, datetime(2023, 11, 1).date())
+        self.assertEqual(meal_lines[0].expense_for_day, 50)
+        self.assertEqual(meal_lines[1].expense_for_day, 50)
+
+    def test_update_meal_lines_missing_timezone(self):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Test",
+                "product_id": self.product.id,
+                "employee_id": self.employee.id,
+                "travel_begin": (
+                    self.employee_tz.localize(datetime(2023, 10, 30, 8, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "travel_end": (
+                    self.employee_tz.localize(datetime(2023, 10, 31, 18, 0, 0))
+                    .astimezone(pytz.utc)
+                    .replace(tzinfo=None)
+                ),
+                "meal_allowance_rate_id": self.rate.id,
+                "company_id": self.company.id,
+            }
+        )
+        expense.is_meal_allowance = True
+        with (
+            patch.object(type(expense.employee_id), "tz", new_callable=lambda: False),
+            patch.object(type(self.env.user), "tz", new_callable=lambda: False),
+        ):
+            with self.assertRaises(UserError):
+                expense._update_meal_lines()

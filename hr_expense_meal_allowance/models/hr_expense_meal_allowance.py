@@ -1,6 +1,4 @@
-from datetime import timedelta
-
-import pytz
+from datetime import time, timedelta
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
@@ -58,7 +56,7 @@ class HrExpenseMealAllowance(models.Model):
     def _compute_expense_for_day(self):
         for record in self:
             # always use the timezone of the employee
-            timezone = record.employee_id.user_id.tz or self.env.user.tz
+            timezone = record.employee_id.tz or self.env.user.tz
             if not timezone:
                 raise UserError(self.env._("Please set a timezone in user settings"))
 
@@ -68,11 +66,15 @@ class HrExpenseMealAllowance(models.Model):
                 and record.hr_expense_id.travel_end
                 and record.hr_expense_id.travel_begin
             ):
-                tz = pytz.timezone(timezone)
-                date_travel_begin = record.hr_expense_id.travel_begin.astimezone(
-                    tz
+                travel_begin = fields.Datetime.context_timestamp(
+                    record.with_context(tz=timezone),
+                    record.hr_expense_id.travel_begin,
+                )
+                date_travel_begin = travel_begin.date()
+                date_travel_end = fields.Datetime.context_timestamp(
+                    record.with_context(tz=timezone),
+                    record.hr_expense_id.travel_end,
                 ).date()
-                date_travel_end = record.hr_expense_id.travel_end.astimezone(tz).date()
 
                 city = record.hr_expense_id.meal_allowance_rate_id
                 if date_travel_begin == date_travel_end:
@@ -84,7 +86,9 @@ class HrExpenseMealAllowance(models.Model):
                     if duration > timedelta(hours=8):
                         expense_for_day = city.daily_rate_8h
 
-                elif record.date in [date_travel_begin, date_travel_end]:
+                elif (
+                    record.date == date_travel_begin and travel_begin.time() != time(0)
+                ) or record.date == date_travel_end:
                     # trip start or end day
                     expense_for_day = (
                         record.hr_expense_id.meal_allowance_rate_id.daily_rate_8h

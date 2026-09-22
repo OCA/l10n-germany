@@ -1,9 +1,7 @@
-from datetime import date, timedelta
-
-import pytz
+from datetime import date, time, timedelta
 
 from odoo import Command, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 
 
 class HrExpense(models.Model):
@@ -40,18 +38,60 @@ class HrExpense(models.Model):
                 and meal_allowance_tag in record.product_id.product_tag_ids
             )
 
-    @api.depends("meal_allowance_ids")
+    @api.constrains("travel_begin", "travel_end")
+    def _check_travel_dates(self):
+        for record in self:
+            if (
+                record.travel_begin
+                and record.travel_end
+                and record.travel_end <= record.travel_begin
+            ):
+                raise ValidationError(
+                    self.env._("Travel end must be later than travel begin.")
+                )
+
+    def _get_number_of_days(self):
+        self.ensure_one()
+        if not self.travel_begin or not self.travel_end:
+            return 0, 0
+        timezone = self.employee_id.tz or self.env.user.tz
+        if not timezone:
+            raise UserError(self.env._("Please set a timezone in user settings"))
+        local_start = fields.Datetime.context_timestamp(
+            self.with_context(tz=timezone), self.travel_begin
+        )
+        local_end = fields.Datetime.context_timestamp(
+            self.with_context(tz=timezone), self.travel_end
+        )
+        if local_end < local_start:
+            return 0, 0
+
+        start_date = local_start.date()
+        end_date = local_end.date()
+        if local_end.time() == time(0) and end_date > start_date:
+            end_date -= timedelta(days=1)
+
+        if end_date < start_date:
+            return 0, 0
+
+        if start_date == end_date:
+            if local_start.time() == time(0) and local_end.time() == time(0):
+                return 1, 0
+            return 0, 1
+
+        span_days = (end_date - start_date).days + 1
+        travel_days = 1 if local_start.time() != time(0) else 0
+        if local_end.time() != time(0):
+            travel_days += 1
+        full_days = max(span_days - travel_days, 0)
+        return full_days, travel_days
+
+    @api.depends("travel_begin", "travel_end")
     def _compute_number_of_travel_days(self):
         for record in self:
-            if not record.meal_allowance_ids or len(record.meal_allowance_ids) == 0:
-                record.number_of_days = 0
-                record.number_of_travel_days = 0
-            elif len(record.meal_allowance_ids) == 1:
-                record.number_of_days = 0
-                record.number_of_travel_days = 1
-            else:
-                record.number_of_days = len(record.meal_allowance_ids) - 2
-                record.number_of_travel_days = 2
+            full_days, travel_days = record._get_number_of_days()
+            record.number_of_days = full_days
+            record.number_of_travel_days = travel_days
 
     @api.depends("is_meal_allowance", "meal_allowance_rate_id")
     def _compute_currency_id(self):
@@ -80,19 +120,21 @@ class HrExpense(models.Model):
 
             if record.is_meal_allowance:
                 # always use the timezone of the employee
-                timezone = record.employee_id.user_id.tz or self.env.user.tz
+                timezone = record.employee_id.tz or self.env.user.tz
                 if not timezone:
                     raise UserError(
                         self.env._("Please set a timezone in user settings")
                     )
 
                 # create a line for each day in the timezone of the employee
-                tz = pytz.timezone(timezone)
-                local_start_date = record.travel_begin.astimezone(tz).date()
-                local_end_date = record.travel_end.astimezone(tz).date()
+                # if the end date is at 00:00, the last day does not count
+                full_days, travel_days = record._get_number_of_days()
+                local_start_date = fields.Datetime.context_timestamp(
+                    record.with_context(tz=timezone), record.travel_begin
+                ).date()
                 date_range = [
                     local_start_date + timedelta(n)
-                    for n in range((local_end_date - local_start_date).days + 1)
+                    for n in range(full_days + travel_days)
                 ]
 
                 # Map existing lines by date
@@ -124,7 +166,11 @@ class HrExpense(models.Model):
                     new_entries.append(Command.unlink(unlink.id))
                 record.meal_allowance_ids = new_entries
 
-    @api.depends("meal_allowance_ids")
+    @api.depends(
+        "meal_allowance_ids",
+        "meal_allowance_ids.expense_for_day",
+        "meal_allowance_rate_id",
+    )
     def _compute_total_amount_currency(self):
         res = super(
             HrExpense, self.filtered(lambda x: not x.is_meal_allowance)
