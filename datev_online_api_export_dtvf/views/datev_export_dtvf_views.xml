@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_datev_export_dtvf_form" model="ir.ui.view">
+        <field name="model">datev_export_dtvf.export</field>
+        <field
+            name="inherit_id"
+            ref="datev_export_dtvf.l10n_de_dtfv_export_view_form"
+        />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="attributes">
+                <attribute name="invisible">
+                    state not in ('done', 'processing', 'failed', 'uploaded')
+                </attribute>
+            </button>
+
+            <button name="action_generate" position="after">
+                <field name="datev_api_available" invisible="1" />
+                <button
+                    type="object"
+                    name="action_upload"
+                    class="btn-primary"
+                    string="Upload"
+                    invisible="state != 'done' or not datev_api_available"
+                />
+            </button>
+
+            <group name="result" position="attributes">
+                <attribute
+                    name="invisible"
+                >state not in ('done', 'processing', 'failed', 'uploaded')</attribute>
+            </group>
+            <group name="result" position="after">
+                <group string="Uploaded Files" name="jobs" invisible="not job_ids">
+                    <field name="job_ids" cols="2" nolabel="1">
+                        <list
+                            decoration-muted="not active"
+                            decoration-danger="state in ('failed', 'upload_error')"
+                            decoration-success="state == 'succeeded'"
+                        >
+                            <field name="name" />
+                            <field name="write_date" />
+                            <field name="state" />
+                            <field name="detail_title" />
+                            <field name="detail_type" widget="url" />
+                        </list>
+                    </field>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
