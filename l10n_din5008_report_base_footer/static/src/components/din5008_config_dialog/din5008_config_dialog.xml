@@ -1,0 +1,30 @@
+<templates xml:space="preserve">
+    <t
+        t-name="l10n_din5008_report_base_footer.Din5008ConfigDialogExtension"
+        t-inherit="l10n_din5008_report_base.Din5008ConfigDialog"
+        t-inherit-mode="extension"
+    >
+        <xpath
+            expr="//div[@t-elif=&quot;field.type === 'list'&quot;]"
+            position="attributes"
+        >
+            <attribute name="t-elif">
+                field.type === 'list' and (field.key !== 'footer.representatives' or getValue({'key': 'footer.show_representatives', 'default': false}))
+            </attribute>
+        </xpath>
+        <xpath
+            expr="//div[@t-if=&quot;subField[1].type !== 'many2one'&quot;]"
+            position="after"
+        >
+            <div
+                t-if="field.key === 'footer.representatives' and subField[1].type === 'many2one'"
+                class="mb-3"
+            >
+                <label class="form-label" t-esc="subField[1].label || subField[0]" />
+                <Many2XAutocomplete
+                    t-props="getMany2oneProps(field, item_index, subField[0], subField[1])"
+                />
+            </div>
+        </xpath>
+    </t>
+</templates>

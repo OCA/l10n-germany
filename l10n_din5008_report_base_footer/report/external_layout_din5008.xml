@@ -1,0 +1,224 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT(<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="external_layout_din5008_config_inherit_footer"
+        inherit_id="l10n_din5008.external_layout_din5008"
+    >
+        <xpath expr="//li[@t-if='company.report_footer']" position="after">
+            <t
+                t-if="is_din_paperformat and din5008_config.get('footer', {}).get('fa_contact_preset', False)"
+            >
+                <li>
+                    <span>Contact details:</span>
+                </li>
+                <li t-if="company.phone">
+                    <i class="fa fa-phone me-2" />
+                    <span t-field="company.phone" />
+                </li>
+                <li t-if="company.email">
+                    <i class="fa fa-at me-2" />
+                    <span t-field="company.email" />
+                </li>
+                <li t-if="company.website">
+                    <i class="fa fa-globe me-2" />
+                    <span t-field="company.website" />
+                </li>
+            </t>
+        </xpath>
+        <xpath expr="//li[@t-if='company.report_footer']" position="attributes">
+            <attribute name="t-if">
+                company.report_footer and not (
+                    is_din_paperformat
+                    and din5008_config.get('footer', {}).get('fa_contact_preset', False)
+                )
+            </attribute>
+        </xpath>
+
+        <xpath
+            expr="//td[.//t[@t-foreach='company.partner_id.bank_ids[:2]']]/ul"
+            position="attributes"
+        >
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
+        <xpath
+            expr="//td[.//t[@t-foreach='company.partner_id.bank_ids[:2]']]"
+            position="inside"
+        >
+            <t
+                t-set="banks"
+                t-value="company.partner_id.bank_ids[:1] if din5008_config.get('footer', {}).get('footer_bank_acc_limit1', False) else company.partner_id.bank_ids[:2]"
+            />
+            <t t-set="bank_width" t-value="100.0 / len(banks)" />
+            <div class="row">
+                <t t-foreach="banks" t-as="bank">
+                    <div t-att-style="'width: ' + str(bank_width) + '%;'">
+                        <ul class="list-inline">
+                            <li>
+                                <span t-field="bank.bank_id.name" />
+                            </li>
+                            <li
+                                t-if="is_din_paperformat and bank.acc_holder_name and din5008_config.get('footer', {}).get('bank_acc_holder', False)"
+                            >
+                                Account holder:
+                                <span t-field="bank.acc_holder_name" />
+                            </li>
+                            <li class="text-nowrap">
+                                IBAN: <span t-field="bank.acc_number" />
+                            </li>
+                            <li>
+                                BIC: <span t-field="bank.bank_id.bic" />
+                            </li>
+                        </ul>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath
+            expr="//li[span[@t-field='company.company_registry']]"
+            position="attributes"
+        >
+            <attribute name="t-if">
+                company.company_registry
+                and din5008_config.get('footer', {}).get('show_company_registry', True)
+            </attribute>
+        </xpath>
+
+        <xpath expr="//li[span[@t-field='company.vat']]" position="attributes">
+            <attribute name="t-if">
+                company.vat
+                and din5008_config.get('footer', {}).get('show_vat', True)
+            </attribute>
+        </xpath>
+
+        <xpath expr="//li[span[@t-field='company.vat']]" position="after">
+            <li
+                t-if="
+                    company._get_din5008_optional_field('l10n_de_stnr')
+                    and din5008_config.get('footer', {}).get('show_de_tax_number', False)
+                "
+            >
+                Tax no.:
+                <span t-esc="company._get_din5008_optional_field('l10n_de_stnr')" />
+            </li>
+
+            <li
+                t-if="
+                    company._get_din5008_optional_field('l10n_de_widnr')
+                    and din5008_config.get('footer', {}).get('show_de_widnr', False)
+                "
+            >
+                W-Id. no.:
+                <span t-esc="company._get_din5008_optional_field('l10n_de_widnr')" />
+            </li>
+        </xpath>
+        <xpath expr="//li[span[@t-field='company.vat']]" position="before">
+            <t t-set="footer_config" t-value="din5008_config.get('footer', {})" />
+            <t
+                t-set="representatives"
+                t-value="footer_config.get('representatives', [])"
+            />
+            <t
+                t-if="footer_config.get('show_representatives', False) and representatives"
+            >
+                <t
+                    t-set="report_lang"
+                    t-value="(o and o.partner_id.lang) or env.context.get('lang') or 'en_US'"
+                />
+                <t
+                    t-set="partners"
+                    t-value="env['res.partner'].browse([
+                       r.get('partner_id')
+                       for r in representatives
+                       if r.get('partner_id')
+                   ]).exists().with_context(lang=report_lang)"
+                />
+                <t t-if="partners">
+                    <t
+                        t-set="roles"
+                        t-value="[partner.function or '' for partner in partners]"
+                    />
+                    <t t-if="len(partners) == 1">
+                        <li>
+                            <t t-if="partners[0].function">
+                                <span t-field="partners[0].function" />:
+                            </t>
+                            <span t-field="partners[0].name" />
+                        </li>
+                    </t>
+                    <t t-else="">
+                        <li>
+                            <t t-if="roles[0] and len(set(roles)) == 1">
+                                <span t-out="roles[0]" />:
+                            </t>
+                            <t t-else="">Representatives:</t>
+                        </li>
+                        <t t-foreach="partners" t-as="partner">
+                            <li>
+                                - <span t-out="partner.name" />
+                                <t t-if="len(set(roles)) > 1 and partner.function">
+                                    (<span t-field="partner.function" />)
+                                </t>
+                            </li>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="din5008_css_extend_l10n_din5008_config_inherit_footer"
+        inherit_id="l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config"
+    >
+        <xpath expr="//t[@t-if='din_type']" position="inside">
+            &amp;.din_page {
+                &amp;.footer {
+                    .company_details table tr {
+                        font-size: <t
+            t-out="din5008_config.get('footer', {}).get('font_scale_factor', 1.0) or 1.0"
+        />em;
+                    }
+
+                    .company_details table td {
+                        padding-top: <t
+            t-out="din5008_config.get('footer', {}).get('separator_spacing', 0.0)"
+        />mm;
+                    }
+                    .company_details table td:nth-child(1) {
+                        width: <t
+            t-out="din5008_config.get('footer', {}).get('table_width_pattern', '25,25,25,25').split(',')[0].strip()"
+        />%;
+                    }
+
+                    .company_details table td:nth-child(2) {
+                        width: <t
+            t-out="din5008_config.get('footer', {}).get('table_width_pattern', '25,25,25,25').split(',')[1].strip()"
+        />%;
+                    }
+
+                    .company_details table td:nth-child(3) {
+                        width: <t
+            t-out="din5008_config.get('footer', {}).get('table_width_pattern', '25,25,25,25').split(',')[2].strip()"
+        />%;
+                    }
+
+                    .company_details table td:nth-child(4) {
+                        width: <t
+            t-out="din5008_config.get('footer', {}).get('table_width_pattern', '25,25,25,25').split(',')[3].strip()"
+        />%;
+                    }
+                    .company_details table td li,
+                    .company_details table td li p {
+                        line-height: <t
+            t-out="din5008_config.get('footer', {}).get('line_height', 1.3) or 1.3"
+        />em !important;
+                    }
+                }
+            }
+        </xpath>
+    </template>
+</odoo>
