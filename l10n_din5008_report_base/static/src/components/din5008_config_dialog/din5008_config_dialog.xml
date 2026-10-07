@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="l10n_din5008_report_base.Din5008ConfigDialog">
+        <Dialog title="'Configure DIN 5008'" size="'xl'">
+            <div class="p-2 din5008-config-layout">
+                <!-- Configuration fields -->
+                <div class="din5008-config-fields">
+                    <t t-foreach="sections" t-as="section" t-key="section.name">
+                        <div class="mb-3 border rounded">
+                            <button
+                                type="button"
+                                class="btn btn-light w-100 text-start d-flex justify-content-between align-items-center p-3"
+                                t-att-aria-expanded="isSectionExpanded(section.name)"
+                                t-on-click="() => toggleSection(section.name)"
+                            >
+                                <span class="fw-bold" t-esc="section.label" />
+                                <i
+                                    t-att-class="isSectionExpanded(section.name)
+                                        ? 'fa fa-chevron-up'
+                                        : 'fa fa-chevron-down'"
+                                />
+                            </button>
+
+                            <div
+                                t-if="isSectionExpanded(section.name)"
+                                class="p-3 border-top"
+                            >
+                                <t
+                                    t-foreach="section.fields"
+                                    t-as="field"
+                                    t-key="field.key"
+                                >
+                                    <!-- Float -->
+                                    <div t-if="field.type === 'float'" class="row mb-3">
+                                        <label
+                                            class="col-sm-5 col-form-label"
+                                            t-esc="field.label"
+                                        />
+                                        <div class="col-sm-7">
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                t-att-min="field.min"
+                                                t-att-max="field.max"
+                                                t-att-step="field.step || 'any'"
+                                                t-att-value="getValue(field)"
+                                                t-on-focus="() => highlightPreviewField(field)"
+                                                t-on-input="(ev) => updateFloat(field, ev.target.value)"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- Boolean -->
+                                    <div
+                                        t-elif="field.type === 'boolean'"
+                                        class="row mb-3"
+                                    >
+                                        <label
+                                            class="col-sm-5 col-form-label"
+                                            t-esc="field.label"
+                                        />
+                                        <div class="col-sm-7 pt-2">
+                                            <input
+                                                type="checkbox"
+                                                class="form-check-input"
+                                                t-att-checked="getValue(field)"
+                                                t-on-focus="() => highlightPreviewField(field)"
+                                                t-on-change="(ev) => updateBoolean(field, ev.target.checked)"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- Selection -->
+                                    <div
+                                        t-elif="field.type === 'selection'"
+                                        class="row mb-3"
+                                    >
+                                        <label
+                                            class="col-sm-5 col-form-label"
+                                            t-esc="field.label"
+                                        />
+                                        <div class="col-sm-7">
+                                            <select
+                                                class="form-select"
+                                                t-on-focus="() => highlightPreviewField(field)"
+                                                t-on-change="(ev) => updateSelection(field, ev.target.value)"
+                                            >
+                                                <option
+                                                    t-foreach="getSelectionOptions(field)"
+                                                    t-as="option"
+                                                    t-key="option.value"
+                                                    t-att-value="option.value"
+                                                    t-att-selected="option.value === getValue(field)"
+                                                >
+                                                    <t t-esc="option.label" />
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Text -->
+                                    <div
+                                        t-elif="field.type === 'text'"
+                                        class="row mb-3"
+                                    >
+                                        <label
+                                            class="col-sm-5 col-form-label"
+                                            t-esc="field.label"
+                                        />
+                                        <div class="col-sm-7">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                t-att-value="getValue(field)"
+                                                t-on-focus="() => highlightPreviewField(field)"
+                                                t-on-input="(ev) => updateText(field, ev.target.value)"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- Translated text -->
+                                    <div
+                                        t-elif="field.type === 'translated_text'"
+                                        class="row mb-3"
+                                    >
+                                        <label
+                                            class="col-sm-5 col-form-label"
+                                            t-esc="field.label"
+                                        />
+                                        <div class="col-sm-7">
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                t-att-value="getTranslatedText(getValue(field))"
+                                                t-on-focus="() => highlightPreviewField(field)"
+                                                t-on-input="(ev) => setValue(field, {
+                                                    ...(getValue(field) || {}),
+                                                    [env.lang]: ev.target.value
+                                                })"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <!-- List -->
+                                    <div t-elif="field.type === 'list'" class="mb-3">
+                                        <label
+                                            class="form-label fw-bold"
+                                            t-esc="field.label"
+                                        />
+
+                                        <t
+                                            t-foreach="getListValue(field)"
+                                            t-as="item"
+                                            t-key="item_index"
+                                        >
+                                            <div class="border rounded p-3 mb-2">
+                                                <t
+                                                    t-foreach="getListFields(field)"
+                                                    t-as="subField"
+                                                    t-key="subField[0]"
+                                                >
+                                                    <div
+                                                        t-if="subField[1].type !== 'many2one'"
+                                                        class="mb-3"
+                                                    >
+                                                        <label
+                                                            class="form-label"
+                                                            t-esc="subField[1].label"
+                                                        />
+
+                                                        <!-- List translated text -->
+                                                        <t
+                                                            t-if="subField[1].type === 'translated_text'"
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                t-att-value="getTranslatedText(item[subField[0]])"
+                                                                t-on-focus="() => highlightPreviewField(field)"
+                                                                t-on-input="(ev) => updateListTranslatedText(
+                                                                    field,
+                                                                    item_index,
+                                                                    subField[0],
+                                                                    ev.target.value
+                                                                )"
+                                                            />
+                                                        </t>
+
+                                                        <!-- List text -->
+                                                        <t
+                                                            t-elif="subField[1].type === 'text'"
+                                                        >
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                t-att-value="item[subField[0]] || ''"
+                                                                t-on-focus="() => highlightPreviewField(field)"
+                                                                t-on-input="(ev) => updateListField(
+                                                                    field,
+                                                                    item_index,
+                                                                    subField[0],
+                                                                    ev.target.value
+                                                                )"
+                                                            />
+                                                        </t>
+
+                                                        <!-- List boolean -->
+                                                        <t
+                                                            t-elif="subField[1].type === 'boolean'"
+                                                        >
+                                                            <input
+                                                                type="checkbox"
+                                                                class="form-check-input"
+                                                                t-att-checked="item[subField[0]]"
+                                                                t-on-focus="() => highlightPreviewField(field)"
+                                                                t-on-change="(ev) => updateListField(
+                                                                    field,
+                                                                    item_index,
+                                                                    subField[0],
+                                                                    ev.target.checked
+                                                                )"
+                                                            />
+                                                        </t>
+
+                                                        <!-- List float -->
+                                                        <t
+                                                            t-elif="subField[1].type === 'float'"
+                                                        >
+                                                            <input
+                                                                type="number"
+                                                                class="form-control"
+                                                                t-att-min="subField[1].min"
+                                                                t-att-max="subField[1].max"
+                                                                t-att-step="subField[1].step || 'any'"
+                                                                t-att-value="item[subField[0]] ?? ''"
+                                                                t-on-focus="() => highlightPreviewField(field)"
+                                                                t-on-input="(ev) => updateListField(
+                                                                    field,
+                                                                    item_index,
+                                                                    subField[0],
+                                                                    ev.target.value === ''
+                                                                        ? ''
+                                                                        : Number(ev.target.value)
+                                                                )"
+                                                            />
+                                                        </t>
+
+                                                        <!-- List selection -->
+                                                        <t
+                                                            t-elif="subField[1].type === 'selection'"
+                                                        >
+                                                            <select
+                                                                class="form-select"
+                                                                t-on-focus="() => highlightPreviewField(field)"
+                                                                t-on-change="(ev) => updateListField(
+                                                                    field,
+                                                                    item_index,
+                                                                    subField[0],
+                                                                    ev.target.value
+                                                                )"
+                                                            >
+                                                                <option
+                                                                    t-foreach="getSelectionOptions(subField[1])"
+                                                                    t-as="option"
+                                                                    t-key="option.value"
+                                                                    t-att-value="option.value"
+                                                                    t-att-selected="option.value === item[subField[0]]"
+                                                                >
+                                                                    <t
+                                                                        t-esc="option.label"
+                                                                    />
+                                                                </option>
+                                                            </select>
+                                                        </t>
+                                                    </div>
+                                                </t>
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    t-on-click="() => removeListItem(field, item_index)"
+                                                >
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </t>
+
+                                        <button
+                                            type="button"
+                                            class="btn btn-outline-primary btn-sm"
+                                            t-on-click="() => addListItem(field)"
+                                        >
+                                            Add
+                                        </button>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </t>
+
+                    <div t-if="!sections.length" class="text-muted text-center py-4">
+                        No DIN 5008 settings available.
+                    </div>
+                </div>
+
+                <!-- Live preview -->
+                <aside class="din5008-config-preview">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <strong>Preview</strong>
+                        <span t-if="state.previewLoading" class="small text-muted">
+                            Preview is being updated…
+                        </span>
+                    </div>
+
+                    <div class="din5008-preview-rendered">
+                        <div class="din5008-preview-document">
+                            <iframe
+                                class="din5008-preview-frame"
+                                title="DIN-5008-Preview"
+                                t-ref="previewFrame"
+                            />
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <t t-set-slot="footer">
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    t-on-click="props.close"
+                >
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary" t-on-click="apply">
+                    Apply
+                </button>
+            </t>
+        </Dialog>
+    </t>
+</templates>

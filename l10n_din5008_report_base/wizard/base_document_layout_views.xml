@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_base_document_layout_inherit_din5008_config" model="ir.ui.view">
+        <field name="name">base.document.layout.view.inherit.din5008.config</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='report_layout_id']" position="after">
+                <label
+                    for="l10n_din5008_config"
+                    string="DIN 5008 Configuration"
+                    invisible="
+                        external_report_layout_id != %(l10n_din5008.external_layout_din5008)d
+                        or paperformat_id not in [
+                            %(l10n_din5008.paperformat_euro_din_a)d,
+                            %(l10n_din5008.paperformat_euro_din)d
+                        ]
+                    "
+                />
+                <div
+                    class="o_document_layout_colors d-flex align-items-end mb-4"
+                    invisible="
+                        external_report_layout_id != %(l10n_din5008.external_layout_din5008)d
+                        or paperformat_id not in [
+                            %(l10n_din5008.paperformat_euro_din_a)d,
+                            %(l10n_din5008.paperformat_euro_din)d
+                        ]
+                    "
+                >
+                    <field
+                        name="l10n_din5008_config"
+                        widget="din5008_config"
+                        nolabel="1"
+                        class="w-auto m-0"
+                        options="{'type_a_id': 7, 'type_b_id': 8}"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

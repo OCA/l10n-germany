@@ -1,0 +1,115 @@
+.modal-dialog:has(.din5008-config-layout) {
+    width: 98vw;
+    max-width: 1900px;
+    margin: 1vh auto;
+}
+
+.modal-dialog:has(.din5008-config-layout) .modal-content {
+    max-height: 98vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-dialog:has(.din5008-config-layout) .modal-body {
+    min-height: 0;
+    overflow: hidden;
+}
+
+.din5008-config-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.7fr);
+    gap: 1rem;
+    align-items: stretch;
+    min-width: 0;
+    min-height: 0;
+    height: 78vh;
+    max-height: 78vh;
+}
+
+.din5008-config-fields {
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.din5008-config-preview {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.din5008-config-preview > .d-flex {
+    flex: 0 0 auto;
+}
+
+.din5008-preview-rendered {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    padding: 12px;
+    background: #e9e9e9;
+}
+
+.din5008-preview-document {
+    position: relative;
+    width: 100%;
+    max-width: 210mm;
+    aspect-ratio: 210 / 297;
+    margin: 0 auto;
+    padding: 0;
+    background: #fff;
+    border: 1px solid #b8b8b8;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.din5008-preview-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+@media (max-height: 800px) {
+    .din5008-config-layout {
+        height: 72vh;
+        max-height: 72vh;
+        gap: 0.75rem;
+    }
+
+    .din5008-preview-rendered {
+        padding: 6px;
+    }
+}
+
+@media (max-width: 700px) {
+    .modal-dialog:has(.din5008-config-layout) {
+        width: 98vw;
+        max-width: 98vw;
+        margin: 1vh auto;
+    }
+
+    .modal-dialog:has(.din5008-config-layout) .modal-body {
+        overflow: auto;
+    }
+
+    .din5008-config-layout {
+        grid-template-columns: minmax(0, 1fr);
+        height: auto;
+        max-height: none;
+    }
+
+    .din5008-config-fields {
+        max-height: 40vh;
+    }
+
+    .din5008-config-preview {
+        min-height: 50vh;
+    }
+}
