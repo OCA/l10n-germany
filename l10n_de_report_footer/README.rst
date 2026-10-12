@@ -51,6 +51,11 @@ standard Odoo layouts, the DIN 5008 layout shipped with Odoo
    of every layout. Modules such as
    ``l10n_de_report_footer_representative`` add lines (representatives,
    register court, ...) once and they appear in every layout.
+-  **Layout settings**: the settings of the document layout are stored
+   in one JSON field of the company. Modules declare their settings in
+   Python (key, type, default, range, section) and the document layout
+   wizard renders them in tabs, with a live preview, without an own
+   field or view per setting.
 -  **Bottom margin**: the bottom page margin of PDF reports can be
    increased in the document layout when the footer needs more space
    than the paper format reserves (previously the module
@@ -76,8 +81,10 @@ Go to *Settings > Companies > Configure Document Layout*.
    website, VAT, company registry, ...) can be used by everyone; other
    expressions are reserved to administrators and members of the *Mail
    Template Editor* group, like in mail templates.
--  **Bottom Margin (mm)**: bottom page margin reserved for the footer,
-   between 5 and 60 mm. 0 keeps the margin of the paper format.
+-  **Bottom Margin (mm)** (tab *Page* of the layout settings below the
+   paper format): bottom page margin reserved for the footer, between 5
+   and 60 mm. 0 keeps the margin of the paper format. Clear the field to
+   restore the default.
 
 While the bottom margin field is focused, the footer area is outlined in
 the preview.
@@ -97,6 +104,41 @@ print additional lines in every layout. Give a form field the class
 ``html[data-report-preview-highlight="<key>"] <selector>`` in the report
 assets to outline an area of the layout preview while the field is
 focused.
+
+Developers: register a layout setting instead of adding a field to the
+company and to the wizard. Inherit the mixin
+``report.layout.config.mixin`` and append the declaration to
+``_get_report_layout_config_fields()``:
+
+.. code:: python
+
+   class ReportLayoutConfigMixin(models.AbstractModel):
+       _inherit = "report.layout.config.mixin"
+
+       def _get_report_layout_config_fields(self):
+           return super()._get_report_layout_config_fields() + [
+               {
+                   "key": "my_module.show_bank",
+                   "label": self.env._("Print Bank Account"),
+                   "section": "my_module",
+                   "section_label": self.env._("My Layout"),
+                   "section_sequence": 50,
+                   "type": "boolean",
+                   "default": True,
+                   # optional: "min", "max", "step", "allow_zero" (numbers),
+                   # "options": [(value, label), ...] (selection), "help",
+                   # "highlight": "footer", "visible_if": {"other.key": True},
+                   # "layouts": ["my_module.external_layout_x"]
+               }
+           ]
+
+The value is stored in the JSON field ``report_layout_config`` of the
+company under its key and validated against the declaration when the
+company is written. Read it in templates and code with
+``company._get_report_layout_config_value("my_module.show_bank")``,
+which returns the declared default while nothing is stored. The wizard
+offers the setting on the tab of its section for the layouts listed in
+``layouts`` (all layouts when absent).
 
 Bug Tracker
 ===========

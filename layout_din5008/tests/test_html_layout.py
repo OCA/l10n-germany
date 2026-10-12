@@ -23,7 +23,7 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
         return nodes[0]
 
     def test_structure_below(self):
-        self.company.layout_din5008_informations_position = "below"
+        self._write_config({"din5008.informations_position": "below"})
         tree = self._render_tree()
         header = self._one(tree, HEADER)
         article = self._one(tree, ARTICLE)
@@ -42,8 +42,8 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
         # are moved into the footer
         self.assertFalse(tree.xpath("//div[@name='company_address']"))
         legal = self._one(footer, ".//ul[@name='din5008_footer_legal']")
-        self.assertIn("DE123456789", legal.text_content())
-        self.assertNotIn("DE123456789", header.text_content())
+        self.assertIn("DE123456788", legal.text_content())
+        self.assertNotIn("DE123456788", header.text_content())
         # footer text as a full width block after the company / page number row
         footer_text = self._one(
             footer, ".//div[contains(@class, 'din5008_footer_text')]"
@@ -128,34 +128,34 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
         )
 
     def test_logo_position(self):
-        self.company.layout_din5008_logo_position = "right"
+        self._write_config({"din5008.logo_position": "right"})
         tree = self._render_tree()
         header = self._one(tree, HEADER)
         self.assertEqual(header.get("data-din5008-logo"), "right")
         self.assertTrue(header.xpath(".//img[@class='o_company_logo_small']"))
 
     def test_options_disabled(self):
-        self.company.write(
+        self._write_config(
             {
-                "layout_din5008_sender_line": False,
-                "layout_din5008_fold_marks": False,
-                "layout_din5008_hole_mark": False,
+                "din5008.sender_line": False,
+                "din5008.fold_marks": False,
+                "din5008.hole_mark": False,
             }
         )
         tree = self._render_tree()
         self.assertFalse(tree.xpath("//div[@class='din5008_sender_line']"))
         self.assertFalse(tree.xpath("//div[contains(@class, 'din5008_mark')]"))
         # fold marks and hole mark are switched separately
-        self.company.layout_din5008_hole_mark = True
+        self._write_config({"din5008.hole_mark": True})
         tree = self._render_tree()
         self.assertFalse(tree.xpath("//div[contains(@class, 'din5008_fold_mark')]"))
         self.assertTrue(tree.xpath("//div[contains(@class, 'din5008_hole_mark')]"))
 
     def test_sender_line_options(self):
-        self.company.write(
+        self._write_config(
             {
-                "layout_din5008_sender_separator": "middot",
-                "layout_din5008_sender_country": "code",
+                "din5008.sender_separator": "middot",
+                "din5008.sender_country": "code",
             }
         )
         tree = self._render_tree()
@@ -172,13 +172,13 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
         self.assertEqual(sender.text, "Acme GmbH · Musterstraße 1 · DE-12345 Berlin")
 
     def test_custom_geometry(self):
-        self.company.write(
+        self._write_config(
             {
-                "layout_din5008_address_offset_top": 3,
-                "layout_din5008_address_height": 50,
-                "layout_din5008_info_left": 120,
-                "layout_din5008_info_width": 80,
-                "layout_din5008_remark_zone_height": 8,
+                "din5008.address_offset_top": 3,
+                "din5008.address_height": 50,
+                "din5008.info_left": 120,
+                "din5008.info_width": 80,
+                "din5008.remark_zone_height": 8,
             }
         )
         tree = self._render_tree()

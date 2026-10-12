@@ -423,7 +423,12 @@ following content down instead of overlapping it.</p>
 <p>Go to <em>Settings &gt; Companies &gt; Configure Document Layout</em> and choose
 <strong>DIN 5008 Form A</strong> or <strong>DIN 5008 Form B</strong>. The matching paper format
 (<em>DIN 5008 Form A</em> / <em>DIN 5008 Form B</em>) is selected automatically.</p>
-<p>The following settings appear once a DIN 5008 layout is selected:</p>
+<p>The layout settings below the paper format show three tabs once a DIN
+5008 layout is selected; the bottom margin of the module
+<tt class="docutils literal">l10n_de_report_footer</tt> (tab <em>Page</em> of the other layouts) is offered
+in the tab <em>Positions (mm)</em>. Every change is shown in the preview at
+once.</p>
+<p>Tab <strong>DIN 5008 Document</strong>:</p>
 <ul class="simple">
 <li><strong>Document Information</strong>: where the document information of the
 standard reports (dates, references, salesperson, …) is printed.
@@ -434,32 +439,44 @@ adding rows to it keep working; only styles that rely on its original
 position do not apply.</li>
 <li><strong>Logo Position</strong>: print the company logo on the left or on the right
 of the letterhead; the tagline is printed on the opposite side.</li>
-<li><strong>Sender Line</strong>: print the <em>Address</em> text of the document layout as a
-single line above the recipient address (Rücksendeangabe); its lines
-are joined with the <em>Separator</em> (<tt class="docutils literal">|</tt>, <tt class="docutils literal">•</tt> or <tt class="docutils literal">·</tt>). The address
-may contain placeholders; the placeholder <em>DIN 5008 Sender Line Text</em>
-provides the company name and address formatted with the separator
-and the <em>Country</em> option (country code before the postal code,
-<tt class="docutils literal"><span class="pre">DE-12345</span> Berlin</tt>, or the country name at the end). Without address
-text the formatted company address is printed.</li>
 <li><strong>Fold Marks</strong> and <strong>Hole Mark</strong>: print the fold marks and the hole
 mark on every page.</li>
-<li><strong>Address Window</strong>: vertical offset (mm) of the address row relative
-to the DIN 5008 position, its minimum height (mm) and the height of
-the remark zone (Zusatz- und Vermerkzone) between the sender line and
-the recipient address. DIN 5008 reserves 12.7 mm for remarks such as
-“Einschreiben”; the default of 0 mm prints the recipient address
-directly below the sender line.</li>
-<li><strong>Information Block</strong>: distance from the left edge (mm) and width
-(mm) of the column next to the address window.</li>
-<li><strong>Bottom Margin</strong>: the bottom page margin reserved for the footer,
-from the module <tt class="docutils literal">l10n_de_report_footer</tt>; it is shown on this tab
-for the DIN layouts.</li>
 </ul>
-<p>While one of these fields is focused, the affected area is outlined in
-the preview. The footer text with company placeholders, the shared
-footer lines and the bottom margin of the PDF reports are configured in
-the same wizard and come from the module <tt class="docutils literal">l10n_de_report_footer</tt>.</p>
+<p>Tab <strong>Sender Line</strong>:</p>
+<ul class="simple">
+<li><strong>Print Sender Line</strong>: print the <em>Address</em> text of the document
+layout as a single line above the recipient address
+(Rücksendeangabe); its lines are joined with the <strong>Separator</strong>
+(<tt class="docutils literal">|</tt>, <tt class="docutils literal">•</tt> or <tt class="docutils literal">·</tt>). The address may contain placeholders; the
+placeholder <em>DIN 5008 Sender Line Text</em> provides the company name and
+address formatted with the separator and the <strong>Country</strong> option
+(country code before the postal code, <tt class="docutils literal"><span class="pre">DE-12345</span> Berlin</tt>, or the
+country name at the end). Without address text the formatted company
+address is printed.</li>
+</ul>
+<p>Tab <strong>Positions (mm)</strong>:</p>
+<ul class="simple">
+<li><strong>Address Window Offset</strong> and <strong>Address Window Height</strong>: vertical
+offset of the address row relative to the DIN 5008 position and its
+minimum height.</li>
+<li><strong>Remark Zone Height</strong>: height of the remark zone (Zusatz- und
+Vermerkzone) between the sender line and the recipient address. DIN
+5008 reserves 12.7 mm for remarks such as “Einschreiben”; the default
+of 0 mm prints the recipient address directly below the sender line.</li>
+<li><strong>Information Block Left</strong> and <strong>Information Block Width</strong>: distance
+from the left edge and width of the column next to the address
+window.</li>
+<li><strong>Bottom Margin</strong>: bottom page margin reserved for the footer of the
+PDF reports, 0 keeps the margin of the paper format (setting of the
+module <tt class="docutils literal">l10n_de_report_footer</tt>, key <tt class="docutils literal">page.margin_bottom</tt>).</li>
+</ul>
+<p>While one of the position fields is focused, the affected area is
+outlined in the preview. Clear a numeric field to restore its default.
+The settings are stored in the field <em>Report Layout Configuration</em> of
+the company (<tt class="docutils literal">report_layout_config</tt>, keys <tt class="docutils literal">din5008.*</tt>). The footer
+text with company placeholders, the shared footer lines and the bottom
+margin of the PDF reports are configured in the same wizard and come
+from the module <tt class="docutils literal">l10n_de_report_footer</tt>.</p>
 <p>The paper formats keep 0 mm side margins and disable smart shrinking so
 that the CSS millimetres of the layout equal the printed millimetres.
 When you use your own paper format with a DIN 5008 layout, keep these
@@ -473,8 +490,9 @@ invoice, a quotation or a delivery slip. The recipient address is
 printed in the envelope window, the shipping or invoicing address block
 of the report is printed in the information block next to it, and the
 document title starts two lines below the address window.</p>
-<p>The company address entered in the document layout is printed in the
-footer together with the footer text, the tax ID and the page numbers.</p>
+<p>The address entered in the document layout is printed as the sender line
+above the recipient address. The footer prints the tax ID, the shared
+footer lines and the page numbers, followed by the footer text.</p>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h2><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h2>

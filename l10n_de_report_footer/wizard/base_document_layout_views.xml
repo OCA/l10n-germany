@@ -29,10 +29,12 @@
                 >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
             </field>
             <field name="paperformat_id" position="after">
+                <field name="report_layout_config_fields" invisible="1" />
                 <field
-                    name="report_footer_margin_bottom"
-                    string="Bottom Margin (mm)"
-                    class="o_report_preview_highlight_footer"
+                    name="report_layout_config"
+                    widget="report_layout_config"
+                    nolabel="1"
+                    colspan="2"
                 />
             </field>
         </field>

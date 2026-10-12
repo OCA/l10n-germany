@@ -306,7 +306,12 @@ msgid "Pipe (|)"
 msgstr "Senkrechter Strich (|)"
 
 #. module: layout_din5008
-#: model_terms:ir.ui.view,arch_db:layout_din5008.view_base_document_layout
+#: code:addons/layout_din5008/models/report_layout_config_mixin.py:0
+msgid "Bottom Margin"
+msgstr "Unterer Rand"
+
+#. module: layout_din5008
+#: code:addons/layout_din5008/models/report_layout_config_mixin.py:0
 msgid "Positions (mm)"
 msgstr "Positionen (mm)"
 

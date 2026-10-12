@@ -14,6 +14,10 @@ Odoo layouts, the DIN 5008 layout shipped with Odoo (`l10n_din5008`, through
   in the company address block of every layout. Modules such as
   `l10n_de_report_footer_representative` add lines (representatives,
   register court, ...) once and they appear in every layout.
+- **Layout settings**: the settings of the document layout are stored in one
+  JSON field of the company. Modules declare their settings in Python (key,
+  type, default, range, section) and the document layout wizard renders them
+  in tabs, with a live preview, without an own field or view per setting.
 - **Bottom margin**: the bottom page margin of PDF reports can be increased
   in the document layout when the footer needs more space than the paper
   format reserves (previously the module `l10n_din5008_report_margin_bottom`).

@@ -4,5 +4,6 @@ the envelope window, the shipping or invoicing address block of the report is
 printed in the information block next to it, and the document title starts
 two lines below the address window.
 
-The company address entered in the document layout is printed in the footer
-together with the footer text, the tax ID and the page numbers.
+The address entered in the document layout is printed as the sender line
+above the recipient address. The footer prints the tax ID, the shared footer
+lines and the page numbers, followed by the footer text.

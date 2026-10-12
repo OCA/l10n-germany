@@ -7,13 +7,25 @@ from ..models.res_company import REPORT_FOOTER_RENDER_MODEL
 
 
 class BaseDocumentLayout(models.TransientModel):
-    _inherit = "base.document.layout"
+    _name = "base.document.layout"
+    _inherit = ["base.document.layout", "report.layout.config.mixin"]
 
-    report_footer_margin_bottom = fields.Integer(
-        related="company_id.report_footer_margin_bottom", readonly=False
+    report_layout_config = fields.Json(
+        related="company_id.report_layout_config", readonly=False
+    )
+    # settings offered for the selected layout, rendered by the widget
+    report_layout_config_fields = fields.Json(
+        compute="_compute_report_layout_config_fields"
     )
     # model offered by the dynamic placeholder picker of the footer editor
     report_footer_render_model = fields.Char(default=REPORT_FOOTER_RENDER_MODEL)
+
+    @api.depends("report_layout_id")
+    def _compute_report_layout_config_fields(self):
+        for wizard in self:
+            wizard.report_layout_config_fields = wizard.get_report_layout_config_fields(
+                wizard.report_layout_id.view_id.key
+            )
 
     def _get_company_placeholder_overrides(self):
         """Placeholder values taken from the wizard instead of the company.
@@ -41,6 +53,6 @@ class BaseDocumentLayout(models.TransientModel):
         self.ensure_one()
         return self._render_wizard_placeholders(self.report_header)
 
-    @api.depends("report_footer_margin_bottom")
+    @api.depends("report_layout_config")
     def _compute_preview(self):
         return super()._compute_preview()

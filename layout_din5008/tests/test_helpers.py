@@ -20,7 +20,7 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
             self.company._layout_din5008_sender_line(),
             "Acme GmbH | Musterstraße 1 | 12345 Berlin",
         )
-        self.company.layout_din5008_sender_separator = "bullet"
+        self._write_config({"din5008.sender_separator": "bullet"})
         self.company.company_details = "<p>Acme GmbH</p><p></p><p>Berlin</p>"
         self.assertEqual(
             self.company._layout_din5008_sender_line(), "Acme GmbH • Berlin"
@@ -47,7 +47,7 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
             self.company.layout_din5008_sender_line_text,
             "Acme GmbH | Musterstraße 1 | 12345 Berlin",
         )
-        self.company.layout_din5008_sender_separator = "middot"
+        self._write_config({"din5008.sender_separator": "middot"})
         self.company.partner_id.street2 = "Aufgang B"
         self.assertEqual(
             self.company.layout_din5008_sender_line_text,
@@ -77,12 +77,12 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
         )
 
     def test_sender_line_country(self):
-        self.company.layout_din5008_sender_country = "code"
+        self._write_config({"din5008.sender_country": "code"})
         self.assertEqual(
             self.company.layout_din5008_sender_line_text,
             "Acme GmbH | Musterstraße 1 | DE-12345 Berlin",
         )
-        self.company.layout_din5008_sender_country = "name"
+        self._write_config({"din5008.sender_country": "name"})
         self.assertEqual(
             self.company.layout_din5008_sender_line_text,
             "Acme GmbH | Musterstraße 1 | 12345 Berlin | "
@@ -94,7 +94,7 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
             self.company.layout_din5008_sender_line_text,
             "Acme GmbH | Musterstraße 1 | 12345 Berlin",
         )
-        self.company.layout_din5008_sender_country = "code"
+        self._write_config({"din5008.sender_country": "code"})
         self.assertEqual(
             self.company.layout_din5008_sender_line_text,
             "Acme GmbH | Musterstraße 1 | 12345 Berlin",
@@ -117,13 +117,13 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
         self.assertEqual(geometry["header"], "height: 45mm;")
         self.assertEqual(geometry["fold_marks"], ["top: 105mm;", "top: 210mm;"])
 
-        self.company.write(
+        self._write_config(
             {
-                "layout_din5008_address_offset_top": 5,
-                "layout_din5008_address_height": 50,
-                "layout_din5008_info_left": 130,
-                "layout_din5008_info_width": 60,
-                "layout_din5008_remark_zone_height": 12.7,
+                "din5008.address_offset_top": 5,
+                "din5008.address_height": 50,
+                "din5008.info_left": 130,
+                "din5008.info_width": 60,
+                "din5008.remark_zone_height": 12.7,
             }
         )
         geometry = self.company._layout_din5008_geometry("A")

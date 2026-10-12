@@ -128,7 +128,9 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
         html = self._render_html(data={"report_type": "pdf"})
         self.assertNotIn("data-report-margin-bottom", html)
         self.assertNotIn("min-height: 30mm", html)
-        self.company.report_footer_margin_bottom = 30
+        self.assertEqual(self.company._get_report_footer_margin_bottom(), 0)
+        self.company._set_report_layout_config_value("page.margin_bottom", value=30)
+        self.assertEqual(self.company._get_report_footer_margin_bottom(), 30)
         html = self._render_html(data={"report_type": "pdf"})
         self.assertIn('data-report-margin-bottom="30"', html)
         self.assertNotIn("min-height: 30mm", html)
@@ -138,11 +140,61 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
         self.assertEqual(footer.get("style"), "min-height: 30mm;")
         args = self.report._prepare_html(html, report_model="res.partner")[4]
         self.assertEqual(args.get("data-report-margin-bottom"), "30")
+        for value in (4, 61):
+            with self.assertRaises(ValidationError):
+                self.company.write(
+                    {"report_layout_config": {"page.margin_bottom": value}}
+                )
+        self.company.write({"report_layout_config": {"page.margin_bottom": 0}})
+        self.assertEqual(self.company._get_report_footer_margin_bottom(), 0)
+
+    def test_report_layout_config_spec(self):
+        Company = self.env["res.company"]
+        spec = Company._get_report_layout_config_fields_by_key()["page.margin_bottom"]
+        self.assertEqual(spec["type"], "integer")
+        self.assertEqual(spec["highlight"], "footer")
+        self.assertEqual(spec["section"], "page")
+        # offered for every layout
+        keys = [
+            s["key"]
+            for s in Company.get_report_layout_config_fields(
+                "web.external_layout_standard"
+            )
+        ]
+        self.assertIn("page.margin_bottom", keys)
+        # declared default when the key is not stored
+        self.company.report_layout_config = {}
+        self.assertFalse(self.company.report_layout_config)
+        self.assertEqual(self.company._get_report_layout_config(), {})
+        self.assertEqual(
+            self.company._get_report_layout_config_value("page.margin_bottom"), 0
+        )
+        self.assertEqual(
+            self.company._get_report_layout_config_value("page", "margin_bottom"), 0
+        )
+        self.assertEqual(
+            self.company._get_report_layout_config_value(
+                "page.margin_bottom", default=7
+            ),
+            7,
+        )
+        self.assertIsNone(self.company._get_report_layout_config_value("unknown.key"))
+        # values are merged, keys of other modules are kept
+        self.company._update_report_layout_config({"other_module.flag": True})
+        self.company._set_report_layout_config_value("page", "margin_bottom", value=20)
+        self.assertEqual(
+            self.company.report_layout_config,
+            {"other_module.flag": True, "page.margin_bottom": 20},
+        )
+        # type checks of the declared settings
+        for value in ("30", True, 30.5):
+            with self.assertRaises(ValidationError):
+                self.company.write(
+                    {"report_layout_config": {"page.margin_bottom": value}}
+                )
         with self.assertRaises(ValidationError):
-            self.company.report_footer_margin_bottom = 4
-        with self.assertRaises(ValidationError):
-            self.company.report_footer_margin_bottom = 61
-        self.company.report_footer_margin_bottom = 0
+            self.company.write({"report_layout_config": [1, 2]})
+        self.company.report_layout_config = {}
 
     def test_wizard(self):
         with Form(self.env["base.document.layout"]) as wizard:
@@ -157,9 +209,19 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
             self.assertIn("Call +49 30 123456", wizard.preview)
             wizard.company_details = '<p>VAT <t t-out="object.vat"/></p>'
             self.assertIn("VAT DE123456789", wizard.preview)
-            wizard.report_footer_margin_bottom = 30
-        self.assertEqual(self.company.report_footer_margin_bottom, 30)
+            # the settings offered for the selected layout
+            keys = [spec["key"] for spec in wizard.report_layout_config_fields]
+            self.assertIn("page.margin_bottom", keys)
+            self.assertNotIn("min-height: 30mm", wizard.preview)
+            wizard.report_layout_config = {
+                **(wizard.report_layout_config or {}),
+                "page.margin_bottom": 30,
+            }
+            self.assertIn("min-height: 30mm", wizard.preview)
+        self.assertEqual(
+            self.company._get_report_layout_config_value("page.margin_bottom"), 30
+        )
         self.assertIn('t-out="object.email"', self.company.report_footer)
         with self.assertRaises(ValidationError):
             with Form(self.env["base.document.layout"]) as wizard:
-                wizard.report_footer_margin_bottom = 70
+                wizard.report_layout_config = {"page.margin_bottom": 70}

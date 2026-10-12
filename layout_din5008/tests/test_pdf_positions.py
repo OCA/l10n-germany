@@ -52,10 +52,10 @@ class TestPdfPositions(LayoutDin5008Common, HttpCase):
 
     def _check_form(self, form, header, remark_zone=0):
         self._set_form(form)
-        self.company.write(
+        self._write_config(
             {
-                "layout_din5008_informations_position": "below",
-                "layout_din5008_remark_zone_height": remark_zone,
+                "din5008.informations_position": "below",
+                "din5008.remark_zone_height": remark_zone,
             }
         )
         texts, rects = self._render_pages()[0]
@@ -112,14 +112,14 @@ class TestPdfPositions(LayoutDin5008Common, HttpCase):
 
     def test_long_content_pushes_title(self):
         """A long information block moves the title down instead of overlapping."""
-        self.company.layout_din5008_address_height = 20
+        self._write_config({"din5008.address_height": 20})
         texts, rects = self._render_pages()[0]
         last_info_top = max(top for text, _, top in texts if text in ("K-4711",))
         title_x, title_top = find_text(texts, "Rechnung")
         self.assertGreater(title_top, last_info_top + 4)
 
     def test_margin_bottom_and_second_page(self):
-        self.company.report_footer_margin_bottom = 40
+        self._write_config({"page.margin_bottom": 40})
         pages = self._render_pages(data={"n_rows": 40})
         self.assertGreaterEqual(len(pages), 2)
         for texts, rects in pages:

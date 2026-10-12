@@ -14,7 +14,7 @@ class IrActionsReport(models.Model):
         root tag, which ``_build_wkhtmltopdf_args`` forwards to wkhtmltopdf.
         """
         data = super()._get_rendering_context(report, docids, data)
-        margin = self.env.company.report_footer_margin_bottom
+        margin = self.env.company._get_report_footer_margin_bottom()
         if margin:
             data.setdefault("data_report_margin_bottom", margin)
         return data

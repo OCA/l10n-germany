@@ -23,7 +23,7 @@
             />
             <t
                 t-set="din5008_beside"
-                t-value="company.layout_din5008_informations_position == 'beside'"
+                t-value="company._layout_din5008_option('informations_position') == 'beside'"
             />
             <t t-set="din5008_scope" t-value="company._layout_din5008_scope_class()" />
         </xpath>
@@ -38,7 +38,7 @@
             <attribute name="t-att-data-din5008-form">din5008_form</attribute>
             <attribute
                 name="t-att-data-din5008-logo"
-            >company.layout_din5008_logo_position or 'left'</attribute>
+            >company._layout_din5008_option('logo_position') or 'left'</attribute>
         </xpath>
         <xpath
             expr="//div[contains(concat(' ', @t-attf-class, ' '), ' header ')]"
@@ -49,9 +49,9 @@
             </style>
             <div
                 class="din5008_marks"
-                t-if="company.layout_din5008_fold_marks or company.layout_din5008_hole_mark"
+                t-if="company._layout_din5008_option('fold_marks') or company._layout_din5008_option('hole_mark')"
             >
-                <t t-if="company.layout_din5008_fold_marks">
+                <t t-if="company._layout_din5008_option('fold_marks')">
                     <div
                         t-foreach="din5008_geometry['fold_marks']"
                         t-as="din5008_mark"
@@ -60,7 +60,7 @@
                     />
                 </t>
                 <div
-                    t-if="company.layout_din5008_hole_mark"
+                    t-if="company._layout_din5008_option('hole_mark')"
                     class="din5008_mark din5008_hole_mark"
                     t-att-style="din5008_geometry['hole_mark']"
                 />
@@ -90,7 +90,7 @@
             </style>
             <t t-set="custom_layout_address" t-value="True" />
             <div
-                t-if="company.layout_din5008_sender_line"
+                t-if="company._layout_din5008_option('sender_line')"
                 class="din5008_sender_line"
                 t-att-style="din5008_geometry['sender_line']"
                 t-out="company._layout_din5008_sender_line()"

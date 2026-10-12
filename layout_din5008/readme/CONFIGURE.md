@@ -2,7 +2,12 @@ Go to *Settings > Companies > Configure Document Layout* and choose
 **DIN 5008 Form A** or **DIN 5008 Form B**. The matching paper format
 (*DIN 5008 Form A* / *DIN 5008 Form B*) is selected automatically.
 
-The following settings appear once a DIN 5008 layout is selected:
+The layout settings below the paper format show three tabs once a DIN 5008
+layout is selected; the bottom margin of the module `l10n_de_report_footer`
+(tab *Page* of the other layouts) is offered in the tab *Positions (mm)*.
+Every change is shown in the preview at once.
+
+Tab **DIN 5008 Document**:
 
 - **Document Information**: where the document information of the standard
   reports (dates, references, salesperson, ...) is printed. *Below the title*
@@ -12,28 +17,38 @@ The following settings appear once a DIN 5008 layout is selected:
   that rely on its original position do not apply.
 - **Logo Position**: print the company logo on the left or on the right of
   the letterhead; the tagline is printed on the opposite side.
-- **Sender Line**: print the *Address* text of the document layout as a
+- **Fold Marks** and **Hole Mark**: print the fold marks and the hole mark
+  on every page.
+
+Tab **Sender Line**:
+
+- **Print Sender Line**: print the *Address* text of the document layout as a
   single line above the recipient address (Rücksendeangabe); its lines are
-  joined with the *Separator* (`|`, `•` or `·`). The address may contain
+  joined with the **Separator** (`|`, `•` or `·`). The address may contain
   placeholders; the placeholder *DIN 5008 Sender Line Text* provides the
-  company name and address formatted with the separator and the *Country*
+  company name and address formatted with the separator and the **Country**
   option (country code before the postal code, `DE-12345 Berlin`, or the
   country name at the end). Without address text the formatted company
   address is printed.
-- **Fold Marks** and **Hole Mark**: print the fold marks and the hole mark
-  on every page.
-- **Address Window**: vertical offset (mm) of the address row relative to the
-  DIN 5008 position, its minimum height (mm) and the height of the remark
-  zone (Zusatz- und Vermerkzone) between the sender line and the recipient
-  address. DIN 5008 reserves 12.7 mm for remarks such as "Einschreiben"; the
-  default of 0 mm prints the recipient address directly below the sender line.
-- **Information Block**: distance from the left edge (mm) and width (mm) of
-  the column next to the address window.
-- **Bottom Margin**: the bottom page margin reserved for the footer, from the
-  module `l10n_de_report_footer`; it is shown on this tab for the DIN layouts.
 
-While one of these fields is focused, the affected area is outlined in the
-preview.
+Tab **Positions (mm)**:
+
+- **Address Window Offset** and **Address Window Height**: vertical offset of
+  the address row relative to the DIN 5008 position and its minimum height.
+- **Remark Zone Height**: height of the remark zone (Zusatz- und Vermerkzone)
+  between the sender line and the recipient address. DIN 5008 reserves
+  12.7 mm for remarks such as "Einschreiben"; the default of 0 mm prints the
+  recipient address directly below the sender line.
+- **Information Block Left** and **Information Block Width**: distance from
+  the left edge and width of the column next to the address window.
+- **Bottom Margin**: bottom page margin reserved for the footer of the PDF
+  reports, 0 keeps the margin of the paper format (setting of the module
+  `l10n_de_report_footer`, key `page.margin_bottom`).
+
+While one of the position fields is focused, the affected area is outlined
+in the preview. Clear a numeric field to restore
+its default. The settings are stored in the field *Report Layout
+Configuration* of the company (`report_layout_config`, keys `din5008.*`).
 The footer text with company placeholders, the shared footer lines and the
 bottom margin of the PDF reports are configured in the same wizard and come
 from the module `l10n_de_report_footer`.

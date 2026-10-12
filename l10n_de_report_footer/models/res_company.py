@@ -7,25 +7,25 @@ from markupsafe import Markup
 from odoo import api, fields, models
 from odoo.exceptions import AccessError, ValidationError
 
-REPORT_FOOTER_MARGIN_RANGE = (5, 60)
 REPORT_FOOTER_RENDER_MODEL = "res.company"
 # layout texts of the company that may contain placeholders
 REPORT_PLACEHOLDER_FIELDS = ("report_footer", "company_details", "report_header")
 
 
 class ResCompany(models.Model):
-    _inherit = "res.company"
+    _name = "res.company"
+    _inherit = ["res.company", "report.layout.config.mixin"]
 
     # Keep the <t t-out="object.field"/> placeholders inserted by the editor
     # (tags and attributes); scripts and javascript links are still removed.
     report_footer = fields.Html(sanitize_tags=False, sanitize_attributes=False)
     company_details = fields.Html(sanitize_tags=False, sanitize_attributes=False)
     report_header = fields.Html(sanitize_tags=False, sanitize_attributes=False)
-    report_footer_margin_bottom = fields.Integer(
-        string="Report Bottom Margin (mm)",
-        default=0,
-        help="Bottom page margin reserved for the footer of PDF reports. "
-        "0 keeps the bottom margin of the paper format.",
+    report_layout_config = fields.Json(
+        string="Report Layout Configuration",
+        default=dict,
+        help="Settings of the document layout (bottom margin, ...), one key "
+        "per setting. See the method _get_report_layout_config_fields.",
     )
 
     @api.model
@@ -49,20 +49,57 @@ class ResCompany(models.Model):
             "object.currency_id.name",
         )
 
-    @api.constrains("report_footer_margin_bottom")
-    def _check_report_footer_margin_bottom(self):
-        low, high = REPORT_FOOTER_MARGIN_RANGE
+    @api.constrains("report_layout_config")
+    def _check_report_layout_config(self):
+        """Check the stored settings against their declaration.
+
+        Keys that no installed module declares are kept untouched.
+        """
         for company in self:
-            value = company.report_footer_margin_bottom
-            if value and not low <= value <= high:
+            config = company.report_layout_config or {}
+            if not isinstance(config, dict):
                 raise ValidationError(
-                    self.env._(
-                        "The report bottom margin must be 0 or between "
-                        "%(low)s and %(high)s mm.",
-                        low=low,
-                        high=high,
-                    )
+                    self.env._("The report layout configuration must be a dictionary.")
                 )
+            specs = company._get_report_layout_config_fields_by_key()
+            for key, value in config.items():
+                if key in specs:
+                    company._check_report_layout_config_value(specs[key], value)
+
+    @api.model
+    def _check_report_layout_config_value(self, spec, value):
+        label, field_type = spec["label"], spec["type"]
+        valid = {
+            "boolean": lambda v: isinstance(v, bool),
+            "integer": lambda v: isinstance(v, int) and not isinstance(v, bool),
+            "float": lambda v: isinstance(v, int | float) and not isinstance(v, bool),
+            "selection": lambda v: v
+            in [option[0] for option in spec.get("options", [])],
+            "char": lambda v: isinstance(v, str),
+        }.get(field_type)
+        if valid and not valid(value):
+            raise ValidationError(
+                self.env._(
+                    "%(field)s has an invalid value: %(value)r.",
+                    field=label,
+                    value=value,
+                )
+            )
+        if field_type not in ("integer", "float"):
+            return
+        if spec.get("allow_zero") and value == 0:
+            return
+        low, high = spec.get("min"), spec.get("max")
+        if (low is not None and value < low) or (high is not None and value > high):
+            raise ValidationError(
+                self.env._(
+                    "%(field)s must be %(zero)sbetween %(low)s and %(high)s.",
+                    field=label,
+                    zero=self.env._("0 or ") if spec.get("allow_zero") else "",
+                    low=low,
+                    high=high,
+                )
+            )
 
     @api.constrains(*REPORT_PLACEHOLDER_FIELDS)
     def _check_report_footer_placeholders(self):

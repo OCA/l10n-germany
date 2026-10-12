@@ -57,7 +57,7 @@ class ReportFooterCommon:
                     '<p>Solutions by <t t-out="object.name">nobody</t></p>'
                 ),
                 "street": "Musterstraße 1",
-                "report_footer_margin_bottom": 0,
+                "report_layout_config": {},
             }
         )
         cls.partner = cls.env["res.partner"].create({"name": "Max Mustermann"})

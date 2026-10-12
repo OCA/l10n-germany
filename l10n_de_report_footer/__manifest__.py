@@ -20,6 +20,8 @@
     "assets": {
         "web.assets_backend": [
             "l10n_de_report_footer/static/src/js/report_preview_highlight.esm.js",
+            "l10n_de_report_footer/static/src/js/report_layout_config_field.esm.js",
+            "l10n_de_report_footer/static/src/xml/report_layout_config_field.xml",
         ],
         "web.report_assets_common": [
             "l10n_de_report_footer/static/src/scss/report_preview_highlight.scss",

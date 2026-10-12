@@ -62,9 +62,14 @@ class LayoutDin5008Mixin(models.AbstractModel):
     _name = "layout.din5008.mixin"
     _description = "DIN 5008 Layout Helpers"
 
+    def _layout_din5008_option(self, name):
+        """Value of the DIN 5008 setting ``name`` (stored or declared default)."""
+        return self._get_report_layout_config_value("din5008." + name)
+
     def _layout_din5008_separator(self):
         return DIN5008_SENDER_SEPARATORS.get(
-            self.layout_din5008_sender_separator, DIN5008_SENDER_SEPARATORS["pipe"]
+            self._layout_din5008_option("sender_separator"),
+            DIN5008_SENDER_SEPARATORS["pipe"],
         )
 
     def _layout_din5008_sender_line(self):
@@ -86,7 +91,7 @@ class LayoutDin5008Mixin(models.AbstractModel):
         self.ensure_one()
         partner = self.partner_id
         separator = self._layout_din5008_separator()
-        indicator = self.layout_din5008_sender_country or "none"
+        indicator = self._layout_din5008_option("sender_country") or "none"
         parts = [self.name or ""]
         if partner:
             country = partner.country_id
@@ -111,11 +116,12 @@ class LayoutDin5008Mixin(models.AbstractModel):
         """Return inline styles and CSS for the given DIN 5008 form ('A' or 'B')."""
         self.ensure_one()
         spec = DIN5008_FORMS.get(form) or DIN5008_FORMS["A"]
-        offset_top = self.layout_din5008_address_offset_top or 0
-        address_height = self.layout_din5008_address_height or DIN5008_ADDRESS_HEIGHT
-        info_left = self.layout_din5008_info_left or DIN5008_INFO_LEFT
-        info_width = self.layout_din5008_info_width or DIN5008_INFO_WIDTH
-        remark_height = self.layout_din5008_remark_zone_height or 0
+        option = self._layout_din5008_option
+        offset_top = option("address_offset_top") or 0
+        address_height = option("address_height") or DIN5008_ADDRESS_HEIGHT
+        info_left = option("info_left") or DIN5008_INFO_LEFT
+        info_width = option("info_width") or DIN5008_INFO_WIDTH
+        remark_height = option("remark_zone_height") or 0
         recipient_top = DIN5008_SENDER_ZONE_HEIGHT + remark_height
         scope = f".o_layout_din5008.{self._layout_din5008_scope_class()}"
         company_css = (

@@ -15,7 +15,6 @@
         "views/report_templates.xml",
         "data/report_paperformat.xml",
         "data/report_layout.xml",
-        "wizard/base_document_layout_views.xml",
     ],
     "assets": {
         "web.report_assets_common": [

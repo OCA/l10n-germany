@@ -10,6 +10,23 @@ LOGO_PNG = (
 COMPANY_DETAILS = "<p>Acme GmbH<br/>Musterstraße 1<br/>12345 Berlin</p>"
 REPORT_FOOTER = "<p>Tel. +49 30 123456 · info@acme.example · Amtsgericht Berlin</p>"
 
+# layout settings of the test company (report_layout_config)
+DIN5008_TEST_CONFIG = {
+    "page.margin_bottom": 0,
+    "din5008.address_offset_top": 0,
+    "din5008.address_height": 45,
+    "din5008.info_left": 125,
+    "din5008.info_width": 75,
+    "din5008.remark_zone_height": 0,
+    "din5008.logo_position": "left",
+    "din5008.fold_marks": True,
+    "din5008.hole_mark": True,
+    "din5008.sender_line": True,
+    "din5008.sender_separator": "pipe",
+    "din5008.sender_country": "none",
+    "din5008.informations_position": "beside",
+}
+
 # Self-contained report using the conventions of the standard reports:
 # address, information_block, layout_document_title and #informations.
 TEST_REPORT_ARCH = """
@@ -95,22 +112,10 @@ class LayoutDin5008Common(ReportFooterCommon):
                 "external_report_layout_id": cls.layout_a.id,
                 "paperformat_id": cls.paperformat_a.id,
                 "company_details": COMPANY_DETAILS,
-                "vat": "DE123456789",
+                "vat": "DE123456788",
                 "report_footer": REPORT_FOOTER,
                 "logo": LOGO_PNG,
-                "report_footer_margin_bottom": 0,
-                "layout_din5008_address_offset_top": 0,
-                "layout_din5008_address_height": 45,
-                "layout_din5008_info_left": 125,
-                "layout_din5008_info_width": 75,
-                "layout_din5008_remark_zone_height": 0,
-                "layout_din5008_logo_position": "left",
-                "layout_din5008_fold_marks": True,
-                "layout_din5008_hole_mark": True,
-                "layout_din5008_sender_line": True,
-                "layout_din5008_sender_separator": "pipe",
-                "layout_din5008_sender_country": "none",
-                "layout_din5008_informations_position": "beside",
+                "report_layout_config": dict(DIN5008_TEST_CONFIG),
             }
         )
         cls.partner = cls.env["res.partner"].create({"name": "Max Mustermann"})
@@ -130,6 +135,18 @@ class LayoutDin5008Common(ReportFooterCommon):
                 "report_type": "qweb-pdf",
             }
         )
+
+    def _write_config(self, values):
+        """Merge layout settings (``{dotted key: value}``) into the company."""
+        self.company._update_report_layout_config(values)
+
+    @staticmethod
+    def _set_wizard_config(wizard, values):
+        """Merge layout settings into the (unsaved) wizard of a ``Form``."""
+        wizard.report_layout_config = {
+            **(wizard.report_layout_config or {}),
+            **values,
+        }
 
     def _set_form(self, form):
         layout = self.layout_a if form == "A" else self.layout_b
