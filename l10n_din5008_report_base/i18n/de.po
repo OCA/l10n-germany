@@ -1,0 +1,351 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_din5008_report_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-13 13:12+0000\n"
+"PO-Revision-Date: 2026-10-13 13:12+0000\n"
+"Last-Translator: Nils Coenen <nils.coenen@nico-solutions.de>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"!important;\n"
+"                                max-height:"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"&amp;.din_page {\n"
+"                    &amp;.header {\n"
+"                        table {\n"
+"                            img {\n"
+"                                float:"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "Add"
+msgstr "Hinzufügen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Address Margin Left"
+msgstr "Linker Adressrand"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Address Separator"
+msgstr "Adress-Trennzeichen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Address Separator Gap"
+msgstr "Abstand zum Adress-Trennzeichen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "Apply"
+msgstr "Anwenden"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.esm.js:0
+msgid ""
+"Are you sure you want to reset the configuration to its default values?"
+msgstr ""
+"Sind Sie sicher, dass Sie die Konfiguration auf die Standardwerte zurücksetzen möchten?"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.esm.js:0
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model,name:l10n_din5008_report_base.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model,name:l10n_din5008_report_base.model_base_document_layout
+msgid "Company Document Layout"
+msgstr "Dokumentenlayout des Unternehmens"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Company Logo Margin Bottom/Top"
+msgstr "Firmenlogo – Abstand unten/oben"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Company Logo Margin Right/Left"
+msgstr "Firmenlogo – Abstand rechts/links"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Company Logo Position"
+msgstr "Position des Unternehmenslogos"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Company Logo Size"
+msgstr "Größe des Unternehmenslogos"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model.fields,help:l10n_din5008_report_base.field_base_document_layout__l10n_din5008_config
+#: model:ir.model.fields,help:l10n_din5008_report_base.field_res_company__l10n_din5008_config
+msgid "Configuration for DIN 5008 reports."
+msgstr "Konfiguration für DIN 5008 Berichte."
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.xml:0
+msgid "Configure parameters"
+msgstr "Parameter konfigurieren"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Country Code"
+msgstr "Ländercode"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Country Indicator"
+msgstr "Länderkennzeichnung"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Country Name"
+msgstr "Ländername"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_base_document_layout__l10n_din5008_config
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_res_company__l10n_din5008_config
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.view_base_document_layout_inherit_din5008_config
+msgid "DIN 5008 Configuration"
+msgstr "DIN 5008 Konfiguration"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_base_document_layout__l10n_din5008_config_modified
+msgid "DIN 5008 Configuration Modified"
+msgstr "DIN 5008 Konfiguration geändert"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "DIN-5008-Preview"
+msgstr "DIN-5008-Vorschau"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_base_document_layout__display_name
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_res_company__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Fold Marks"
+msgstr "Falzmarken"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Font Size Scale Factor"
+msgstr "Skalierungsfaktor Schriftgröße"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Header"
+msgstr "Kopfbereich"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_base_document_layout__id
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:l10n_din5008_report_base.field_res_company__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Left"
+msgstr "Links"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Margin Bottom"
+msgstr "Unterer Rand"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Marks"
+msgstr "Markierungen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "No DIN 5008 settings available."
+msgstr "Keine DIN 5008 Einstellungen verfügbar."
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "No Indicator"
+msgstr "Kein Kennzeichen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Page Layout"
+msgstr "Seitenlayout"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Punch/Hole Mark"
+msgstr "Lochmarke"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Receiver Address(es)"
+msgstr "Empfängeradresse(n)"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "Remove"
+msgstr "Entfernen"
+
+#. module: l10n_din5008_report_base
+#: model:ir.model,name:l10n_din5008_report_base.model_ir_actions_report
+msgid "Report Action"
+msgstr "Berichtsaktion"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.esm.js:0
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.xml:0
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.esm.js:0
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_field/din5008_config_field.xml:0
+msgid "Reset DIN 5008 Configuration"
+msgstr "DIN 5008 Konfiguration zrücksetzen"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Right"
+msgstr "Rechts"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_registry.esm.js:0
+msgid "Sender Address"
+msgstr "Absenderadresse"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.esm.js:0
+msgid "The DIN 5008 preview could not be loaded."
+msgstr "Die DIN 5008 Vorschau konnte nicht geladen werden."
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.esm.js:0
+msgid "The value is invalid."
+msgstr "Der Wert ist ungültig."
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "Preview"
+msgstr "Vorschau"
+
+#. module: l10n_din5008_report_base
+#. odoo-javascript
+#: code:addons/l10n_din5008_report_base/static/src/components/din5008_config_dialog/din5008_config_dialog.xml:0
+msgid "Preview is being updated…"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"em !important;\n"
+"                                margin-left:"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"em !important;\n"
+"                            }\n"
+"\n"
+"                            #din5008_report_main_address &gt; .colored_address {\n"
+"                                font-size:"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"mm !important;\n"
+"                            }\n"
+"                        }\n"
+"                    }\n"
+"\n"
+"                    &amp;.invoice_note {\n"
+"                        tr {\n"
+"                            .address#din5008_report_main_address,\n"
+"                            .shipping_address,\n"
+"                            .invoice_address {\n"
+"                                font-size: 1em !important;\n"
+"                            }\n"
+"\n"
+"                            #din5008_report_main_address &gt; span,\n"
+"                            .shipping_address,\n"
+"                            .invoice_address {\n"
+"                                font-size:"
+msgstr ""
+
+#. module: l10n_din5008_report_base
+#: model_terms:ir.ui.view,arch_db:l10n_din5008_report_base.din5008_css_extend_l10n_din5008_inherit_config
+msgid ""
+"mm !important;\n"
+"                            }\n"
+"                        }\n"
+"                    }\n"
+"                }"
+msgstr ""
