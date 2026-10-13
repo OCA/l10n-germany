@@ -12,3 +12,10 @@ $o-report-preview-highlight-color: #e46e78 !default;
 html[data-report-preview-highlight="footer"] .footer {
     @include o-report-preview-highlight;
 }
+
+// Address, tagline and footer text of the document layout
+html[data-report-preview-highlight="company_details"] .o_report_company_details,
+html[data-report-preview-highlight="tagline"] .o_report_tagline,
+html[data-report-preview-highlight="footer_text"] .o_report_footer_text {
+    @include o-report-preview-highlight;
+}

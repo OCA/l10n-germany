@@ -49,6 +49,7 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
             footer, ".//div[contains(@class, 'din5008_footer_text')]"
         )
         self.assertIn("Tel. +49 30 123456", footer_text.text_content())
+        self.assertIn("o_report_footer_text", footer_text.get("class"))
         content = self._one(footer, ".//div[contains(@class, 'o_footer_content')]")
         self.assertIs(content.getnext(), footer_text)
         self.assertIsNone(footer.get("style"))
@@ -64,7 +65,9 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
 
         # sender line above the address window
         sender = self._one(article, ".//div[@class='din5008_sender_line']")
-        self.assertEqual(sender.text, "Acme GmbH | Musterstraße 1 | 12345 Berlin")
+        self.assertEqual(
+            sender.text_content(), "Acme GmbH | Musterstraße 1 | 12345 Berlin"
+        )
         self.assertEqual(sender.get("style"), "top: 0mm;")
 
         # standard address row with the information block after the address
@@ -154,22 +157,34 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
     def test_sender_line_options(self):
         self._write_config(
             {
-                "din5008.sender_separator": "middot",
+                "din5008.sender_separator": "·",
                 "din5008.sender_country": "code",
+                "din5008.sender_separator_gap": 1,
+                "din5008.sender_separator_font_scale": 0.8,
             }
         )
         tree = self._render_tree()
         sender = self._one(tree, "//div[@class='din5008_sender_line']")
         # the address text is printed as sender line, joined by the separator
-        self.assertEqual(sender.text, "Acme GmbH · Musterstraße 1 · 12345 Berlin")
+        self.assertEqual(
+            sender.text_content(), "Acme GmbH · Musterstraße 1 · 12345 Berlin"
+        )
         self.assertEqual(sender.get("style"), "top: 0mm;")
+        separators = sender.xpath("./span[@class='din5008_sender_separator']")
+        self.assertEqual(len(separators), 2)
+        self.assertEqual(separators[0].get("style"), "margin: 0 1mm; font-size: 0.8em;")
         # the formatted placeholder in the address applies the country option
         self.company.company_details = (
             '<p><t t-out="object.layout_din5008_sender_line_text"/></p>'
         )
         tree = self._render_tree()
         sender = self._one(tree, "//div[@class='din5008_sender_line']")
-        self.assertEqual(sender.text, "Acme GmbH · Musterstraße 1 · DE-12345 Berlin")
+        self.assertEqual(
+            sender.text_content(), "Acme GmbH · Musterstraße 1 · DE-12345 Berlin"
+        )
+        self.assertEqual(
+            len(sender.xpath("./span[@class='din5008_sender_separator']")), 2
+        )
 
     def test_custom_geometry(self):
         self._write_config(
@@ -231,3 +246,31 @@ class TestHtmlLayout(LayoutDin5008Common, TransactionCase):
             footer, ".//ul[@name='din5008_footer_legal']/li[@class='din5008_test_line']"
         )
         lines.unlink()
+
+    def test_logo_height(self):
+        tree = self._render_tree()
+        logo = self._one(tree, "//img[@class='o_company_logo_small']")
+        self.assertIsNone(logo.get("style"))
+        self._write_config({"din5008.logo_height": 12})
+        tree = self._render_tree()
+        logo = self._one(tree, "//img[@class='o_company_logo_small']")
+        self.assertEqual(logo.get("style"), "max-height: 12mm;")
+
+    def test_footer_lines(self):
+        """The footer lines of the base module are printed in the legal block."""
+        Company = self.env["res.company"]
+        if "l10n_de_widnr" not in Company._fields:
+            self.skipTest("l10n_de is not installed")
+        self.company.write({"l10n_de_widnr": "DE123456788-00001"})
+        self._write_config({"footer.show_de_widnr": True})
+        tree = self._render_tree()
+        footer = self._one(tree, FOOTER)
+        legal = self._one(footer, ".//ul[@name='din5008_footer_legal']")
+        lines = [" ".join(li.text_content().split()) for li in legal.xpath("./li")]
+        label = Company._fields["l10n_de_widnr"]._description_string(self.env)
+        self.assertIn(f"{label}: DE123456788-00001", lines)
+        # after the VAT number
+        self.assertLess(
+            lines.index(next(line for line in lines if "DE123456788" in line)),
+            lines.index(f"{label}: DE123456788-00001"),
+        )

@@ -46,11 +46,11 @@ standard Odoo layouts, the DIN 5008 layout shipped with Odoo
    ``html_editor_icon`` (OCA/web) installed, the same texts offer an
    ``/icon`` command to insert Font Awesome pictograms, for example in
    front of the phone number or the e-mail address.
--  **Footer lines**: a shared QWeb hook
-   (``l10n_de_report_footer.footer_lines``) in the company address block
-   of every layout. Modules such as
-   ``l10n_de_report_footer_representative`` add lines (representatives,
-   register court, ...) once and they appear in every layout.
+-  **Footer lines**: the German tax numbers of the company (with
+   ``l10n_de``) are printed as switchable lines of the company block of
+   every layout. A shared QWeb hook
+   (``l10n_de_report_footer.footer_lines``) lets other modules add lines
+   once for every layout.
 -  **Layout settings**: the settings of the document layout are stored
    in one JSON field of the company. Modules declare their settings in
    Python (key, type, default, range, section) and the document layout
@@ -60,9 +60,9 @@ standard Odoo layouts, the DIN 5008 layout shipped with Odoo
    increased in the document layout when the footer needs more space
    than the paper format reserves (previously the module
    ``l10n_din5008_report_margin_bottom``).
--  **Preview highlight**: while a field of the document layout that
-   changes a size or a margin is focused, the affected area is outlined
-   in the preview.
+-  **Preview highlight**: while the address, the tagline, the footer
+   text or a field of the document layout that changes a size or a
+   margin is focused, the affected area is outlined in the preview.
 
 **Table of contents**
 
@@ -81,26 +81,43 @@ Go to *Settings > Companies > Configure Document Layout*.
    website, VAT, company registry, ...) can be used by everyone; other
    expressions are reserved to administrators and members of the *Mail
    Template Editor* group, like in mail templates.
--  **Bottom Margin (mm)** (tab *Page* of the layout settings below the
-   paper format): bottom page margin reserved for the footer, between 5
-   and 60 mm. 0 keeps the margin of the paper format. Clear the field to
-   restore the default.
 
-While the bottom margin field is focused, the footer area is outlined in
-the preview.
+The layout settings below the paper format are grouped in tabs. Every
+change is shown in the preview at once; the settings are stored with the
+company when the wizard is saved.
+
+Tab **Footer** (with the module ``l10n_de``):
+
+-  **Show St.-Nr.** and **Show W-IdNr.**: print the tax number and the
+   business identification number of the company as labelled lines of
+   the company block of every layout.
+
+Tab **Page**:
+
+-  **Bottom Margin (mm)**: bottom page margin reserved for the footer,
+   between 5 and 60 mm. 0 keeps the margin of the paper format. Clear
+   the field to restore the default.
+
+While one of the texts or the bottom margin field is focused, the
+matching area of the preview (address block, tagline, footer text or
+footer) is outlined.
 
 Usage
 =====
 
 Print any report using a document layout. The footer text is printed
 with the placeholders replaced by the data of the company that issues
-the document, followed by the footer lines added by other modules.
+the document; the company block prints the tax numbers enabled in the
+document layout, followed by the footer lines added by other modules.
 
 Developers: call ``<t t-call="l10n_de_report_footer.footer_lines"/>``
 inside a ``<ul>`` of a custom layout and add ``<li>`` elements to the
 hook ``//t[@name='l10n_de_report_footer_lines']`` of that template to
-print additional lines in every layout. Give a form field the class
-``o_report_preview_highlight_<key>`` and style
+print additional lines in every layout. The template receives
+``company`` either as the company or, in the wizard preview, as the
+wizard; read company fields through
+``company._get_report_footer_company_field("field")``. Give a form field
+the class ``o_report_preview_highlight_<key>`` and style
 ``html[data-report-preview-highlight="<key>"] <selector>`` in the report
 assets to outline an area of the layout preview while the field is
 focused.
@@ -126,7 +143,10 @@ company and to the wizard. Inherit the mixin
                    "type": "boolean",
                    "default": True,
                    # optional: "min", "max", "step", "allow_zero" (numbers),
-                   # "options": [(value, label), ...] (selection), "help",
+                   # "options": [(value, label), ...] (selection, or presets
+                   # offered next to the text input of a char setting),
+                   # "maxlength" (char), "validate": "_my_check" (method of
+                   # the mixin raising ValidationError), "help",
                    # "highlight": "footer", "visible_if": {"other.key": True},
                    # "layouts": ["my_module.external_layout_x"]
                }
@@ -138,7 +158,10 @@ company is written. Read it in templates and code with
 ``company._get_report_layout_config_value("my_module.show_bank")``,
 which returns the declared default while nothing is stored. The wizard
 offers the setting on the tab of its section for the layouts listed in
-``layouts`` (all layouts when absent).
+``layouts`` (all layouts when absent). Use
+``_get_report_footer_section()`` to add a setting to the *Footer* tab
+and ``_get_report_footer_scope_class()`` to scope CSS printed in a
+``<style>`` element inside the footer of a layout.
 
 Bug Tracker
 ===========

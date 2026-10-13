@@ -1,12 +1,15 @@
 Print any report using a document layout. The footer text is printed with
 the placeholders replaced by the data of the company that issues the
-document, followed by the footer lines added by other modules.
+document; the company block prints the tax numbers enabled in the document
+layout, followed by the footer lines added by other modules.
 
 Developers: call `<t t-call="l10n_de_report_footer.footer_lines"/>` inside a
 `<ul>` of a custom layout and add `<li>` elements to the hook
 `//t[@name='l10n_de_report_footer_lines']` of that template to print
-additional lines in every layout. Give a form field the class
-`o_report_preview_highlight_<key>` and style
+additional lines in every layout. The template receives `company` either as
+the company or, in the wizard preview, as the wizard; read company fields
+through `company._get_report_footer_company_field("field")`. Give a form
+field the class `o_report_preview_highlight_<key>` and style
 `html[data-report-preview-highlight="<key>"] <selector>` in the report assets
 to outline an area of the layout preview while the field is focused.
 
@@ -29,7 +32,10 @@ class ReportLayoutConfigMixin(models.AbstractModel):
                 "type": "boolean",
                 "default": True,
                 # optional: "min", "max", "step", "allow_zero" (numbers),
-                # "options": [(value, label), ...] (selection), "help",
+                # "options": [(value, label), ...] (selection, or presets
+                # offered next to the text input of a char setting),
+                # "maxlength" (char), "validate": "_my_check" (method of
+                # the mixin raising ValidationError), "help",
                 # "highlight": "footer", "visible_if": {"other.key": True},
                 # "layouts": ["my_module.external_layout_x"]
             }
@@ -42,4 +48,6 @@ written. Read it in templates and code with
 `company._get_report_layout_config_value("my_module.show_bank")`, which
 returns the declared default while nothing is stored. The wizard offers the
 setting on the tab of its section for the layouts listed in `layouts` (all
-layouts when absent).
+layouts when absent). Use `_get_report_footer_section()` to add a setting to
+the *Footer* tab and `_get_report_footer_scope_class()` to scope CSS printed
+in a `<style>` element inside the footer of a layout.

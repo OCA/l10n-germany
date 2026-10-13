@@ -3,7 +3,7 @@
 import re
 
 import lxml.html
-from markupsafe import Markup
+from markupsafe import Markup, escape
 
 from odoo import models
 from odoo.tools import html2plaintext
@@ -15,8 +15,14 @@ DIN5008_FORMS = {
     "B": {"header_height": 45, "fold_marks": (105, 210)},
 }
 DIN5008_HOLE_MARK = 148.5
-# Sender line (Rücksendeangabe): separators
-DIN5008_SENDER_SEPARATORS = {"pipe": " | ", "bullet": " • ", "middot": " · "}
+# Letterhead logo: maximum height (mm) per form, see the stylesheet
+DIN5008_LOGO_HEIGHTS = {"A": 15, "B": 30}
+# Sender line (Rücksendeangabe): separator presets; the setting stores the
+# character itself, the names are accepted for values stored by older versions
+DIN5008_SENDER_SEPARATORS = {"pipe": "|", "bullet": "•", "middot": "·"}
+# Recipient address: font size (pt) and line height (mm), see the stylesheet
+DIN5008_ADDRESS_FONT_SIZE = 10
+DIN5008_ADDRESS_LINE_HEIGHT = 4.55
 # Address window: 20 mm from the left edge, 45 mm high (the 85 mm width is
 # fixed in the stylesheet).
 DIN5008_ADDRESS_LEFT = 20
@@ -66,14 +72,33 @@ class LayoutDin5008Mixin(models.AbstractModel):
         """Value of the DIN 5008 setting ``name`` (stored or declared default)."""
         return self._get_report_layout_config_value("din5008." + name)
 
+    def _layout_din5008_separator_char(self):
+        """Separator of the sender line: the stored text or a preset name."""
+        value = str(self._layout_din5008_option("sender_separator") or "").strip()
+        value = DIN5008_SENDER_SEPARATORS.get(value, value)
+        return value or DIN5008_SENDER_SEPARATORS["pipe"]
+
     def _layout_din5008_separator(self):
-        return DIN5008_SENDER_SEPARATORS.get(
-            self._layout_din5008_option("sender_separator"),
-            DIN5008_SENDER_SEPARATORS["pipe"],
+        """Separator of the sender line text, surrounded by spaces."""
+        return f" {self._layout_din5008_separator_char()} "
+
+    def _layout_din5008_separator_markup(self):
+        """Separator of the printed sender line with its gap and font scale."""
+        styles = []
+        gap = self._layout_din5008_option("sender_separator_gap") or 0
+        if gap:
+            styles.append(f"margin: 0 {gap:g}mm;")
+        scale = self._layout_din5008_option("sender_separator_font_scale") or 1
+        if scale != 1:
+            styles.append(f"font-size: {scale:g}em;")
+        style = Markup(' style="%s"') % " ".join(styles) if styles else Markup("")
+        return Markup(' <span class="din5008_sender_separator"%s>%s</span> ') % (
+            style,
+            self._layout_din5008_separator_char(),
         )
 
-    def _layout_din5008_sender_line(self):
-        """Return the sender line (Rücksendeangabe) printed above the recipient.
+    def _layout_din5008_sender_line_plain(self):
+        """Sender line (Rücksendeangabe) as plain text.
 
         The address text of the document layout (with rendered placeholders)
         is printed as a single line, its lines joined by the configured
@@ -85,6 +110,25 @@ class LayoutDin5008Mixin(models.AbstractModel):
         if not lines:
             return self._layout_din5008_format_sender_line()
         return self._layout_din5008_separator().join(lines)
+
+    def _layout_din5008_sender_line(self):
+        """Sender line printed above the recipient, as HTML.
+
+        The parts of the plain text line are joined by the separator markup,
+        which carries the configured gap and font scale; separators typed in
+        the address text (e.g. through the sender line placeholder) are
+        styled as well.
+        """
+        self.ensure_one()
+        separator = self._layout_din5008_separator()
+        parts = [
+            part.strip()
+            for part in self._layout_din5008_sender_line_plain().split(separator)
+            if part.strip()
+        ]
+        return self._layout_din5008_separator_markup().join(
+            escape(part) for part in parts
+        )
 
     def _layout_din5008_format_sender_line(self):
         """Company name and address fields formatted as a single line."""
@@ -123,6 +167,8 @@ class LayoutDin5008Mixin(models.AbstractModel):
         info_width = option("info_width") or DIN5008_INFO_WIDTH
         remark_height = option("remark_zone_height") or 0
         recipient_top = DIN5008_SENDER_ZONE_HEIGHT + remark_height
+        font_scale = option("address_font_scale") or 1
+        logo_height = option("logo_height") or 0
         scope = f".o_layout_din5008.{self._layout_din5008_scope_class()}"
         company_css = (
             f"{scope} .address.row {{ margin-top: {offset_top}mm; "
@@ -134,8 +180,15 @@ class LayoutDin5008Mixin(models.AbstractModel):
             f"{{ margin-left: {info_left - DIN5008_ADDRESS_LEFT}mm; "
             f"width: {info_width}mm; }}\n"
         )
+        if font_scale != 1:
+            company_css += (
+                f"{scope} .address.row > div[name='address'] "
+                f"{{ font-size: {DIN5008_ADDRESS_FONT_SIZE * font_scale:g}pt; "
+                f"line-height: {DIN5008_ADDRESS_LINE_HEIGHT * font_scale:g}mm; }}\n"
+            )
         return {
             "header": f"height: {spec['header_height']}mm;",
+            "logo": f"max-height: {logo_height}mm;" if logo_height else None,
             "sender_line": f"top: {offset_top}mm;",
             "fold_marks": [f"top: {top}mm;" for top in spec["fold_marks"]],
             "hole_mark": f"top: {DIN5008_HOLE_MARK}mm;",

@@ -1,5 +1,6 @@
 # Copyright 2026 glueckkanja AG
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import lxml.etree
 from markupsafe import Markup
 
 from odoo.exceptions import AccessError, ValidationError
@@ -20,7 +21,7 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
         self.assertIn('t-out="object.phone"', self.company.report_footer)
         rendered = self.company._render_report_footer()
         self.assertIsInstance(rendered, Markup)
-        self.assertIn("Tel. +49 30 123456 · <span>DE123456789</span>", rendered)
+        self.assertIn("Tel. +49 30 123456 · <span>DE123456788</span>", rendered)
         self.assertIn('class="fa fa-phone"', rendered)
         self.assertNotIn("t-out", rendered)
         # default value of a placeholder when the field is empty
@@ -48,7 +49,7 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
             self.company.external_report_layout_id = self.env.ref(layout)
             tree = self._render_tree()
             html = self._render_html()
-            self.assertIn("Tel. +49 30 123456 · <span>DE123456789</span>", html, layout)
+            self.assertIn("Tel. +49 30 123456 · <span>DE123456788</span>", html, layout)
             self.assertRegex(html, r"Acme GmbH<br/?>Musterstraße 1", layout)
             self.assertIn(f"Solutions by {self.company.name}", html, layout)
             self.assertNotIn("t-out=", html, layout)
@@ -56,7 +57,28 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
                 "//ul[@name='company_address_list']/li[@class='test_footer_line']"
             )
             self.assertEqual(len(lines), 1, layout)
+            # the texts carry the classes of the preview highlight
+            for css_class, text in (
+                ("o_report_footer_text", "Tel. +49 30 123456"),
+                ("o_report_company_details", "Musterstraße 1"),
+                ("o_report_tagline", "Solutions by"),
+            ):
+                nodes = tree.xpath(f"//*[contains(@class, '{css_class}')]")
+                self.assertEqual(len(nodes), 1, f"{layout} {css_class}")
+                self.assertIn(text, nodes[0].text_content(), f"{layout} {css_class}")
         extension.unlink()
+
+    def test_preview_highlight_fields(self):
+        """The layout texts of the wizard set the highlight key of the preview."""
+        arch = self.env["base.document.layout"].get_view(view_type="form")["arch"]
+        tree = lxml.etree.fromstring(arch)
+        for field, key in (
+            ("report_footer", "footer_text"),
+            ("company_details", "company_details"),
+            ("report_header", "tagline"),
+        ):
+            node = tree.xpath(f"//field[@name='{field}']")[0]
+            self.assertIn(f"o_report_preview_highlight_{key}", node.get("class"))
 
     def test_restricted_user_cannot_use_advanced_expressions(self):
         user = self.env["res.users"].create(
@@ -200,7 +222,7 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
         with Form(self.env["base.document.layout"]) as wizard:
             self.assertEqual(wizard.report_footer_render_model, "res.company")
             self.assertIn(
-                "Tel. +49 30 123456 · <span>DE123456789</span>", wizard.preview
+                "Tel. +49 30 123456 · <span>DE123456788</span>", wizard.preview
             )
             self.assertNotIn("t-out=", wizard.preview)
             wizard.report_footer = '<p>Mail <t t-out="object.email">-</t></p>'
@@ -208,7 +230,7 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
             wizard.report_header = '<p>Call <t t-out="object.phone"/></p>'
             self.assertIn("Call +49 30 123456", wizard.preview)
             wizard.company_details = '<p>VAT <t t-out="object.vat"/></p>'
-            self.assertIn("VAT DE123456789", wizard.preview)
+            self.assertIn("VAT DE123456788", wizard.preview)
             # the settings offered for the selected layout
             keys = [spec["key"] for spec in wizard.report_layout_config_fields]
             self.assertIn("page.margin_bottom", keys)
@@ -225,3 +247,92 @@ class TestReportFooter(ReportFooterCommon, TransactionCase):
         with self.assertRaises(ValidationError):
             with Form(self.env["base.document.layout"]) as wizard:
                 wizard.report_layout_config = {"page.margin_bottom": 70}
+
+    def test_footer_specs(self):
+        Company = self.env["res.company"]
+        specs = Company._get_report_layout_config_fields_by_key()
+        # the tax numbers of l10n_de are offered when the module is installed
+        for key, field_name in (
+            ("footer.show_de_tax_number", "l10n_de_stnr"),
+            ("footer.show_de_widnr", "l10n_de_widnr"),
+        ):
+            if field_name not in Company._fields:
+                self.assertNotIn(key, specs)
+                continue
+            self.assertIn(key, specs)
+            self.assertEqual(specs[key]["section"], "footer")
+            self.assertEqual(specs[key]["section_label"], "Footer")
+            self.assertIs(specs[key]["default"], False)
+            self.assertNotIn("layouts", specs[key])
+            self.assertIn(
+                Company._fields[field_name]._description_string(self.env),
+                specs[key]["label"],
+            )
+            self.assertIs(self.company._get_report_layout_config_value(key), False)
+            with self.assertRaises(ValidationError):
+                self.company._set_report_layout_config_value(key, value=1)
+
+    def test_footer_lines(self):
+        Company = self.env["res.company"]
+        if "l10n_de_stnr" not in Company._fields:
+            self.skipTest("l10n_de is not installed")
+        # the tax number is validated against the state of the company
+        self.company.partner_id.write(
+            {
+                "country_id": self.env.ref("base.de").id,
+                "state_id": self.env.ref("base.state_de_by").id,
+            }
+        )
+        self.company.write(
+            {"l10n_de_stnr": "9181081508155", "l10n_de_widnr": "DE123456788-00001"}
+        )
+        tree = self._render_tree()
+        self.assertFalse(tree.xpath("//li[@name='de_tax_number']"))
+        self.assertFalse(tree.xpath("//li[@name='de_widnr']"))
+        self.company._update_report_layout_config(
+            {"footer.show_de_tax_number": True, "footer.show_de_widnr": True}
+        )
+        tree = self._render_tree()
+        address_list = tree.xpath("//ul[@name='company_address_list']")[0]
+        tax_number = address_list.xpath("./li[@name='de_tax_number']")[0]
+        label = Company._fields["l10n_de_stnr"]._description_string(self.env)
+        self.assertEqual(
+            " ".join(tax_number.text_content().split()), f"{label}: 9181081508155"
+        )
+        widnr = address_list.xpath("./li[@name='de_widnr']")[0]
+        self.assertIn("DE123456788-00001", widnr.text_content())
+        # the wizard previews the lines of its company
+        with Form(self.env["base.document.layout"]) as wizard:
+            keys = [spec["key"] for spec in wizard.report_layout_config_fields]
+            self.assertIn("footer.show_de_widnr", keys)
+            self.assertIn("DE123456788-00001", wizard.preview)
+            wizard.report_layout_config = {
+                **(wizard.report_layout_config or {}),
+                "footer.show_de_widnr": False,
+            }
+            self.assertNotIn("DE123456788-00001", wizard.preview)
+        self.assertIs(
+            self.company._get_report_layout_config_value("footer.show_de_widnr"),
+            False,
+        )
+
+    def test_company_field_helpers(self):
+        self.company.company_registry = "HRB 1"
+        self.assertEqual(
+            self.company._get_report_footer_company_field("company_registry"), "HRB 1"
+        )
+        self.assertIs(self.company._get_report_footer_company_field("no_field"), False)
+        self.assertEqual(
+            self.company._get_report_footer_company_field_label("company_registry"),
+            self.company._fields["company_registry"]._description_string(self.env),
+        )
+        self.assertEqual(self.company._get_report_footer_company_field_label("x"), "")
+        wizard = self.env["base.document.layout"].new({"company_id": self.company.id})
+        self.assertEqual(wizard._get_report_footer_company(), self.company)
+        self.assertEqual(
+            wizard._get_report_footer_company_field("company_registry"), "HRB 1"
+        )
+        self.assertEqual(
+            self.company._get_report_footer_scope_class(),
+            f"o_report_footer_{self.company.id}",
+        )

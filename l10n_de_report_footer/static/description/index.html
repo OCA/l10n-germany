@@ -389,11 +389,11 @@ placeholders are rendered when a report is printed. With the module
 <tt class="docutils literal">html_editor_icon</tt> (OCA/web) installed, the same texts offer an
 <tt class="docutils literal">/icon</tt> command to insert Font Awesome pictograms, for example in
 front of the phone number or the e-mail address.</li>
-<li><strong>Footer lines</strong>: a shared QWeb hook
-(<tt class="docutils literal">l10n_de_report_footer.footer_lines</tt>) in the company address block
-of every layout. Modules such as
-<tt class="docutils literal">l10n_de_report_footer_representative</tt> add lines (representatives,
-register court, …) once and they appear in every layout.</li>
+<li><strong>Footer lines</strong>: the German tax numbers of the company (with
+<tt class="docutils literal">l10n_de</tt>) are printed as switchable lines of the company block of
+every layout. A shared QWeb hook
+(<tt class="docutils literal">l10n_de_report_footer.footer_lines</tt>) lets other modules add lines
+once for every layout.</li>
 <li><strong>Layout settings</strong>: the settings of the document layout are stored
 in one JSON field of the company. Modules declare their settings in
 Python (key, type, default, range, section) and the document layout
@@ -403,9 +403,9 @@ field or view per setting.</li>
 increased in the document layout when the footer needs more space
 than the paper format reserves (previously the module
 <tt class="docutils literal">l10n_din5008_report_margin_bottom</tt>).</li>
-<li><strong>Preview highlight</strong>: while a field of the document layout that
-changes a size or a margin is focused, the affected area is outlined
-in the preview.</li>
+<li><strong>Preview highlight</strong>: while the address, the tagline, the footer
+text or a field of the document layout that changes a size or a
+margin is focused, the affected area is outlined in the preview.</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -432,24 +432,40 @@ Placeholders on the usual company fields (address, phone, e-mail,
 website, VAT, company registry, …) can be used by everyone; other
 expressions are reserved to administrators and members of the <em>Mail
 Template Editor</em> group, like in mail templates.</li>
-<li><strong>Bottom Margin (mm)</strong> (tab <em>Page</em> of the layout settings below the
-paper format): bottom page margin reserved for the footer, between 5
-and 60 mm. 0 keeps the margin of the paper format. Clear the field to
-restore the default.</li>
 </ul>
-<p>While the bottom margin field is focused, the footer area is outlined in
-the preview.</p>
+<p>The layout settings below the paper format are grouped in tabs. Every
+change is shown in the preview at once; the settings are stored with the
+company when the wizard is saved.</p>
+<p>Tab <strong>Footer</strong> (with the module <tt class="docutils literal">l10n_de</tt>):</p>
+<ul class="simple">
+<li><strong>Show St.-Nr.</strong> and <strong>Show W-IdNr.</strong>: print the tax number and the
+business identification number of the company as labelled lines of
+the company block of every layout.</li>
+</ul>
+<p>Tab <strong>Page</strong>:</p>
+<ul class="simple">
+<li><strong>Bottom Margin (mm)</strong>: bottom page margin reserved for the footer,
+between 5 and 60 mm. 0 keeps the margin of the paper format. Clear
+the field to restore the default.</li>
+</ul>
+<p>While one of the texts or the bottom margin field is focused, the
+matching area of the preview (address block, tagline, footer text or
+footer) is outlined.</p>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
 <p>Print any report using a document layout. The footer text is printed
 with the placeholders replaced by the data of the company that issues
-the document, followed by the footer lines added by other modules.</p>
+the document; the company block prints the tax numbers enabled in the
+document layout, followed by the footer lines added by other modules.</p>
 <p>Developers: call <tt class="docutils literal">&lt;t <span class="pre">t-call=&quot;l10n_de_report_footer.footer_lines&quot;/&gt;</span></tt>
 inside a <tt class="docutils literal">&lt;ul&gt;</tt> of a custom layout and add <tt class="docutils literal">&lt;li&gt;</tt> elements to the
 hook <tt class="docutils literal"><span class="pre">//t[&#64;name='l10n_de_report_footer_lines']</span></tt> of that template to
-print additional lines in every layout. Give a form field the class
-<tt class="docutils literal">o_report_preview_highlight_&lt;key&gt;</tt> and style
+print additional lines in every layout. The template receives
+<tt class="docutils literal">company</tt> either as the company or, in the wizard preview, as the
+wizard; read company fields through
+<tt class="docutils literal"><span class="pre">company._get_report_footer_company_field(&quot;field&quot;)</span></tt>. Give a form field
+the class <tt class="docutils literal">o_report_preview_highlight_&lt;key&gt;</tt> and style
 <tt class="docutils literal"><span class="pre">html[data-report-preview-highlight=&quot;&lt;key&gt;&quot;]</span> &lt;selector&gt;</tt> in the report
 assets to outline an area of the layout preview while the field is
 focused.</p>
@@ -472,7 +488,10 @@ company and to the wizard. Inherit the mixin
 </span>                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;boolean&quot;</span><span class="p">,</span><span class="w">
 </span>                <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span><span class="w">
 </span>                <span class="c1"># optional: &quot;min&quot;, &quot;max&quot;, &quot;step&quot;, &quot;allow_zero&quot; (numbers),</span><span class="w">
-</span>                <span class="c1"># &quot;options&quot;: [(value, label), ...] (selection), &quot;help&quot;,</span><span class="w">
+</span>                <span class="c1"># &quot;options&quot;: [(value, label), ...] (selection, or presets</span><span class="w">
+</span>                <span class="c1"># offered next to the text input of a char setting),</span><span class="w">
+</span>                <span class="c1"># &quot;maxlength&quot; (char), &quot;validate&quot;: &quot;_my_check&quot; (method of</span><span class="w">
+</span>                <span class="c1"># the mixin raising ValidationError), &quot;help&quot;,</span><span class="w">
 </span>                <span class="c1"># &quot;highlight&quot;: &quot;footer&quot;, &quot;visible_if&quot;: {&quot;other.key&quot;: True},</span><span class="w">
 </span>                <span class="c1"># &quot;layouts&quot;: [&quot;my_module.external_layout_x&quot;]</span><span class="w">
 </span>            <span class="p">}</span><span class="w">
@@ -484,7 +503,10 @@ company is written. Read it in templates and code with
 <tt class="docutils literal"><span class="pre">company._get_report_layout_config_value(&quot;my_module.show_bank&quot;)</span></tt>,
 which returns the declared default while nothing is stored. The wizard
 offers the setting on the tab of its section for the layouts listed in
-<tt class="docutils literal">layouts</tt> (all layouts when absent).</p>
+<tt class="docutils literal">layouts</tt> (all layouts when absent). Use
+<tt class="docutils literal">_get_report_footer_section()</tt> to add a setting to the <em>Footer</em> tab
+and <tt class="docutils literal">_get_report_footer_scope_class()</tt> to scope CSS printed in a
+<tt class="docutils literal">&lt;style&gt;</tt> element inside the footer of a layout.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-3">Bug Tracker</a></h2>

@@ -22,7 +22,11 @@ DIN5008_TEST_CONFIG = {
     "din5008.fold_marks": True,
     "din5008.hole_mark": True,
     "din5008.sender_line": True,
-    "din5008.sender_separator": "pipe",
+    "din5008.sender_separator": "|",
+    "din5008.sender_separator_gap": 0,
+    "din5008.sender_separator_font_scale": 1.0,
+    "din5008.logo_height": 0,
+    "din5008.address_font_scale": 1.0,
     "din5008.sender_country": "none",
     "din5008.informations_position": "beside",
 }

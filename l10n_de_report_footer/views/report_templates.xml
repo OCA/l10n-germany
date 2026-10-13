@@ -10,32 +10,55 @@
     </template>
 
     <!--
-        Footer lines shared by all layouts. Modules add <li> elements inside
-        the hook node; the layouts call this template inside their company
-        address list.
+        Footer lines shared by all layouts: the optional German tax numbers of
+        the company, followed by the hook node where other modules add <li>
+        elements. The layouts call this template inside their company address
+        list.
     -->
     <template id="footer_lines" name="Report footer lines">
+        <li
+            t-if="company._get_report_layout_config_value('footer.show_de_tax_number') and company._get_report_footer_company_field('l10n_de_stnr')"
+            name="de_tax_number"
+        >
+            <t
+            t-out="company._get_report_footer_company_field_label('l10n_de_stnr')"
+        />:
+            <span t-out="company._get_report_footer_company_field('l10n_de_stnr')" />
+        </li>
+        <li
+            t-if="company._get_report_layout_config_value('footer.show_de_widnr') and company._get_report_footer_company_field('l10n_de_widnr')"
+            name="de_widnr"
+        >
+            <t
+            t-out="company._get_report_footer_company_field_label('l10n_de_widnr')"
+        />:
+            <span t-out="company._get_report_footer_company_field('l10n_de_widnr')" />
+        </li>
         <t name="l10n_de_report_footer_lines" />
     </template>
 
     <!--
         Standard layouts: render the placeholders of the footer text, the
-        company address and the tagline, add the footer lines to the company
-        address block and show the bottom margin as footer height in the HTML
-        preview (the PDF margin is set by wkhtmltopdf).
+        company address and the tagline (marked with classes for the preview
+        highlight), add the footer lines to the company address block and
+        show the bottom margin as footer height in the HTML preview (the PDF
+        margin is set by wkhtmltopdf).
     -->
     <template id="external_layout_standard" inherit_id="web.external_layout_standard">
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -54,14 +77,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -80,14 +106,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -106,14 +135,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -132,14 +164,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -158,14 +193,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />
@@ -184,14 +222,17 @@
         <xpath expr="//*[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//*[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <xpath expr="//ul[@name='company_address_list']" position="inside">
             <t t-call="l10n_de_report_footer.footer_lines" />

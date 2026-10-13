@@ -61,7 +61,7 @@ class TestPdfPositions(LayoutDin5008Common, HttpCase):
         texts, rects = self._render_pages()[0]
         # sender line inside the 5 mm zone at the top of the address window
         self._assert_box(
-            find_text(texts, "Acme GmbH |"), 25, header, height=5, label="sender line"
+            find_text(texts, "Acme GmbH"), 25, header, height=5, label="sender line"
         )
         # recipient starts below the sender zone (5 mm) and the remark zone
         self._assert_box(

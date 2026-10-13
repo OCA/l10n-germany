@@ -1,5 +1,7 @@
 # Copyright 2026 glueckkanja AG
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import lxml.html
+
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase, tagged
 
@@ -29,6 +31,11 @@ class TestWizard(LayoutDin5008Common, TransactionCase):
             if spec["key"] == key
         )
 
+    @staticmethod
+    def _sender_text(preview):
+        tree = lxml.html.fromstring(preview)
+        return tree.xpath("//div[@class='din5008_sender_line']")[0].text_content()
+
     def test_layout_selection_sets_paperformat(self):
         self.company.write(
             {
@@ -53,7 +60,9 @@ class TestWizard(LayoutDin5008Common, TransactionCase):
             wizard.report_layout_id = self.report_layout_b
             self.assertEqual(wizard.paperformat_id, self.paperformat_b)
             wizard.report_layout_id = self.report_layout_standard
-            self.assertEqual(self._offered_keys(wizard), ["page.margin_bottom"])
+            keys = self._offered_keys(wizard)
+            self.assertFalse([key for key in keys if key.startswith("din5008.")])
+            self.assertIn("page.margin_bottom", keys)
             self.assertEqual(
                 self._offered_section(wizard, "page.margin_bottom"), "page"
             )
@@ -98,7 +107,9 @@ class TestWizard(LayoutDin5008Common, TransactionCase):
             self.assertEqual(wizard.report_layout_id, self.report_layout_a)
             preview = wizard.preview
             self.assertIn("din5008_sender_line", preview)
-            self.assertIn("Acme GmbH | Musterstraße 1 | 12345 Berlin", preview)
+            self.assertEqual(
+                self._sender_text(preview), "Acme GmbH | Musterstraße 1 | 12345 Berlin"
+            )
             self.assertIn("o_layout_din5008", preview)
             self.assertIn('style="height: 27mm;"', preview)
             # "beside" is the default: the information block is relocated
@@ -129,12 +140,13 @@ class TestWizard(LayoutDin5008Common, TransactionCase):
             self._set_wizard_config(
                 wizard,
                 {
-                    "din5008.sender_separator": "bullet",
+                    "din5008.sender_separator": "•",
                     "din5008.sender_country": "code",
                 },
             )
-            self.assertIn(
-                "Acme GmbH • Musterstraße 1 • DE-12345 Berlin", wizard.preview
+            self.assertEqual(
+                self._sender_text(wizard.preview),
+                "Acme GmbH • Musterstraße 1 • DE-12345 Berlin",
             )
             self.assertEqual(
                 self.company.layout_din5008_sender_line_text,

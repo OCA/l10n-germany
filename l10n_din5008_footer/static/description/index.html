@@ -381,9 +381,12 @@ ul.auto-toc {
 <ul class="simple">
 <li>the footer text, the company address block and the tagline are
 printed with the company placeholders rendered;</li>
-<li>the shared footer lines (for example the company representatives of
-<tt class="docutils literal">l10n_de_report_footer_representative</tt>) are printed in the legal
-section of the footer, before the VAT number;</li>
+<li>the shared footer lines (German tax numbers and the lines added by
+other modules) are printed in the legal section of the footer, before
+the VAT number;</li>
+<li>for this layout the account holder of the bank accounts can be
+printed and the widths of the four footer columns can be set in the
+document layout;</li>
 <li>the bottom margin configured in the document layout applies to the
 DIN 5008 reports (previously the module
 <tt class="docutils literal">l10n_din5008_report_margin_bottom</tt>).</li>
@@ -392,17 +395,33 @@ DIN 5008 reports (previously the module
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-5">Maintainers</a></li>
+<li><a class="reference internal" href="#configuration" id="toc-entry-1">Configuration</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="configuration">
+<h2><a class="toc-backref" href="#toc-entry-1">Configuration</a></h2>
+<p>Go to <em>Settings &gt; Companies &gt; Configure Document Layout</em> and choose the
+<strong>DIN 5008</strong> layout. The tab <strong>Footer</strong> of the layout settings offers
+the tax number lines of <tt class="docutils literal">l10n_de_report_footer</tt> and two settings of
+this layout:</p>
+<ul class="simple">
+<li><strong>Show Bank Account Holder</strong>: print the account holder below the name
+of the bank for every bank account of the footer.</li>
+<li><strong>Column Widths (%)</strong>: widths of the four columns of the footer table
+(company address, footer text, tax numbers, bank accounts) in
+percent, separated by commas, for example <tt class="docutils literal">25,35,20,20</tt>. The values
+must add up to 100; empty keeps the widths of the layout.</li>
+</ul>
+</div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-1">Bug Tracker</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-germany/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -410,15 +429,15 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-2">Credits</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-3">Authors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
 <ul class="simple">
 <li>glueckkanja AG</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-4">Contributors</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
 <ul class="simple">
 <li>Christopher Rogos (glueckkanja AG) &lt;<a class="reference external" href="mailto:crogos&#64;gmail.com">crogos&#64;gmail.com</a>&gt;</li>
 <li>Nils Coenen (NICO SOLUTIONS - ENGINEERING &amp; IT)
@@ -426,7 +445,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-5">Maintainers</a></h3>
+<h3><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h3>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />

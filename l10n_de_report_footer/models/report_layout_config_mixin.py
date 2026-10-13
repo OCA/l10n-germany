@@ -1,7 +1,15 @@
 # Copyright 2026 glueckkanja AG
 # Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import re
+
 from odoo import api, models
+
+# optional company fields (module l10n_de) offered as footer lines
+REPORT_FOOTER_OPTIONAL_FIELDS = (
+    ("footer.show_de_tax_number", "l10n_de_stnr"),
+    ("footer.show_de_widnr", "l10n_de_widnr"),
+)
 
 
 class ReportLayoutConfigMixin(models.AbstractModel):
@@ -21,6 +29,14 @@ class ReportLayoutConfigMixin(models.AbstractModel):
     _name = "report.layout.config.mixin"
     _description = "Report Layout Configuration Helpers"
 
+    def _get_report_footer_section(self):
+        """Section (tab of the wizard) holding the footer settings."""
+        return {
+            "section": "footer",
+            "section_label": self.env._("Footer"),
+            "section_sequence": 50,
+        }
+
     def _get_report_layout_config_fields(self):
         """Return the settings stored in ``report_layout_config``.
 
@@ -34,6 +50,11 @@ class ReportLayoutConfigMixin(models.AbstractModel):
         - ``min``, ``max``, ``step``: range of the numeric types; with
           ``allow_zero`` the value 0 is accepted outside the range
         - ``options``: ``(value, label)`` pairs of a selection
+        - ``options`` on a ``char`` setting: ``(value, label)`` presets offered
+          next to the free text input
+        - ``validate``: name of a method of this mixin called with the
+          declaration and the value when the setting is stored; it raises a
+          ``ValidationError`` for invalid values
         - ``highlight``: key of the preview area outlined while the field is
           focused (``o_report_preview_highlight_<key>``)
         - ``visible_if``: ``{key: value}`` of other settings that must match
@@ -42,7 +63,9 @@ class ReportLayoutConfigMixin(models.AbstractModel):
 
         Extend this method to register the settings of a module.
         """
-        return [
+        footer = self._get_report_footer_section()
+        company_fields = self.env["res.company"]._fields
+        specs = [
             {
                 "key": "page.margin_bottom",
                 "label": self.env._("Bottom Margin (mm)"),
@@ -60,8 +83,27 @@ class ReportLayoutConfigMixin(models.AbstractModel):
                 "allow_zero": True,
                 "step": 1,
                 "highlight": "footer",
-            }
+            },
         ]
+        for key, field_name in REPORT_FOOTER_OPTIONAL_FIELDS:
+            field = company_fields.get(field_name)
+            if field is None:
+                continue
+            label = field._description_string(self.env)
+            specs.append(
+                {
+                    **footer,
+                    "key": key,
+                    "label": self.env._("Show %s", label),
+                    "help": self.env._(
+                        "Print the field '%s' of the company as a footer line.",
+                        label,
+                    ),
+                    "type": "boolean",
+                    "default": False,
+                }
+            )
+        return specs
 
     @api.model
     def get_report_layout_config_fields(self, layout_key=None):
@@ -109,3 +151,32 @@ class ReportLayoutConfigMixin(models.AbstractModel):
     def _get_report_footer_margin_bottom(self):
         """Bottom margin (mm) of the PDF reports, 0 for the paper format margin."""
         return int(self._get_report_layout_config_value("page.margin_bottom") or 0)
+
+    # Footer lines
+
+    def _get_report_footer_company(self):
+        """Company record behind ``company`` of the report templates.
+
+        The document layout wizard previews the layout of its company.
+        """
+        self.ensure_one()
+        return self
+
+    def _get_report_footer_company_field(self, field_name):
+        """Value of a company field, False when the field does not exist."""
+        company = self._get_report_footer_company()
+        if field_name not in company._fields:
+            return False
+        return company[field_name]
+
+    def _get_report_footer_company_field_label(self, field_name):
+        """Translated label of a company field, empty when it does not exist."""
+        field = self._get_report_footer_company()._fields.get(field_name)
+        return field._description_string(self.env) if field else ""
+
+    # Footer style
+
+    def _get_report_footer_scope_class(self):
+        """CSS class scoping the footer style rules of one rendered footer."""
+        self.ensure_one()
+        return "o_report_footer_" + re.sub(r"\W", "_", str(self.id))

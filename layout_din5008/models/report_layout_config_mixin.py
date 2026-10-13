@@ -7,7 +7,9 @@ from .layout_din5008_mixin import (
     DIN5008_INFO_LEFT,
     DIN5008_INFO_WIDTH,
     DIN5008_LAYOUT_KEYS,
+    DIN5008_LOGO_HEIGHTS,
     DIN5008_REMARK_ZONE_HEIGHT,
+    DIN5008_SENDER_SEPARATORS,
 )
 
 # prefix of the keys of the DIN 5008 settings in report_layout_config
@@ -101,6 +103,39 @@ class ReportLayoutConfigMixin(models.AbstractModel):
             },
             {
                 **document,
+                "key": "din5008.logo_height",
+                "label": self.env._("Logo Height (mm)"),
+                "help": self.env._(
+                    "Maximum height of the company logo in the letterhead. "
+                    "0 keeps the height of the layout (%(a)s mm for Form A, "
+                    "%(b)s mm for Form B).",
+                    a=DIN5008_LOGO_HEIGHTS["A"],
+                    b=DIN5008_LOGO_HEIGHTS["B"],
+                ),
+                "type": "integer",
+                "default": 0,
+                "min": 5,
+                "max": 45,
+                "allow_zero": True,
+                "step": 1,
+            },
+            {
+                **document,
+                "key": "din5008.address_font_scale",
+                "label": self.env._("Address Font Scale"),
+                "help": self.env._(
+                    "Scale factor of the font size of the recipient address "
+                    "(1 = 10 pt); the line height is scaled as well."
+                ),
+                "type": "float",
+                "default": 1.0,
+                "min": 0.5,
+                "max": 2.0,
+                "step": 0.05,
+                "highlight": "address",
+            },
+            {
+                **document,
                 "key": "din5008.fold_marks",
                 "label": self.env._("Fold Marks"),
                 "help": self.env._(
@@ -137,19 +172,55 @@ class ReportLayoutConfigMixin(models.AbstractModel):
                 "key": "din5008.sender_separator",
                 "label": self.env._("Separator"),
                 "help": self.env._(
-                    "Character between the lines of the address printed as "
-                    "sender line above the recipient. The company name and "
-                    "address formatted this way are available as the placeholder "
-                    "'DIN 5008 Sender Line Text' in the address, tagline and "
-                    "footer texts of the document layout."
+                    "Character(s) between the lines of the address printed as "
+                    "sender line above the recipient: type any text or pick a "
+                    "preset. The company name and address formatted this way are "
+                    "available as the placeholder 'DIN 5008 Sender Line Text' in "
+                    "the address, tagline and footer texts of the document layout."
                 ),
-                "type": "selection",
-                "default": "pipe",
+                "type": "char",
+                "default": "|",
+                "maxlength": 5,
                 "options": [
-                    ("pipe", self.env._("Pipe (|)")),
-                    ("bullet", self.env._("Bullet (•)")),
-                    ("middot", self.env._("Middle dot (·)")),
+                    (DIN5008_SENDER_SEPARATORS["pipe"], self.env._("Pipe (|)")),
+                    (DIN5008_SENDER_SEPARATORS["bullet"], self.env._("Bullet (•)")),
+                    (
+                        DIN5008_SENDER_SEPARATORS["middot"],
+                        self.env._("Middle dot (·)"),
+                    ),
                 ],
+            },
+            {
+                **sender,
+                **sender_line_on,
+                "key": "din5008.sender_separator_gap",
+                "label": self.env._("Separator Gap (mm)"),
+                "help": self.env._(
+                    "Additional space on both sides of every separator of the "
+                    "sender line."
+                ),
+                "type": "float",
+                "default": 0,
+                "min": 0,
+                "max": 5,
+                "step": 0.25,
+                "highlight": "address",
+            },
+            {
+                **sender,
+                **sender_line_on,
+                "key": "din5008.sender_separator_font_scale",
+                "label": self.env._("Separator Font Scale"),
+                "help": self.env._(
+                    "Scale factor of the font size of the separators relative to "
+                    "the sender line (1 = same size)."
+                ),
+                "type": "float",
+                "default": 1.0,
+                "min": 0.5,
+                "max": 2.0,
+                "step": 0.05,
+                "highlight": "address",
             },
             {
                 **sender,

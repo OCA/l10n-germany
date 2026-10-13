@@ -40,6 +40,11 @@ class BaseDocumentLayout(models.TransientModel):
             template, self.company_id, self._get_company_placeholder_overrides()
         )
 
+    def _get_report_footer_company(self):
+        """The footer lines print the data of the company of the wizard."""
+        self.ensure_one()
+        return self.company_id
+
     def _render_report_footer(self):
         """Footer of the wizard with rendered placeholders (layout preview)."""
         self.ensure_one()

@@ -10,10 +10,10 @@ Odoo layouts, the DIN 5008 layout shipped with Odoo (`l10n_din5008`, through
   report is printed. With the module `html_editor_icon` (OCA/web) installed,
   the same texts offer an `/icon` command to insert Font Awesome pictograms,
   for example in front of the phone number or the e-mail address.
-- **Footer lines**: a shared QWeb hook (`l10n_de_report_footer.footer_lines`)
-  in the company address block of every layout. Modules such as
-  `l10n_de_report_footer_representative` add lines (representatives,
-  register court, ...) once and they appear in every layout.
+- **Footer lines**: the German tax numbers of the company (with `l10n_de`)
+  are printed as switchable lines of the company block of every layout. A
+  shared QWeb hook (`l10n_de_report_footer.footer_lines`) lets other modules
+  add lines once for every layout.
 - **Layout settings**: the settings of the document layout are stored in one
   JSON field of the company. Modules declare their settings in Python (key,
   type, default, range, section) and the document layout wizard renders them
@@ -21,5 +21,6 @@ Odoo layouts, the DIN 5008 layout shipped with Odoo (`l10n_din5008`, through
 - **Bottom margin**: the bottom page margin of PDF reports can be increased
   in the document layout when the footer needs more space than the paper
   format reserves (previously the module `l10n_din5008_report_margin_bottom`).
-- **Preview highlight**: while a field of the document layout that changes a
-  size or a margin is focused, the affected area is outlined in the preview.
+- **Preview highlight**: while the address, the tagline, the footer text or a
+  field of the document layout that changes a size or a margin is focused,
+  the affected area is outlined in the preview.

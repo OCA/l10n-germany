@@ -85,6 +85,8 @@ class ResCompany(models.Model):
                     value=value,
                 )
             )
+        if spec.get("validate"):
+            getattr(self, spec["validate"])(spec, value)
         if field_type not in ("integer", "float"):
             return
         if spec.get("allow_zero") and value == 0:

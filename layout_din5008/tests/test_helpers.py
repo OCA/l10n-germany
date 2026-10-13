@@ -17,13 +17,13 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
     def test_sender_line_from_address(self):
         # the address text of the layout, joined into one line
         self.assertEqual(
-            self.company._layout_din5008_sender_line(),
+            self.company._layout_din5008_sender_line_plain(),
             "Acme GmbH | Musterstraße 1 | 12345 Berlin",
         )
         self._write_config({"din5008.sender_separator": "bullet"})
         self.company.company_details = "<p>Acme GmbH</p><p></p><p>Berlin</p>"
         self.assertEqual(
-            self.company._layout_din5008_sender_line(), "Acme GmbH • Berlin"
+            self.company._layout_din5008_sender_line_plain(), "Acme GmbH • Berlin"
         )
         # placeholders are rendered
         self.company.company_details = (
@@ -32,15 +32,55 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
         )
         self.company.phone = "+49 30 1"
         self.assertEqual(
-            self.company._layout_din5008_sender_line(),
+            self.company._layout_din5008_sender_line_plain(),
             "Acme GmbH • Musterstraße 1 • 12345 Berlin • +49 30 1",
         )
         # without address text the formatted company address is printed
         self.company.company_details = False
         self.assertEqual(
-            self.company._layout_din5008_sender_line(),
+            self.company._layout_din5008_sender_line_plain(),
             "Acme GmbH • Musterstraße 1 • 12345 Berlin",
         )
+
+    def test_sender_line_markup(self):
+        line = self.company._layout_din5008_sender_line()
+        self.assertIsInstance(line, Markup)
+        self.assertEqual(
+            line,
+            'Acme GmbH <span class="din5008_sender_separator">|</span> '
+            'Musterstraße 1 <span class="din5008_sender_separator">|</span> '
+            "12345 Berlin",
+        )
+        # free text separator with gap and font scale, parts are escaped
+        self._write_config(
+            {
+                "din5008.sender_separator": "<>",
+                "din5008.sender_separator_gap": 0.5,
+                "din5008.sender_separator_font_scale": 1.2,
+            }
+        )
+        line = self.company._layout_din5008_sender_line()
+        separator = (
+            '<span class="din5008_sender_separator" '
+            'style="margin: 0 0.5mm; font-size: 1.2em;">&lt;&gt;</span>'
+        )
+        self.assertEqual(
+            line, f"Acme GmbH {separator} Musterstraße 1 {separator} 12345 Berlin"
+        )
+        # separators typed in the address text are styled, parts are escaped
+        self.company.name = "Acme & Co"
+        self.company.company_details = (
+            '<p><t t-out="object.layout_din5008_sender_line_text"/><br/>Berlin</p>'
+        )
+        line = self.company._layout_din5008_sender_line()
+        self.assertEqual(line.count(separator), 3)
+        self.assertTrue(line.startswith(f"Acme &amp; Co {separator}"))
+        self.assertTrue(line.endswith(f"{separator} Berlin"))
+        # preset names stored by older versions are still understood
+        self._write_config({"din5008.sender_separator": "middot"})
+        self.assertEqual(self.company._layout_din5008_separator_char(), "·")
+        self._write_config({"din5008.sender_separator": "  "})
+        self.assertEqual(self.company._layout_din5008_separator_char(), "|")
 
     def test_sender_line_text_field(self):
         self.assertEqual(
@@ -103,6 +143,8 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
     def test_geometry(self):
         geometry = self.company._layout_din5008_geometry("A")
         self.assertEqual(geometry["header"], "height: 27mm;")
+        self.assertIsNone(geometry["logo"])
+        self.assertNotIn("font-size", geometry["company_css"])
         self.assertEqual(geometry["fold_marks"], ["top: 87mm;", "top: 192mm;"])
         self.assertEqual(geometry["hole_mark"], "top: 148.5mm;")
         self.assertEqual(geometry["sender_line"], "top: 0mm;")
@@ -131,6 +173,16 @@ class TestHelpers(LayoutDin5008Common, TransactionCase):
         self.assertIn("padding-top: 17.7mm", geometry["company_css"])
         self.assertIn("margin-top: 5mm; min-height: 50mm", geometry["company_css"])
         self.assertIn("margin-left: 110mm; width: 60mm", geometry["company_css"])
+        self._write_config(
+            {"din5008.logo_height": 20, "din5008.address_font_scale": 1.2}
+        )
+        geometry = self.company._layout_din5008_geometry("B")
+        self.assertEqual(geometry["logo"], "max-height: 20mm;")
+        self.assertIn(
+            ".address.row > div[name='address'] "
+            "{ font-size: 12pt; line-height: 5.46mm; }",
+            geometry["company_css"],
+        )
 
     def test_relocate_informations(self):
         address = Markup(

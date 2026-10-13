@@ -13,7 +13,8 @@ import {standardFieldProps} from "@web/views/fields/standard_field_props";
  * widget renders one tab per section and writes every change into the record,
  * so the layout preview follows the unsaved values. A setting carrying a
  * ``highlight`` key outlines the matching area of the preview while focused
- * (see report_preview_highlight.esm.js).
+ * (see report_preview_highlight.esm.js). A ``char`` setting with ``options``
+ * offers the presets in a select next to the free text input.
  */
 export class ReportLayoutConfigField extends Component {
     static template = "l10n_de_report_footer.ReportLayoutConfigField";
@@ -28,6 +29,9 @@ export class ReportLayoutConfigField extends Component {
 
     setup() {
         this.state = useState({section: null});
+        // Record updates are applied asynchronously: changes are chained so
+        // that every change starts from the configuration of the previous one
+        this.pendingUpdate = Promise.resolve();
     }
 
     get config() {
@@ -90,7 +94,16 @@ export class ReportLayoutConfigField extends Component {
     }
 
     /**
-     * Store a value; an empty numeric input restores the declared default.
+     * Preset of a text setting matching the current value, "" for a custom value.
+     */
+    presetValue(spec) {
+        const value = this.value(spec);
+        const option = (spec.options || []).find((o) => o[0] === value);
+        return option ? option[0] : "";
+    }
+
+    /**
+     * Store a value; an empty numeric or text input restores the declared default.
      */
     onChange(spec, raw) {
         let value = raw;
@@ -100,13 +113,16 @@ export class ReportLayoutConfigField extends Component {
                 value = undefined;
             }
         }
-        const config = {...this.config};
-        if (value === undefined) {
-            delete config[spec.key];
-        } else {
-            config[spec.key] = value;
-        }
-        this.props.record.update({[this.props.name]: config});
+        this.pendingUpdate = this.pendingUpdate.then(() => {
+            const config = {...this.config};
+            if (value === undefined || value === "") {
+                delete config[spec.key];
+            } else {
+                config[spec.key] = value;
+            }
+            return this.props.record.update({[this.props.name]: config});
+        });
+        return this.pendingUpdate;
     }
 }
 

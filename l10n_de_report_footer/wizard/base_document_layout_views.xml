@@ -12,6 +12,11 @@
             </field>
             <field name="report_footer" position="attributes">
                 <attribute
+                    name="class"
+                    add="o_report_preview_highlight_footer_text"
+                    separator=" "
+                />
+                <attribute
                     name="options"
                 >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
                 <attribute
@@ -20,10 +25,20 @@
             </field>
             <field name="company_details" position="attributes">
                 <attribute
+                    name="class"
+                    add="o_report_preview_highlight_company_details"
+                    separator=" "
+                />
+                <attribute
                     name="options"
                 >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
             </field>
             <field name="report_header" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_report_preview_highlight_tagline"
+                    separator=" "
+                />
                 <attribute
                     name="options"
                 >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>

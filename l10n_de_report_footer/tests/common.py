@@ -48,7 +48,7 @@ class ReportFooterCommon:
             {
                 "phone": "+49 30 123456",
                 "email": "info@acme.example",
-                "vat": "DE123456789",
+                "vat": "DE123456788",
                 "report_footer": FOOTER_WITH_PLACEHOLDERS,
                 "company_details": Markup(
                     '<p>Acme GmbH<br/><t t-out="object.street">no street</t></p>'
@@ -58,6 +58,9 @@ class ReportFooterCommon:
                 ),
                 "street": "Musterstraße 1",
                 "report_layout_config": {},
+                "external_report_layout_id": cls.env.ref(
+                    "web.external_layout_standard"
+                ).id,
             }
         )
         cls.partner = cls.env["res.partner"].create({"name": "Max Mustermann"})

@@ -69,6 +69,39 @@
                                 t-att-disabled="props.readonly"
                                 t-on-change="(ev) => this.onChange(spec, ev.target.value)"
                             />
+                            <div
+                                t-elif="spec.options"
+                                class="o_report_layout_config_presets d-flex align-items-center gap-2"
+                            >
+                                <input
+                                    type="text"
+                                    class="o_input"
+                                    t-att-id="inputId(spec)"
+                                    t-att-value="value(spec) || ''"
+                                    t-att-maxlength="spec.maxlength"
+                                    t-att-disabled="props.readonly"
+                                    t-on-change="(ev) => this.onChange(spec, ev.target.value)"
+                                />
+                                <select
+                                    class="o_input w-auto flex-shrink-0"
+                                    t-att-aria-label="spec.label"
+                                    t-att-disabled="props.readonly"
+                                    t-on-change="(ev) => ev.target.value &amp;&amp; this.onChange(spec, ev.target.value)"
+                                >
+                                    <option
+                                        value=""
+                                        t-att-selected="presetValue(spec) === ''"
+                                    >Custom</option>
+                                    <option
+                                        t-foreach="spec.options"
+                                        t-as="option"
+                                        t-key="option[0]"
+                                        t-att-value="option[0]"
+                                        t-att-selected="option[0] === presetValue(spec)"
+                                        t-out="option[1]"
+                                    />
+                                </select>
+                            </div>
                             <input
                                 t-else=""
                                 type="text"

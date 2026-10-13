@@ -423,11 +423,11 @@ following content down instead of overlapping it.</p>
 <p>Go to <em>Settings &gt; Companies &gt; Configure Document Layout</em> and choose
 <strong>DIN 5008 Form A</strong> or <strong>DIN 5008 Form B</strong>. The matching paper format
 (<em>DIN 5008 Form A</em> / <em>DIN 5008 Form B</em>) is selected automatically.</p>
-<p>The layout settings below the paper format show three tabs once a DIN
-5008 layout is selected; the bottom margin of the module
-<tt class="docutils literal">l10n_de_report_footer</tt> (tab <em>Page</em> of the other layouts) is offered
-in the tab <em>Positions (mm)</em>. Every change is shown in the preview at
-once.</p>
+<p>The layout settings below the paper format show four tabs once a DIN
+5008 layout is selected: three tabs of this layout and the tab <em>Footer</em>
+of the module <tt class="docutils literal">l10n_de_report_footer</tt>; the bottom margin of that
+module (tab <em>Page</em> of the other layouts) is offered in the tab
+<em>Positions (mm)</em>. Every change is shown in the preview at once.</p>
 <p>Tab <strong>DIN 5008 Document</strong>:</p>
 <ul class="simple">
 <li><strong>Document Information</strong>: where the document information of the
@@ -439,6 +439,10 @@ adding rows to it keep working; only styles that rely on its original
 position do not apply.</li>
 <li><strong>Logo Position</strong>: print the company logo on the left or on the right
 of the letterhead; the tagline is printed on the opposite side.</li>
+<li><strong>Logo Height (mm)</strong>: maximum height of the logo, 0 keeps the height
+of the layout (15 mm for Form A, 30 mm for Form B).</li>
+<li><strong>Address Font Scale</strong>: scale factor of the recipient address font (1
+= 10 pt); the line height follows.</li>
 <li><strong>Fold Marks</strong> and <strong>Hole Mark</strong>: print the fold marks and the hole
 mark on every page.</li>
 </ul>
@@ -446,13 +450,16 @@ mark on every page.</li>
 <ul class="simple">
 <li><strong>Print Sender Line</strong>: print the <em>Address</em> text of the document
 layout as a single line above the recipient address
-(Rücksendeangabe); its lines are joined with the <strong>Separator</strong>
-(<tt class="docutils literal">|</tt>, <tt class="docutils literal">•</tt> or <tt class="docutils literal">·</tt>). The address may contain placeholders; the
-placeholder <em>DIN 5008 Sender Line Text</em> provides the company name and
-address formatted with the separator and the <strong>Country</strong> option
-(country code before the postal code, <tt class="docutils literal"><span class="pre">DE-12345</span> Berlin</tt>, or the
-country name at the end). Without address text the formatted company
-address is printed.</li>
+(Rücksendeangabe); its lines are joined with the <strong>Separator</strong>: type
+any character(s) or pick one of the presets (<tt class="docutils literal">|</tt>, <tt class="docutils literal">•</tt>, <tt class="docutils literal">·</tt>)
+from the list next to the field. <strong>Separator Gap (mm)</strong> adds space on
+both sides of every separator and <strong>Separator Font Scale</strong> prints the
+separators smaller or larger than the 7 pt sender line. The address
+may contain placeholders; the placeholder <em>DIN 5008 Sender Line Text</em>
+provides the company name and address formatted with the separator
+and the <strong>Country</strong> option (country code before the postal code,
+<tt class="docutils literal"><span class="pre">DE-12345</span> Berlin</tt>, or the country name at the end). Without address
+text the formatted company address is printed.</li>
 </ul>
 <p>Tab <strong>Positions (mm)</strong>:</p>
 <ul class="simple">
@@ -470,6 +477,10 @@ window.</li>
 PDF reports, 0 keeps the margin of the paper format (setting of the
 module <tt class="docutils literal">l10n_de_report_footer</tt>, key <tt class="docutils literal">page.margin_bottom</tt>).</li>
 </ul>
+<p>Tab <strong>Footer</strong> (module <tt class="docutils literal">l10n_de_report_footer</tt>, with <tt class="docutils literal">l10n_de</tt>):
+print the tax number and the business identification number of the
+company as lines of the legal block of the footer, next to the page
+number.</p>
 <p>While one of the position fields is focused, the affected area is
 outlined in the preview. Clear a numeric field to restore its default.
 The settings are stored in the field <em>Report Layout Configuration</em> of

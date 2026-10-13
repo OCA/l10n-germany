@@ -40,6 +40,9 @@
                 name="t-att-data-din5008-logo"
             >company._layout_din5008_option('logo_position') or 'left'</attribute>
         </xpath>
+        <xpath expr="//img[hasclass('o_company_logo_small')]" position="attributes">
+            <attribute name="t-att-style">din5008_geometry['logo']</attribute>
+        </xpath>
         <xpath
             expr="//div[contains(concat(' ', @t-attf-class, ' '), ' header ')]"
             position="inside"

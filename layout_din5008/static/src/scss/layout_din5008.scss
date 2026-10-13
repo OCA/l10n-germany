@@ -225,6 +225,8 @@ $din5008-letterhead-logo-width: 70mm; // space reserved for the logo in the lett
 // (mixin of l10n_de_report_footer, same asset bundle)
 html[data-report-preview-highlight="address"] .o_layout_din5008 .address.row,
 html[data-report-preview-highlight="address"] .o_layout_din5008 .din5008_sender_line,
+// the address text is printed as sender line
+html[data-report-preview-highlight="company_details"] .o_layout_din5008 .din5008_sender_line,
 html[data-report-preview-highlight="information_block"]
     .o_layout_din5008
     .address.row

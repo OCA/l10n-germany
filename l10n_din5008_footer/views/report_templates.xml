@@ -8,19 +8,55 @@
         <xpath expr="//span[@t-field='company.report_footer']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_footer()</attribute>
+            <attribute name="class" add="o_report_footer_text" separator=" " />
         </xpath>
         <!-- company address block and tagline with rendered placeholders -->
         <xpath expr="//span[@t-field='company.company_details']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_company_details()</attribute>
+            <attribute name="class" add="o_report_company_details" separator=" " />
         </xpath>
         <xpath expr="//div[@t-field='company.report_header']" position="attributes">
             <attribute name="t-field" />
             <attribute name="t-out">company._render_report_header()</attribute>
+            <attribute name="class" add="o_report_tagline" separator=" " />
         </xpath>
         <!-- shared footer lines before the VAT number -->
         <xpath expr="//li[span[@t-field='company.vat']]" position="before">
             <t t-call="l10n_de_report_footer.footer_lines" />
+        </xpath>
+        <!-- account holder of the bank accounts -->
+        <xpath expr="//li[span[@t-field='bank.bank_id.name']]" position="after">
+            <li
+                t-if="bank.acc_holder_name and company._get_report_layout_config_value('footer.bank_acc_holder')"
+                name="bank_acc_holder"
+            >
+                Account Holder: <span t-field="bank.acc_holder_name" />
+            </li>
+        </xpath>
+        <!--
+            Column widths of the footer table as CSS inside the footer, a
+            separate document for wkhtmltopdf
+        -->
+        <xpath
+            expr="//div[contains(@t-attf-class, 'din_page footer')]"
+            position="attributes"
+        >
+            <attribute
+                name="t-attf-class"
+                add="#{company._get_report_footer_scope_class()}"
+                separator=" "
+            />
+        </xpath>
+        <xpath
+            expr="//div[contains(@t-attf-class, 'din_page footer')]"
+            position="inside"
+        >
+            <t
+                t-set="din5008_footer_css"
+                t-value="company._render_din5008_footer_css()"
+            />
+            <style t-if="din5008_footer_css" t-out="din5008_footer_css" />
         </xpath>
     </template>
 </odoo>

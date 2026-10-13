@@ -38,9 +38,12 @@ This glue module connects the DIN 5008 layout shipped with Odoo
 
 -  the footer text, the company address block and the tagline are
    printed with the company placeholders rendered;
--  the shared footer lines (for example the company representatives of
-   ``l10n_de_report_footer_representative``) are printed in the legal
-   section of the footer, before the VAT number;
+-  the shared footer lines (German tax numbers and the lines added by
+   other modules) are printed in the legal section of the footer, before
+   the VAT number;
+-  for this layout the account holder of the bank accounts can be
+   printed and the widths of the four footer columns can be set in the
+   document layout;
 -  the bottom margin configured in the document layout applies to the
    DIN 5008 reports (previously the module
    ``l10n_din5008_report_margin_bottom``).
@@ -51,6 +54,21 @@ It is installed automatically when both modules are installed.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Go to *Settings > Companies > Configure Document Layout* and choose the
+**DIN 5008** layout. The tab **Footer** of the layout settings offers
+the tax number lines of ``l10n_de_report_footer`` and two settings of
+this layout:
+
+-  **Show Bank Account Holder**: print the account holder below the name
+   of the bank for every bank account of the footer.
+-  **Column Widths (%)**: widths of the four columns of the footer table
+   (company address, footer text, tax numbers, bank accounts) in
+   percent, separated by commas, for example ``25,35,20,20``. The values
+   must add up to 100; empty keeps the widths of the layout.
 
 Bug Tracker
 ===========
