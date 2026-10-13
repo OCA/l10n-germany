@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="l10n_de_report_footer.ReportLayoutConfigField">
+        <div class="o_report_layout_config w-100">
+            <ul t-if="sections.length > 1" class="nav nav-tabs mb-3" role="tablist">
+                <li
+                    t-foreach="sections"
+                    t-as="section"
+                    t-key="section.name"
+                    class="nav-item"
+                    role="presentation"
+                >
+                    <a
+                        href="#"
+                        class="nav-link"
+                        role="tab"
+                        t-att-class="{active: section.name === currentSection.name}"
+                        t-on-click.prevent="() => this.selectSection(section.name)"
+                        t-out="section.label"
+                    />
+                </li>
+            </ul>
+            <t t-if="currentSection">
+                <t t-foreach="currentSection.fields" t-as="spec" t-key="spec.key">
+                    <div
+                        t-if="isVisible(spec)"
+                        t-att-class="rowClass(spec)"
+                        t-att-data-key="spec.key"
+                    >
+                        <label
+                            class="col-5 col-form-label o_form_label"
+                            t-att-for="inputId(spec)"
+                            t-att-title="spec.help"
+                            t-out="spec.label"
+                        />
+                        <div class="col-7">
+                            <CheckBox
+                                t-if="spec.type === 'boolean'"
+                                id="inputId(spec)"
+                                value="!!value(spec)"
+                                disabled="!!props.readonly"
+                                onChange="(checked) => this.onChange(spec, checked)"
+                            />
+                            <select
+                                t-elif="spec.type === 'selection'"
+                                class="o_input"
+                                t-att-id="inputId(spec)"
+                                t-att-disabled="props.readonly"
+                                t-on-change="(ev) => this.onChange(spec, ev.target.value)"
+                            >
+                                <option
+                                    t-foreach="spec.options || []"
+                                    t-as="option"
+                                    t-key="option[0]"
+                                    t-att-value="option[0]"
+                                    t-att-selected="option[0] === value(spec)"
+                                    t-out="option[1]"
+                                />
+                            </select>
+                            <input
+                                t-elif="spec.type === 'integer' or spec.type === 'float'"
+                                type="number"
+                                class="o_input"
+                                t-att-id="inputId(spec)"
+                                t-att-value="value(spec)"
+                                t-att-min="spec.allow_zero ? 0 : spec.min"
+                                t-att-max="spec.max"
+                                t-att-step="spec.step"
+                                t-att-disabled="props.readonly"
+                                t-on-change="(ev) => this.onChange(spec, ev.target.value)"
+                            />
+                            <div
+                                t-elif="spec.options"
+                                class="o_report_layout_config_presets d-flex align-items-center gap-2"
+                            >
+                                <input
+                                    type="text"
+                                    class="o_input"
+                                    t-att-id="inputId(spec)"
+                                    t-att-value="value(spec) || ''"
+                                    t-att-maxlength="spec.maxlength"
+                                    t-att-disabled="props.readonly"
+                                    t-on-change="(ev) => this.onChange(spec, ev.target.value)"
+                                />
+                                <select
+                                    class="o_input w-auto flex-shrink-0"
+                                    t-att-aria-label="spec.label"
+                                    t-att-disabled="props.readonly"
+                                    t-on-change="(ev) => ev.target.value &amp;&amp; this.onChange(spec, ev.target.value)"
+                                >
+                                    <option
+                                        value=""
+                                        t-att-selected="presetValue(spec) === ''"
+                                    >Custom</option>
+                                    <option
+                                        t-foreach="spec.options"
+                                        t-as="option"
+                                        t-key="option[0]"
+                                        t-att-value="option[0]"
+                                        t-att-selected="option[0] === presetValue(spec)"
+                                        t-out="option[1]"
+                                    />
+                                </select>
+                            </div>
+                            <input
+                                t-else=""
+                                type="text"
+                                class="o_input"
+                                t-att-id="inputId(spec)"
+                                t-att-value="value(spec) || ''"
+                                t-att-disabled="props.readonly"
+                                t-on-change="(ev) => this.onChange(spec, ev.target.value)"
+                            />
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </div>
+    </t>
+</templates>

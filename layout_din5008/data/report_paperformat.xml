@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!--
+        Side margins are 0 and smart shrinking is disabled so that 1 CSS mm
+        equals 1 mm on paper; the DIN 5008 geometry is applied by the layout.
+        The letterhead height equals margin_top = header_spacing.
+    -->
+    <record id="paperformat_din5008_a" model="report.paperformat">
+        <field name="name">DIN 5008 Form A</field>
+        <field name="default" eval="False" />
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">27</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">27</field>
+        <field name="dpi">96</field>
+        <field name="disable_shrinking" eval="True" />
+        <field name="css_margins" eval="False" />
+    </record>
+
+    <record id="paperformat_din5008_b" model="report.paperformat">
+        <field name="name">DIN 5008 Form B</field>
+        <field name="default" eval="False" />
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">45</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="dpi">96</field>
+        <field name="disable_shrinking" eval="True" />
+        <field name="css_margins" eval="False" />
+    </record>
+</odoo>

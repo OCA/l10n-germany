@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="report_layout_din5008_a" model="report.layout">
+        <field name="view_id" ref="layout_din5008.external_layout_din5008_a" />
+        <field name="name">DIN 5008 Form A</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="report_layout_din5008_b" model="report.layout">
+        <field name="view_id" ref="layout_din5008.external_layout_din5008_b" />
+        <field name="name">DIN 5008 Form B</field>
+        <field name="sequence">21</field>
+    </record>
+</odoo>

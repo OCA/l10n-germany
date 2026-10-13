@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Shared DIN 5008 layout. It is a primary inherit of the standard layout:
+        extensions of web.external_layout_standard (and of web.address_layout,
+        which is still called) apply to it as well. The xpaths below only add
+        attributes, insert or move nodes, they never remove any.
+        The variable din5008_form ('A' or 'B') is set by the wrapper templates.
+    -->
+    <template
+        id="external_layout_din5008"
+        inherit_id="web.external_layout_standard"
+        primary="True"
+    >
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' header ')]"
+            position="before"
+        >
+            <t t-set="din5008_form" t-value="din5008_form or 'A'" />
+            <t
+                t-set="din5008_geometry"
+                t-value="company._layout_din5008_geometry(din5008_form)"
+            />
+            <t
+                t-set="din5008_beside"
+                t-value="company._layout_din5008_option('informations_position') == 'beside'"
+            />
+            <t t-set="din5008_scope" t-value="company._layout_din5008_scope_class()" />
+        </xpath>
+
+        <!-- Header: letterhead band, fold marks on every page -->
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' header ')]"
+            position="attributes"
+        >
+            <attribute name="t-attf-class" add="o_layout_din5008" separator=" " />
+            <attribute name="t-att-style">din5008_geometry['header']</attribute>
+            <attribute name="t-att-data-din5008-form">din5008_form</attribute>
+            <attribute
+                name="t-att-data-din5008-logo"
+            >company._layout_din5008_option('logo_position') or 'left'</attribute>
+        </xpath>
+        <xpath expr="//img[hasclass('o_company_logo_small')]" position="attributes">
+            <attribute name="t-att-style">din5008_geometry['logo']</attribute>
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' header ')]"
+            position="inside"
+        >
+            <style t-if="report_type == 'pdf'">
+                body.o_body_pdf.container { max-width: none; padding: 0; margin: 0; }
+            </style>
+            <div
+                class="din5008_marks"
+                t-if="company._layout_din5008_option('fold_marks') or company._layout_din5008_option('hole_mark')"
+            >
+                <t t-if="company._layout_din5008_option('fold_marks')">
+                    <div
+                        t-foreach="din5008_geometry['fold_marks']"
+                        t-as="din5008_mark"
+                        class="din5008_mark din5008_fold_mark"
+                        t-att-style="din5008_mark"
+                    />
+                </t>
+                <div
+                    t-if="company._layout_din5008_option('hole_mark')"
+                    class="din5008_mark din5008_hole_mark"
+                    t-att-style="din5008_geometry['hole_mark']"
+                />
+            </div>
+        </xpath>
+
+        <!-- Article: address window, information block, document title -->
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' article ')]"
+            position="attributes"
+        >
+            <attribute
+                name="t-attf-class"
+                add="o_layout_din5008 #{din5008_scope}"
+                separator=" "
+            />
+            <attribute
+                name="t-att-data-din5008-informations"
+            >'beside' if din5008_beside else 'below'</attribute>
+        </xpath>
+        <xpath expr="//t[@t-call='web.address_layout']" position="before">
+            <style>
+                <t t-if="report_type == 'pdf'">
+                    body.o_body_pdf.container { max-width: none; padding: 0; margin: 0; }
+                </t>
+                <t t-out="din5008_geometry['company_css']" />
+            </style>
+            <t t-set="custom_layout_address" t-value="True" />
+            <div
+                t-if="company._layout_din5008_option('sender_line')"
+                class="din5008_sender_line"
+                t-att-style="din5008_geometry['sender_line']"
+                t-out="company._layout_din5008_sender_line()"
+            />
+        </xpath>
+        <!--
+            "Beside" mode: the address block and the report body are rendered
+            into variables, the #informations block is moved from the body into
+            the address row and both parts are output instead of the standard
+            nodes, which are disabled with t-if. In the default mode the
+            standard nodes render untouched. The standard nodes stay first in
+            document order so that xpaths of other modules still match them.
+        -->
+        <xpath expr="//t[@t-call='web.address_layout']" position="attributes">
+            <attribute name="t-if">not din5008_beside</attribute>
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' article ')]/t[@t-out='0']"
+            position="attributes"
+        >
+            <attribute name="t-if">not din5008_beside</attribute>
+        </xpath>
+        <xpath expr="//t[@t-call='web.address_layout']" position="after">
+            <t t-if="din5008_beside">
+                <t t-set="din5008_address_html">
+                    <t t-call="web.address_layout" />
+                </t>
+                <t t-set="din5008_body">
+                    <t t-out="0" />
+                </t>
+                <t
+                    t-set="din5008_parts"
+                    t-value="company._layout_din5008_relocate_informations(din5008_address_html, din5008_body)"
+                />
+                <t t-out="din5008_parts[0]" />
+            </t>
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' article ')]/t[@t-out='0']"
+            position="after"
+        >
+            <t t-if="din5008_beside" t-out="din5008_parts[1]" />
+        </xpath>
+
+        <!-- The address of the layout is printed as sender line, not as block -->
+        <xpath expr="//div[@name='company_address']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
+        <!-- Footer: VAT number and shared footer lines moved from the company address block -->
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' footer ')]"
+            position="attributes"
+        >
+            <attribute name="t-attf-class" add="o_layout_din5008" separator=" " />
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' footer ')]"
+            position="inside"
+        >
+            <style t-if="report_type == 'pdf'">
+                body.o_body_pdf.container { max-width: none; padding: 0; margin: 0; }
+            </style>
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' footer ')]//div[hasclass('o_footer_content')]/div[1]"
+            position="before"
+        >
+            <ul
+                class="list-unstyled din5008_footer_legal"
+                name="din5008_footer_legal"
+            />
+        </xpath>
+        <!-- moved nodes must be direct children of the spec -->
+        <xpath expr="//ul[@name='din5008_footer_legal']" position="inside">
+            <xpath
+                expr="//ul[@name='company_address_list']/li[@t-if='not forced_vat']"
+                position="move"
+            />
+        </xpath>
+        <xpath expr="//ul[@name='din5008_footer_legal']" position="inside">
+            <xpath
+                expr="//ul[@name='company_address_list']/li[@t-else][last()]"
+                position="move"
+            />
+        </xpath>
+        <xpath expr="//ul[@name='din5008_footer_legal']" position="inside">
+            <xpath
+                expr="//ul[@name='company_address_list']/t[@t-call='l10n_de_report_footer.footer_lines']"
+                position="move"
+            />
+        </xpath>
+        <!-- footer text as a full width block below the company block and page number -->
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' footer ')]//div[hasclass('o_footer_content')]/div[hasclass('text-start')]"
+            position="attributes"
+        >
+            <attribute name="class" add="din5008_footer_text" separator=" " />
+        </xpath>
+        <xpath
+            expr="//div[contains(concat(' ', @t-attf-class, ' '), ' footer ')]//div[hasclass('o_footer_content')]"
+            position="after"
+        >
+            <xpath
+                expr="//div[hasclass('o_footer_content')]/div[hasclass('din5008_footer_text')]"
+                position="move"
+            />
+        </xpath>
+    </template>
+
+    <template id="external_layout_din5008_a" name="DIN 5008 Form A">
+        <t t-set="din5008_form" t-value="'A'" />
+        <t t-call="layout_din5008.external_layout_din5008">
+            <t t-out="0" />
+        </t>
+    </template>
+
+    <template id="external_layout_din5008_b" name="DIN 5008 Form B">
+        <t t-set="din5008_form" t-value="'B'" />
+        <t t-call="layout_din5008.external_layout_din5008">
+            <t t-out="0" />
+        </t>
+    </template>
+
+    <template id="styles_company_report" inherit_id="web.styles_company_report">
+        <xpath expr="//t[@t-elif]" position="before">
+            <t
+                t-elif="layout in ('layout_din5008.external_layout_din5008_a', 'layout_din5008.external_layout_din5008_b')"
+                t-translation="off"
+            >
+                &amp;.o_layout_din5008 {
+                    .din5008_sender_line {
+                        color: <t t-esc="secondary" />;
+                    }
+                    .din5008_informations strong {
+                        color: <t t-esc="secondary" />;
+                    }
+                }
+            </t>
+        </xpath>
+    </template>
+</odoo>
