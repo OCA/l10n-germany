@@ -35,7 +35,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         domain=[("code", "in", COUNTRY_GENERATORS)],
     )
     state_id = fields.Many2one("res.country.state", string="State")
-    template_id = fields.Many2one("hr.holidays.public", string="From Template")
+    template_id = fields.Many2one("calendar.public.holiday", string="From Template")
 
     @api.onchange("template_id")
     def onchange_template_id(self):
@@ -45,11 +45,11 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             )
 
     def generate_function_copy_name(self):
-        function_name = "action_copy_%s_holidays" % self.country_id.code.lower()
+        function_name = f"action_copy_{self.country_id.code.lower()}_holidays"
         return function_name
 
     def generate_function_generate_name(self):
-        function_name = "action_generate_%s_holidays" % self.country_id.code.lower()
+        function_name = f"action_generate_{self.country_id.code.lower()}_holidays"
         return function_name
 
     def action_run(self):

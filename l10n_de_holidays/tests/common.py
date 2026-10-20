@@ -11,8 +11,8 @@ class TestHolidaysGenerator(common.TransactionCase):
 
         # Usefull models
         self.HrHolidaysPublicGenerator = self.env["hr.holidays.public.generator"]
-        self.HrHolidaysPublicLine = self.env["hr.holidays.public.line"]
-        self.HrHolidaysPublic = self.env["hr.holidays.public"]
+        self.HrHolidaysPublicLine = self.env["calendar.public.holiday.line"]
+        self.HrHolidaysPublic = self.env["calendar.public.holiday"]
         self.TestYear = 2018
         self.CountryId = self.ref("base.de")
 

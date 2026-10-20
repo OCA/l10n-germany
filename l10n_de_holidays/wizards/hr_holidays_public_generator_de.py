@@ -56,7 +56,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
 
     @api.model
     def calculate_floating_holidays(self, existing_holidays):
-        public_holiday_line_obj = self.env["hr.holidays.public.line"]
+        public_holiday_line_obj = self.env["calendar.public.holiday.line"]
         easter = self.calculate_easter_sunday(self.year)
 
         public_holiday_line_obj.create(
@@ -64,7 +64,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 "name": _("Good Friday"),
                 "date": self.calculate_new_good_friday(easter),
                 "variable_date": True,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
@@ -72,7 +72,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 "name": _("Easter Sunday"),
                 "date": fields.Date.to_string(easter),
                 "variable_date": True,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
 
@@ -81,7 +81,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 "name": _("Easter Monday"),
                 "date": self.calculate_easter_monday(easter),
                 "variable_date": True,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
@@ -89,7 +89,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 "name": _("Ascension Day"),
                 "date": self.calculate_ascension_day(easter),
                 "variable_date": True,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
 
@@ -98,7 +98,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 "name": _("Whit Monday"),
                 "date": self.calculate_whit_monday(easter),
                 "variable_date": True,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
 
@@ -118,7 +118,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
 
     @api.model
     def calculate_state_floating_holidays(self, existing_holidays, state=None):
-        public_holiday_line_obj = self.env["hr.holidays.public.line"]
+        public_holiday_line_obj = self.env["calendar.public.holiday.line"]
         easter = self.calculate_easter_sunday(self.year)
         # Baden-Württemberg, Bavaria, Hesse, North
         # Rhine-Westphalia, Rhineland-Palatinate, Saarland
@@ -132,7 +132,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                     "date": self.calculate_corpus_christi(easter),
                     "variable_date": True,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
         # Sachsen
@@ -146,58 +146,58 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                     "date": self.calculate_repentance_day(self.year),
                     "variable_date": True,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
 
     @api.model
     def calculate_fixed_holidays(self, existing_holidays):
-        public_holiday_line_obj = self.env["hr.holidays.public.line"]
+        public_holiday_line_obj = self.env["calendar.public.holiday.line"]
 
         public_holiday_line_obj.create(
             {
                 "name": _("New Years's Day"),
-                "date": "%s-01-01" % existing_holidays.year,
+                "date": f"{existing_holidays.year}-01-01",
                 "variable_date": False,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
             {
                 "name": _("International Workers' Day"),
-                "date": "%s-05-01" % existing_holidays.year,
+                "date": f"{existing_holidays.year}-05-01",
                 "variable_date": False,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
             {
                 "name": _("Day of German Unity"),
-                "date": "%s-10-03" % existing_holidays.year,
+                "date": f"{existing_holidays.year}-10-03",
                 "variable_date": False,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
             {
                 "name": _("Christmas Day"),
-                "date": "%s-12-25" % existing_holidays.year,
+                "date": f"{existing_holidays.year}-12-25",
                 "variable_date": False,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
         public_holiday_line_obj.create(
             {
                 "name": _("Boxing Day"),
-                "date": "%s-12-26" % existing_holidays.year,
+                "date": f"{existing_holidays.year}-12-26",
                 "variable_date": False,
-                "year_id": existing_holidays.id,
+                "public_holiday_id": existing_holidays.id,
             }
         )
 
     @api.model
     def calculate_state_fixed_holidays(self, existing_holidays, state=None):
-        public_holiday_line_obj = self.env["hr.holidays.public.line"]
+        public_holiday_line_obj = self.env["calendar.public.holiday.line"]
         # Baden-Württemberg, Bavaria, Saxony-Anhalt
         codes = ["DE-BW", "DE-BY", "DE-ST"]
         state_ids = self.get_state_ids(codes)
@@ -206,10 +206,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("Three Kings Day"),
-                    "date": "%s-01-06" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-01-06",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
         # Thüringen
@@ -220,10 +220,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("World Children's Day"),
-                    "date": "%s-09-20" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-09-20",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
 
@@ -235,10 +235,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("Assumption Day"),
-                    "date": "%s-08-15" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-08-15",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
         # BB, HB, HH, MVP, NDS, SH, SN, ST, TH
@@ -261,10 +261,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("Day of Reformation"),
-                    "date": "%s-10-31" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-10-31",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
         # Baden-Württemberg, Bavaria,
@@ -276,10 +276,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("All Saints' Day"),
-                    "date": "%s-11-01" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-11-01",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
         # Berlin, Mecklenburg-Vorpommern
@@ -290,10 +290,10 @@ class HrHolidaysPublicGenerator(models.TransientModel):
             public_holiday_line_obj.create(
                 {
                     "name": _("International Women's Day"),
-                    "date": "%s-03-08" % existing_holidays.year,
+                    "date": f"{existing_holidays.year}-03-08",
                     "variable_date": False,
                     "state_ids": [(6, 0, state_ids)],
-                    "year_id": existing_holidays.id,
+                    "public_holiday_id": existing_holidays.id,
                 }
             )
 
@@ -305,7 +305,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         return existing_holidays
 
     def action_generate_de_holidays(self):
-        public_holiday_obj = self.env["hr.holidays.public"]
+        public_holiday_obj = self.env["calendar.public.holiday"]
 
         for wizard in self:
             existing_holidays = public_holiday_obj.search(
@@ -330,8 +330,8 @@ class HrHolidaysPublicGenerator(models.TransientModel):
         }
 
     def action_copy_de_holidays(self):
-        public_holiday_obj = self.env["hr.holidays.public"]
-        public_holiday_line_obj = self.env["hr.holidays.public.line"]
+        public_holiday_obj = self.env["calendar.public.holiday"]
+        public_holiday_line_obj = self.env["calendar.public.holiday.line"]
 
         for wizard in self:
             if wizard.year == wizard.template_id.year:
@@ -356,10 +356,8 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                 if holiday.variable_date:
                     continue
                 holiday_date = datetime.strptime(str(holiday.date), "%Y-%m-%d")
-                new_holiday_date = "%s-%s-%s" % (
-                    wizard.year,
-                    holiday_date.month,
-                    holiday_date.day,
+                new_holiday_date = (
+                    f"{wizard.year}-{holiday_date.month}-{holiday_date.day}"
                 )
                 public_holiday_line_obj.create(
                     {
@@ -367,7 +365,7 @@ class HrHolidaysPublicGenerator(models.TransientModel):
                         "date": new_holiday_date,
                         "variable_date": False,
                         "state_ids": [(6, 0, [s.id for s in holiday.state_ids])],
-                        "year_id": new_holiday_year.id,
+                        "public_holiday_id": new_holiday_year.id,
                     }
                 )
             wizard.calculate_floating_holidays(new_holiday_year)

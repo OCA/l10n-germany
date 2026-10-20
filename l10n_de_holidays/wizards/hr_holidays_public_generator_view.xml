@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Generate Public Holidays">
                 <group col="2" colspan="2">
-                    <field name="year" />
+                    <field name="year" options="{'type': 'number'}" />
                     <field name="country_id" options="{'no_create': True}" />
                     <field
                         name="state_id"
@@ -40,7 +40,7 @@
     <menuitem
         id="hr_holidays_public_generator_menu"
         name="Generate Public Holidays"
-        parent="hr_holidays_public.menu_hr_public_holidays"
+        parent="calendar_public_holiday.menu_calendar_public_holiday"
         action="hr_holidays_public_generator_action"
     />
 </odoo>

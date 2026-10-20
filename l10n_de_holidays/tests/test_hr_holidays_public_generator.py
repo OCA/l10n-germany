@@ -159,3 +159,16 @@ class TestHrHolidaysPublicGenerator(common.TestHolidaysGenerator):
         result_2025 = self.hr_holidays_public_generator.calculate_repentance_day(2025)
         self.assertTrue(result_2025, "No date calculated for 2025")
         self.assertEqual(result_2025, "2025-11-19")
+
+    def test_generate_state_holidays(self):
+        bavaria = self.env.ref("base.state_de_by")
+        self.hr_holidays_public_generator.state_id = bavaria
+        self.hr_holidays_public_generator.action_run()
+
+        hr_holiday_public = self.HrHolidaysPublic.search(
+            [("year", "=", self.TestYear), ("country_id", "=", self.CountryId)]
+        )
+        state_lines = hr_holiday_public.line_ids.filtered("state_ids")
+        self.assertIn(date(self.TestYear, 8, 15), state_lines.mapped("date"))
+        self.assertIn(date(self.TestYear, 1, 6), state_lines.mapped("date"))
+        self.assertIn(bavaria, state_lines.state_ids)
