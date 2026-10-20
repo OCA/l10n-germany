@@ -7,7 +7,7 @@ from odoo.tests import common
 
 class TestHolidaysGenerator(common.TransactionCase):
     def setUp(self):
-        super(TestHolidaysGenerator, self).setUp()
+        super().setUp()
 
         # Usefull models
         self.HrHolidaysPublicGenerator = self.env["hr.holidays.public.generator"]
