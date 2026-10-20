@@ -1,2 +1,2 @@
-from . import hr_holidays_public_generator_de
-from . import hr_holidays_public_generator
+from . import calendar_public_holiday_generator_de
+from . import calendar_public_holiday_generator

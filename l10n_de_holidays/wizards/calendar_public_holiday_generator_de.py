@@ -9,13 +9,13 @@ from dateutil.relativedelta import SU, relativedelta
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
-from . import hr_holidays_public_generator
+from . import calendar_public_holiday_generator
 
-hr_holidays_public_generator.COUNTRY_GENERATORS.append("DE")
+calendar_public_holiday_generator.COUNTRY_GENERATORS.append("DE")
 
 
-class HrHolidaysPublicGenerator(models.TransientModel):
-    _inherit = "hr.holidays.public.generator"
+class CalendarPublicHolidayGenerator(models.TransientModel):
+    _inherit = "calendar.public.holiday.generator"
     _description = "Generate public holidays - Calculations"
 
     @api.model

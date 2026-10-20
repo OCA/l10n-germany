@@ -14,7 +14,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "wizards/hr_holidays_public_generator_view.xml",
+        "wizards/calendar_public_holiday_generator_view.xml",
     ],
     "installable": True,
     "auto_install": False,

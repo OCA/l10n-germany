@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="hr_holidays_public_generator_view" model="ir.ui.view">
-        <field name="name">hr.holidays.public.generator.view</field>
-        <field name="model">hr.holidays.public.generator</field>
+    <record id="calendar_public_holiday_generator_view" model="ir.ui.view">
+        <field name="name">calendar.public.holiday.generator.view</field>
+        <field name="model">calendar.public.holiday.generator</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Generate Public Holidays">
@@ -29,18 +29,18 @@
         </field>
     </record>
 
-    <record id="hr_holidays_public_generator_action" model="ir.actions.act_window">
+    <record id="calendar_public_holiday_generator_action" model="ir.actions.act_window">
         <field name="name">Generate Public Holidays</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">hr.holidays.public.generator</field>
+        <field name="res_model">calendar.public.holiday.generator</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
 
     <menuitem
-        id="hr_holidays_public_generator_menu"
+        id="calendar_public_holiday_generator_menu"
         name="Generate Public Holidays"
         parent="calendar_public_holiday.menu_calendar_public_holiday"
-        action="hr_holidays_public_generator_action"
+        action="calendar_public_holiday_generator_action"
     />
 </odoo>

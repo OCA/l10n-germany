@@ -9,22 +9,22 @@ from odoo.exceptions import UserError
 COUNTRY_GENERATORS = []
 
 
-class HrHolidaysPublicGenerator(models.TransientModel):
+class CalendarPublicHolidayGenerator(models.TransientModel):
     """
     Usage:
     * generate public holidays for specific country (if there
         is no template set)
     * copy public holidays for specific country
     To extend the model one should:
-    * create new module with name "hr_holidays_public_generator_<country code>"
-    * create wizard that inherit "hr.holidays.public.generator"
+    * create new module with name "calendar_public_holiday_generator_<country code>"
+    * create wizard that inherit "calendar.public.holiday.generator"
     * implement copy public holidays function with name action_copy_%s_holidays
         where %s id the county code
     * implement generate public holidays function with
         name action_generate_%s_holidays where %s id the county code
     """
 
-    _name = "hr.holidays.public.generator"
+    _name = "calendar.public.holiday.generator"
     _description = "Generate public holidays"
 
     year = fields.Integer(required=True, default=(lambda self: datetime.today().year))
