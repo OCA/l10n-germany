@@ -56,9 +56,8 @@ class ResCompany(models.Model):
         default=100,
     )
 
-    _sql_constraints = [
-        (
-            "check_package_limit",
+    _check_package_limit_constraint = [
+        models.Constraint(
             # DATEV only allows 465 MB and we leave some space
             "CHECK(datev_package_limit >= 20 AND datev_package_limit <= 400)",
             "Package Limit for DATEV must be between 20MB and 400MB",

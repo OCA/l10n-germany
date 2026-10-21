@@ -13,7 +13,7 @@ import re
 
 from lxml import etree
 
-from odoo import _, api, models, tools
+from odoo import api, models, tools
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -42,11 +42,11 @@ class DatevXmlGenerator(models.AbstractModel):
                 invoice.datev_validation = str(e)
 
             raise UserError(
-                _(
+                self.env._(
                     "Wrong Data in XML file!\nTry to solve the problem with "
-                    "'%s' according to message below:\n\n"
+                    "'%s' according to message below:\n\n",
+                    doc_name,
                 )
-                % doc_name
                 + str(e)
             ) from e
         return True
@@ -61,7 +61,7 @@ class DatevXmlGenerator(models.AbstractModel):
 
         if problems:
             raise ValueError(
-                _(
+                self.env._(
                     "There are multiple taxes in the following invoices: %(invoices)s",
                     invoices=", ".join(problems.mapped("name")),
                 )

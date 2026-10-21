@@ -11,6 +11,7 @@ from lxml import etree
 
 from odoo import fields
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools import file_open
 
 from odoo.addons.base.tests.common import BaseCommon, HttpCase
 
@@ -20,6 +21,14 @@ class TestDatevExport(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.company = cls.env.company
+        cls.env.company.write(
+            {
+                "street": "Musterstraße 1",
+                "zip": "10115",
+                "city": "Berlin",
+                "country_id": cls.env.ref("base.de").id,
+            }
+        )
         cls.JournalObj = cls.env["account.journal"]
         cls.sale_journal = cls.JournalObj.search(
             [
@@ -62,43 +71,284 @@ class TestDatevExport(BaseCommon):
         cls.InvoiceLineObj = cls.env["account.move.line"]
         cls.AttachmentObj = cls.env["ir.attachment"]
         cls.DatevExportObj = cls.env["datev.export.xml"]
+        cls.AccountAnalyticPlanObj = cls.env["account.analytic.plan"]
 
-        cls.inv_attach_de = cls.env.ref("datev_export_xml.vendor_bill_attachment_DE")
-        cls.inv_attach_eu = cls.env.ref("datev_export_xml.vendor_bill_attachment_EU")
-        cls.inv_attach_noneu = cls.env.ref(
-            "datev_export_xml.vendor_bill_attachment_NonEU"
+        with file_open(
+            "datev_export_xml/static/src/demo/vendor_bill_attachment.pdf", "rb"
+        ) as f:
+            pdf_content = f.read()
+
+        cls.inv_attach_de = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_DE",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.inv_attach_eu = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_EU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.inv_attach_noneu = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_NonEU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
         )
 
-        cls.refund_attach_de = cls.env.ref("datev_export_xml.bill_refund_attachment_DE")
-        cls.refund_attach_eu = cls.env.ref("datev_export_xml.bill_refund_attachment_EU")
-        cls.refund_attach_noneu = cls.env.ref(
-            "datev_export_xml.bill_refund_attachment_NonEU"
+        cls.refund_attach_de = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_DE",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.refund_attach_eu = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_EU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.refund_attach_noneu = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_NonEU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
         )
 
-        cls.customer_de = cls.env.ref("datev_export_xml.customer_DE")
-        cls.vendor_de = cls.env.ref("datev_export_xml.vendor_DE")
-
-        cls.customer_eu = cls.env.ref("datev_export_xml.customer_EU")
-        cls.vendor_eu = cls.env.ref("datev_export_xml.vendor_EU")
-
-        cls.customer_noneu = cls.env.ref("datev_export_xml.customer_NonEU")
-        cls.vendor_noneu = cls.env.ref("datev_export_xml.vendor_NonEU")
-
-        cls.account_income = cls.env.ref("datev_export_xml.account_datev_income")
-        cls.account_expense = cls.env.ref("datev_export_xml.account_datev_expense")
-
-        cls.consulting = cls.env.ref("datev_export_xml.product_datev_01")
-        cls.lease = cls.env.ref("datev_export_xml.product_datev_02")
-
-        cls.analytic_account_it = cls.env.ref(
-            "datev_export_xml.analytic_account_datev_01"
-        )
-        cls.analytic_account_office = cls.env.ref(
-            "datev_export_xml.analytic_account_datev_02"
+        cls.account_customer_DE = cls.AccountObj.create(
+            {
+                "name": "A-Customer DE Account",
+                "code": "10004",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
         )
 
-        cls.parent_customer = cls.env.ref("datev_export_xml.customer_parent")
-        cls.child_customer = cls.env.ref("datev_export_xml.customer_child")
+        cls.account_vendor_DE = cls.AccountObj.create(
+            {
+                "name": "A-Vendor DE Account",
+                "code": "70004",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_customer_EU = cls.AccountObj.create(
+            {
+                "name": "A-Customer EU Account",
+                "code": "10005",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+
+        cls.account_vendor_EU = cls.AccountObj.create(
+            {
+                "name": "A-Vendor EU Account",
+                "code": "70005",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_customer_NonEU = cls.AccountObj.create(
+            {
+                "name": "A-Customer Non-EU Account",
+                "code": "10006",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+
+        cls.account_vendor_NonEU = cls.AccountObj.create(
+            {
+                "name": "A-Vendor Non-EU Account",
+                "code": "70006",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_income = cls.AccountObj.create(
+            {
+                "name": "A-Income",
+                "code": "8402",
+                "reconcile": False,
+                "account_type": "income",
+            }
+        )
+
+        cls.account_expense = cls.AccountObj.create(
+            {
+                "name": "A-Expense",
+                "code": "3402",
+                "reconcile": False,
+                "account_type": "expense",
+            }
+        )
+
+        cls.customer_de = cls.PartnerObj.create(
+            {
+                "name": "A-Customer DE",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+        cls.vendor_de = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor DE",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.de").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+
+        cls.customer_eu = cls.PartnerObj.create(
+            {
+                "name": "A-Customer EU",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.fr").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_EU.id,
+                "property_account_payable_id": cls.account_vendor_EU.id,
+            }
+        )
+        cls.vendor_eu = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor EU",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.fr").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_EU.id,
+                "property_account_payable_id": cls.account_vendor_EU.id,
+            }
+        )
+
+        cls.customer_noneu = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Non-EU",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.us").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_NonEU.id,
+                "property_account_payable_id": cls.account_vendor_NonEU.id,
+            }
+        )
+        cls.vendor_noneu = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor Non-EU",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.us").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_NonEU.id,
+                "property_account_payable_id": cls.account_vendor_NonEU.id,
+            }
+        )
+
+        cls.consulting = cls.ProductObj.create(
+            {
+                "name": "A-IT-Consulting",
+                "default_code": "11-001",
+                "type": "service",
+                "sale_ok": True,
+                "categ_id": cls.env.ref("product.product_category_services").id,
+                "list_price": 120.0,
+                "property_account_income_id": cls.account_income.id,
+            }
+        )
+        cls.lease = cls.ProductObj.create(
+            {
+                "name": "A-Office-Lease",
+                "default_code": "99-015",
+                "type": "service",
+                "purchase_ok": True,
+                "categ_id": cls.env.ref("product.product_category_services").id,
+                "list_price": 900.0,
+                "property_account_income_id": cls.account_expense.id,
+            }
+        )
+        cls.account_analytic_plan_departments = cls.AccountAnalyticPlanObj.create(
+            {
+                "name": "Departments",
+                "default_applicability": "optional",
+            }
+        )
+        cls.analytic_account_it = cls.AnalyticAccountObj.create(
+            {
+                "name": "A-IT",
+                "code": 990010,
+                "plan_id": cls.account_analytic_plan_departments.id,
+            }
+        )
+        cls.analytic_account_office = cls.AnalyticAccountObj.create(
+            {
+                "name": "A-Office",
+                "code": 990000,
+                "plan_id": cls.account_analytic_plan_departments.id,
+            }
+        )
+
+        cls.parent_customer = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Parent",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "Berlin",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+        cls.child_customer = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Child",
+                "type": "contact",
+                "parent_id": cls.parent_customer.id,
+                "vat": "BE0477472701",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+            }
+        )
+        cls.tax_group = cls.env["account.tax.group"].create(
+            {
+                "name": "Test Tax Group",
+                "company_id": cls.company.id,
+                "country_id": cls.company.account_fiscal_country_id.id,
+            }
+        )
 
         # Ensure the initial state
         cls.refund_date = cls.today - timedelta(days=55)
@@ -161,6 +411,7 @@ class TestDatevExport(BaseCommon):
                 "amount": 0.0,
                 "amount_type": "percent",
                 "type_tax_use": "sale",
+                "tax_group_id": self.tax_group.id,
             }
         )
         invoice = self.InvoiceObj.create(
@@ -236,6 +487,7 @@ class TestDatevExport(BaseCommon):
                 "amount": 0.0,
                 "amount_type": "percent",
                 "type_tax_use": "purchase",
+                "tax_group_id": self.tax_group.id,
             }
         )
         invoice = self.InvoiceObj.create(
@@ -361,16 +613,16 @@ class TestDatevExport(BaseCommon):
             else "Gutschrift/Rechnungskorrektur",
         )
         self.assertEqual(info["invoice_date"], invoice.invoice_date.isoformat())
-
+        partner = invoice.partner_id.commercial_partner_id
         if invoice.move_type.startswith("out_"):
             self.assertEqual(
                 doc(".//invoice_party/address").attrib["name"],
-                invoice.partner_id.display_name,
+                partner.display_name,
             )
         else:
             self.assertEqual(
                 doc(".//supplier_party/address").attrib["name"],
-                invoice.partner_id.display_name,
+                partner.display_name,
             )
 
         self.assertEqual(float(line["quantity"]), inv_line.quantity)
@@ -388,9 +640,7 @@ class TestDatevExport(BaseCommon):
         # partner has bank account
         if invoice.partner_id.bank_ids:
             bank = doc(".//invoice_party/account").attrib
-            self.assertEqual(
-                bank["bank_name"], invoice.partner_id.bank_ids[0].bank_name
-            )
+            self.assertEqual(bank["bank_name"], partner.bank_ids[0].bank_name)
             self.assertEqual(
                 bank["iban"],
                 invoice.partner_id.bank_ids[0].acc_number.replace(" ", ""),
@@ -748,6 +998,7 @@ class TestDatevExport(BaseCommon):
                 "amount": 15.0,
                 "amount_type": "percent",
                 "type_tax_use": "sale",
+                "tax_group_id": self.tax_group.id,
             }
         )
         invoice = self.create_out_invoice_with_tax(

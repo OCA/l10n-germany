@@ -165,7 +165,7 @@
         <field name="default_code">11-001</field>
         <field name="type">service</field>
         <field name="sale_ok" eval="True" />
-        <field name="categ_id" ref="product.product_category_all" />
+        <field name="categ_id" ref="product.product_category_services" />
         <field name="list_price">120.00</field>
         <field name="property_account_income_id" ref="account_datev_income" />
     </record>
@@ -174,7 +174,7 @@
         <field name="default_code">99-015</field>
         <field name="type">service</field>
         <field name="purchase_ok" eval="True" />
-        <field name="categ_id" ref="product.product_category_all" />
+        <field name="categ_id" ref="product.product_category_services" />
         <field name="list_price">900.00</field>
         <field name="property_account_income_id" ref="account_datev_expense" />
     </record>
@@ -239,6 +239,7 @@
     <!-- Bank Data -->
     <record id="customer_parent" model="res.partner">
         <field name="name">A-Customer Parent</field>
+        <field name="vat">BE0477472701</field>
         <field name="street">Straße 1</field>
         <field name="zip">12345</field>
         <field name="city">Berlin</field>
@@ -260,7 +261,6 @@
         <field name="name">A-Customer Child</field>
         <field name="type">contact</field>
         <field name="parent_id" ref="customer_parent" />
-        <field name="vat">BE0477472701</field>
         <field name="country_id" ref="base.de" />
         <field name="customer_rank" eval="1" />
         <field name="supplier_rank" eval="0" />

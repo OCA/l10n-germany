@@ -87,7 +87,8 @@ class AccountMove(models.Model):
 
     def datev_party_attributes(self, partner):
         result = {}
-        if partner.vat:
+        # DATEV XSD type p10027 (vat_id): pattern [0-9a-zA-Z. _]{1,15}
+        if partner.vat and re.fullmatch(r"[0-9a-zA-Z\. _]{1,15}", partner.vat):
             result["vat_id"] = partner.vat
         return result
 
@@ -104,7 +105,8 @@ class AccountMove(models.Model):
             "out_invoice",
             "out_refund",
         ):
-            return self.datev_sanitize(origin)
+            # DATEV XSD type p13 (order_id): maxLength 30
+            return self.datev_sanitize(origin, length=30)
 
         # Use the correct setting
         if self.move_type.startswith("in_"):
@@ -114,14 +116,14 @@ class AccountMove(models.Model):
 
         # Show the original move because ref is a combined value for refund
         if ref_field == "partner" and self.move_type.endswith("_refund"):
-            return self.datev_sanitize(self.reversed_entry_id.name or origin)
+            return self.datev_sanitize(self.reversed_entry_id.name or origin, length=30)
 
         # Show the partner reference from the orders stored in ref
         if ref_field == "partner":
-            return self.datev_sanitize(self.ref or origin)
+            return self.datev_sanitize(self.ref or origin, length=30)
 
         # Show the payment reference
         if ref_field == "payment":
-            return self.datev_sanitize(self.payment_reference or origin)
+            return self.datev_sanitize(self.payment_reference or origin, length=30)
 
-        return self.datev_sanitize(origin)
+        return self.datev_sanitize(origin, length=30)

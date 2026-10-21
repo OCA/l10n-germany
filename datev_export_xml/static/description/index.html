@@ -374,7 +374,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:16462e3a46b3d9fdcc1310d53237ab2ee49883de3c3027a3aea72568d9daafa8
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-germany/tree/18.0/datev_export_xml"><img alt="OCA/l10n-germany" src="https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-germany-18-0/l10n-germany-18-0-datev_export_xml"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-germany&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/l10n-germany/tree/19.0/datev_export_xml"><img alt="OCA/l10n-germany" src="https://img.shields.io/badge/github-OCA%2Fl10n--germany-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/l10n-germany-19-0/l10n-germany-19-0-datev_export_xml"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/l10n-germany&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <div class="section" id="odoo-export-to-datev-xml">
 <h2>Odoo Export to DATEV XML</h2>
 <p>The datev_export_xml module allows to export invoices and bills with
@@ -408,7 +408,7 @@ contextual actions of the invoices and bills list view.</p>
 <p>The main export usage will be done by the <strong>DATEV Export</strong> Wizard, which
 can be executed from the menu item located at <strong>Invoicing &gt; Reporting &gt;
 Datev Export</strong>.</p>
-<p><img alt="image" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/example_datev_export_wizard.png" /></p>
+<p><img alt="image" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/example_datev_export_wizard.png" /></p>
 <p>At the wizard you can filter by <em>Invoice types</em> and limit the <em>time
 range</em>. At the <em>General Settings</em> you can choose your company and if you
 want to validate the XML-Export file by the provided XSD-Schema
@@ -432,12 +432,12 @@ which summarizes and classify all included files. This method can be
 handy if an exception occurs while generating a huge amount of invoices
 / refunds via the wizard, to fix and validate the related invoice /
 refund before running the wizard again.</p>
-<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/example_datev_export_wizard_manual.png" /></p>
+<p><img alt="image1" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/example_datev_export_wizard_manual.png" /></p>
 <p>If you create a manual export from the vendor bills list the export type
 is „Vendors“. If you create this export from the customer invoices the
 export type is „Customers“.</p>
 <p>If you have the Check XSD option, it’s possible that some errors occurs.</p>
-<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/example_datev_export_exception.png" /></p>
+<p><img alt="image2" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/example_datev_export_exception.png" /></p>
 <p>On errors, an activity will be applied to you for fixing the problem. If
 you have fixed the problem, just restart the wizard, or click on
 „Recreate DATEV Export File“. On success you can download the generated
@@ -457,8 +457,8 @@ their own access to DATEV Unternehmen Online). Please ensure you have
 configured the following “Advanced Settings” in DATEV Unternehmen Online
 in order to allow to import split account moves with many invoice lines
 from Invoices / Bills:</p>
-<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen.png" /></p>
-<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen_rechnungsdatenschnittstelle.png" /></p>
+<p><img alt="image3" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen.png" /></p>
+<p><img alt="image4" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/datev_belegtransfer_erweiterte_einstellungen_rechnungsdatenschnittstelle.png" /></p>
 <p>2.) The DATEV Belegtransfer program is installed and open.</p>
 </div>
 <div class="section" id="transmission-to-the-tax-advisor">
@@ -486,12 +486,12 @@ office.</p>
 program „DATEV Belegtransfer“ must be installed and open. In the opened
 DATEV Belegtransfer application you can now click on “Add directories”
 and make the following settings:</p>
-<p><img alt="image5" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_0.png" /></p>
+<p><img alt="image5" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_0.png" /></p>
 <p>1.) “Create directories” dialog: Specify where the directories should be
 saved, how the company directory should be named and whether you want to
 delete or archive the source files after the upload. Then click on
 “Save”.</p>
-<p><img alt="image6" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_1.png" /></p>
+<p><img alt="image6" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_1.png" /></p>
 <p>2.) Now define the directories that are to be used by first selecting
 the client and then clicking on “Next”. You can now use the two
 following suggested entries and configure them as follows: * Activate
@@ -503,8 +503,8 @@ the receipts correctly with an activated XML interface. * Activate
 <em>Rechnungsausgang</em> “Create as directory”. Also activate “Configure as
 XML interface”. To activate the XML interface, slide the slider in the
 “Configure as XML interface” column to the right. Then it is also green.</p>
-<p><img alt="image7" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_verezcihnis_anlegen_2.png" /></p>
-<p><img alt="image8" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_3.png" /></p>
+<p><img alt="image7" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_verezcihnis_anlegen_2.png" /></p>
+<p><img alt="image8" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_verzeichnis_anlegen_3.png" /></p>
 </div>
 <div class="section" id="transfer-files">
 <h2>Transfer files</h2>
@@ -523,19 +523,19 @@ interface symbol at the beginning of the line. If the symbol is
 displayed, the XML interface is activated in the directory (it should
 therefore be active in the two directories “Eingangsrechnungen” and
 “Ausgangsrechnungen”).</p>
-<p><img alt="image9" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_belege_hochladen.png" /></p>
+<p><img alt="image9" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_belege_hochladen.png" /></p>
 <p>2.) Right-click on the directory. A new menu will open. Click Upload
 Receipts. Uploading deletes the files from the directory or moves them
 to an archive folder. You can specify which option should apply under
 Settings.</p>
-<p><img alt="image10" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_belege_hochladen_dateiauswahl.png" /></p>
+<p><img alt="image10" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_belege_hochladen_dateiauswahl.png" /></p>
 <p>3.) To check whether the upload was successful, right-click on the
 directory. A new menu will open. Click Open Log. For more details click
 on “Import Log”</p>
-<p><img alt="image11" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_protokoll_timestamp.png" /></p>
-<p><img alt="image12" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_protokoll_auswahl.png" /></p>
-<p><img alt="image13" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_protokoll_liste.png" /></p>
-<p><img alt="image14" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/belegtransfer_protokoll_details.png" /></p>
+<p><img alt="image11" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_protokoll_timestamp.png" /></p>
+<p><img alt="image12" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_protokoll_auswahl.png" /></p>
+<p><img alt="image13" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_protokoll_liste.png" /></p>
+<p><img alt="image14" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/belegtransfer_protokoll_details.png" /></p>
 <p>4.) Repeat steps 1 to 3 with the other directory (either for A/R
 invoices / A/R invoices if you want to upload those as well).</p>
 <p>Check the import of the receipts in DATEV Unternehmen Online:</p>
@@ -561,8 +561,8 @@ and uploaded via DATEV document transfer for „Eingangsrechnungen“ and
 collection by clicking on “Provide” for DATEV Kanzlei-Rechnungswesen.
 With the appropriate authorization, this process can be carried out by
 the client himself or by the tax consultant.</p>
-<p><img alt="image15" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/datev_uo_bereitstellen_1.png" /></p>
-<p><img alt="image16" src="https://raw.githubusercontent.com/OCA/l10n-germany/18.0/datev_export_xml/static/description/datev_uo_bereitstellen_2.png" /></p>
+<p><img alt="image15" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/datev_uo_bereitstellen_1.png" /></p>
+<p><img alt="image16" src="https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_export_xml/static/description/datev_uo_bereitstellen_2.png" /></p>
 <p>2.) In DATEV Kanzlei-Rechnungswesen, this provided data must be
 retrieved via client supplement. The procedure is as follows: Under
 “Preparatory activities” in your overview on the left, click on “Add
@@ -632,7 +632,7 @@ to reconcile the Odoo and DATEV trial balance after each month.</p>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/l10n-germany/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/l10n-germany/issues/new?body=module:%20datev_export_xml%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/l10n-germany/issues/new?body=module:%20datev_export_xml%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -669,7 +669,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-germany/tree/18.0/datev_export_xml">OCA/l10n-germany</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/l10n-germany/tree/19.0/datev_export_xml">OCA/l10n-germany</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
