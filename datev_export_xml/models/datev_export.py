@@ -12,7 +12,7 @@ import datetime
 import logging
 import time
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
@@ -71,8 +71,8 @@ class DatevExport(models.Model):
     )
     export_invoice = fields.Boolean("Export Invoices", default=True)
     export_refund = fields.Boolean("Export Refunds", default=True)
-    date_start = fields.Date("From Date", default=_default_start)
-    date_stop = fields.Date("To Date", default=_default_stop)
+    date_start = fields.Date("From Date", default=lambda self: self._default_start())
+    date_stop = fields.Date("To Date", default=lambda self: self._default_stop())
     company_id = fields.Many2one(
         "res.company",
         required=True,
@@ -144,11 +144,11 @@ class DatevExport(models.Model):
             return
         if not self.export_type:
             raise ValidationError(
-                _("You need to choose an export type (Customer/Vendor)!")
+                self.env._("You need to choose an export type (Customer/Vendor)!")
             )
         if not self.export_invoice and not self.export_refund:
             raise ValidationError(
-                _(
+                self.env._(
                     "You need to choose which documents types (Invoices/Refunds) "
                     "you want to export!"
                 )
@@ -164,7 +164,9 @@ class DatevExport(models.Model):
 
         if not list_invoice_type:
             raise UserError(
-                _("Missing Data\nPlease choose which documents you want to export!")
+                self.env._(
+                    "Missing Data\nPlease choose which documents you want to export!"
+                )
             )
         return list_invoice_type
 
@@ -185,7 +187,9 @@ class DatevExport(models.Model):
                 search_clause.append(("invoice_date", "<=", self.date_stop))
         else:
             raise UserError(
-                _("Data Insufficient!\nPlease select Period or at least Start Date.")
+                self.env._(
+                    "Data Insufficient!\nPlease select Period or at least Start Date."
+                )
             )
         return self.env["account.move"].search(search_clause)
 
@@ -197,7 +201,7 @@ class DatevExport(models.Model):
 
         for index, (zip_file, invoices) in enumerate(generator, 1):
             if not self.manually_document_selection:
-                description = _(
+                description = self.env._(
                     "Filtered Export of %(count)s Documents\n"
                     "Date Range: %(start)s-%(stop)s\nTypes: %(types)s",
                     count=len(invoices),
@@ -206,8 +210,8 @@ class DatevExport(models.Model):
                     types=", ".join(self.get_type_list()),
                 )
             else:
-                description = _(
-                    "Manual Export of %(count)s Documents\n" "Numbers: %(names)s",
+                description = self.env._(
+                    "Manual Export of %(count)s Documents\nNumbers: %(names)s",
                     count=len(invoices),
                     names=", ".join(self.invoice_ids.mapped("name")),
                 )
@@ -307,7 +311,9 @@ class DatevExport(models.Model):
             export_type = "out"
         else:
             raise UserError(
-                _("You can't export incoming and outgoing invoices at the same time")
+                self.env._(
+                    "You can't export incoming and outgoing invoices at the same time"
+                )
             )
 
         datev_export = self.create(
@@ -340,9 +346,9 @@ class DatevExport(models.Model):
     def _create_activity(self):
         self.ensure_one()
         if self.state == "done":
-            note = _("DATEV Export file is ready to download!")
+            note = self.env._("DATEV Export file is ready to download!")
         elif self.state == "failed":
-            note = _("Exception while creating DATEV-Export file!")
+            note = self.env._("Exception while creating DATEV-Export file!")
         else:
             return
         self.env["mail.activity"].sudo().create(
@@ -379,7 +385,9 @@ class DatevExport(models.Model):
     def action_done(self):
         self.filtered(lambda r: r.state in ["running", "failed"]).write(
             {
-                "exception_info": _("Manually set to Done by %s!") % self.env.user,
+                "exception_info": self.env._(
+                    "Manually set to Done by %s!", self.env.user
+                ),
                 "state": "done",
             }
         )
@@ -389,10 +397,12 @@ class DatevExport(models.Model):
             if not r.manually_document_selection:
                 r.invoice_ids = [(6, 0, r.get_invoices().ids)]
             if r.invoices_count == 0:
-                raise ValidationError(_("No invoices/refunds for export!"))
+                raise ValidationError(self.env._("No invoices/refunds for export!"))
             if r.state == "running":
                 raise ValidationError(
-                    _("It's not allowed to set an already running export to pending!")
+                    self.env._(
+                        "It's not allowed to set an already running export to pending!"
+                    )
                 )
             r.write(
                 {
@@ -404,7 +414,7 @@ class DatevExport(models.Model):
     def action_draft(self):
         if "running" in self.mapped("state"):
             raise ValidationError(
-                _("It's not allowed to set a running export to draft!")
+                self.env._("It's not allowed to set a running export to draft!")
             )
 
         self.write({"state": "draft", "line_ids": [(5,)]})
@@ -417,7 +427,7 @@ class DatevExport(models.Model):
             "views": [[tree_view.id, "list"], [False, "form"]],
             "res_model": "account.move",
             "target": "current",
-            "name": _("Problematic Invoices"),
+            "name": self.env._("Problematic Invoices"),
             "domain": [("id", "in", self.invoice_ids.filtered("datev_validation").ids)],
         }
 
@@ -427,7 +437,7 @@ class DatevExport(models.Model):
             "view_mode": "list,kanban,form",
             "res_model": "account.move",
             "target": "current",
-            "name": _("Included Invoices"),
+            "name": self.env._("Included Invoices"),
             "domain": [("id", "in", self.invoice_ids.ids)],
         }
 

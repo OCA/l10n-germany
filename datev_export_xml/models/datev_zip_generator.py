@@ -11,7 +11,7 @@ import base64
 import io
 import zipfile
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -23,17 +23,17 @@ class DatevZipGenerator(models.AbstractModel):
     @api.model
     def check_valid_data(self, invoices):
         if not invoices:
-            raise UserError(_("No Invoices Selected!"))
+            raise UserError(self.env._("No Invoices Selected!"))
 
         for invoice in invoices:
             if not invoice.partner_id.name and not invoice.partner_id.parent_name:
                 raise UserError(
-                    _(
+                    self.env._(
                         "Data Insufficient!\nYou have to fill the address for "
                         "partner of invoice %s. The partner address has to have "
-                        "official company name!"
+                        "official company name!",
+                        invoice.name,
                     )
-                    % invoice.name
                 )
 
     @api.model

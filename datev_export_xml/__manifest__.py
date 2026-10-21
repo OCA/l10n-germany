@@ -10,7 +10,7 @@
 
 {
     "name": "Datev Export XML",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "category": "Accounting",
     "license": "AGPL-3",
     "author": "Guenter Selbert, Thorsten Vocks, Maciej Wichowski, Daniela Scarpa, "
@@ -18,7 +18,7 @@
     "summary": "Export invoices and refunds as xml and pdf files zipped in DATEV  "
     "format.",
     "website": "https://github.com/OCA/l10n-germany",
-    "depends": ["datev_export"],
+    "depends": ["datev_export", "product"],
     "data": [
         "data/ir_cron_data.xml",
         "security/groups.xml",

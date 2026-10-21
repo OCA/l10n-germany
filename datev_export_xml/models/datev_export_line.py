@@ -1,7 +1,7 @@
 # © 2024 initOS GmbH
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import human_size
 
 
@@ -42,7 +42,7 @@ class DatevExportPackage(models.Model):
             "view_mode": "list,kanban,form",
             "res_model": "account.move",
             "target": "current",
-            "name": _("Included Invoices"),
+            "name": self.env._("Included Invoices"),
             "domain": [("id", "in", self.invoice_ids.ids)],
         }
 
