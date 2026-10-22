@@ -1,0 +1,1 @@
+odoo-addon-l10n_din5008_report_base @ git+https://github.com/OCA/l10n-germany.git@refs/pull/265/head#subdirectory=l10n_din5008_report_base
