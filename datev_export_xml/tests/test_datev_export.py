@@ -1,0 +1,1167 @@
+# Copyright (C) 2022-2023 initOS GmbH
+# Copyright (C) 2020, Elego Software Solutions GmbH, Berlin
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import base64
+import io
+import zipfile
+from datetime import date, timedelta
+from unittest import mock
+
+from lxml import etree
+
+from odoo import fields
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools import file_open
+
+from odoo.addons.base.tests.common import BaseCommon, HttpCase
+
+
+class TestDatevExport(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.company = cls.env.company
+        cls.env.company.write(
+            {
+                "street": "Musterstraße 1",
+                "zip": "10115",
+                "city": "Berlin",
+                "country_id": cls.env.ref("base.de").id,
+            }
+        )
+        cls.JournalObj = cls.env["account.journal"]
+        cls.sale_journal = cls.JournalObj.search(
+            [
+                ("type", "=", "sale"),
+                ("company_id", "=", cls.company.id),
+            ],
+            limit=1,
+        )
+        if not cls.sale_journal:
+            cls.sale_journal = cls.JournalObj.create(
+                {
+                    "name": "Test sale journal",
+                    "code": "sale",
+                    "type": "sale",
+                    "company_id": cls.company.id,
+                }
+            )
+        cls.purchase_journal = cls.JournalObj.search(
+            [
+                ("type", "=", "purchase"),
+                ("company_id", "=", cls.company.id),
+            ],
+            limit=1,
+        )
+        if not cls.purchase_journal:
+            cls.purchase_journal = cls.JournalObj.create(
+                {
+                    "name": "Test purchase journal",
+                    "code": "purchase",
+                    "type": "purchase",
+                    "company_id": cls.company.id,
+                }
+            )
+        cls.AccountObj = cls.env["account.account"]
+        cls.PartnerObj = cls.env["res.partner"]
+        cls.AnalyticAccountObj = cls.env["account.analytic.account"]
+        cls.ProductObj = cls.env["product.product"]
+        cls.today = fields.Date.today()
+        cls.InvoiceObj = cls.env["account.move"]
+        cls.InvoiceLineObj = cls.env["account.move.line"]
+        cls.AttachmentObj = cls.env["ir.attachment"]
+        cls.DatevExportObj = cls.env["datev.export.xml"]
+        cls.AccountAnalyticPlanObj = cls.env["account.analytic.plan"]
+
+        with file_open(
+            "datev_export_xml/static/src/demo/vendor_bill_attachment.pdf", "rb"
+        ) as f:
+            pdf_content = f.read()
+
+        cls.inv_attach_de = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_DE",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.inv_attach_eu = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_EU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.inv_attach_noneu = cls.AttachmentObj.create(
+            {
+                "name": "vendor_bill_attachment_NonEU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+
+        cls.refund_attach_de = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_DE",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.refund_attach_eu = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_EU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+        cls.refund_attach_noneu = cls.AttachmentObj.create(
+            {
+                "name": "bill_refund_attachment_NonEU",
+                "type": "binary",
+                "datas": base64.b64encode(pdf_content),
+            }
+        )
+
+        cls.account_customer_DE = cls.AccountObj.create(
+            {
+                "name": "A-Customer DE Account",
+                "code": "10001",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+
+        cls.account_vendor_DE = cls.AccountObj.create(
+            {
+                "name": "A-Vendor DE Account",
+                "code": "70001",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_customer_EU = cls.AccountObj.create(
+            {
+                "name": "A-Customer EU Account",
+                "code": "10002",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+
+        cls.account_vendor_EU = cls.AccountObj.create(
+            {
+                "name": "A-Vendor EU Account",
+                "code": "70002",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_customer_NonEU = cls.AccountObj.create(
+            {
+                "name": "A-Customer Non-EU Account",
+                "code": "10003",
+                "reconcile": True,
+                "account_type": "asset_receivable",
+            }
+        )
+
+        cls.account_vendor_NonEU = cls.AccountObj.create(
+            {
+                "name": "A-Vendor Non-EU Account",
+                "code": "70003",
+                "reconcile": True,
+                "account_type": "liability_payable",
+            }
+        )
+
+        cls.account_income = cls.AccountObj.create(
+            {
+                "name": "A-Income",
+                "code": "8401",
+                "reconcile": False,
+                "account_type": "income",
+            }
+        )
+
+        cls.account_expense = cls.AccountObj.create(
+            {
+                "name": "A-Expense",
+                "code": "5001",
+                "reconcile": False,
+                "account_type": "expense",
+            }
+        )
+
+        cls.customer_de = cls.PartnerObj.create(
+            {
+                "name": "A-Customer DE",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+        cls.vendor_de = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor DE",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.de").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+
+        cls.customer_eu = cls.PartnerObj.create(
+            {
+                "name": "A-Customer EU",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.fr").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_EU.id,
+                "property_account_payable_id": cls.account_vendor_EU.id,
+            }
+        )
+        cls.vendor_eu = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor EU",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.fr").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_EU.id,
+                "property_account_payable_id": cls.account_vendor_EU.id,
+            }
+        )
+
+        cls.customer_noneu = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Non-EU",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "City",
+                "country_id": cls.env.ref("base.us").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_NonEU.id,
+                "property_account_payable_id": cls.account_vendor_NonEU.id,
+            }
+        )
+        cls.vendor_noneu = cls.PartnerObj.create(
+            {
+                "name": "A-Vendor Non-EU",
+                "street": "Alle 9",
+                "zip": "54321",
+                "city": "Metropole",
+                "country_id": cls.env.ref("base.us").id,
+                "supplier_rank": 1,
+                "customer_rank": 0,
+                "property_account_receivable_id": cls.account_customer_NonEU.id,
+                "property_account_payable_id": cls.account_vendor_NonEU.id,
+            }
+        )
+
+        cls.consulting = cls.ProductObj.create(
+            {
+                "name": "A-IT-Consulting",
+                "default_code": "11-001",
+                "type": "service",
+                "sale_ok": True,
+                "categ_id": cls.env.ref("product.product_category_services").id,
+                "list_price": 120.0,
+                "property_account_income_id": cls.account_income.id,
+            }
+        )
+        cls.lease = cls.ProductObj.create(
+            {
+                "name": "A-Office-Lease",
+                "default_code": "99-015",
+                "type": "service",
+                "purchase_ok": True,
+                "categ_id": cls.env.ref("product.product_category_services").id,
+                "list_price": 900.0,
+                "property_account_income_id": cls.account_expense.id,
+            }
+        )
+        cls.account_analytic_plan_departments = cls.AccountAnalyticPlanObj.create(
+            {
+                "name": "Departments",
+                "default_applicability": "optional",
+            }
+        )
+        cls.analytic_account_it = cls.AnalyticAccountObj.create(
+            {
+                "name": "A-IT",
+                "code": 990010,
+                "plan_id": cls.account_analytic_plan_departments.id,
+            }
+        )
+        cls.analytic_account_office = cls.AnalyticAccountObj.create(
+            {
+                "name": "A-Office",
+                "code": 990000,
+                "plan_id": cls.account_analytic_plan_departments.id,
+            }
+        )
+
+        cls.parent_customer = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Parent",
+                "street": "Straße 1",
+                "zip": "12345",
+                "city": "Berlin",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+                "property_account_receivable_id": cls.account_customer_DE.id,
+                "property_account_payable_id": cls.account_vendor_DE.id,
+            }
+        )
+        cls.child_customer = cls.PartnerObj.create(
+            {
+                "name": "A-Customer Child",
+                "type": "contact",
+                "parent_id": cls.parent_customer.id,
+                "vat": "BE0477472701",
+                "country_id": cls.env.ref("base.de").id,
+                "customer_rank": 1,
+                "supplier_rank": 0,
+            }
+        )
+        cls.tax_group = cls.env["account.tax.group"].create(
+            {
+                "name": "Test Tax Group",
+                "company_id": cls.company.id,
+                "country_id": cls.company.account_fiscal_country_id.id,
+            }
+        )
+
+        # Ensure the initial state
+        cls.refund_date = cls.today - timedelta(days=55)
+        cls.start_date = cls.today - timedelta(days=34)
+        cls.end_date = cls.today - timedelta(days=32)
+        cls.InvoiceObj.with_context(force_delete=True).search(
+            [("company_id", "=", cls.company.id)]
+        ).unlink()
+        cls.env.company.datev_default_period = "week"
+
+    def _check_filecontent(self, export):
+        # check content only for single invoice
+        # datev export based on unit test cases
+        if not export.line_ids.attachment_id or not export.invoice_ids:
+            return {}
+
+        export.check_valid_data(export.invoice_ids)
+        invoice = export.invoice_ids[0].name
+        invoice = invoice.replace("/", "-")
+        zip_data = base64.b64decode(export.line_ids.attachment_id.datas)
+        fp = io.BytesIO()
+        fp.write(zip_data)
+        zipfile.is_zipfile(fp)
+        file_list = set()
+        invoice_xml = {}
+        with zipfile.ZipFile(fp, "r") as z:
+            for zf in z.namelist():
+                file_list.add(zf)
+
+            doc_file = "document.xml"
+            inv_file = str(invoice + ".xml")
+            pdf_file = str(invoice + ".pdf")
+            doc_data = z.read(doc_file)
+            inv_data = z.read(inv_file)
+            pdf_data = z.read(pdf_file)
+            # document.xml
+            doc_root = etree.fromstring(doc_data)
+            # invoice.xml file
+            inv_root = etree.fromstring(inv_data)
+            for i in inv_root:
+                invoice_xml.update(i.attrib)
+
+            return {
+                "file_list": file_list,
+                "zip_file": z,
+                "pdf": pdf_data,
+                "document": lambda xpath: doc_root.find(
+                    xpath, namespaces=doc_root.nsmap
+                ),
+                "invoice": lambda xpath: inv_root.find(
+                    xpath, namespaces=inv_root.nsmap
+                ),
+            }
+
+    def create_out_invoice(self, customer, start_date=None, end_date=None):
+        # OUT Invoice
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 0%",
+                "amount": 0.0,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "tax_group_id": self.tax_group.id,
+            }
+        )
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": customer.id,
+                "user_id": self.env.user.id,
+                "invoice_date": start_date or self.start_date,
+                "invoice_date_due": end_date or self.end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.consulting.id,
+                            "quantity": 5.0,
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "price_unit": 120.00,
+                            "price_total": 600.0,
+                            "credit": 600.0,
+                            "debit": 0.0,
+                            "account_id": self.account_income.id,
+                            "analytic_distribution": {self.analytic_account_it.id: 100},
+                        },
+                    )
+                ],
+            }
+        )
+        invoice.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(invoice.state, "draft")
+        invoice.action_post()
+        return invoice
+
+    def create_out_invoice_with_tax(self, customer, start_date, end_date, tax):
+        # OUT Invoice with Tax 15%
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": customer.id,
+                "user_id": self.env.user.id,
+                "invoice_date": start_date,
+                "invoice_date_due": end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "out_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.consulting.id,
+                            "quantity": 5.0,
+                            "price_unit": 120.00,
+                            "account_id": self.account_income.id,
+                            "analytic_distribution": {self.analytic_account_it.id: 100},
+                            "tax_ids": [(6, 0, tax.ids)],
+                        },
+                    ),
+                ],
+            }
+        )
+        invoice.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(invoice.state, "draft")
+        invoice.action_post()
+        return invoice
+
+    def create_in_invoice(self, vendor, start_date=None, end_date=None):
+        # IN Invoice
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 0%",
+                "amount": 0.0,
+                "amount_type": "percent",
+                "type_tax_use": "purchase",
+                "tax_group_id": self.tax_group.id,
+            }
+        )
+        invoice = self.InvoiceObj.create(
+            {
+                "partner_id": vendor.id,
+                "user_id": self.env.user.id,
+                "invoice_date": start_date or self.start_date,
+                "invoice_date_due": end_date or self.end_date,
+                "company_id": self.env.company.id,
+                "currency_id": self.env.company.currency_id.id,
+                "move_type": "in_invoice",
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.lease.id,
+                            "quantity": 1.0,
+                            "price_unit": 900.0,
+                            "price_total": 900.0,
+                            "credit": 0.0,
+                            "debit": 900.0,
+                            "tax_ids": [(6, 0, tax.ids)],
+                            "account_id": self.account_expense.id,
+                            "analytic_distribution": {
+                                self.analytic_account_office.id: 1
+                            },
+                        },
+                    ),
+                ],
+            }
+        )
+        self.assertEqual(invoice.state, "draft")
+        invoice.action_post()
+        return invoice
+
+    def create_refund(self, invoice, refund_date):
+        # OUT Refund/Credit Note
+        refund = invoice._reverse_moves(
+            [{"invoice_date": refund_date, "invoice_date_due": refund_date}]
+        )
+        self.assertEqual(refund.state, "draft")
+        refund.action_post()
+        return refund
+
+    def create_customer_datev_export(self, start_date, end_date):
+        datev_export = self.DatevExportObj.create(
+            {
+                "export_type": "out",
+                "export_invoice": True,
+                "export_refund": True,
+                "check_xsd": True,
+                "date_start": start_date,
+                "date_stop": end_date,
+            }
+        )
+        return datev_export
+
+    def create_vendor_datev_export(self, start_date=None, end_date=None):
+        datev_export = self.DatevExportObj.create(
+            {
+                "export_type": "in",
+                "export_invoice": True,
+                "export_refund": True,
+                "check_xsd": True,
+                "date_start": start_date or self.start_date,
+                "date_stop": end_date or self.end_date,
+            }
+        )
+        return datev_export
+
+    def create_customer_datev_export_manually(self, invoice):
+        start_date = invoice.invoice_date
+        end_date = invoice.invoice_date_due
+        datev_export = self.DatevExportObj.create(
+            {
+                "export_type": "out",
+                "export_invoice": True,
+                "export_refund": True,
+                "check_xsd": True,
+                "date_start": start_date,
+                "date_stop": end_date,
+                "manually_document_selection": True,
+                "invoice_ids": [(6, 0, [invoice.id])],
+            }
+        )
+        return datev_export
+
+    def update_attachment(self, attachment, invoice):
+        attachment.write(
+            {
+                "res_model": "account.move",
+                "res_id": invoice.id,
+            }
+        )
+        return attachment
+
+    def _run_test_document(self, doc, invoice):
+        inv_number = invoice.name.replace("/", "-")
+        self.assertEqual(doc(".//header/clientName").text, invoice.company_id.name)
+        self.assertEqual(doc(".//document/description").text, invoice.name)
+        self.assertEqual(
+            doc(".//extension[@datafile]").attrib["datafile"], inv_number + ".xml"
+        )
+        self.assertEqual(doc(".//extension[@name]").attrib["name"], inv_number + ".pdf")
+
+        self.assertEqual(
+            doc(".//property[@key='InvoiceType']").attrib["value"],
+            "Outgoing" if invoice.move_type.startswith("out_") else "Incoming",
+        )
+
+    def _run_test_invoice(self, doc, invoice):
+        inv_line = invoice.invoice_line_ids.filtered("product_id")[0]
+
+        info = doc(".//invoice_info").attrib
+        line = doc(".//invoice_item_list").attrib
+        total = doc(".//total_amount").attrib
+
+        self.assertEqual(
+            info["invoice_type"],
+            "Rechnung"
+            if invoice.move_type.endswith("_invoice")
+            else "Gutschrift/Rechnungskorrektur",
+        )
+        self.assertEqual(info["invoice_date"], invoice.invoice_date.isoformat())
+
+        if invoice.move_type.startswith("out_"):
+            self.assertEqual(
+                doc(".//invoice_party/address").attrib["name"],
+                invoice.partner_id.display_name,
+            )
+        else:
+            self.assertEqual(
+                doc(".//supplier_party/address").attrib["name"],
+                invoice.partner_id.display_name,
+            )
+
+        self.assertEqual(float(line["quantity"]), inv_line.quantity)
+        self.assertEqual(line["product_id"], inv_line.product_id.default_code)
+
+        sign = -1 if invoice.move_type.endswith("_refund") else 1
+        self.assertEqual(
+            float(total["net_total_amount"]),
+            sign * invoice.amount_untaxed,
+        )
+        self.assertEqual(
+            float(total["total_gross_amount_excluding_third-party_collection"]),
+            sign * invoice.amount_total,
+        )
+        # partner has bank account
+        if invoice.partner_id.bank_ids:
+            bank = doc(".//invoice_party/account").attrib
+            self.assertEqual(
+                bank["bank_name"], invoice.partner_id.bank_ids[0].bank_name
+            )
+            self.assertEqual(
+                bank["iban"],
+                invoice.partner_id.bank_ids[0].acc_number.replace(" ", ""),
+            )
+
+    def _run_test_out_refund_datev_export(self, refund):
+        line = refund.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(refund.move_type, "out_refund")
+        self.assertEqual(line.account_id, self.account_income)
+        self.assertEqual(line.price_unit, 120.00)
+        self.assertEqual(line.quantity, 5.00)
+        self.assertEqual(refund.journal_id, self.sale_journal)
+        self.assertEqual(refund.state, "posted")
+
+        start_date = refund.invoice_date
+        end_date = refund.invoice_date_due
+        datev_export = self.create_customer_datev_export(start_date, end_date)
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        # There is always a first invoice
+        self.assertEqual(datev_export.invoices_count, 1)
+        invoice = datev_export.invoice_ids[0]
+        self.assertEqual(invoice, refund)
+        inv_number = invoice.name.replace("/", "-")
+
+        self.assertEqual(datev_export.state, "draft")
+        datev_export.action_pending()
+        self.assertEqual(datev_export.state, "pending")
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+        datev_export._create_activity()
+        datev_export.line_ids._compute_filesize()
+        self.assertTrue(datev_export.line_ids.filesize)
+        self.assertEqual(datev_export.state, "done")
+
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
+        res = self._check_filecontent(datev_export)
+        # check list of files
+        self.assertEqual(res["file_list"], file_list)
+        # check document.xml
+        self._run_test_document(res["document"], invoice)
+
+        # check invoice.xml file
+        self._run_test_invoice(res["invoice"], invoice)
+
+    def _run_test_in_refund_datev_export(self, refund, attachment):
+        line = refund.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(refund.move_type, "in_refund")
+        self.assertEqual(line.account_id, self.account_expense)
+        self.assertEqual(line.price_unit, 900.00)
+        self.assertEqual(line.quantity, 1.00)
+        self.assertEqual(refund.journal_id, self.purchase_journal)
+        self.assertEqual(refund.state, "posted")
+
+        start_date = refund.invoice_date
+        end_date = refund.invoice_date_due
+        datev_export = self.create_vendor_datev_export(start_date, end_date)
+
+        attachment = self.update_attachment(attachment, refund)
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        # There is always a first invoice
+        self.assertEqual(datev_export.invoices_count, 1)
+        invoice = datev_export.invoice_ids[0]
+        self.assertEqual(invoice, refund)
+        inv_number = invoice.name.replace("/", "-")
+
+        self.assertEqual(datev_export.state, "draft")
+        datev_export.action_pending()
+        self.assertEqual(datev_export.state, "pending")
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+        datev_export._create_activity()
+        # self.DatevExportObj.cron_run_pending_export()
+        # self.DatevExportObj.refresh()
+        self.assertEqual(datev_export.state, "done")
+
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"}
+        res = self._check_filecontent(datev_export)
+        # check list of files
+        self.assertEqual(res["file_list"], file_list)
+        self.assertEqual(res["pdf"], base64.b64decode(attachment.datas))
+        # check document.xml
+        self._run_test_document(res["document"], invoice)
+
+        # check invoice.xml file
+        self._run_test_invoice(res["invoice"], invoice)
+
+    def _run_test_out_invoice_datev_export(self, invoice):
+        line = invoice.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(line.account_id, self.account_income)
+        self.assertEqual(line.price_unit, 120.00)
+        self.assertEqual(line.quantity, 5.00)
+        self.assertEqual(invoice.journal_id, self.sale_journal)
+        self.assertEqual(invoice.state, "posted")
+
+        start_date = invoice.invoice_date
+        end_date = invoice.invoice_date_due
+        datev_export = self.create_customer_datev_export(start_date, end_date)
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        # There is always a first invoice
+        self.assertEqual(datev_export.invoices_count, 1)
+        invoice = datev_export.invoice_ids[0]
+        self.assertEqual(invoice, invoice)
+        inv_number = invoice.name.replace("/", "-")
+
+        self.assertEqual(datev_export.state, "draft")
+        datev_export.action_pending()
+        self.assertEqual(datev_export.state, "pending")
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+        datev_export._create_activity()
+        # self.DatevExportObj.cron_run_pending_export()
+        # self.DatevExportObj.refresh()
+        self.assertEqual(datev_export.state, "done")
+
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
+        res = self._check_filecontent(datev_export)
+        # check list of files
+        self.assertEqual(res["file_list"], file_list)
+        # check document.xml
+        self._run_test_document(res["document"], invoice)
+
+        # check invoice.xml file
+        self._run_test_invoice(res["invoice"], invoice)
+
+    def _run_test_in_invoice_datev_export(self, invoice, attachment):
+        line = invoice.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(invoice.move_type, "in_invoice")
+        self.assertEqual(line.account_id, self.account_expense)
+        self.assertEqual(line.price_unit, 900.00)
+        self.assertEqual(line.quantity, 1.00)
+        self.assertEqual(invoice.journal_id, self.purchase_journal)
+        self.assertEqual(invoice.state, "posted")
+
+        start_date = invoice.invoice_date
+        end_date = invoice.invoice_date_due
+        datev_export = self.create_vendor_datev_export(start_date, end_date)
+
+        attachment = self.update_attachment(attachment, invoice)
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        self.assertEqual(datev_export.invoices_count, 1)
+        invoice = datev_export.invoice_ids[0]
+        self.assertEqual(invoice, invoice)
+        inv_number = invoice.name.replace("/", "-")
+
+        self.assertEqual(datev_export.state, "draft")
+        datev_export.action_pending()
+        self.assertEqual(datev_export.state, "pending")
+        datev_export.with_user(datev_export.create_uid.id).get_zip()
+        datev_export._create_activity()
+        # self.DatevExportObj.cron_run_pending_export()
+        # self.DatevExportObj.refresh()
+        self.assertEqual(datev_export.state, "done")
+
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", f"{inv_number}.xml", f"{inv_number}.pdf"}
+        res = self._check_filecontent(datev_export)
+        # check list of files
+        self.assertEqual(res["file_list"], file_list)
+        self.assertEqual(res["pdf"], base64.b64decode(attachment.datas))
+        # check document.xml
+        self._run_test_document(res["document"], invoice)
+
+        # check invoice.xml file
+        self._run_test_invoice(res["invoice"], invoice)
+
+    def _run_test_out_inv_datev_export_manually(self, invoice):
+        line = invoice.invoice_line_ids.filtered("product_id")[0]
+        self.assertEqual(invoice.move_type, "out_invoice")
+        self.assertEqual(line.account_id, self.account_income)
+        self.assertEqual(line.price_unit, 120.00)
+        self.assertEqual(line.quantity, 5.00)
+        self.assertEqual(invoice.journal_id, self.sale_journal)
+        self.assertEqual(invoice.state, "posted")
+
+        datev_export = self.create_customer_datev_export_manually(invoice)
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        self.assertEqual(datev_export.invoices_count, 1)
+        invoice = datev_export.invoice_ids[0]
+        self.assertEqual(invoice, invoice)
+        inv_number = invoice.name.replace("/", "-")
+
+        self.assertEqual(datev_export.state, "draft")
+        datev_export.action_pending()
+        self.assertEqual(datev_export.state, "pending")
+        # manually do export via button : 'Create DATEV Export File'
+        datev_export.with_user(datev_export.create_uid.id).with_context(
+            datev_mode="datev_export"
+        ).export_zip()
+        self.assertEqual(datev_export.state, "done")
+        self.assertTrue(datev_export.line_ids.attachment_id)
+        file_list = {"document.xml", inv_number + ".xml", inv_number + ".pdf"}
+        res = self._check_filecontent(datev_export)
+        # check list of files
+        self.assertEqual(res["file_list"], file_list)
+        # check document.xml
+        self._run_test_document(res["document"], invoice)
+
+        # check invoice.xml file
+        self._run_test_invoice(res["invoice"], invoice)
+
+    # ------- CUSTOMER --------
+    def test_01_out_invoice_de_datev_export(self):
+        # 1. OUT Invoice DE
+        invoice = self.create_out_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+        self._run_test_out_invoice_datev_export(invoice)
+
+    def test_02_out_invoice_eu_datev_export(self):
+        # 2. OUT Invoice EU
+        invoice = self.create_out_invoice(
+            self.customer_eu, self.start_date, self.end_date
+        )
+        self._run_test_out_invoice_datev_export(invoice)
+
+    def test_03_out_invoice_noneu_datev_export(self):
+        # 3. OUT Invoice NonEU
+        invoice = self.create_out_invoice(
+            self.customer_noneu, self.start_date, self.end_date
+        )
+        self._run_test_out_invoice_datev_export(invoice)
+
+    def test_04_out_refund_de_datev_export(self):
+        # 4. OUT Refund DE
+        # before the due date of invoice
+        invoice = self.create_out_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_out_refund_datev_export(refund)
+
+    def test_05_out_refund_eu_datev_export(self):
+        # 5. OUT Refund EU
+        # before the due date of invoice
+        invoice = self.create_out_invoice(
+            self.customer_eu, self.start_date, self.end_date
+        )
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_out_refund_datev_export(refund)
+
+    def test_06_out_refund_noneu_datev_export(self):
+        # 6. OUT Refund NonEU
+        # before the due date of invoice
+        invoice = self.create_out_invoice(
+            self.customer_noneu, self.start_date, self.end_date
+        )
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_out_refund_datev_export(refund)
+
+    # ------- VENDOR --------
+    def test_07_in_invice_de_datev_export(self):
+        # 7. IN Invoice DE
+        invoice = self.create_in_invoice(self.vendor_de, self.start_date, self.end_date)
+        self._run_test_in_invoice_datev_export(invoice, self.inv_attach_de)
+
+    def test_08_in_invoice_eu_datev_export(self):
+        # 8. IN Invoice EU
+        invoice = self.create_in_invoice(self.vendor_eu, self.start_date, self.end_date)
+        self._run_test_in_invoice_datev_export(invoice, self.inv_attach_eu)
+
+    def test_09_in_invoice_noneu_datev_export(self):
+        # 9. IN Invoice NonEU
+        invoice = self.create_in_invoice(
+            self.vendor_noneu, self.start_date, self.end_date
+        )
+        self._run_test_in_invoice_datev_export(invoice, self.inv_attach_noneu)
+
+    def test_10_in_refund_de_datev_export(self):
+        # 10. IN Refund DE
+        # before the due date of invoice
+        invoice = self.create_in_invoice(self.vendor_de, self.start_date, self.end_date)
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_in_refund_datev_export(refund, self.refund_attach_de)
+
+    def test_11_in_refund_eu_datev_export(self):
+        # 11. IN Refund EU
+        # before the due date of invoice
+        invoice = self.create_in_invoice(self.vendor_eu, self.start_date, self.end_date)
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_in_refund_datev_export(refund, self.refund_attach_eu)
+
+    def test_12_in_refund_noneu_datev_export(self):
+        # 12. IN Refund NonEU
+        # before the due date of invoice
+        invoice = self.create_in_invoice(
+            self.vendor_noneu, self.start_date, self.end_date
+        )
+        refund = self.create_refund(invoice, self.refund_date)
+        self.assertEqual(refund.reversed_entry_id, invoice)
+        self.assertEqual(refund.invoice_date, self.refund_date)
+        self._run_test_in_refund_datev_export(refund, self.refund_attach_noneu)
+
+    def test_13_out_invoice_with_tax(self):
+        # OUT Invoice with tax
+        self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
+        tax = self.env["account.tax"].create(
+            {
+                "name": "Tax 15.0",
+                "amount": 15.0,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "tax_group_id": self.tax_group.id,
+            }
+        )
+        invoice = self.create_out_invoice_with_tax(
+            self.child_customer, self.start_date, self.end_date, tax
+        )
+        self._run_test_out_invoice_datev_export(invoice)
+
+    def test_14_datev_export_without_invoice(self):
+        date_start = self.today - timedelta(days=self.today.weekday(), weeks=1)
+        date_stop = date_start + timedelta(days=6)
+        # 1. when export_invoice,export_refund are False
+        # ValidationError: "You need to choose which documents types
+        # (Invoices/Refunds) you want to export!"
+        with self.assertRaises(ValidationError):
+            datev_export = self.DatevExportObj.create(
+                {
+                    "export_type": "out",
+                    "export_invoice": False,
+                    "export_refund": False,
+                }
+            )
+        # 2. when default values are set
+        # date_start, date_end (based on datev_default_period of current company)
+        # export_invoice = True,
+        # export_refund = True,
+        # check_xsd = True,
+        # manually_document_selection = Flase
+        datev_export = self.DatevExportObj.create(
+            {
+                "export_type": "out",
+            }
+        )
+        self.assertFalse(datev_export.line_ids.attachment_id)
+        self.assertEqual(
+            datev_export.client_number,
+            self.env.company.datev_client_number,
+        )
+        self.assertEqual(
+            datev_export.consultant_number,
+            self.env.company.datev_consultant_number,
+        )
+        self.assertEqual(datev_export.state, "draft")
+        self.assertEqual(datev_export.date_start, date_start)
+        self.assertEqual(datev_export.date_stop, date_stop)
+        # change date_stop , so that incoice_count = 0
+        datev_export.date_stop = date_stop - timedelta(4)
+        self.assertEqual(datev_export.invoices_count, 0)
+        # 3. when try to set state = 'pending' and invoice_count = 0
+        # ValidationError: "No invoices/refunds for export!"
+        with self.assertRaises(ValidationError):
+            datev_export.action_pending()
+
+    def test_15_datev_export_with_manually_document_selection(self):
+        # OUT Invoice
+        invoice = self.create_out_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+        self._run_test_out_inv_datev_export_manually(invoice)
+
+    def test_16_manual_export(self):
+        out_invoice = self.create_out_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+
+        self.DatevExportObj.with_context(
+            active_model="account.move",
+            active_ids=out_invoice.ids,
+        ).export_zip_invoice()
+
+        in_invoice = self.create_in_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+
+        self.DatevExportObj.export_zip_invoice(in_invoice.ids)
+
+        with self.assertRaises(UserError):
+            self.DatevExportObj.export_zip_invoice(in_invoice.ids + out_invoice.ids)
+
+    def test_period(self):
+        checks = [
+            ("day", (2022, 6, 15), (2022, 6, 14), (2022, 6, 14)),
+            ("week", (2022, 6, 15), (2022, 6, 6), (2022, 6, 12)),
+            ("month", (2022, 6, 15), (2022, 5, 1), (2022, 5, 31)),
+            ("year", (2022, 6, 15), (2021, 1, 1), (2021, 12, 31)),
+            (False, (2022, 6, 15), (2022, 6, 14), (2022, 6, 14)),
+        ]
+        for dates in checks:
+            today, start, stop = (date(*x) for x in dates[1:])
+            self.env.company.datev_default_period = dates[0]
+            self.assertEqual(self.DatevExportObj._default_start(today), start)
+            self.assertEqual(self.DatevExportObj._default_stop(today), stop)
+
+    def test_state_workflow(self):
+        in_invoice = self.create_in_invoice(
+            self.customer_de, self.start_date, self.end_date
+        )
+        export = self.DatevExportObj.create(
+            {
+                "invoice_ids": [(6, 0, in_invoice.ids)],
+                "export_type": "in",
+                "manually_document_selection": True,
+            }
+        )
+
+        self.assertTrue(export.invoice_ids)
+
+        self.assertEqual(export.state, "draft")
+        export.action_pending()
+        self.assertEqual(export.state, "pending")
+        export.action_draft()
+        self.assertEqual(export.state, "draft")
+
+        export.state = "running"
+        with self.assertRaises(ValidationError):
+            export.action_pending()
+        with self.assertRaises(ValidationError):
+            export.action_draft()
+
+        export.action_done()
+        self.assertEqual(export.state, "done")
+
+    def test_validation(self):
+        invoice = self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+        new_tax = invoice.invoice_line_ids[:1].tax_ids.copy()
+        invoice.button_cancel()
+        invoice.button_draft()
+        invoice.invoice_line_ids[:1].tax_ids += new_tax
+        invoice.action_post()
+
+        export.action_validate()
+
+        self.assertIn("multiple taxes", invoice.datev_validation)
+
+        action = export.action_show_invalid_invoices_view()
+        self.assertIn(invoice, self.InvoiceObj.search(action["domain"]))
+
+    def test_cron(self):
+        self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+
+        export.action_pending()
+
+        with mock.patch.object(self.env.cr, "commit"):
+            export.cron_run_pending_export()
+
+        self.assertEqual(export.state, "done")
+
+        action1 = export.action_show_related_invoices_view()
+        action2 = export.line_ids.action_open_invoices()
+        self.assertEqual(
+            self.InvoiceObj.search(action1["domain"]),
+            self.InvoiceObj.search(action2["domain"]),
+        )
+
+
+class TestController(TestDatevExport, HttpCase):
+    def test_export_controller(self):
+        self.create_in_invoice(self.customer_de)
+        export = self.create_vendor_datev_export()
+        export._get_zip()
+        self.authenticate("admin", "admin")
+        result = self.url_open(export.line_ids.action_datev_download()["url"])
+        self.assertEqual(result.headers["Content-Type"], "application/zip")

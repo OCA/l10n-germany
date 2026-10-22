@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+# Copyright (C) 2022 initOS GmbH
+# Copyright (C) 2019 sewisoft (sewisoft.de)
+# Copyright (C) 2010 big-consulting GmbH (www.openbig.de)
+# Copyright (C) 2010 OpenGLOBE Grzegorz Grzelak (www.openglobe.pl)
+# @author Guenter Selbert <guenter.selbert@sewisoft.de>
+# @author Thorsten Vocks
+# @author Grzegorz Grzelak
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.datev.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="100" />
+        <field name="inherit_id" ref="datev_export.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block id="datev_export" position="inside">
+                <setting
+                    name="datev_default_period"
+                    company_dependent="1"
+                    help="Used to get default values for start and stop date at DATEV Export!"
+                >
+                    <field name="datev_default_period" />
+                </setting>
+                <setting
+                    company_dependent="1"
+                    help="Controls which reference is being used on vendor bills/refunds"
+                >
+                    <field name="datev_vendor_order_ref" />
+                </setting>
+                <setting
+                    company_dependent="1"
+                    help="Controls which reference is being used on customer invoices/refunds"
+                >
+                    <field name="datev_customer_order_ref" />
+                </setting>
+                <setting
+                    company_dependent="1"
+                    help="If set, the invoices are marked as exported when finishing a Datev export. Only not yet exported invoices are suggested for next Datev export."
+                >
+                    <field name="datev_export_state" />
+                </setting>
+                <setting
+                    company_dependent="1"
+                    help="The package size in MB before a new ZIP archive is created. The value should be between 20 MB and 400 MB"
+                >
+                    <field name="datev_package_limit" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>

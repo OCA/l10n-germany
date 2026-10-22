@@ -1,0 +1,65 @@
+# Copyright (C) 2022-2023 initOS GmbH
+# Copyright (C) 2019 sewisoft (sewisoft.de)
+# Copyright (C) 2010-2023 big-consulting GmbH (www.openbig.de)
+# Copyright (C) 2010 OpenGLOBE Grzegorz Grzelak (www.openglobe.pl)
+# @author Guenter Selbert <guenter.selbert@sewisoft.de>
+# @author Thorsten Vocks
+# @author Grzegorz Grzelak
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
+
+
+class ResCompany(models.Model):
+    _inherit = "res.company"
+
+    datev_default_period = fields.Selection(
+        [
+            ("day", "Day"),
+            ("week", "Week"),
+            ("month", "Month"),
+            ("year", "Year"),
+        ],
+        help="Used to get default values for start and stop date at DATEV Export!",
+        default="week",
+    )
+
+    datev_export_state = fields.Boolean(
+        help="If set, the invoices are marked as exported when finishing a Datev "
+        "export.",
+    )
+
+    datev_vendor_order_ref = fields.Selection(
+        [
+            ("odoo", "Odoo Reference"),
+            ("partner", "Partner Reference"),
+            ("payment", "Payment Reference"),
+        ],
+        "Vendor Order Reference",
+        default="odoo",
+        required=True,
+    )
+
+    datev_customer_order_ref = fields.Selection(
+        [
+            ("odoo", "Odoo Reference"),
+            ("partner", "Partner Reference"),
+            ("payment", "Payment Reference"),
+        ],
+        "Customer Order Reference",
+        default="odoo",
+        required=True,
+    )
+
+    datev_package_limit = fields.Integer(
+        string="Package Limit in MB",
+        default=100,
+    )
+
+    _check_package_limit_constraint = [
+        models.Constraint(
+            # DATEV only allows 465 MB and we leave some space
+            "CHECK(datev_package_limit >= 20 AND datev_package_limit <= 400)",
+            "Package Limit for DATEV must be between 20MB and 400MB",
+        )
+    ]
