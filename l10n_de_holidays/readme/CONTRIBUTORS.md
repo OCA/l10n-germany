@@ -1,0 +1,3 @@
+- Yu Weng \<<yweng@elegosoft.com>\>
+- Nikolina Todorova \<<nikolina.todorova@initos.com>\>
+- Michael Tietz (MT Software) \<<mtietz@mt-software.de>\>

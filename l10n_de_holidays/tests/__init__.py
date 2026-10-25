@@ -1,0 +1,1 @@
+from . import test_calendar_public_holiday_template_de

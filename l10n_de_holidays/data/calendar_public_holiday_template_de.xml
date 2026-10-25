@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record
+        id="calendar_public_holiday_template_de"
+        model="calendar.public.holiday.template"
+    >
+        <field name="name">Germany</field>
+        <field name="country_id" ref="base.de" />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_new_year"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">New Year's Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-01-01</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_three_kings"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Three Kings Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-01-06</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_bw'), ref('base.state_de_by'), ref('base.state_de_st')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_womens_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">International Women's Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-03-08</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_be'), ref('base.state_de_mv')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_good_friday"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Good Friday</field>
+        <field name="date_type">easter</field>
+        <field name="day_offset">-2</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_easter_sunday"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Easter Sunday</field>
+        <field name="date_type">easter</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_easter_monday"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Easter Monday</field>
+        <field name="date_type">easter</field>
+        <field name="day_offset">1</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_workers_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">International Workers' Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-05-01</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_ascension_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Ascension Day</field>
+        <field name="date_type">easter</field>
+        <field name="day_offset">39</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_whit_monday"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Whit Monday</field>
+        <field name="date_type">easter</field>
+        <field name="day_offset">50</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_corpus_christi"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Corpus Christi</field>
+        <field name="date_type">easter</field>
+        <field name="day_offset">60</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_bw'), ref('base.state_de_by'), ref('base.state_de_he'), ref('base.state_de_nw'), ref('base.state_de_rp'), ref('base.state_de_sl')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_assumption_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Assumption Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-08-15</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_by'), ref('base.state_de_sl')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_childrens_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">World Children's Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-09-20</field>
+        <field name="state_ids" eval="[Command.set([ref('base.state_de_th')])]" />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_german_unity"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Day of German Unity</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-10-03</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_reformation_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Day of Reformation</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-10-31</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_bb'), ref('base.state_de_hb'), ref('base.state_de_hh'), ref('base.state_de_mv'), ref('base.state_de_ni'), ref('base.state_de_sh'), ref('base.state_de_sn'), ref('base.state_de_st'), ref('base.state_de_th')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_all_saints"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">All Saints' Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-11-01</field>
+        <field
+            name="state_ids"
+            eval="[Command.set([ref('base.state_de_bw'), ref('base.state_de_by'), ref('base.state_de_nw'), ref('base.state_de_rp'), ref('base.state_de_sl')])]"
+        />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_repentance_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Day of Repentance and Prayer</field>
+        <field name="date_type">de_repentance_day</field>
+        <field name="state_ids" eval="[Command.set([ref('base.state_de_sn')])]" />
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_christmas_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Christmas Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-12-25</field>
+    </record>
+    <record
+        id="calendar_public_holiday_template_de_boxing_day"
+        model="calendar.public.holiday.template.line"
+    >
+        <field name="template_id" ref="calendar_public_holiday_template_de" />
+        <field name="name">Boxing Day</field>
+        <field name="date_type">fixed</field>
+        <field name="date">2000-12-26</field>
+    </record>
+</odoo>

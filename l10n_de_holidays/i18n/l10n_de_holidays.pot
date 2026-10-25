@@ -1,0 +1,124 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_holidays
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-25 07:58+0000\n"
+"PO-Revision-Date: 2026-10-25 07:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_all_saints
+msgid "All Saints' Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_ascension_day
+msgid "Ascension Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_assumption_day
+msgid "Assumption Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_boxing_day
+msgid "Boxing Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model,name:l10n_de_holidays.model_calendar_public_holiday_template_line
+msgid "Calendar Public Holiday Template Line"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_christmas_day
+msgid "Christmas Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_corpus_christi
+msgid "Corpus Christi"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,field_description:l10n_de_holidays.field_calendar_public_holiday_template_line__date_type
+msgid "Date Type"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_german_unity
+msgid "Day of German Unity"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_reformation_day
+msgid "Day of Reformation"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_repentance_day
+#: model:ir.model.fields.selection,name:l10n_de_holidays.selection__calendar_public_holiday_template_line__date_type__de_repentance_day
+msgid "Day of Repentance and Prayer"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_easter_monday
+msgid "Easter Monday"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_easter_sunday
+msgid "Easter Sunday"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:ir.model.fields,help:l10n_de_holidays.field_calendar_public_holiday_template_line__date_type
+msgid ""
+"Fixed Date: the day and month of the date are used every year.\n"
+"Other values: the date is calculated for every year."
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_good_friday
+msgid "Good Friday"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_womens_day
+msgid "International Women's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_workers_day
+msgid "International Workers' Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_new_year
+msgid "New Year's Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_three_kings
+msgid "Three Kings Day"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_whit_monday
+msgid "Whit Monday"
+msgstr ""
+
+#. module: l10n_de_holidays
+#: model:calendar.public.holiday.template.line,name:l10n_de_holidays.calendar_public_holiday_template_de_childrens_day
+msgid "World Children's Day"
+msgstr ""

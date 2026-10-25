@@ -1,0 +1,1 @@
+odoo-addon-calendar_public_holiday @ git+https://github.com/mt-software-de/calendar.git@18.0-imp-calendar_public_holiday-template#subdirectory=calendar_public_holiday
