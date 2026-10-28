@@ -1,0 +1,1 @@
+fints<5  # 5.x requires lxml>=6, which breaks the lxml version pinned by Odoo 18
