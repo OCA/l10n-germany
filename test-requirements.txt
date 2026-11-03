@@ -1,0 +1,2 @@
+odoo-addon-hr_expense_trip @ git+https://github.com/oca/hr-expense.git@refs/pull/337/head#subdirectory=hr_expense_trip
+odoo-addon-hr_expense_meal_allowance @ git+https://github.com/oca/l10n-germany.git@refs/pull/223/head#subdirectory=hr_expense_meal_allowance
