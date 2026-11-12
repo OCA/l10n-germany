@@ -76,6 +76,10 @@ class L10nDeTaxStatement(models.Model):
         copy=False,
         tracking=True,
     )
+    is_period_open = fields.Boolean(
+        compute="_compute_is_period_open",
+        help="The tax return lock date of the company doesn't cover the period",
+    )
     line_ids = fields.One2many(
         "l10n.de.tax.statement.line", "statement_id", "Lines", copy=False
     )
@@ -111,6 +115,14 @@ class L10nDeTaxStatement(models.Model):
                         name=statement.name,
                     )
                 )
+
+    @api.depends("date_to", "company_id.tax_lock_date")
+    def _compute_is_period_open(self):
+        for statement in self:
+            lock_date = statement.company_id.tax_lock_date
+            statement.is_period_open = bool(statement.date_to) and (
+                not lock_date or lock_date < statement.date_to
+            )
 
     @api.depends("year", "period")
     def _compute_dates(self):

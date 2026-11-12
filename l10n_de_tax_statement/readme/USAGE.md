@@ -12,7 +12,8 @@ To create a statement:
     and press *Update* to compute them again.
 4.  Press *Approve* once the lines are right. The approval computes the
     lines again and stops if they changed since you checked them, e.g.
-    because of journal items posted meanwhile.
+    because of journal items posted meanwhile. It asks first if the
+    tax return lock date of the company doesn't cover the period yet.
 5.  The approved statement is final and counts as declared. The approval
     attaches it as ELSTER XML: upload it in Mein ELSTER into the form of
     the Umsatzsteuer-Voranmeldung. It declares the tax bases in full

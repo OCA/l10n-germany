@@ -88,6 +88,13 @@ class TestTaxStatement(BaseCommon):
         with self.assertRaises(ValidationError):
             self.statement.year = 25
 
+    def test_period_open(self):
+        self.assertTrue(self.statement.is_period_open)
+        self.company.tax_lock_date = date(2025, 2, 28)
+        self.assertTrue(self.statement.is_period_open)
+        self.company.tax_lock_date = date(2025, 3, 31)
+        self.assertFalse(self.statement.is_period_open)
+
     def test_update(self):
         self._create_move(
             "out_invoice",

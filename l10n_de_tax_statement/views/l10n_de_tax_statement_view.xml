@@ -21,11 +21,31 @@
                         type="object"
                         class="btn-primary"
                         groups="account.group_account_manager"
-                        invisible="state != 'draft'"
+                        invisible="state != 'draft' or is_period_open"
+                    />
+                    <!-- the same button, asking first as the period isn't locked -->
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        class="btn-primary"
+                        groups="account.group_account_manager"
+                        invisible="state != 'draft' or not is_period_open"
+                        confirm="The period isn't locked: the tax return lock date of the company is before its end, so journal items can still be posted into it. Approve the statement anyway?"
                     />
                     <field name="state" widget="statusbar" />
                 </header>
                 <sheet>
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        invisible="not is_period_open"
+                    >
+                        The period isn't closed: the tax return lock date of the
+                        company is before its end, so journal items can still be
+                        posted into it. Set the tax return lock date to the end
+                        of the period once the statement is complete.
+                    </div>
                     <div class="oe_title">
                         <h1>
                             <field name="name" readonly="1" />
