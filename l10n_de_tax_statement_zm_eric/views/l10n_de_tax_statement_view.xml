@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_de_tax_statement_form" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement</field>
+        <field
+            name="inherit_id"
+            ref="l10n_de_tax_statement_zm.view_l10n_de_tax_statement_form"
+        />
+        <field name="arch" type="xml">
+            <button name="action_update" position="after">
+                <button
+                    name="action_zm_eric_send"
+                    string="Send ZM to the BZSt"
+                    type="object"
+                    groups="account.group_account_manager"
+                    invisible="not is_eric_used or state != 'approved' or zm_is_sent or not zm_line_ids"
+                />
+            </button>
+            <field name="zm_line_ids" position="before">
+                <field name="zm_is_sent" invisible="1" />
+                <field name="is_eric_used" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
