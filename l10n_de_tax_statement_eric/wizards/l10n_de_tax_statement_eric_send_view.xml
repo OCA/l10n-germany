@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_l10n_de_tax_statement_eric_send_form" model="ir.ui.view">
+        <field name="model">l10n.de.tax.statement.eric.send</field>
+        <field name="arch" type="xml">
+            <form string="Send to ELSTER">
+                <div class="alert alert-info" role="alert" invisible="not is_test">
+                    Test transmission: ELSTER deletes the declaration right after
+                    its receipt, it isn't declared.
+                </div>
+                <group>
+                    <field name="statement_id" readonly="1" />
+                    <field name="declaration" readonly="1" />
+                    <field name="is_test" invisible="1" />
+                    <field name="is_stored" invisible="1" />
+                    <field
+                        name="certificate"
+                        filename="certificate_name"
+                        required="not is_stored"
+                        invisible="is_stored"
+                    />
+                    <field name="certificate_name" invisible="1" />
+                    <field
+                        name="pin"
+                        password="True"
+                        required="not is_stored"
+                        invisible="is_stored"
+                    />
+                </group>
+                <field name="privacy_notice_confirmed" invisible="1" />
+                <div invisible="privacy_notice_confirmed">
+                    <separator string="Datenschutzhinweis der Finanzverwaltung" />
+                    <field name="privacy_notice" nolabel="1" />
+                    <group>
+                        <field name="privacy_notice_read" />
+                    </group>
+                </div>
+                <footer>
+                    <button
+                        name="action_send"
+                        string="Send"
+                        type="object"
+                        class="btn-primary"
+                        invisible="not privacy_notice_confirmed and not privacy_notice_read"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,362 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_tax_statement_eric
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-15 06:23+0000\n"
+"PO-Revision-Date: 2026-11-15 06:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "Another user is changing the statement, try again in a moment."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.view_l10n_de_tax_statement_eric_send_form
+msgid "Cancel"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__certificate_name
+msgid "Certificate Name"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model,name:l10n_de_tax_statement_eric.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model,name:l10n_de_tax_statement_eric.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+msgid "Confirmed by you on"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.view_l10n_de_tax_statement_eric_send_form
+msgid "Datenschutzhinweis der Finanzverwaltung"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__declaration
+msgid "Declaration"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__certificate
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_certificate
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_certificate
+msgid "ELSTER Certificate"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_certificate_name
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_certificate_name
+msgid "ELSTER Certificate Name"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_pin
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_pin
+msgid "ELSTER Certificate PIN"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_notes
+msgid "ELSTER Notes"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_privacy_notice_date
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_users__l10n_de_eric_privacy_notice_date
+msgid "ELSTER Privacy Notice Confirmed"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__is_test
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_test
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_test
+msgid "ELSTER Test Transmission"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_transfer_ticket
+msgid "ELSTER Transfer Ticket"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_protocol_id
+msgid "ELSTER Transmission Protocol"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid ""
+"ELSTER received %(name)s, but its answer couldn't be read: %(error)s Check "
+"the transmission in Mein ELSTER."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "ELSTER received %s as a test, it isn't declared."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "ELSTER rejected the statement: %s"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_privacy_notice
+msgid "ERiC Privacy Notice"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__is_eric_used
+msgid "ERiC Used"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "ERiC failed: %(error)s"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__is_eric_used
+msgid "ERiC is configured on the server and sends the statements"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid ""
+"ERiC isn't configured: set %(option)s in the configuration file of the Odoo "
+"server to the path of libericapi.so."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/wizards/l10n_de_tax_statement_eric_send.py:0
+msgid "Enter the PIN of the certificate."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model,name:l10n_de_tax_statement_eric.model_l10n_de_tax_statement
+msgid "German VAT Statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__privacy_notice_read
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+msgid "I have read the privacy notice"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__id
+msgid "ID"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__is_stored
+msgid "Is Stored"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_store_certificate
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_store_certificate
+msgid ""
+"Keep the certificate file and its PIN in the database: the approval of a "
+"statement sends it right away, without asking for them."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+msgid ""
+"Keep the certificate file of Mein ELSTER and its PIN in the database, only "
+"administrators can read them. The approval of a statement then sends it "
+"right away."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__pin
+msgid "PIN"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/wizards/l10n_de_tax_statement_eric_send.py:0
+msgid "Please read the privacy notice first."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__privacy_notice
+msgid "Privacy Notice"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__privacy_notice_confirmed
+msgid "Privacy Notice Confirmed"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.view_l10n_de_tax_statement_eric_send_form
+msgid "Send"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model,name:l10n_de_tax_statement_eric.model_l10n_de_tax_statement_eric_send
+msgid "Send a German VAT Statement to ELSTER"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+msgid ""
+"Send the statements as test cases: ELSTER deletes them right after their "
+"receipt, they aren't declared."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__is_test
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_test
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_test
+msgid ""
+"Send the statements with the Testmerker 700000004: ELSTER deletes them right"
+" after their receipt, they aren't declared."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.view_l10n_de_tax_statement_eric_send_form
+msgid "Send to ELSTER"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_l10n_de_tax_statement_eric_send__statement_id
+msgid "Statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_store_certificate
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_store_certificate
+msgid "Store the ELSTER Certificate"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.view_l10n_de_tax_statement_eric_send_form
+msgid ""
+"Test transmission: ELSTER deletes the declaration right after\n"
+"                    its receipt, it isn't declared."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_company__l10n_de_eric_certificate
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_config_settings__l10n_de_eric_certificate
+msgid "The certificate file (.pfx) of Mein ELSTER"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_eric.res_config_settings_view_form
+msgid ""
+"The license of ERiC requires every user to read it once, before sending with"
+" it. The first transmission asks for it as well."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_notes
+msgid "The notes of ERiC and ELSTER on the transmission of the statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_protocol_id
+msgid "The protocol ERiC printed for the transmission of the statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "The statement is approved and sent to ELSTER."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_l10n_de_tax_statement__eric_transfer_ticket
+msgid "The ticket ELSTER returned for the transmission of the statement"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+msgid "Transfer ticket: %s"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement_eric.selection__l10n_de_tax_statement_eric_send__declaration__ustva
+msgid "Umsatzsteuer-Voranmeldung"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/wizards/l10n_de_tax_statement_eric_send.py:0
+msgid "Unknown declaration %s"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_eric/models/l10n_de_tax_statement.py:0
+#: code:addons/l10n_de_tax_statement_eric/wizards/l10n_de_tax_statement_eric_send.py:0
+msgid "Upload the certificate file of Mein ELSTER."
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model,name:l10n_de_tax_statement_eric.model_res_users
+msgid "User"
+msgstr ""
+
+#. module: l10n_de_tax_statement_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_eric.field_res_users__l10n_de_eric_privacy_notice_date
+msgid ""
+"When the user confirmed the privacy notice of the tax administration: the "
+"license of ERiC requires it once, before the user sends with it"
+msgstr ""
