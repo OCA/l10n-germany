@@ -44,3 +44,59 @@ These Kennzahlen need a tax of their own:
   *19% CS* with `+73` on the base, a tax line of 100 % with `-67` (input
   tax) and one of -100 % with `-74` (tax due) on the vendor bills, and
   the opposite grids on the refunds.
+
+The taxes of `l10n_de` in Odoo 18.0 need these corrections:
+
+- **Wrong sign:** these taxes declare the turnover negative. Swap the
+  tax grids of the base, `+` on the invoices and `-` on the refunds:
+  - *0% EX ND*, tax free without input tax deduction: Kennzahl 48
+  - *0% TT F*, first customer of a triangular transaction: Kennzahl 42
+  - *0% MOB*, mobile phones and other § 13b UStG supplies: Kennzahl 60
+  - *0% EU A*, tax free intra-community acquisitions (vendor bills):
+    Kennzahl 91
+- **Wrong Kennzahl:**
+  - *0% C EXEMPT* is meant for small businesses (§ 19 Abs. 1 UStG) and
+    medical services (§ 4 Nr. 14 UStG), which belong to Kennzahl 48. In
+    SKR03 it uses Kennzahl 87, in SKR04 it has no tax grid. Set `+48` on
+    the base of the invoices and `-48` on the base of the refunds.
+  - *19% EU Car* declares its input tax in Kennzahl 59, which is only
+    for vehicle suppliers under § 2a UStG. Use `-61` instead of `-59` on
+    the invoices and `+61` instead of `+59` on the refunds.
+  - *19% CS*, *7% CS* and *19% R MOB*, reverse charge purchases under
+    § 13b UStG, declare their base in Kennzahl 84 and in Kennzahl 60.
+    Kennzahl 60 is for the supplier only, remove `+60` and `-60` from
+    the base.
+  - *19% EX D* and *7% EX D*, reverse charge purchases under § 13b
+    UStG, declare their input tax in Kennzahl 66. Use `-67` instead of
+    `-66` on the invoices and `+67` instead of `+66` on the refunds.
+  - *5.5% A* and *10,7% A*, average rates of § 24 UStG, declare every
+    sale in Kennzahl 77, which is only for deliveries to customers with
+    a VAT ID in other member states. Remove `+77` and `-77` from the
+    base, and create a sale tax with 0 % and `+77`/`-77` on the base
+    for these deliveries.
+- **OSS taxes** (*l10n_eu_oss*, sales to private customers in other
+  member states) have no tax grid, so these sales are missing from the
+  statement. They belong to Kennzahl 45: set `+45_BASE` on the base of
+  the invoices and `-45_BASE` on the base of the refunds of each OSS
+  tax.
+
+The accounts of the taxes don't change the statement, but some taxes
+book on accounts which DATEV has for other cases, e.g. for an export to
+a tax advisor. These taxes book the tax the company owes itself on the
+account of Kennzahl 69 for wrongly invoiced tax (§ 14c UStG, SKR03
+1783, SKR04 3851), *EX D* also books its input tax on the general input
+tax account. Use these accounts instead:
+
+| Tax                   | SKR03       | SKR04       |
+|-----------------------|-------------|-------------|
+| *19% EX D* input tax  | 1577        | 1407        |
+| *19% EX D* output tax | 1787        | 3837        |
+| *7% EX D* input tax   | 1578        | 1408        |
+| *7% EX D* output tax  | 1785        | 3835        |
+| *19% TT F* output tax | 1794        | 3819        |
+| *19% OUT*, *7% OUT* output tax | 1769 | 3839 (create it: *Umsatzsteuer aus der Auslagerung von Gegenständen aus einem Umsatzsteuerlager*) |
+
+Changed tax grids only apply to journal items posted afterwards. For an
+earlier period, book a manual journal entry in that period which moves
+the amounts from the wrong to the right tax grids, and declare it with a
+corrected statement.
