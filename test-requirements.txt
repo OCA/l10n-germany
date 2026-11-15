@@ -1,0 +1,2 @@
+odoo-addon-l10n_de_tax_statement @ git+https://github.com/OCA/l10n-germany.git@refs/pull/271/head#subdirectory=l10n_de_tax_statement
+odoo-addon-l10n_de_tax_statement_zm @ git+https://github.com/OCA/l10n-germany.git@refs/pull/271/head#subdirectory=l10n_de_tax_statement_zm

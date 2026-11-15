@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Michael Tietz (MT Software) <mtietz@mt-software.de>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="l10n_de_tax_statement.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <setting id="l10n_de_elster_hersteller_id" position="after">
+                <setting
+                    id="l10n_de_eric_test"
+                    help="Send the statements as test cases: ELSTER deletes them right after their receipt, they aren't declared."
+                >
+                    <field name="l10n_de_eric_test" />
+                </setting>
+                <setting
+                    id="l10n_de_eric_store_certificate"
+                    help="Keep the certificate file of Mein ELSTER and its PIN in the database, only administrators can read them. The approval of a statement then sends it right away."
+                >
+                    <field name="l10n_de_eric_store_certificate" />
+                    <div
+                        class="content-group mt16"
+                        invisible="not l10n_de_eric_store_certificate"
+                    >
+                        <field
+                            name="l10n_de_eric_certificate"
+                            filename="l10n_de_eric_certificate_name"
+                        />
+                        <field name="l10n_de_eric_certificate_name" invisible="1" />
+                        <div class="mt8">
+                            <label for="l10n_de_eric_pin" class="me-2" />
+                            <field name="l10n_de_eric_pin" password="True" />
+                        </div>
+                    </div>
+                </setting>
+                <setting
+                    id="l10n_de_eric_privacy_notice"
+                    string="Datenschutzhinweis der Finanzverwaltung"
+                    help="The license of ERiC requires every user to read it once, before sending with it. The first transmission asks for it as well."
+                >
+                    <field
+                        name="l10n_de_eric_privacy_notice"
+                        nolabel="1"
+                        class="text-muted"
+                    />
+                    <div class="mt8">
+                        <span invisible="not l10n_de_eric_privacy_notice_date">
+                            Confirmed by you on
+                            <field
+                            name="l10n_de_eric_privacy_notice_date"
+                            class="oe_inline"
+                        />
+                        </span>
+                        <button
+                            name="action_l10n_de_eric_confirm_privacy_notice"
+                            type="object"
+                            string="I have read the privacy notice"
+                            class="btn-link px-0"
+                            icon="oi-arrow-right"
+                            invisible="l10n_de_eric_privacy_notice_date"
+                        />
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
