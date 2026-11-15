@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_tax_statement_zm_eric
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement_eric_send__declaration
+msgid "Declaration"
+msgstr "Meldung"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model,name:l10n_de_tax_statement_zm_eric.model_l10n_de_tax_statement
+msgid "German VAT Statement"
+msgstr "Umsatzsteuer-Voranmeldung"
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "Only the ZM of an approved statement can be sent again."
+msgstr ""
+"Nur die ZM einer freigegebenen Voranmeldung kann erneut gesendet werden."
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model_terms:ir.ui.view,arch_db:l10n_de_tax_statement_zm_eric.view_l10n_de_tax_statement_form
+msgid "Send ZM to the BZSt"
+msgstr "ZM an das BZSt senden"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model,name:l10n_de_tax_statement_zm_eric.model_l10n_de_tax_statement_eric_send
+msgid "Send a German VAT Statement to ELSTER"
+msgstr "Umsatzsteuer-Voranmeldung an ELSTER senden"
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid ""
+"Set the German VAT number (DE and 9 digits) of the company %(company)s "
+"first, the ZM requires it."
+msgstr ""
+"Hinterlegen Sie zuerst die deutsche USt-IdNr. (DE und 9 Ziffern) des "
+"Unternehmens %(company)s, die ZM benötigt sie."
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid ""
+"Switch off the test mode of ERiC to send the ZM of an approved statement."
+msgstr ""
+"Schalten Sie den Testmodus von ERiC aus, um die ZM einer freigegebenen "
+"Voranmeldung zu senden."
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "The ZM failed: %s"
+msgstr "Die ZM ist fehlgeschlagen: %s"
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "The ZM is sent to the BZSt."
+msgstr "Die ZM ist an das BZSt gesendet."
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "The ZM isn't sent: %(error)s Send it again with Send ZM to the BZSt."
+msgstr ""
+"Die ZM ist nicht gesendet: %(error)s Senden Sie sie erneut mit „ZM an das "
+"BZSt senden“."
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "The ZM of the statement was sent already."
+msgstr "Die ZM der Voranmeldung wurde bereits gesendet."
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_notes
+msgid "The notes of ERiC and ELSTER on the transmission of the ZM"
+msgstr "Die Hinweise von ERiC und ELSTER zur Übermittlung der ZM"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_protocol_id
+msgid "The protocol ERiC printed for the transmission of the ZM"
+msgstr "Das Protokoll, das ERiC zur Übermittlung der ZM gedruckt hat"
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "The statement has no ZM lines to send."
+msgstr "Die Voranmeldung hat keine ZM-Zeilen zum Senden."
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_transfer_ticket
+msgid "The ticket ELSTER returned for the transmission of the ZM"
+msgstr ""
+"Das Transferticket, das ELSTER für die Übermittlung der ZM zurückgegeben hat"
+
+#. module: l10n_de_tax_statement_zm_eric
+#. odoo-python
+#: code:addons/l10n_de_tax_statement_zm_eric/models/l10n_de_tax_statement.py:0
+msgid "Upload the certificate file of Mein ELSTER."
+msgstr "Laden Sie die Zertifikatsdatei von Mein ELSTER hoch."
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,help:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_error
+msgid "Why the ZM failed when the statement was sent"
+msgstr "Warum die ZM beim Senden der Voranmeldung fehlgeschlagen ist"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_error
+msgid "ZM Error"
+msgstr "ZM-Fehler"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_notes
+msgid "ZM Notes"
+msgstr "ZM-Hinweise"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_is_sent
+msgid "ZM Sent to the BZSt"
+msgstr "ZM an das BZSt gesendet"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_transfer_ticket
+msgid "ZM Transfer Ticket"
+msgstr "ZM-Transferticket"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields,field_description:l10n_de_tax_statement_zm_eric.field_l10n_de_tax_statement__zm_eric_protocol_id
+msgid "ZM Transmission Protocol"
+msgstr "ZM-Übertragungsprotokoll"
+
+#. module: l10n_de_tax_statement_zm_eric
+#: model:ir.model.fields.selection,name:l10n_de_tax_statement_zm_eric.selection__l10n_de_tax_statement_eric_send__declaration__zm
+msgid "Zusammenfassende Meldung"
+msgstr "Zusammenfassende Meldung"
