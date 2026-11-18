@@ -1,19 +1,14 @@
 To use this module, you need to:
 
-1.  Create a VAT Statement.
-2.  Post the VAT Statement: a new tab VAT Statement Extended will be
-    displayed; the tab contains the lines of the German VAT Statement
-    report extended by a separated statement for the Intra-Community
-    transactions declaration (Zusammenfassende Meldung).
-3.  In tab Zusammenfassende Meldung press the Update button in order to
-    recompute the statement lines for this report.
-4.  The values for product deliveries and services are separated in two
-    columns.
-5.  If you want to transmit the values to the official report form, f.e.
-    by "www.elster.de" you would have to enter two lines if both columns
-    product + services contains values.
-
-Printing a PDF report:
-
-1.  If you need to print the report in PDF, open a statement form and
-    click: Print -\> Zusammenfassende Meldung
+1.  Create a German VAT Statement. Like its Kennzahlen, the statement
+    computes the Zusammenfassende Meldung from the journal items of
+    Kennzahl 41 (products) and 21 (services) of its period, by partner,
+    when it is created and when you press *Update*.
+2.  Check the ZM lines along with the lines of the statement.
+3.  Press *Approve*: it checks the VAT numbers and the countries of the
+    ZM lines and attaches the ZM as CSV file next to the XML of the
+    statement. Upload it in Mein ELSTER, which forwards it to the BZSt.
+    Products and services of the same partner are separate lines in that
+    file.
+4.  A corrected statement contains the corrected ZM as well, with all
+    lines of the period, not only the changed ones.
