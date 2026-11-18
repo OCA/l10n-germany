@@ -1,42 +1,32 @@
-To create a statement you need to:
+To create a statement:
 
-1.  Verify that you have enough permits. You need to belong to the *Show
-    Full Accounting Features* group.
-2.  Go to the menu: Invoicing -\> Reporting \> German Tax Statement
-3.  Create a statement, providing a name and specifying start date and
-    end date
-4.  Press the Update button to calculate the report: the report lines
-    will be displayed in the tab Statement
-5.  Eventually you have to manually enter the tax base amounts of lines
-    '20', '21', '22', '23', '24','26', '27', '28', '29', '30','32',
-    '33', '34', '35', '36','38', '39', '40', '41', '42','48', '49',
-    '50', '51', '52','64', '65', '67') if you want to change the values
-    from float format to integer (in Edit mode, click on the amount of
-    the line to be able to change the value).
-6.  Press the Post button to set the status of the statement to Posted;
-    the statements set to this state cannot be modified
+1.  Go to Invoicing \> Reporting \> German VAT Statement
+2.  Create a statement and choose the year and the period, a month or a
+    quarter, like in the ELSTER form. A period has one statement, any
+    further statement of the period is a *Corrected Statement*.
+3.  The statement computes its Kennzahlen from the posted journal items
+    dated in the period when it is created. Kennzahl 83, the remaining
+    advance payment, is computed from them. Check the lines: the amounts
+    can't be changed by hand, correct the journal items, or book a
+    manual journal entry with the tax grid of the Kennzahl, e.g. `39`,
+    and press *Update* to compute them again.
+4.  Press *Approve* once the lines are right. The approval computes the
+    lines again and stops if they changed since you checked them, e.g.
+    because of journal items posted meanwhile.
+5.  The approved statement is final and counts as declared. The approval
+    attaches it as ELSTER XML: upload it in Mein ELSTER into the form of
+    the Umsatzsteuer-Voranmeldung. It declares the tax bases in full
+    euros, rounded half up. The XML needs the tax number, the federal
+    state and the address of the company, and the ELSTER HerstellerID in
+    Invoicing \> Configuration \> Settings. Enter the W-IdNr. of the
+    company as issued, e.g. `DE123456789-00001`: the XML declares it
+    without the suffix, as ELSTER only takes `DE` and the nine digits.
+    The W-IdNr. is optional, without it the XML leaves it out.
+6.  An approved statement can't be changed or reset, correct it with a
+    corrected statement of the period. Its approval refers to the last
+    approved statement of the period in *Corrects*, empty if the period
+    was declared outside of Odoo.
 
-To add past undeclared invoices:
-
-1.  Open the tab Past Undeclared Invoices, available when the statement
-    is in status Draft.
-2.  Set an initial date (field From Date) from which the past undeclared
-    invoices will be displayed.
-3.  One by one, add the displayed undeclared invoices, by clicking on
-    the Add Invoice button present in each line.
-4.  Press the Update button in order to recompute the statement lines.
-
-Extra info about the workflow:
-
-1.  If you need to recalculate or modify or delete a statement already
-    set to Posted status you need first to set it back to Draft status:
-    press the button Reset to Draft
-2.  Instead, if you send the statement to the Tax Authority, you may
-    want to avoid that the statement is set back to Draft: to avoid
-    this, press the button Final. If you then confirm, it will be not
-    possible to modify this Statement or reset it back to draft anymore.
-
-Printing a PDF report:
-
-1.  If you need to print the report in PDF, open a statement form and
-    click: Print -\> German Tax Statement
+Journal items posted later into a period you already declared are not
+part of any other statement, declare them with a corrected statement of
+that period.
