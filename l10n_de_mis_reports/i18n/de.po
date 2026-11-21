@@ -1,0 +1,751 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_de_skr04_mis_reports
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-04 11:17+0000\n"
+"PO-Revision-Date: 2019-03-04 11:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_anleihen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_anleihen
+msgid "1. Anleihen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_anteile
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_anteile
+msgid "1. Anteile an verb. Untern."
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_wertpapiere_uv_anteile
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_wertpapiere_uv_anteile
+msgid "1. Anteile an verb. Unternehmen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_forderungen_ll
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_forderungen_ll
+msgid "1. Forderungen aus Lieferungen + Leistungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ruecklage_gesetzlich
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ruecklage_gesetzlich
+msgid "1. Gesetzliche Rücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_grundstueck
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_grundstueck
+msgid "1. Grundstücke, grundstücksgl. Rechte u. Bauten "
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_roh_hilfs_betriebsstoffe
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_roh_hilfs_betriebsstoffe
+msgid "1. Roh-, Hilfs-,Betriebsstoffe"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rueckstellungen_pensionen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rueckstellungen_pensionen
+msgid "1. Rückstellungen f. Pensionen u. ä. Verpflichtungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_schutzrechte
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_schutzrechte
+msgid "1. Selbst geschaff. gew. Schutzrechte u.ä. Rechte u. Werte"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_umsatzerloese
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_umsatzerloese
+msgid "1. Umsatzerlöse"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ertraege_wertpapiere
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ertraege_wertpapiere
+msgid "10. Erträge aus Wertpapieren / Ausleihungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_zinsertraege
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_zinsertraege
+msgid "11. Sonstige Zinsen u.ä. Erträge"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_abschreibungen_finanzanlagen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_abschreibungen_finanzanlagen
+msgid "12. Abschreibungen Finanzanlagen u. Wertpapiere"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_zinsaufwendungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_zinsaufwendungen
+msgid "13. Zinsen u.ä. Aufwendungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ao_ergebnis_erloese
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ao_ergebnis_erloese
+msgid "14. Außerordentliche Erträge"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ao_ergebnis_aufwendungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ao_ergebnis_aufwendungen
+msgid "15. Außerordentliche Aufwendungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_steuern_ertrag
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_steuern_ertrag
+msgid "16. Steuern vom Einkommen und Ertrag"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_sonstige_steuern
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_sonstige_steuern
+msgid "17. Sonstige Steuern"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ausleihungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ausleihungen
+msgid "2. Ausleihungen an verb. Unt."
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_bestandsveraenderungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_bestandsveraenderungen
+msgid "2. Bestandsveränderungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_wertpapiere_uv_eigene_anteile
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_wertpapiere_uv_eigene_anteile
+msgid "2. Eigene Anteile"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_forderungen_unternehmen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_forderungen_unternehmen
+msgid "2. Forderungen gegen verb. Unternehmen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_konzessionen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_konzessionen
+msgid "2. Konzessionen, Lizenzen u.ä. Rechte u. Werte "
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ruecklage_eigene_anteile
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ruecklage_eigene_anteile
+msgid "2. Rücklage für eigene Anteile"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rueckstellungen_steuern
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rueckstellungen_steuern
+msgid "2. Steuerrückstellungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_maschinen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_maschinen
+msgid "2. Technische Anlagen und Maschinen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_unfertige_leistungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_unfertige_leistungen
+msgid "2. Unfertige Leistungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_bank
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_bank
+msgid "2. Verbindlichkeiten gegenüb. Kreditinstituten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ausstattung
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ausstattung
+msgid "3. Andere Anlagen, Betriebs- u. Geschäftsausstattung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_beteiligungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_beteiligungen
+msgid "3. Beteiligungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_eigenleistungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_eigenleistungen
+msgid "3. Eigenleistungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_anzahlungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_anzahlungen
+msgid "3. Erhaltene Anzahlungen auf Bestellungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_fertige_erzeugnisse
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_fertige_erzeugnisse
+msgid "3. Fertige Erzeugnisse"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_forderungen_beteiligungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_forderungen_beteiligungen
+msgid "3. Forderungen geg. Unt. mit Beteiligung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_firmenwert
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_firmenwert
+msgid "3. Geschäfts- oder Firmenwert"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ruecklage_satzung
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ruecklage_satzung
+msgid "3. Satzungsmässige Rücklagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rueckstellungen_sonstige
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rueckstellungen_sonstige
+msgid "3. Sonstige Rückstellungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_wertpapiere_uv_sonstige
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_wertpapiere_uv_sonstige
+msgid "3. Sonstige Wertpapiere Umlaufverm."
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ruecklage_andere_gewinne
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ruecklage_andere_gewinne
+msgid "4. Andere Gewinnrücklagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ausleihungen_beteiligung
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ausleihungen_beteiligung
+msgid "4. Ausleihungen an Unternehmen mit Beteiligung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_anlagen_im_bau
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_anlagen_im_bau
+msgid "4. Geleistete Anz. u. Anlagen i. Bau"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_anzahlungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_geleistetet_anzahlungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_anzahlungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_geleistetet_anzahlungen
+msgid "4. Geleistete Anzahlungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_sonstige_vermoegensgegenstaende
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_sonstige_vermoegensgegenstaende
+msgid "4. Sonstige Vermögensgegenstände"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_sonstige_ertraege
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_sonstige_ertraege
+msgid "4. Sonstige betr. Erträge"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_ll
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_ll
+msgid "4. Verbindlichkeiten aus Lieferungen u. Leistungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_materialaufwand
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_materialaufwand
+msgid "5. Materialaufwand"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_wechsel
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_wechsel
+msgid "5. Verbindlichkeiten aus der Annahme von Wechseln"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_wertpapiere_av
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_wertpapiere_av
+msgid "5. Wertpapiere des Anlagevermögen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_personalaufwand
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_personalaufwand
+msgid "6. Personalaufwand"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_sonstige_ausleihungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_sonstige_ausleihungen
+msgid "6. Sonstige Ausleihungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_verbundene_unternehmen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_verbundene_unternehmen
+msgid "6. Verbindlichkeiten geg. verb. Unternehmen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_abschreibungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_abschreibungen
+msgid "7. Abschreibungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_unternehmen_mit_beteiligung
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_unternehmen_mit_beteiligung
+msgid "7. Verbindlichkeiten geg. Unternehmen m. Beteiligung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten_sonstige
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten_sonstige
+msgid "8. Sonst. Verbindlichkeiten aus Steuern, soziale Sicherheit"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_sonstige_aufwendungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_sonstige_aufwendungen
+msgid "8. Sonstige betriebliche Aufwendungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ertraege_beteiligungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ertraege_beteiligungen
+msgid "9. Erträge aus betrieblichen Beteiligungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_anlagevermoegen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_anlagevermoegen
+msgid "A. Anlagevermögen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_eigenkapital
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_eigenkapital
+msgid "A. Eigenkapital"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ao_ergebnis
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_total_ao_ergebnis
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ao_ergebnis
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_total_ao_ergebnis
+msgid "Außerordentliches Ergebnis"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rueckstellungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rueckstellungen
+msgid "B. Rückstellungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_umlaufvermoegen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_umlaufvermoegen
+msgid "B. Umlaufvermögen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,name:l10n_de_mis_reports.mis_report_bs_skr03
+#, fuzzy
+msgid "Balance Sheet (SKR03)"
+msgstr "Bilanz Auswertung (SKR03)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,name:l10n_de_mis_reports.mis_report_bs_skr04
+#, fuzzy
+msgid "Balance Sheet (SKR04)"
+msgstr "Bilanz Auswertung (SKR04)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_total_aufwendungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_total_aufwendungen
+msgid "Betriebliche Aufwendungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_betriebliche_erloese
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_total_erloese
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_betriebliche_erloese
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_total_erloese
+msgid "Betriebliche Erlöse"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_betriebsaufwand
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_betriebsaufwand
+msgid "Betrieblicher Aufwand"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_total_betriebsergebnis
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_total_betriebsergebnis
+msgid "Betriebsergebnis"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_bilanzgewinn
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_bilanzgewinn
+msgid "Bilanzgewinn"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rechnungsabgrenzung_aktiva
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rechnungsabgrenzung_aktiva
+msgid "C. Rechnungsabgrenzungsposten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_verbindlichkeiten
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_verbindlichkeiten
+msgid "C. Verbindlichkeiten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_aktive_latente_steuern
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_aktive_latente_steuern
+msgid "D. Aktive latente Steuern"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_rechnungsabgrenzung_passiva
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_rechnungsabgrenzung_passiva
+msgid "D. Rechnungsabgrenzungsposten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_aktiver_unterschied_vermoegen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_aktiver_unterschied_vermoegen
+msgid "E. Aktiver Unterschiedsbetrag a.d. Vermögensverrechnung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_passive_latente_steuern
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_passive_latente_steuern
+msgid "E. Passive latente Steuern"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_einstellung_ruecklage
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_einstellung_ruecklage
+msgid "Einstellung in Gewinnrücklagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_entnahme_gewinnruecklage
+msgid "Entnahme aus der Gewinnrücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_entnahme_kapitalruecklage
+msgid "Entnahme aus der Kapitalrücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ergebnis_geschaeftstaetigkeit
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_ergebnis_gewoehnliche
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ergebnis_geschaeftstaetigkeit
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_ergebnis_gewoehnliche
+msgid "Ergebnis der gewöhnlichen Geschäftstätigkeit"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_steuern
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_steuern
+msgid "Ergebnis nach Steuern"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_fehlbetrag
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_fehlbetrag
+msgid "F. Nicht d. Eigenkap. ged. Fehlbetrag"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,description:l10n_de_mis_reports.mis_report_bs_skr03
+#, fuzzy
+msgid "German Balance Sheet for SKR03 (§ 266 HGB)"
+msgstr "Bilanz für SKR03 Kontenplan Deutschland (§ 266 HGB)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,description:l10n_de_mis_reports.mis_report_bs_skr04
+#, fuzzy
+msgid "German Balance Sheet for SKR04 (§ 266 HGB)"
+msgstr "Bilanz für SKR04 Kontenplan Deutschland (§ 266 HGB)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,description:l10n_de_mis_reports.mis_report_pl_skr03
+#, fuzzy
+msgid "German P&L Sheet for SKR03 (§ 275 HGB)"
+msgstr "Gewinn- und Verlustrechnung Deutschland (§ 275 HGB)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,description:l10n_de_mis_reports.mis_report_pl_skr04
+#, fuzzy
+msgid "German P&L Sheet for SKR04 (§ 275 HGB)"
+msgstr "Gewinn- und Verlustrechnung Deutschland (§ 275 HGB)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_gewinnvortrag_vj
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_gewinnvortrag_vj
+msgid "Gewinnvortrag aus dem Vorjahr"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_gezeichnetes_kapital
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_gezeichnetes_kapital
+msgid "I. Gezeichnetes Kapital"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_immaterielle
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_immaterielle
+msgid "I. Immaterielle Vermögensgegenstände"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_i_vorraete
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_i_vorraete
+msgid "I. Vorräte"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_ii_forderungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_ii_forderungen
+msgid "II. Forderungen u. sonst. Vermögensgegenstände"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_variables_kapital
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_variables_kapital
+msgid "II. Kapitalrücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_ii_skr03_sachanlagen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_ii_skr04_sachanlagen
+msgid "II. Sachanlagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_iii_wertpapiere
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_iii_wertpapiere
+msgid "III Wertpapiere"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_iii_skr03_finanzanlagen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_iii_skr04_finanzanlagen
+msgid "III. Finanzanlagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_gewinnruecklage
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_gewinnruecklage
+msgid "III. Gewinnrücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_gewinn_verlustvortrag
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_gewinn_verlustvortrag
+msgid "IV. Gewinnvortrag / Verlustvortrag"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_liquide_mittel
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_liquide_mittel
+msgid "IV. Kassenbestand und Guthaben bei Kreditinstituten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_gewinn_verlust
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_gewinn_verlust
+msgid "Jahresüberschuss (Gewinn/ Verlust)"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,name:l10n_de_mis_reports.mis_report_pl_skr03
+#, fuzzy
+msgid "P&L Sheet (SKR03)"
+msgstr "Gewinn- und Verlustrechnung (SKR03)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report,name:l10n_de_mis_reports.mis_report_pl_skr04
+#, fuzzy
+msgid "P&L Sheet (SKR04)"
+msgstr "Gewinn- und Verlustrechnung (SKR04)"
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_aktivseite
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_aktivseite
+msgid "Summe Aktiva (Mittelverwendung)"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_passivseite
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_passivseite
+msgid "Summe Passiva (Mittelherkunft)"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_anlagevermoegen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_anlagevermoegen
+msgid "Total A. Anlagevermögen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_eigenkapital
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_eigenkapital
+msgid "Total A. Eigenkapital"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_rueckstellungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_rueckstellungen
+msgid "Total B. Rückstellungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_umlaufvermoegen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_umlaufvermoegen
+msgid "Total B. Umlaufvermögen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_verbindlichkeiten
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_verbindlichkeiten
+msgid "Total C. Verbindlichkeiten"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_immaterielle
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_immaterielle
+msgid "Total I. Immaterielle Vermögensgegenstände"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_vorraete
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_vorraete
+msgid "Total I. Vorräte"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_forderungen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_forderungen
+msgid "Total II. Forderungen u. sonst. Vermögensgegenst."
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_sachanlagen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_sachanlagen
+msgid "Total II. Sachanlagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_finanzanlagen
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_finanzanlagen
+msgid "Total III. Finanzanlagen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_gewinnruecklage
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_gewinnruecklage
+msgid "Total III. Gewinnrücklage"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_total_wertpapiere_uv
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_total_wertpapiere_uv
+msgid "Total III. Wertpapiere"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_jahresgewinn_verlust
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_jahresgewinn_verlust
+msgid "V. Jahresgewinn / Jahresverlust"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr03_sopo_mit_ruecklage
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_bs_skr04_sopo_mit_ruecklage
+msgid "VI. Sonderposten mit Rücklagenanteil"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_personalaufwand_a
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_personalaufwand_a
+msgid "a. Löhne und Gehälter"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_materialaufwand_a
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_materialaufwand_a
+msgid "a. Materialaufwand für RHB und bezogene Waren"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_abschreibungen_a
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_abschreibungen_a
+msgid ""
+"a. auf Vermögensgeg. des AV, Sachanlagen, akt. Aufw. f. die Ingangs. u. "
+"Erweit. d. Geschäftsb."
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_materialaufwand_b
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_materialaufwand_b
+msgid "b. Aufwendungen für bezogene Leistungen"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_personalaufwand_b
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_personalaufwand_b
+msgid "b. Soziale Abgaben und Aufw. f. Altersversorgung"
+msgstr ""
+
+#. module: l10n_de_mis_reports
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr03_abschreibungen_b
+#: model:mis.report.kpi,description:l10n_de_mis_reports.mis_report_pl_skr04_abschreibungen_b
+msgid "b. auf Vermögensgegenstände des UV"
+msgstr ""
