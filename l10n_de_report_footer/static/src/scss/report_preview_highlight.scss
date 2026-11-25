@@ -1,0 +1,21 @@
+// Highlight of preview areas while a related field of the document layout
+// wizard is focused (see static/src/js/report_preview_highlight.esm.js).
+$o-report-preview-highlight-color: #e46e78 !default;
+
+@mixin o-report-preview-highlight {
+    outline: 2px dashed $o-report-preview-highlight-color;
+    outline-offset: 2px;
+    background-color: rgba($o-report-preview-highlight-color, 0.08);
+    transition: background-color 0.2s;
+}
+
+html[data-report-preview-highlight="footer"] .footer {
+    @include o-report-preview-highlight;
+}
+
+// Address, tagline and footer text of the document layout
+html[data-report-preview-highlight="company_details"] .o_report_company_details,
+html[data-report-preview-highlight="tagline"] .o_report_tagline,
+html[data-report-preview-highlight="footer_text"] .o_report_footer_text {
+    @include o-report-preview-highlight;
+}

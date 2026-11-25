@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_base_document_layout" model="ir.ui.view">
+        <field
+            name="name"
+        >base.document.layout.form.inherit.l10n_de_report_footer</field>
+        <field name="model">base.document.layout</field>
+        <field name="inherit_id" ref="web.view_base_document_layout" />
+        <field name="arch" type="xml">
+            <field name="report_footer" position="before">
+                <field name="report_footer_render_model" invisible="1" />
+            </field>
+            <field name="report_footer" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_report_preview_highlight_footer_text"
+                    separator=" "
+                />
+                <attribute
+                    name="options"
+                >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
+                <attribute
+                    name="placeholder"
+                >Write your phone, email, bank account, tax ID, ... Type / to insert company data.</attribute>
+            </field>
+            <field name="company_details" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_report_preview_highlight_company_details"
+                    separator=" "
+                />
+                <attribute
+                    name="options"
+                >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
+            </field>
+            <field name="report_header" position="attributes">
+                <attribute
+                    name="class"
+                    add="o_report_preview_highlight_tagline"
+                    separator=" "
+                />
+                <attribute
+                    name="options"
+                >{'resizable': false, 'icon_picker': true, 'dynamic_placeholder': true, 'dynamic_placeholder_model_reference_field': 'report_footer_render_model'}</attribute>
+            </field>
+            <field name="paperformat_id" position="after">
+                <field name="report_layout_config_fields" invisible="1" />
+                <field
+                    name="report_layout_config"
+                    widget="report_layout_config"
+                    nolabel="1"
+                    colspan="2"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
