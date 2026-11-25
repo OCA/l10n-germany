@@ -38,20 +38,32 @@ DATEV Format .csv Import
 The module "datev_import_csv_dtvf" enables the import of DATEV journal
 entries into Odoo. Possible use cases include:
 
-- DATEV journal entries from payroll and salary accounting
-- DATEV journal entries in the context of annual financial statements
-- DATEV journal entries in the context of reallocations by the tax
-  consultant
-- DATEV journal entries in the context of depreciation (AfA) bookings by
-  the tax consultant
-- DATEV journal entries in the context of loans
+-  DATEV journal entries from payroll and salary accounting
+-  DATEV journal entries in the context of annual financial statements
+-  DATEV journal entries in the context of reallocations by the tax
+   consultant
+-  DATEV journal entries in the context of depreciation (AfA) bookings
+   by the tax consultant
+-  DATEV journal entries in the context of loans
+
+Tax handling (Automatikkonten)
+------------------------------
+
+The import wizard supports automatic tax line generation based on
+account default taxes. When the option "Apply Account Default Taxes" is
+enabled, accounts configured with default taxes (Automatikkonten, e.g.
+SKR03 account 4400 with 19% input VAT) will have their imported gross
+amounts automatically split into net amount + tax lines by Odoo's tax
+engine.
 
 Currently, the following limitations exist:
 
-- DATEV journal entries containing tax-related booking keys require
-  adjustments in Odoo
-- Under certain circumstances, DATEV journal entries on creditor and
-  debtor accounts may also be affected.
+-  DATEV journal entries containing tax-related booking keys require
+   attention. While there is an optional feature to implement tax
+   handling it still needs careful attention to see if entries are
+   created as intended in Odoo
+-  Under certain circumstances, DATEV journal entries on creditor and
+   debtor accounts may also be affected.
 
 **Table of contents**
 
@@ -71,7 +83,6 @@ Requirements
 2. Check if the file you want to import into Odoo is DATEV format .csv
    (move lines start is line 3)
 3. Check the description in order to check if your use case is supported
-4. Take care of the limitation to import account moves with taxes
 
 DATEV Import
 ------------
@@ -84,34 +95,63 @@ DATEV Import
     "Western (Windows-1252)"), if it is the original file from your tax
     advisor
 5.  Optionally you may activate "Post Journal Entry" in order to
-    immidiately confirm the created Journal Entry
+    immediately confirm the created Journal Entry
 6.  Select the mandatory journal (f.e. "Payroll Account Moves"), usually
     the journal type will be "Miscellaneous"
-7.  Enter optionally the "Force Date" field ((will be the field "Date"
-    in your Journal Entry)
+7.  Enter optionally the "Force Date" field (will be the field "Date" in
+    your Journal Entry)
 8.  Enter the mandatory field "Reference" (will be the field "Reference"
     in your Journal Entry)
 9.  Enter optionally the field "Force Label" (will be the field "Name"
     in your Journal Items)
-10. Finally click on "Run Import"
+10. Optionally enable "Apply Account Default Taxes" to automatically
+    generate tax lines (see below)
+11. Finally click on "Run Import"
 
-|image|
+.. image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_import_csv_dtvf/static/description/datev_import_csv_wizard.png
+   :alt: image
 
-If everyting works fine, you should now see your created Journal Entry
-in draft (execept you activated "Post Journal Entry")
+If everything works fine, you should now see your created Journal Entry
+in draft (except you activated "Post Journal Entry")
+
+Tax handling (Automatikkonten)
+------------------------------
+
+When importing DATEV files that contain bookings on accounts with
+default taxes (Automatikkonten), you can enable the "Apply Account
+Default Taxes" checkbox in the import wizard. This will:
+
+1. Look up the default taxes configured on each account in Odoo
+   (Accounting > Configuration > Chart of Accounts > Default Taxes)
+2. Treat the imported amounts as **gross** (tax-included)
+3. Automatically split the gross amount into net + tax using Odoo's tax
+   engine
+4. Generate the corresponding tax lines on the journal entry
+
+**Example:** A CSV row with 119.00 EUR on account 4400 (configured with
+19% input VAT) will create:
+
+-  100.00 EUR debit on account 4400 (net amount, with tax reference)
+-  19.00 EUR debit on the input VAT account (auto-generated tax line)
+-  119.00 EUR credit on the contra account (gross amount, unchanged)
+
+**Prerequisites:** Ensure that the relevant accounts in Odoo have their
+default taxes ("Default Taxes" / "Standardsteuern") configured correctly
+before running the import.
+
+Accounts without default taxes are imported as before (gross amount, no
+tax split).
 
 Typical issue
 -------------
 
-If accounts doesen't exist in Odoo the wizard may interrupt and show you
+If accounts don't exist in Odoo the wizard may interrupt and show you
 potential missing accounts.
 
-|image1|
+.. image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_import_csv_dtvf/static/description/datev_import_csv_wizard_error.png
+   :alt: image
 
 In this case you have to ensure to create the missing accounts in Odoo.
-
-.. |image| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_import_csv_dtvf/static/description/datev_import_csv_wizard.png
-.. |image1| image:: https://raw.githubusercontent.com/OCA/l10n-germany/19.0/datev_import_csv_dtvf/static/description/datev_import_csv_wizard_error.png
 
 Bug Tracker
 ===========
@@ -129,8 +169,8 @@ Credits
 Contributors
 ------------
 
-- Holger Brunn <mail@hunki-enterprises.com>
-  (https://hunki-enterprises.com)
+-  Holger Brunn <mail@hunki-enterprises.com>
+   (https://hunki-enterprises.com)
 
 Maintainers
 -----------
