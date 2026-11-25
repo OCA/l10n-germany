@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xml.datev.de/bedi/tps/document/v05.0" xmlns:de="http://xml.datev.de/DD/DE/bedi/tps/document/v050" targetNamespace="http://xml.datev.de/bedi/tps/document/v05.0" elementFormDefault="qualified">
+	<xsd:import namespace="http://xml.datev.de/DD/DE/bedi/tps/document/v050" schemaLocation="Document_types_v050.xsd"/>
+	<xsd:element name="archive" type="archive">
+		<xsd:annotation>
+			<xsd:documentation>Rootelement</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="archive">
+		<xsd:sequence>
+			<xsd:element name="header" type="header" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Metadaten des ZIP-Archives</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="content" type="content" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Beschreibung des Inhalts des ZIP-Archives</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="version" type="de:p16" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Versionsnummer der vorliegenden Spezifikation</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="guid" type="de:p10037">
+			<xsd:annotation>
+				<xsd:documentation>GUID des ZIP-Archivs</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="generatingSystem" type="de:p10009" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Name des Softwareherstellers oder der Software, mit der die strukturierten Daten erzeugt wurden.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="header">
+		<xsd:sequence>
+			<xsd:element name="date" type="de:p10048" minOccurs="1" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Datum und Uhrzeit der Erstellung des Archivs</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description" type="de:p10051" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Beschreibung des Archivs</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="consultantNumber" type="de:p10049" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Beraternummer</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="clientNumber" type="de:p10050" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Mandantennummer / Kundennummer</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="clientName" type="de:p17" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Mandantenname / Kundenname</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="repository" type="repository" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Definition der Ablage-Struktur der Daten des ZIP-Archivs auf Metaebene</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="content">
+		<xsd:annotation>
+			<xsd:documentation>Enthält die Inhaltsdaten des ZIP-Archivs und die Ablagestruktur.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="document" type="document" minOccurs="1" maxOccurs="4999">
+				<xsd:annotation>
+					<xsd:documentation>Strukturierung der Daten des ZIP-Archivs</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="document">
+		<xsd:annotation>
+			<xsd:documentation>Ein document klammert zusammengehörige Dateien incl. Beschreibung.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="description" type="de:p10052" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Beschreibung des Dokuments</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="keywords" type="de:p10051" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Schlüsselwörter zum Dokument</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="extension" type="extension" minOccurs="1" maxOccurs="50"/>
+			<xsd:element name="repository" type="repository" minOccurs="0" maxOccurs="1">
+				<xsd:annotation>
+					<xsd:documentation>Definition der Ablage-Struktur der Daten des ZIP-Archivs auf Dokumentenebene</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="guid" type="de:p10037" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>GUID des Beleges z. B. aus einem Dokumentenmanagementsystem </xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="type" type="de:p25">
+			<xsd:annotation>
+				<xsd:documentation>Definition, um was für einen Typ es sich bei diesem Dokument handelt:  Eingangs-, Ausgangsrechnung oder weder noch.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="processID" type="de:p26">
+			<xsd:annotation>
+				<xsd:documentation>Enthält Informationen zur Verarbeitung des Dokuments.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<xsd:complexType name="repository">
+		<xsd:annotation>
+			<xsd:documentation>Das Element „repository“ enthält die Ablagestruktur der Daten des ZIP-Archivs.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="level" type="level" minOccurs="1" maxOccurs="3">
+				<xsd:annotation>
+					<xsd:documentation>Strukturiert die Hierarchieebenen der Ablagestruktur.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="level">
+		<xsd:annotation>
+			<xsd:documentation>Das Element „level“ definiert eine der Hierarchieebenen in der Ablage-Struktur.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:attribute name="id" type="de:p27" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Gibt die Hierachieebene an.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="name" type="de:p10008" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Gibt die Bezeichnung der Hierachieebene an.</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
+	<!-- abstract definition of extension -->
+	<xsd:complexType name="extension" abstract="true"/>
+	<xsd:complexType name="Invoice">
+		<xsd:annotation>
+			<xsd:documentation>Eine Ausprägung der Erweiterung "extension". Sie enthält die Informationen über die strukturierten Rechnungsdaten.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:sequence>
+					<xsd:element name="property" minOccurs="1" maxOccurs="1">
+						<xsd:annotation>
+							<xsd:documentation>Das Element „property“ enthält die Attribute zur Beschreibung des Extensiontyps "Invoice".</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:attribute name="value" type="de:p18" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „value“ enthält immer den Wert zur erweiterten Beschreibung (key).</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="key" type="de:p19" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „key“ enthält immer die erweiterte Beschreibung der vorliegenden Extension</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="datafile" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Name der XML-Datei, die die Rechnung enthält.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="File">
+		<xsd:annotation>
+			<xsd:documentation>Die Extension "File" enthält die Informationen für die Bilddateien der Rechnung, sowie Signatur-Informationen, wenn es sich um eine elektronische Rechnung handelt. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:attribute name="name" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Übertragene Datei, z.B. eingescanntes Belegbild oder aus einem System erstellte Bilddatei.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- neu für KABU -->
+	<xsd:complexType name="cashLedger">
+		<xsd:annotation>
+			<xsd:documentation>Eine Ausprägung der Erweiterung "extension". Sie enthält die Informationen über die strukturierten Kassendaten.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:sequence>
+					<xsd:element name="property" minOccurs="1" maxOccurs="2">
+						<xsd:annotation>
+							<xsd:documentation>Das Element „property“ enthält die Attribute zur Beschreibung des Extensiontyps "cashLedger".</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:attribute name="value" type="cashPropertyValue" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „value“ enthält immer den Wert zur erweiterten Beschreibung (key).</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="key" type="de:p32" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „key“ enthält immer die erweiterte Beschreibung der vorliegenden Extension</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="datafile" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Name der XML-Datei, die die Kassendaten enthält.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- Ende neu für KABU -->
+	<!-- neu für REBU -->
+	<xsd:complexType name="accountsPayableLedger">
+		<xsd:annotation>
+			<xsd:documentation>Eine Ausprägung der Erweiterung "extension". Sie enthält die Informationen über die strukturierten Rechnungseingangsdaten.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:sequence>
+					<xsd:element name="property" minOccurs="1" maxOccurs="2">
+						<xsd:annotation>
+							<xsd:documentation>Das Element „property“ enthält die Attribute zur Beschreibung des Extensiontyps "accountsPayableLedger".</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:attribute name="value" type="invoicePropertyValue" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „value“ enthält immer den Wert zur erweiterten Beschreibung (key).</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="key" type="de:p32" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „key“ enthält immer die erweiterte Beschreibung der vorliegenden Extension</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="datafile" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Name der XML-Datei, die die Rechnungseingangs enthält.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- Ende neu für REBU -->
+	<!-- neu für RABU -->
+	<xsd:complexType name="accountsReceivableLedger">
+		<xsd:annotation>
+			<xsd:documentation>Eine Ausprägung der Erweiterung "extension". Sie enthält die Informationen über die strukturierten Rechnungsausgangsdaten.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:sequence>
+					<xsd:element name="property" minOccurs="1" maxOccurs="2">
+						<xsd:annotation>
+							<xsd:documentation>Das Element „property“ enthält die Attribute zur Beschreibung des Extensiontyps "accountsReceivableLedger".</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:attribute name="value" type="invoicePropertyValue" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „value“ enthält immer den Wert zur erweiterten Beschreibung (key).</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="key" type="de:p32" use="required">
+								<xsd:annotation>
+									<xsd:documentation>Das Attribut „key“ enthält immer die erweiterte Beschreibung der vorliegenden Extension</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+				<xsd:attribute name="datafile" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>Name der XML-Datei, die die Rechnungseingangs enthält.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- Ende neu für RABU -->
+	<!-- neu SEPA-File extension-->
+	<xsd:complexType name="SEPAFile">
+		<xsd:annotation>
+			<xsd:documentation>Die Extension "SEPAFile" enthält die Informationen für die SEPA/DTAUS-Datei. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="extension">
+				<xsd:attribute name="name" type="de:p20" use="required">
+					<xsd:annotation>
+						<xsd:documentation>SEPA-/DTAUS-Datei</xsd:documentation>
+					</xsd:annotation>
+				</xsd:attribute>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- end-of abstract definition of extension -->
+	<!-- neu für KABU-->
+	<xsd:simpleType name="cashPropertyValue">
+		<xsd:annotation>
+			<xsd:documentation>Zusammenfassung unterschiedlicher Wertebereiche, die in Abhängigkeit vom gesetzten Key der Extension Key zum CashLedger erlaubt sind. (de:p28 für die Periode (Key: 1 = period); de:p10039 für Kassenkonto-Nummer (Key:2 = cashAccount); de:p10009 für die Kassenbezeichnung (Key: 3 = cashName)). Dieser SimpleType umfasst einen pro Key exakt spezifizierten Wertebereich des korrespondieren Value der Extension Key.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="de:p28 de:p10039 de:p10009"/>
+	</xsd:simpleType>
+	<!-- end-of abstract definition of extension -->
+	<!-- neu für REBU/RABU-->
+	<xsd:simpleType name="invoicePropertyValue">
+		<xsd:annotation>
+			<xsd:documentation>Zusammenfassung unterschiedlicher Wertebereiche, die in Abhängigkeit vom gesetzten Key der Extension Key zum accountsPayableLedger oder accountsReceivableLedger erlaubt sind. (de:p28 für die Periode (Key: 1 = period); de:p10009 für die Rechnungseingangs- oder -ausgangsordnerbezeichnung (Key: 3 = accountsPayableLedger oder accountsReceivableLedger)). Dieser SimpleType umfasst einen pro Key exakt spezifizierten Wertebereich des korrespondieren Value der Extension Key.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="de:p28 de:p10009"/>
+	</xsd:simpleType>
+	<!-- end-of abstract definition of extension -->
+</xsd:schema>
