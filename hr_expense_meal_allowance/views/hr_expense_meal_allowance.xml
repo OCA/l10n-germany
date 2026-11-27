@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="hr_expense_meal_allowance_form" model="ir.ui.view">
+        <field name="name">hr.expense.meal.allowance.form.view</field>
+        <field name="model">hr.expense.meal.allowance</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date" readonly="True" />
+                            <field name="day" />
+                            <field name="breakfast_included" />
+                        </group>
+                        <group>
+                            <field name="lunch_included" />
+                            <field name="dinner_included" />
+                            <field name="employee_id" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="expense_for_day" widget='monetary' />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_expense_meal_allowance_list" model="ir.ui.view">
+        <field name="name">hr.expense.meal.allowance.list.view</field>
+        <field name="model">hr.expense.meal.allowance</field>
+        <field name="arch" type="xml">
+            <list default_order="date asc">
+                <field name="currency_id" column_invisible="True" />
+                <field name="date" widget="date" readonly="True" />
+                <field name="day" />
+                <field name="breakfast_included" />
+                <field name="lunch_included" />
+                <field name="dinner_included" />
+                <field name="employee_id" />
+                <field name="expense_for_day" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_hr_expense_meal_allowance">
+        <field name="name">Meal Allowance</field>
+        <field name="res_model">hr.expense.meal.allowance</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="expense_included_meal_menu"
+        name="Meal Allowance"
+        parent="hr_expense.menu_hr_expense_reports"
+        action="action_hr_expense_meal_allowance"
+        sequence="99"
+    />
+</odoo>
