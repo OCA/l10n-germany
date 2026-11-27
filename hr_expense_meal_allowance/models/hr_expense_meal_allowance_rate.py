@@ -21,7 +21,6 @@ class HrExpenseMealAllowanceRate(models.Model):
     dinner_rate = fields.Monetary(compute="_compute_expense_rate")
     currency_id = fields.Many2one(
         "res.currency",
-        string="Currency",
         required=True,
         default=lambda self: self.env.ref("base.EUR").id,
     )

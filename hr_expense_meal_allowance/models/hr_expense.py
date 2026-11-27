@@ -9,8 +9,8 @@ from odoo.tools.safe_eval import time as safe_eval_time
 class HrExpense(models.Model):
     _inherit = "hr.expense"
 
-    travel_begin = fields.Datetime()
-    travel_end = fields.Datetime()
+    travel_begin = fields.Datetime(tracking=True)
+    travel_end = fields.Datetime(tracking=True)
     customer_id = fields.Many2one("res.partner")
     meal_allowance_rate_id = fields.Many2one(
         "hr.expense.meal.allowance.rate",
@@ -39,6 +39,20 @@ class HrExpense(models.Model):
                 meal_allowance_tag
                 and meal_allowance_tag in record.product_id.product_tag_ids
             )
+
+    # The decorator must be repeated: Odoo only registers a constraint when the
+    # overriding method itself carries it.
+    @api.constrains("state", "approval_state", "total_amount", "total_amount_currency")
+    def _check_non_zero(self):
+        """Allow meal allowances with a total of 0 beyond the draft state.
+
+        A meal allowance can be fully reduced by provided meals and still has
+        to be submitted, approved and posted. Other expenses keep the core
+        restriction that only draft expenses can have a total of 0.
+        """
+        return super(
+            HrExpense, self.filtered(lambda expense: not expense.is_meal_allowance)
+        )._check_non_zero()
 
     @api.constrains("travel_begin", "travel_end")
     def _check_travel_dates(self):

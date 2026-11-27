@@ -599,3 +599,53 @@ class HrExpense(BaseCommon):
         ):
             with self.assertRaises(UserError):
                 expense._update_meal_lines()
+
+    def _create_zero_expense(self, product, payment_mode="own_account"):
+        expense = self.env["hr.expense"].create(
+            {
+                "name": "Zero expense",
+                "employee_id": self.employee.id,
+                "product_id": product.id,
+                "payment_mode": payment_mode,
+                "company_id": self.company.id,
+            }
+        )
+        expense.total_amount_currency = 0.0
+        return expense
+
+    def _approve_and_post(self, expense):
+        expense.action_submit()
+        if expense.state != "approved":
+            expense.action_approve()
+        action = expense.action_post()
+        if action:
+            self.env["hr.expense.post.wizard"].with_context(**action["context"]).browse(
+                action["res_id"]
+            ).action_post_entry()
+        # Other modules may only create a draft entry, post it to validate it
+        move = expense.account_move_id
+        self.assertTrue(move)
+        if move.state == "draft":
+            move.action_post()
+        self.assertEqual(move.state, "posted")
+
+    def test_zero_meal_allowance_employee_paid_can_be_posted(self):
+        expense = self._create_zero_expense(self.product)
+        self.assertTrue(expense.is_meal_allowance)
+        self._approve_and_post(expense)
+
+    def test_zero_meal_allowance_company_paid_can_be_posted(self):
+        expense = self._create_zero_expense(self.product, "company_account")
+        self.assertTrue(expense.is_meal_allowance)
+        self._approve_and_post(expense)
+
+    def test_zero_other_expense_cannot_be_submitted(self):
+        product = self.env["product.product"].create(
+            {"name": "Other expense", "can_be_expensed": True, "standard_price": 0.0}
+        )
+        expense = self._create_zero_expense(product)
+        self.assertFalse(expense.is_meal_allowance)
+        with self.assertRaisesRegex(
+            ValidationError, "Only draft expenses can have a total of 0."
+        ):
+            expense.action_submit()
